@@ -103,7 +103,7 @@ test.describe('stage 2a: reading mode', () => {
     await word(page, 2, 2).click()
     await word(page, 2, 4).click()
     await page.getByTestId('tb-translate').click()
-    await expect(page.getByTestId('translate-sheet')).toContainText('этап 5')
+    await expect(page.getByTestId('translate-sheet')).toContainText('недоступен')
     await page.getByTestId('sheet-to-add').click()
     await expect(page.getByTestId('add-sheet')).toBeVisible()
     await page.getByTestId('add-cancel').click()

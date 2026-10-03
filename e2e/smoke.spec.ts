@@ -43,14 +43,14 @@ test.describe('stage 0: scaffold', () => {
 
     // Run screens by direct URL: without an active run they must land back on the camp
     // (the run store decides the route), never show a broken half-screen.
-    for (const path of ['/battle', '/run', '/boon', '/summary', '/rest'] as const) {
+    for (const path of ['/battle', '/run', '/boon', '/summary', '/rest', '/encounter'] as const) {
       await page.goto(path)
       await expect(page.getByTestId('screen-camp')).toBeVisible()
     }
-    // Lazy screen by direct URL (deep links must work for an installed PWA).
-    await page.goto('/encounter')
-    await expect(page.getByTestId('screen-encounter')).toBeVisible()
-    await shot(page, 'screen-encounter')
+    // Lazy screens by direct URL (deep links must work for an installed PWA).
+    await page.goto('/read')
+    await expect(page.getByTestId('screen-library')).toBeVisible()
+    await shot(page, 'screen-library')
 
     // Unknown route falls back to the camp.
     await page.goto('/nope')
