@@ -71,4 +71,4 @@
 
 ## Подтверждение пуша
 
-TODO_PUSH
+`git push origin main`: `183fbde..a3f9ac6  main -> main`. Тег `stage-2a` указывает на `a3f9ac6` и отправлен (`[new tag] stage-2a -> stage-2a`). Хеш отчёта `a3f9ac6`; этот абзац добавлен отдельным коммитом `docs: record stage 2a push confirmation`.
