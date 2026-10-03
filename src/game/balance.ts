@@ -8,8 +8,41 @@ export const balance = {
     /** Combo length that heals 1 hp (every multiple). */
     comboHealEvery: 10,
   },
+  map: {
+    steps: 6,
+    /** Lair (nemesis) nodes never appear before this step index (0-based). */
+    lairMinStep: 2,
+    /** Steps visible ahead of the hero. */
+    visibleSteps: 2,
+    /** Boons offered after a node. */
+    boonChoices: 3,
+  },
+  nodes: {
+    skirmishMin: 4,
+    skirmishMax: 5,
+    /** New items introduced in one Разведка. */
+    scoutSize: 3,
+    /** Привал: hp restored and Ловушка exercises. */
+    restHeal: 2,
+    restHealWarmFire: 3,
+    restTraps: 5,
+    /** Разведка: a miss on an item's first fight does not cost hp. */
+    scoutGrace: true,
+  },
+  sortie: {
+    durationMs: 2 * 60 * 1000,
+    /** Nemeses pulled into a sortie besides the debtors. */
+    nemeses: 1,
+  },
+  echo: {
+    maxPhases: 6,
+    cleanPhases: 3,
+    cleanBonusRunes: 60,
+    phaseMultiplier: 2,
+    echoCatcherMultiplier: 3,
+  },
   battle: {
-    /** Enemies pulled from the queue for a single battle (stage 1, no map yet). */
+    /** Enemies pulled from the queue for a single battle (sortie fallback). */
     size: 8,
     /** A newcomer comes back for its first fight this many answers after Знакомство. */
     newcomerReturnMin: 2,
@@ -40,6 +73,18 @@ export const balance = {
     comboStep: 3,
     /** Runes of a retreated run are halved. */
     retreatKeep: 0.5,
+    /** A typo keeps this share of the runes (Щит переписчика restores the first one per battle). */
+    typoKeep: 0.5,
+    scoutMultiplier: 0.7,
+    /** Чистый клинок: runes for a battle without a miss. */
+    chestRunes: 40,
+    gambleBonus: 1.5,
+  },
+  boons: {
+    coolHeadSlowdown: 1.3,
+    hunterHeal: 2,
+    stubbornnessHeal: 1,
+    secondWindHp: 1,
   },
   xp: {
     /** XP per hit = base × (move stage + 1). */

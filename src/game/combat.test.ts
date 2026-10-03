@@ -14,11 +14,11 @@ function entries(ids: string[], kind: QueueEntry['kind'] = 'review'): QueueEntry
 }
 
 function battle(ids: string[], kind: QueueEntry['kind'] = 'review', progress = new Map<string, Progress>()): CombatState {
-  return createCombat(entries(ids, kind), progress, 42, balance.hero.maxHp)
+  return createCombat(entries(ids, kind), progress, 42, balance.hero.maxHp, balance.hero.maxHp)
 }
 
-const hit = { correct: true, crit: false, risked: false, debtClosed: false } as const
-const miss = { correct: false, crit: false, risked: false, debtClosed: false } as const
+const hit = { correct: true, crit: false, risked: false, typo: false, debtClosed: false } as const
+const miss = { correct: false, crit: false, risked: false, typo: false, debtClosed: false } as const
 
 describe('shadows', () => {
   it('die from one hit and the battle is won when the queue is empty', () => {
@@ -86,6 +86,7 @@ describe('debtors (SPEC §4.3, §5.4)', () => {
       ],
       new Map(),
       7,
+      balance.hero.maxHp,
       balance.hero.maxHp,
     )
     expect(s.current?.itemId).toBe('d')

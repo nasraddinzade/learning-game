@@ -68,8 +68,10 @@ export interface TrapExercise {
   tokens: string[]
   /** Index of the token holding the error, or null when the sentence is correct. */
   wrongIndex: number | null
-  /** Replacement for the wrong token (may contain several words, e.g. "a developer"). */
+  /** Replacement for the wrong token (may contain several words, e.g. "a developer"); "" removes it. */
   fix: string | null
+  /** Full correct sentence when it cannot be derived by replacing one token (moved words). */
+  correct?: string
   ruleRu: string
 }
 
@@ -121,6 +123,52 @@ export interface Attempt {
 
 export type RunStatus = 'active' | 'won' | 'retreated'
 
+export type RunPhase = 'map' | 'battle' | 'rest' | 'boon' | 'summary'
+
+export interface RunFlags {
+  /** Память рода: the first miss of the run was forgiven. */
+  firstMissForgiven: boolean
+  /** Второе дыхание: already used this run. */
+  secondWindUsed: boolean
+}
+
+/** Привал: five Ловушка exercises on an active pattern. */
+export interface RestState {
+  patternId: string
+  /** Exercise indices into the pattern definition. */
+  exercises: number[]
+  index: number
+  correct: number
+  /** Last answered exercise feedback, null while answering. */
+  feedback: { correct: boolean; ruleRu: string; fixed: string } | null
+  healed: boolean
+  done: boolean
+}
+
+/** Items still waiting for later nodes of this run, by queue kind. */
+export interface RunPool {
+  debts: string[]
+  nemeses: string[]
+  reviews: string[]
+  fresh: string[]
+}
+
+export interface RunStats {
+  hits: number
+  misses: number
+  crits: number
+  maxCombo: number
+  closedDebtIds: string[]
+  defeatedNemesisIds: string[]
+  /** Items whose stage went up at least once this run. */
+  stageUpIds: string[]
+  masteredIds: string[]
+  /** Every item that took part in any node (for end-of-run bookkeeping). */
+  seenItemIds: string[]
+  chests: number
+  xp: number
+}
+
 export interface Run {
   id: string
   seed: number
@@ -137,9 +185,22 @@ export interface Run {
   startedAt: number
   /** Live state of the current battle, saved after every answer so a reload resumes it. */
   combat: CombatState | null
+  phase: RunPhase
+  boonOffer: BoonId[] | null
+  flags: RunFlags
+  rest: RestState | null
+  pool: RunPool
+  stats: RunStats
+  /** Items that form the final boss, decided when the Echo node starts. */
+  echoItemIds: string[] | null
+  /** No misses before the Echo: bonus and a boss built from the hardest items. */
+  cleanRun: boolean
+  /** Вылазка: the battle ends when this time is reached. */
+  sortieEndsAt: number | null
+  endedAt: number | null
 }
 
-export type EnemyKind = 'shadow' | 'debtor' | 'nemesis' | 'newcomer'
+export type EnemyKind = 'shadow' | 'debtor' | 'nemesis' | 'newcomer' | 'echo'
 
 export interface Combatant {
   itemId: string
@@ -161,6 +222,7 @@ export interface PendingReturn {
 
 export interface CombatState {
   seed: number
+  nodeType: NodeType
   queue: Combatant[]
   current: Combatant | null
   /** The enemy that was just answered, shown during feedback while `current` is already the next one. */
@@ -183,6 +245,8 @@ export interface CombatState {
   seenItemIds: string[]
   closedDebtIds: string[]
   defeatedNemesisIds: string[]
+  /** Items missed in this battle but spared hp (Разведка grace, Память рода). */
+  typoShieldUsed: boolean
   status: RunStatus
 }
 
