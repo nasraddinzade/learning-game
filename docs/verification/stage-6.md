@@ -49,7 +49,7 @@
 
 ## Ручной проход (встроенный браузер)
 
-Сборка с базой `/learning-game/` в `dist-pages`, превью на 4174: лагерь рендерится, `navigator.serviceWorker` зарегистрирован со scope `/learning-game/`, манифест по `/learning-game/manifest.webmanifest`, глубокая ссылка `/learning-game/stats` открывает статистику, ресурсов с 404 нет. Деплой на GitHub Pages: workflow «Deploy to GitHub Pages #1» на коммит `9d5635d` упал за 21 с на шаге `configure-pages`: «Create Pages site failed: Resource not accessible by integration». Токен workflow не может создать сайт Pages сам; это одноразовое действие владельца: Settings → Pages → Build and deployment → Source: «GitHub Actions». После этого любой пуш в `main` (или «Re-run» упавшего запуска) выложит сборку на `https://nasraddinzade.github.io/learning-game/`. Сам шаг сборки в workflow прошёл (17 с). Адрес на момент отчёта не проверен.
+Сборка с базой `/learning-game/` в `dist-pages`, превью на 4174: лагерь рендерится, `navigator.serviceWorker` зарегистрирован со scope `/learning-game/`, манифест по `/learning-game/manifest.webmanifest`, глубокая ссылка `/learning-game/stats` открывает статистику, ресурсов с 404 нет. Деплой. Первый запуск workflow GitHub Pages упал: токен не может сам создать сайт Pages (нужно включение в настройках репозитория). Пользователь выбрал Vercel с автодеплоем из GitHub: `https://learning-game-five.vercel.app/`. Проверено в браузере: лагерь по HTTPS, service worker со scope `/`, манифест со `start_url: /`, без 404 и ошибок консоли, dev-панели нет. `curl` показал, что холодные глубокие ссылки (`/stats`, `/read/…`) отдавали 404: в браузере их прятал service worker. Добавлен `vercel.json` с перенаправлением всех путей на `index.html` (статика отдаётся раньше правила), workflow Pages удалён, чтобы не падать на каждом пуше; поддержка `BASE_PATH` в сборке оставлена.
 
 ## Глаза (скриншоты в `screenshots/stage-6/`)
 
@@ -57,7 +57,7 @@
 
 ## Что нельзя проверить без человека
 
-- [ ] Открыть `https://nasraddinzade.github.io/learning-game/` на телефоне, установить PWA с главного экрана, запустить офлайн.
+- [ ] Открыть `https://learning-game-five.vercel.app/` на телефоне, установить PWA с главного экрана, запустить офлайн.
 - [ ] Микрофон и распознавание на установленном приложении по HTTPS.
 - [ ] Экспорт на телефоне: файл сохраняется в загрузки, импорт из файлового диалога работает.
 - [ ] Анимации при включённом «уменьшить движение» в системе: спрайты не качаются, празднования без разлёта.
