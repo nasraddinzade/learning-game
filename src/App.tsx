@@ -16,12 +16,14 @@ import { FromLifeScreen } from '@/screens/FromLife'
 import { StatsScreen } from '@/screens/Stats'
 import { SettingsScreen } from '@/screens/Settings'
 import { UpgradesScreen } from '@/screens/Upgrades'
+import { LibraryScreen } from '@/screens/Library'
 
 // Heavy screens load lazily so the camp stays small (SPEC §3).
 const BattleScreen = lazy(() => import('@/screens/Battle').then((m) => ({ default: m.BattleScreen })))
 const EncounterScreen = lazy(() =>
   import('@/screens/Encounter').then((m) => ({ default: m.EncounterScreen })),
 )
+const ReaderScreen = lazy(() => import('@/screens/Reader').then((m) => ({ default: m.ReaderScreen })))
 
 function Loading() {
   return (
@@ -75,6 +77,8 @@ export default function App() {
           <Route path="/stats" element={<StatsScreen />} />
           <Route path="/settings" element={<SettingsScreen />} />
           <Route path="/upgrades" element={<UpgradesScreen />} />
+          <Route path="/read" element={<LibraryScreen />} />
+          <Route path="/read/:id" element={<ReaderScreen />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
