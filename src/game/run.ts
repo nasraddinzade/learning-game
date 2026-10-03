@@ -181,7 +181,13 @@ export function startBattleNode(run: Run, position: { step: number; node: number
 }
 
 /** Merges a finished battle into the run and decides what comes next. */
-export function finishBattleNode(run: Run, combat: CombatState, rng = mulberry32(run.seed ^ run.stats.seenItemIds.length), available = { voice: false }): Run {
+export function finishBattleNode(
+  run: Run,
+  combat: CombatState,
+  rng = mulberry32(run.seed ^ run.stats.seenItemIds.length),
+  available = { voice: false },
+  choices: number = balance.map.boonChoices,
+): Run {
   const stats: RunStats = {
     ...run.stats,
     hits: run.stats.hits + combat.hits,
@@ -217,7 +223,7 @@ export function finishBattleNode(run: Run, combat: CombatState, rng = mulberry32
   if (node?.type === 'echo' || run.kind === 'sortie') {
     return { ...run, map, stats, failedItemIds, hp: combat.hp, runes, combat: null, status: 'won', phase: 'summary' }
   }
-  const boonOffer = offerBoons(rng, run.boons, balance.map.boonChoices, available)
+  const boonOffer = offerBoons(rng, run.boons, choices, available)
   return {
     ...run,
     map,
@@ -229,6 +235,13 @@ export function finishBattleNode(run: Run, combat: CombatState, rng = mulberry32
     phase: boonOffer.length > 0 ? 'boon' : 'map',
     boonOffer: boonOffer.length > 0 ? boonOffer : null,
   }
+}
+
+/** В путь с подарком: the run opens with a boon choice before the first node. */
+export function offerStartBoon(run: Run, rng = mulberry32(run.seed ^ 0x51ed270b), available = { voice: false }, choices: number = balance.map.boonChoices): Run {
+  const boonOffer = offerBoons(rng, run.boons, choices, available)
+  if (boonOffer.length === 0) return run
+  return { ...run, phase: 'boon', boonOffer }
 }
 
 export function chooseBoon(run: Run, boon: BoonId): Run {
@@ -274,12 +287,17 @@ export function nextRest(run: Run): Run {
 }
 
 /** Leaves the Привал. A clean training (every trap right) earns a free boon. */
-export function finishRestNode(run: Run, rng = mulberry32(run.seed ^ (run.position?.step ?? 0)), available = { voice: false }): Run {
+export function finishRestNode(
+  run: Run,
+  rng = mulberry32(run.seed ^ (run.position?.step ?? 0)),
+  available = { voice: false },
+  choices: number = balance.map.boonChoices,
+): Run {
   const map = run.map.map((step, s) =>
     step.map((n, i) => (run.position && s === run.position.step && i === run.position.node ? { ...n, done: true } : n)),
   )
   const clean = run.rest !== null && run.rest.exercises.length > 0 && run.rest.correct === run.rest.exercises.length
-  const boonOffer = clean ? offerBoons(rng, run.boons, balance.map.boonChoices, available) : []
+  const boonOffer = clean ? offerBoons(rng, run.boons, choices, available) : []
   return {
     ...run,
     map,

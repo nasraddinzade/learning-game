@@ -272,6 +272,19 @@ export interface Settings {
   }
 }
 
+export type HeroLook = 'wanderer' | 'staff' | 'hood'
+export type ThemeId = 'ember' | 'tide' | 'violet'
+
+/** A destroyed nemesis (SPEC §7.2 Зал трофеев). */
+export interface Trophy {
+  itemId: string
+  /** YYYY-MM-DD of the final victory. */
+  date: string
+  winsOverHero: number
+  /** Days it took from promotion to destruction. */
+  daysFought: number
+}
+
 export interface Profile {
   /** Single row, always id 'me'. */
   id: 'me'
@@ -282,7 +295,11 @@ export interface Profile {
   freezes: number
   lastActiveDay: string
   camp: Partial<Record<UpgradeId, number>>
+  /** Item ids of destroyed nemeses, oldest first. */
   trophies: string[]
+  trophyLog: Trophy[]
   unlockedLands: string[]
+  heroLook: HeroLook
+  theme: ThemeId
   settings: Settings
 }

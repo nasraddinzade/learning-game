@@ -96,6 +96,19 @@ export const balance = {
     stubbornnessHeal: 1,
     secondWindHp: 1,
   },
+  upgrades: {
+    /** Rune cost per level of each camp upgrade (SPEC §7.2). */
+    maxHp: [300, 500, 800],
+    fourthBoon: [600],
+    startBoon: [900],
+    freeze: 150,
+    heroLook: [250, 450],
+    theme: [250, 450],
+  },
+  lands: {
+    /** Items of a land that must be met before the next land opens. */
+    unlockAfter: 12,
+  },
   xp: {
     /** XP per hit = base × (move stage + 1). */
     base: 4,

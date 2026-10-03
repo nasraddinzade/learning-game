@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { loadProfile, saveProfile } from '@/db/profileRepo'
-import type { Profile, Settings } from '@/types'
+import { buyUpgrade, type UpgradeDef } from '@/game/upgrades'
+import type { HeroLook, Profile, Settings, ThemeId } from '@/types'
 
 interface ProfileState {
   profile: Profile | null
@@ -9,6 +10,9 @@ interface ProfileState {
   load: () => Promise<void>
   update: (patch: Partial<Omit<Profile, 'id' | 'settings'>>) => Promise<void>
   updateSettings: (patch: Partial<Settings>) => Promise<void>
+  buy: (def: UpgradeDef) => Promise<boolean>
+  setLook: (look: HeroLook) => Promise<void>
+  setTheme: (theme: ThemeId) => Promise<void>
 }
 
 export const useProfileStore = create<ProfileState>((set, get) => ({
@@ -40,4 +44,17 @@ export const useProfileStore = create<ProfileState>((set, get) => ({
     set({ profile: next })
     await saveProfile(next)
   },
+
+  buy: async (def) => {
+    const current = get().profile
+    if (!current) return false
+    const next = buyUpgrade(current, def)
+    if (next === current) return false
+    set({ profile: next })
+    await saveProfile(next)
+    return true
+  },
+
+  setLook: async (look) => get().update({ heroLook: look }),
+  setTheme: async (theme) => get().update({ theme }),
 }))

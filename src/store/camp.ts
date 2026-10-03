@@ -1,6 +1,9 @@
 import { create } from 'zustand'
+import { lands as landDefs } from '@/content/seed'
+import { unlockedLandIds } from '@/engine/lands'
 import { activeNemeses } from '@/engine/nemesis'
 import { queueCounts, type QueueCounts } from '@/engine/scheduler'
+import { balance } from '@/game/balance'
 import { activeRun, allItems, allProgress } from '@/db/repos'
 import type { Item, Progress } from '@/types'
 import { now } from './clock'
@@ -27,7 +30,9 @@ export const useCampStore = create<CampState>((set) => ({
   refresh: async () => {
     const [items, progress, run] = await Promise.all([allItems(), allProgress(), activeRun()])
     const newPerDay = useProfileStore.getState().profile?.settings.newPerDay ?? 6
-    const counts = queueCounts({ items, progress, now: now(), newPerDay })
+    const pm = new Map(progress.map((p) => [p.itemId, p]))
+    const unlockedLands = unlockedLandIds(landDefs.map((l) => l.id), items, pm, balance.lands.unlockAfter)
+    const counts = queueCounts({ items, progress, now: now(), newPerDay, unlockedLands })
     const byId = new Map(items.map((i) => [i.id, i]))
     const nemeses = activeNemeses(progress)
       .map((p) => {

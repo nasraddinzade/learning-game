@@ -25,7 +25,10 @@ export function defaultProfile(): Profile {
     lastActiveDay: '',
     camp: {},
     trophies: [],
+    trophyLog: [],
     unlockedLands: ['smalltalk'],
+    heroLook: 'wanderer',
+    theme: 'ember',
     settings: structuredClone(DEFAULT_SETTINGS),
   }
 }
@@ -36,6 +39,7 @@ export async function loadProfile(): Promise<Profile> {
   if (existing) {
     // Fill in settings added by later versions without touching user values.
     return {
+      ...defaultProfile(),
       ...existing,
       settings: {
         ...DEFAULT_SETTINGS,

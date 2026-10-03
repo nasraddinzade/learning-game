@@ -2,7 +2,9 @@
 // resolves), rests, boons and the summary. Persists after every answer. Nothing here touches
 // the FSRS rating except passing the engine's own result through.
 import { create } from 'zustand'
-import { addDays, dayKey } from '@/engine/clock'
+import { dayKey, daysBetween } from '@/engine/clock'
+import { unlockedLandIds } from '@/engine/lands'
+import { advanceStreak } from '@/engine/streak'
 import { grade } from '@/engine/grading'
 import { pickMove } from '@/engine/moves'
 import { endRunForItem, recordNemesisFight } from '@/engine/nemesis'
@@ -11,6 +13,7 @@ import { applyAnswer, applyIntro, newProgress, type ProgressEvent } from '@/engi
 import { mulberry32 } from '@/engine/rng'
 import { buildQueue } from '@/engine/scheduler'
 import { balance, levelForXp } from '@/game/balance'
+import { boonChoices, hasStartBoon, heroMaxHp } from '@/game/upgrades'
 import { hasBoon } from '@/game/boons'
 import { advance, combatRng, endEarly, resolve, resolveIntro, type CombatEvent } from '@/game/combat'
 import {
@@ -21,6 +24,7 @@ import {
   finishBattleNode,
   finishRestNode,
   nextRest,
+  offerStartBoon,
   startBattleNode,
   startRestNode,
 } from '@/game/run'
@@ -32,7 +36,8 @@ import { IMPLEMENTED_MOVES, type MoveResult, type MoveTask } from '@/moves/types
 import type { TrapResult } from '@/moves/trap/TrapMove'
 import { speak } from '@/speech/tts'
 import { buzz, fx } from '@/ui/fx'
-import type { CombatState, Item, MoveId, PatternStat, Progress, Rating, Run } from '@/types'
+import type { CombatState, Item, MoveId, PatternStat, Progress, Rating, Run, Trophy } from '@/types'
+import { lands as landDefs, type LandDef } from '@/content/seed'
 import { now } from './clock'
 import { useProfileStore } from './profile'
 
@@ -52,6 +57,8 @@ export interface Feedback {
   events: CombatEvent[]
   progressEvents: ProgressEvent[]
   stage: Progress['stage']
+  /** Outcome of a nemesis fight that ended with this answer. */
+  nemesisResult: 'won' | 'destroyed' | 'lost' | null
 }
 
 export interface RunSummary {
@@ -73,6 +80,10 @@ export interface RunSummary {
   mastered: Item[]
   levelUp: number | null
   boons: Run['boons']
+  /** Lands opened by this run. */
+  newLands: LandDef[]
+  streak: number
+  usedFreezes: number
 }
 
 interface RunState {
@@ -249,14 +260,33 @@ export const useRunStore = create<RunState>((set, get) => {
     const profileStore = useProfileStore.getState()
     const profile = profileStore.profile
     let levelUp: number | null = null
+    let streakNow = 0
+    let usedFreezes = 0
+    const newLands: LandDef[] = []
     if (profile) {
-      const today = dayKey(t)
-      const yesterday = dayKey(addDays(t, -1))
-      const streak = profile.lastActiveDay === today ? profile.streak : profile.lastActiveDay === yesterday ? profile.streak + 1 : 1
+      const streak = advanceStreak({ streak: profile.streak, freezes: profile.freezes, lastActiveDay: profile.lastActiveDay }, t)
+      streakNow = streak.streak
+      usedFreezes = streak.usedFreezes
       const xp = profile.xp + run.stats.xp
       const level = levelForXp(xp)
       if (level > profile.level) levelUp = level
-      await profileStore.update({ runes: profile.runes + run.runes, xp, level, streak, lastActiveDay: today })
+      const pm = new Map(Object.entries(progress))
+      const unlocked = unlockedLandIds(landDefs.map((l) => l.id), Object.values(items), pm, balance.lands.unlockAfter)
+      for (const id of unlocked) {
+        if (!profile.unlockedLands.includes(id)) {
+          const def = landDefs.find((l) => l.id === id)
+          if (def) newLands.push(def)
+        }
+      }
+      await profileStore.update({
+        runes: profile.runes + run.runes,
+        xp,
+        level,
+        streak: streak.streak,
+        freezes: streak.freezes,
+        lastActiveDay: streak.lastActiveDay,
+        unlockedLands: unlocked,
+      })
     }
 
     const pick = (ids: string[]) => ids.map((id) => items[id]).filter((i): i is Item => i !== undefined)
@@ -279,6 +309,9 @@ export const useRunStore = create<RunState>((set, get) => {
       mastered: pick(run.stats.masteredIds),
       levelUp,
       boons: run.boons,
+      newLands,
+      streak: streakNow,
+      usedFreezes,
     }
     const ended: Run = { ...run, endedAt: t }
     await saveRun(ended)
@@ -289,7 +322,7 @@ export const useRunStore = create<RunState>((set, get) => {
   /** After a battle node ends: merge into the run and move on (boon, map or summary). */
   async function afterBattle(run: Run, combat: CombatState): Promise<void> {
     const rng = mulberry32((run.seed ^ (run.stats.seenItemIds.length + combat.answers) * 0x6c078965) >>> 0)
-    let next = finishBattleNode(run, combat, rng, AVAILABLE_MOVES)
+    let next = finishBattleNode(run, combat, rng, AVAILABLE_MOVES, boonChoices(useProfileStore.getState().profile))
     if (next.phase === 'summary') next = await finishRun(next)
     else await saveRun(next)
     set({ run: next, battlePhase: 'idle', move: null, task: null, feedback: null })
@@ -339,18 +372,21 @@ export const useRunStore = create<RunState>((set, get) => {
       const { items, progress } = get()
       const profile = useProfileStore.getState().profile
       const t = now()
+      const pm = new Map(Object.entries(progress))
       const queue = buildQueue({
         items: Object.values(items),
         progress: Object.values(progress),
         now: t,
         newPerDay: profile?.settings.newPerDay ?? balance.hero.maxHp,
+        unlockedLands: unlockedLandIds(landDefs.map((l) => l.id), Object.values(items), pm, balance.lands.unlockAfter),
       })
       const seed = (t ^ Math.floor(Math.random() * 0xffffffff)) >>> 0
-      const input = { id: newId(kind), seed, now: t, queue, maxHp: balance.hero.maxHp }
+      const input = { id: newId(kind), seed, now: t, queue, maxHp: heroMaxHp(profile) }
       let run = kind === 'sortie' ? createSortie(input) : createRun(input)
       if (kind === 'sortie') {
-        const pm = new Map(Object.entries(progress))
         run = startBattleNode(run, { step: 0, node: 0 }, pm)
+      } else if (hasStartBoon(profile)) {
+        run = offerStartBoon(run, undefined, AVAILABLE_MOVES, boonChoices(profile))
       }
       await saveRun(run)
       set({ run, summary: null, battlePhase: 'idle', feedback: null, task: null, move: null })
@@ -436,9 +472,23 @@ export const useRunStore = create<RunState>((set, get) => {
 
       const outcome = applyAnswer(p, { move, correct: result.correct, rating, risked, now: t })
       let nextP = outcome.progress
+      let nemesisResult: Feedback['nemesisResult'] = null
       if (c.kind === 'nemesis') {
         const won = result.correct && c.hits + 1 >= c.hitsNeeded
-        if (won || !result.correct) nextP = recordNemesisFight(nextP, won, dayKey(t)).progress
+        if (won || !result.correct) {
+          const since = nextP.nemesis?.since ?? t
+          const wins = nextP.nemesis?.winsOverHero ?? 0
+          const fight = recordNemesisFight(nextP, won, dayKey(t))
+          nextP = fight.progress
+          nemesisResult = fight.destroyed ? 'destroyed' : won ? 'won' : 'lost'
+          if (fight.destroyed) {
+            const ps = useProfileStore.getState()
+            if (ps.profile) {
+              const trophy: Trophy = { itemId: item.id, date: dayKey(t), winsOverHero: wins, daysFought: Math.max(1, daysBetween(since, t) + 1) }
+              await ps.update({ trophies: [...ps.profile.trophies, item.id], trophyLog: [...ps.profile.trophyLog, trophy] })
+            }
+          }
+        }
       }
       await saveProgress(nextP)
       await addAttempt({ id: newId('att'), itemId: item.id, move, ts: t, runId: run.id, correct: result.correct, rating, ms, hintUsed: result.hintUsed, risked, answer: result.answer })
@@ -474,6 +524,7 @@ export const useRunStore = create<RunState>((set, get) => {
           events,
           progressEvents: outcome.events,
           stage: nextP.stage,
+          nemesisResult,
         },
       }))
     },
@@ -529,7 +580,7 @@ export const useRunStore = create<RunState>((set, get) => {
       const { run } = get()
       if (!run || run.phase !== 'rest') return
       const rng = mulberry32((run.seed ^ ((run.position?.step ?? 0) + 7) * 0x2545f491) >>> 0)
-      await persist(finishRestNode(run, rng, AVAILABLE_MOVES))
+      await persist(finishRestNode(run, rng, AVAILABLE_MOVES, boonChoices(useProfileStore.getState().profile)))
     },
 
     pickBoon: async (boon) => {
