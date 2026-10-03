@@ -31,6 +31,10 @@ e2e гоняются против `vite build --mode e2e`: это production-с�
 
 `src/speech/tts.ts` и `recognition.ts` оборачивают Web Speech API и принимают подмену (`setSpeaker`, `setRecognizer`), которой пользуются тестовые хуки `fakeSpeech`. `src/ui/fx.ts` синтезирует звуки через Web Audio и вибрирует, читая выключатели из настроек. Приёмы На слух и Диктант доступны только при озвучке (`moves/availability.ts`), Голос без распознавания идёт через самооценку, Экспромт даёт 6 секунд на старт (`balance.improv`). В e2e `wipeAll` всегда ставит фальшивую речь, `__nemesis.forceMove(move)` задаёт приём следующего задания.
 
+## Немезиды и развитие (этап 4)
+
+Профиль (`src/db/profileRepo.ts`) хранит `camp` (уровни улучшений), `freezes`, `trophyLog`, `unlockedLands`, `heroLook`, `theme`. Улучшения в `src/game/upgrades.ts` (цены в `balance.upgrades`): `heroMaxHp`, `boonChoices`, `hasStartBoon` читает стор похода при старте. Серия дней с заморозками в `engine/streak.ts` (`advanceStreak`), открытие земель в `engine/lands.ts` (следующая земля после `balance.lands.unlockAfter` встреченных фраз), планировщик вводит новые фразы только из открытых земель (`unlockedLands`). Немезида после третьего дня побед уничтожается: `nemesisResult` в фидбеке боя, трофей в `trophyLog`. Празднования (`ui/Celebration.tsx`, оверлей `data-testid="celebration-*"`) показывает Summary (Эхо, уровень, земля) и Battle (немезида, трофей); тема применяется через `data-theme` на `<html>`. В e2e `dismissCelebrations` закрывает оверлеи, автопилот пишет `celebration:<id>` в trail и принимает `onCelebration` для скриншотов.
+
 ## Структура
 
 ```
@@ -83,4 +87,4 @@ docs/verification/  отчёты самопроверки stage-N.md и скри
 
 ## Этапы (SPEC §17)
 
-0 каркас → 1 один бой (после него обязательная пауза на игру пользователя) → 2 поход → 3 звук и речь → 4 немезиды и развитие → 5 ИИ → 6 полировка и деплой.
+0 каркас → 1 один бой (после него обязательная пауза на игру пользователя) → 2 поход → 3 звук и речь → 4 немезиды и развитие → 2а режим чтения без ИИ (SPEC §9.3, добавлен позже, идёт после 4) → 5 ИИ → 6 полировка и деплой.
