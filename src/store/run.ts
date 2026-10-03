@@ -206,6 +206,8 @@ export const useRunStore = create<RunState>((set, get) => {
   async function loadData(): Promise<void> {
     const items: Record<string, Item> = {}
     for (const i of await allItems()) items[i.id] = i
+    // Transient pattern enemies (Хамелеон) live only in memory; keep them across reloads of the data.
+    for (const [id, it] of Object.entries(get().items)) if (id.startsWith('pattern:')) items[id] = it
     const progress: Record<string, Progress> = {}
     for (const [id, p] of await progressMap()) progress[id] = p
     const patternStats = await activePatterns()

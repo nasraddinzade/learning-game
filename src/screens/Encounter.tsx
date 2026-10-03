@@ -181,7 +181,7 @@ export function EncounterScreen() {
               </button>
             ) : null}
             <div className="flex-1">
-              <TextAnswer placeholder="Ответь по-английски…" multiline onSubmit={(t) => void s.answerScene(t)} />
+              <TextAnswer placeholder="Ответь по-английски…" multiline submitLabel="Сказать" onSubmit={(t) => void s.answerScene(t)} />
             </div>
           </div>
           {!withAI ? <p className="text-xs text-fg-faint">Без ИИ сцена идёт по сценарию: после ответа сравни себя с образцом.</p> : null}

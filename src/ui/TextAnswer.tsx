@@ -7,13 +7,15 @@ interface Props {
   onSubmit: (text: string) => void
   onInteract?: () => void
   extra?: ReactNode
+  /** Label of the submit button; "Удар" in battle. */
+  submitLabel?: string
 }
 
 /**
  * Text input for typed moves. Autocorrect and capitalization are off so the keyboard does
  * not hint the answer (SPEC §6). Enter submits; Shift+Enter adds a line in multiline mode.
  */
-export function TextAnswer({ placeholder, multiline = false, onSubmit, onInteract, extra }: Props) {
+export function TextAnswer({ placeholder, multiline = false, onSubmit, onInteract, extra, submitLabel = 'Удар' }: Props) {
   const [text, setText] = useState('')
   const ref = useRef<HTMLTextAreaElement & HTMLInputElement>(null)
   const touched = useRef(false)
@@ -61,7 +63,7 @@ export function TextAnswer({ placeholder, multiline = false, onSubmit, onInterac
       <div className="flex items-center gap-2">
         {extra ? <div className="shrink-0">{extra}</div> : null}
         <Button className="flex-1" data-testid="answer-submit" disabled={text.trim().length === 0} onClick={submit}>
-          Удар
+          {submitLabel}
         </Button>
       </div>
     </div>
