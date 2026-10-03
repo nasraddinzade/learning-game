@@ -423,7 +423,7 @@ export const useRunStore = create<RunState>((set, get) => {
     const encounter = applyTurn(run.encounter, scene, { text, verdict, npcLine, usedChipIds, outcome, whyRu, now: t })
     let next: Run = { ...run, encounter }
     if (verdict.corrections.length > 0) {
-      next = await materialize(next, { correct: true, hintUsed: false, typo: false, answer: text, expected: text, corrections: verdict.corrections }, t)
+      next = await materialize(next, { correct: true, hintUsed: false, typo: false, answer: text, expected: verdict.corrected ?? text, corrections: verdict.corrections }, t)
     }
     await saveRun(next)
     set({ run: next, progress: nextProgress })
@@ -828,6 +828,7 @@ export const useRunStore = create<RunState>((set, get) => {
             ok: check ? check.ok || (check.usedTarget && check.errors.length === 0) : true,
             typo: check ? check.errors.length > 0 : false,
             corrections: check?.errors ?? [],
+            corrected: check?.corrected || undefined,
             ai: true,
           }
           // An answer with errors still counts as a step forward when the character understood it.

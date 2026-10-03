@@ -11,6 +11,8 @@ export interface TurnVerdict {
   ok: boolean
   typo: boolean
   corrections: Correction[]
+  /** The answer with the errors fixed (context for materialized phrases). */
+  corrected?: string
   /** True when the AI judged the answer. */
   ai: boolean
 }
