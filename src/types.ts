@@ -57,8 +57,27 @@ export interface Item {
   /** Question for Своя фраза. */
   questionEn: string
   falseMeanings: string[]
+  /** One sentence in Russian shown after a miss: why this phrase, how it is used. */
+  noteRu: string
   source: 'seed' | 'life' | 'ai-correction'
   createdAt: number
+}
+
+/** A Ловушка exercise for a pattern: tap the wrong word and fix it, or confirm it is correct. */
+export interface TrapExercise {
+  tokens: string[]
+  /** Index of the token holding the error, or null when the sentence is correct. */
+  wrongIndex: number | null
+  /** Replacement for the wrong token (may contain several words, e.g. "a developer"). */
+  fix: string | null
+  ruleRu: string
+}
+
+export interface PatternDef {
+  id: string
+  title: string
+  explainRu: string
+  exercises: TrapExercise[]
 }
 
 export interface NemesisState {
@@ -80,6 +99,8 @@ export interface Progress {
   debtStreak: number
   nemesis: NemesisState | null
   mastered: boolean
+  /** When the item was first shown (Знакомство or first answer). Drives the daily new cap. */
+  introducedAt: number | null
 }
 
 export type Rating = 1 | 2 | 3 | 4
@@ -114,6 +135,55 @@ export interface Run {
   failedItemIds: string[]
   status: RunStatus
   startedAt: number
+  /** Live state of the current battle, saved after every answer so a reload resumes it. */
+  combat: CombatState | null
+}
+
+export type EnemyKind = 'shadow' | 'debtor' | 'nemesis' | 'newcomer'
+
+export interface Combatant {
+  itemId: string
+  kind: EnemyKind
+  /** Hits needed to defeat: shadow 1, debtor 2, nemesis 3. */
+  hitsNeeded: number
+  hits: number
+  /** Moves already used against this enemy in this battle (debtor/nemesis must differ). */
+  movesUsed: MoveId[]
+  /** Nemesis scars shown on the sprite. */
+  winsOverHero: number
+}
+
+export interface PendingReturn {
+  combatant: Combatant
+  /** Answer count at which the enemy comes back. */
+  returnAt: number
+}
+
+export interface CombatState {
+  seed: number
+  queue: Combatant[]
+  current: Combatant | null
+  /** The enemy that was just answered, shown during feedback while `current` is already the next one. */
+  last: Combatant | null
+  pending: PendingReturn[]
+  /** Answers given so far in this battle (intro counts as an answer for return timing). */
+  answers: number
+  hp: number
+  maxHp: number
+  combo: number
+  maxCombo: number
+  runes: number
+  xp: number
+  hits: number
+  misses: number
+  crits: number
+  /** Items that were missed at least once in this battle. */
+  failedItemIds: string[]
+  /** Every item that took part (for end-of-run bookkeeping). */
+  seenItemIds: string[]
+  closedDebtIds: string[]
+  defeatedNemesisIds: string[]
+  status: RunStatus
 }
 
 export interface PatternStat {
