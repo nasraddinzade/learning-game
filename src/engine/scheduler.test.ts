@@ -62,6 +62,13 @@ describe('buildQueue priority', () => {
     expect(queue.map((q) => q.itemId)).toEqual(['life1', 'seed1'])
   })
 
+  it('introduces new items only from unlocked lands', () => {
+    const items = [{ ...item('s1'), land: 'smalltalk' }, { ...item('o1'), land: 'opinion' }, { ...item('life1', 'life'), land: 'work' }]
+    const queue = buildQueue({ items, progress: [], now: T0, newPerDay: 6, unlockedLands: ['smalltalk'] })
+    // Items "from life" are never gated by lands.
+    expect(queue.map((q) => q.itemId)).toEqual(['life1', 's1'])
+  })
+
   it('respects the battle size limit', () => {
     const items = Array.from({ length: 20 }, (_, i) => item(`i${i}`))
     expect(buildQueue({ items, progress: [], now: T0, newPerDay: 12, limit: 8 })).toHaveLength(8)

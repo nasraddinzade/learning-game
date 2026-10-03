@@ -23,6 +23,8 @@ export interface SchedulerInput {
   newPerDay: number
   /** Battle size. Omit for the whole queue. */
   limit?: number
+  /** Only items of these lands may be introduced as new. Omit for all lands. */
+  unlockedLands?: readonly string[]
 }
 
 export interface QueueCounts {
@@ -60,7 +62,7 @@ export function newAllowedToday(input: {
 }
 
 export function buildQueue(input: SchedulerInput): QueueEntry[] {
-  const { items, progress, now, newPerDay, limit } = input
+  const { items, progress, now, newPerDay, limit, unlockedLands } = input
   const today = dayKey(now)
   const itemIds = new Set(items.map((i) => i.id))
   const known = byId(progress)
@@ -95,6 +97,7 @@ export function buildQueue(input: SchedulerInput): QueueEntry[] {
   )
   for (const item of candidates) {
     if (fresh.length >= allowed) break
+    if (unlockedLands && item.source === 'seed' && !unlockedLands.includes(item.land)) continue
     const p = known.get(item.id)
     if (!p || p.stage === 0) fresh.push({ itemId: item.id, kind: 'new' })
   }
