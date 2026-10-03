@@ -85,4 +85,4 @@
 
 ## Подтверждение пуша
 
-TODO_PUSH
+`git push origin main`: `a0d2eda..db19bcb  main -> main`. Тег `stage-4` указывает на `db19bcb` и отправлен (`[new tag] stage-4 -> stage-4`). После пуша `git status -sb` показал `## main...origin/main` без расхождений. Хеш отчёта `db19bcb`; этот абзац добавлен отдельным коммитом `docs: record stage 4 push confirmation`.
