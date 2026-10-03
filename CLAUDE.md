@@ -21,7 +21,11 @@ npm run e2e          # playwright (сам собирает `build:e2e` и под
 npm run check        # typecheck + lint + test + build
 ```
 
-e2e гоняются против `vite build --mode e2e`: это production-сборка, в которой остаются dev-панель и хук `window.__nemesis` (`answer()` отдаёт ожидаемый ответ текущего задания, `state()` стор боя). Флаг `DEBUG` в `src/debug.ts`. В обычной `npm run build` ничего этого нет. Помощники для сценариев в `e2e/helpers.ts` (`answerCurrent`, `wipeAll`, `shiftDays`).
+e2e гоняются против `vite build --mode e2e`: это production-сборка, в которой остаются dev-панель и хук `window.__nemesis` (`state()` стор похода, `answer()` ожидаемый ответ текущего задания, `trap()` текущее упражнение Ловушки с решением). Хуки ставит `src/debugHooks.ts`, флаг `DEBUG` в `src/debug.ts`. В обычной `npm run build` ничего этого нет. Помощники для сценариев в `e2e/helpers.ts`: `autopilot` проходит поход через UI (карта, бой, усиление, привал), `answerCurrent`, `answerTrap`, `wipeAll`, `shiftDays`.
+
+## Поход (этап 2)
+
+Один стор `src/store/run.ts` ведёт весь поход: `run.phase` (`map | battle | rest | boon | summary`) решает экран, `routeForRun(run)` даёт маршрут, каждый экран при расхождении редиректит. Чистая логика похода в `src/game/run.ts` (создание, содержимое узлов, слияние боя, привал, усиления), карта в `map.ts`, Эхо в `echo.ts`, усиления в `boons.ts`. Бой (`combat.ts`) получает `CombatOptions { boons, flags }` и меняет только руны и здоровье. Встречи (`encounter`) на карту не ставятся до этапа 5 (`allowEncounter`).
 
 ## Структура
 

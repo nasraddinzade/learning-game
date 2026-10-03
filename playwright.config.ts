@@ -12,7 +12,8 @@ export default defineConfig({
   workers: 1,
   retries: 0,
   reporter: [['list'], ['html', { open: 'never' }]],
-  timeout: 60_000,
+  // A full run is ~40 UI answers across seven nodes; give it room.
+  timeout: 180_000,
   use: {
     baseURL: BASE,
     trace: 'retain-on-failure',

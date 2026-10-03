@@ -41,19 +41,16 @@ test.describe('stage 0: scaffold', () => {
       await expect(page.getByTestId('screen-camp')).toBeVisible()
     }
 
-    // Lazy screens and direct URLs (deep links must work for an installed PWA).
-    for (const [path, testId] of [
-      ['/battle', 'screen-battle'],
-      ['/encounter', 'screen-encounter'],
-      ['/run', 'screen-map'],
-      ['/boon', 'screen-boon'],
-      ['/summary', 'screen-summary'],
-      ['/rest', 'screen-rest'],
-    ] as const) {
+    // Run screens by direct URL: without an active run they must land back on the camp
+    // (the run store decides the route), never show a broken half-screen.
+    for (const path of ['/battle', '/run', '/boon', '/summary', '/rest'] as const) {
       await page.goto(path)
-      await expect(page.getByTestId(testId)).toBeVisible()
+      await expect(page.getByTestId('screen-camp')).toBeVisible()
     }
-    await shot(page, 'screen-battle')
+    // Lazy screen by direct URL (deep links must work for an installed PWA).
+    await page.goto('/encounter')
+    await expect(page.getByTestId('screen-encounter')).toBeVisible()
+    await shot(page, 'screen-encounter')
 
     // Unknown route falls back to the camp.
     await page.goto('/nope')
@@ -102,9 +99,9 @@ test.describe('stage 0: scaffold', () => {
     await expect(page.getByTestId('screen-settings')).toBeVisible()
 
     // A deep link while offline must also be served from the cache.
-    await page.goto('/battle')
-    await expect(page.getByTestId('screen-battle')).toBeVisible()
-    await shot(page, 'offline-battle')
+    await page.goto('/trophies')
+    await expect(page.getByTestId('screen-trophies')).toBeVisible()
+    await shot(page, 'offline-trophies')
     await context.setOffline(false)
   })
 
