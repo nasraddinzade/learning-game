@@ -27,7 +27,7 @@ const KIND_LABEL: Record<EnemyKind, string> = {
   echo: 'Эхо',
 }
 
-function EnemyHeader({ c, item, shake, down, echoPhase }: { c: Combatant; item: Item; shake: number; down: boolean; echoPhase: string | null }) {
+function EnemyHeader({ c, item, shake, down, echoPhase, mnemonic }: { c: Combatant; item: Item; shake: number; down: boolean; echoPhase: string | null; mnemonic: string | null }) {
   const nemesis = c.kind === 'nemesis'
   const echo = c.kind === 'echo'
   return (
@@ -49,6 +49,11 @@ function EnemyHeader({ c, item, shake, down, echoPhase }: { c: Combatant; item: 
       {nemesis ? (
         <p className="text-lg font-bold text-danger" data-testid="enemy-name">
           {item.en}
+        </p>
+      ) : null}
+      {nemesis && mnemonic ? (
+        <p className="max-w-[320px] text-center text-xs text-fg-muted" data-testid="enemy-mnemonic">
+          💡 {mnemonic}
         </p>
       ) : null}
       <EnemySprite itemId={c.itemId} kind={c.kind} scars={c.winsOverHero} shake={shake} down={down} size={echo ? 150 : 132} />
@@ -313,6 +318,7 @@ export function BattleScreen() {
             shake={s.battlePhase === 'feedback' ? s.shake : 0}
             down={s.battlePhase === 'feedback' && (s.feedback?.events.some((e) => e.type === 'enemyDown') ?? false)}
             echoPhase={echoPhase}
+            mnemonic={progress?.nemesis?.mnemonic ?? null}
           />
           {s.move !== 'intro' ? (
             <div className="flex items-center gap-2">

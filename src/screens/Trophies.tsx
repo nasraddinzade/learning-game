@@ -37,6 +37,11 @@ export function TrophiesScreen() {
                 <p className="truncate text-xs text-fg-muted">
                   побед над тобой: {progress.nemesis?.winsOverHero ?? 0} · твоих: {progress.nemesis?.defeatedDays.length ?? 0} из 3
                 </p>
+                {progress.nemesis?.mnemonic ? (
+                  <p className="text-xs text-fg-faint" data-testid="nemesis-mnemonic">
+                    💡 {progress.nemesis.mnemonic}
+                  </p>
+                ) : null}
               </div>
             </div>
           ))}

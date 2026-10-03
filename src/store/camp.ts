@@ -4,6 +4,7 @@ import { unlockedLandIds } from '@/engine/lands'
 import { activeNemeses } from '@/engine/nemesis'
 import { queueCounts, type QueueCounts } from '@/engine/scheduler'
 import { balance } from '@/game/balance'
+import { runDailyAI } from '@/ai/daily'
 import { activeRun, allItems, allProgress } from '@/db/repos'
 import type { Item, Progress } from '@/types'
 import { now } from './clock'
@@ -41,5 +42,7 @@ export const useCampStore = create<CampState>((set) => ({
       })
       .filter((x): x is NemesisCard => x !== null)
     set({ counts, nemeses, hasActiveRun: run !== undefined && run.status === 'active', totalItems: items.length })
+    // Tomorrow's contexts, unfinished life phrases and nemesis mnemonics, once a day (SPEC §10.2).
+    void runDailyAI()
   },
 }))

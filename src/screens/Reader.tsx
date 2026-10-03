@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { aiAvailable, fromLife } from '@/ai/ai'
+import type { LifeItemDraft } from '@/ai/types'
 import { addLifeItem, getText } from '@/db/textRepo'
 import { allItems, progressMap } from '@/db/repos'
 import { creatureStatus } from '@/engine/lands'
@@ -66,6 +68,8 @@ export function ReaderScreen() {
   const [sel, setSel] = useState<Selection | null>(null)
   const [sheet, setSheet] = useState<'none' | 'add' | 'translate'>('none')
   const [ru, setRu] = useState('')
+  const [draft, setDraft] = useState<LifeItemDraft | null>(null)
+  const [drafting, setDrafting] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
   const [pos, setPos] = useState<ToolbarPos | null>(null)
   const textRef = useRef<HTMLDivElement>(null)
@@ -186,6 +190,7 @@ export function ReaderScreen() {
       return
     }
     setSheet('none')
+    setDraft(null)
     // A second tap on a lone selected word clears it; everything else follows the selection rule.
     setSel((cur) => (cur && cur.paragraph === pi && cur.from === wi && cur.to === wi ? null : selectWord(cur, pi, wi, balance.reading.maxWords)))
   }
@@ -231,11 +236,31 @@ export function ReaderScreen() {
     setSheet('none')
   }
 
+  /** With AI the phrase is translated in its sentence and completed (SPEC §9.3); one request per phrase. */
+  function requestDraft() {
+    if (!aiAvailable() || phrase.length === 0) return
+    const forPhrase = phrase
+    setDrafting(true)
+    void fromLife('phrase', forPhrase, sentence).then((d) => {
+      setDrafting(false)
+      const first = d?.[0] ?? null
+      if (!first) return
+      setDraft(first)
+      setRu((cur) => (cur.trim() === '' ? first.ru : cur))
+    })
+  }
+
+  function openSheet(kind: 'add' | 'translate') {
+    setSheet(kind)
+    if (!draft && !drafting) requestDraft()
+  }
+
   async function add() {
     if (!doc || !sel || phrase.length === 0 || ru.trim().length === 0) return
-    const item = await addLifeItem({ en: phrase, ru, contextEn: sentence, textId: doc.id, now: now() })
+    const item = await addLifeItem({ en: phrase, ru, contextEn: sentence, textId: doc.id, now: now(), draft: draft ?? undefined })
     await reloadItems()
     setRu('')
+    setDraft(null)
     setSheet('none')
     setSel(null)
     setToast(`«${item.en}» ждёт тебя в ближайшей Разведке`)
@@ -345,7 +370,7 @@ export function ReaderScreen() {
           <button
             type="button"
             data-testid="tb-translate"
-            onClick={() => setSheet('translate')}
+            onClick={() => openSheet('translate')}
             className="tap flex flex-1 flex-col items-center justify-center rounded-xl text-xs text-fg active:bg-bg-card"
           >
             <span aria-hidden="true">📖</span>
@@ -361,8 +386,8 @@ export function ReaderScreen() {
               type="button"
               data-testid="tb-add"
               onClick={() => {
-                setRu('')
-                setSheet('add')
+                setRu(draft?.ru ?? '')
+                openSheet('add')
               }}
               className="tap flex flex-1 flex-col items-center justify-center rounded-xl bg-accent text-xs font-semibold text-bg active:opacity-90"
             >
@@ -400,14 +425,35 @@ export function ReaderScreen() {
                 </>
               ) : (
                 <>
-                  <p className="mt-3 text-sm text-fg-muted">
-                    Перевод в контексте появится, когда подключится ИИ (этап 5). Пока переведи сам и отправь фразу в поход.
-                  </p>
+                  {draft ? (
+                    <>
+                      <p className="mt-3 text-lg" data-testid="sheet-ai-ru">
+                        {draft.ru}
+                      </p>
+                      {draft.contexts[0]?.ru ? <p className="text-sm text-fg-muted">{draft.contexts[0].ru}</p> : null}
+                      {draft.noteRu ? <p className="text-xs text-fg-faint">{draft.noteRu}</p> : null}
+                    </>
+                  ) : drafting ? (
+                    <p className="mt-3 text-sm text-fg-muted" data-testid="ai-checking">
+                      Перевожу…
+                    </p>
+                  ) : (
+                    <p className="mt-3 text-sm text-fg-muted">
+                      {aiAvailable() ? 'Перевод не получился.' : 'Перевод в контексте даёт ИИ; сейчас он недоступен.'} Переведи сам и отправь фразу в поход.
+                    </p>
+                  )}
                   <div className="mt-4 flex gap-2">
                     <Button variant="secondary" onClick={() => setSheet('none')}>
                       Закрыть
                     </Button>
-                    <Button full data-testid="sheet-to-add" onClick={() => setSheet('add')}>
+                    <Button
+                      full
+                      data-testid="sheet-to-add"
+                      onClick={() => {
+                        setRu(draft?.ru ?? '')
+                        setSheet('add')
+                      }}
+                    >
                       В поход
                     </Button>
                   </div>
@@ -416,7 +462,11 @@ export function ReaderScreen() {
             ) : (
               <>
                 <label className="mt-3 block text-sm text-fg-muted" htmlFor="add-ru">
-                  Перевод по-русски. Без ИИ его вводишь ты; контексты и ситуации досоздадутся позже.
+                  {draft
+                    ? 'Перевод подставил ИИ, поправь если что. Контексты и ситуации уже готовы.'
+                    : drafting
+                      ? 'ИИ переводит… можно ввести самому.'
+                      : 'Перевод по-русски. Без ИИ его вводишь ты; контексты и ситуации досоздадутся позже.'}
                 </label>
                 <input
                   id="add-ru"

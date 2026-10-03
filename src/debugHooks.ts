@@ -8,9 +8,10 @@ import { fixedSentence } from '@/moves/trap/fixedSentence'
 import { setRecognizer } from '@/speech/recognition'
 import { setSpeaker } from '@/speech/tts'
 import { resetDatabase } from '@/db/db'
+import { saveRun } from '@/db/repos'
 import { useClockStore } from '@/store/clock'
 import { useRunStore } from '@/store/run'
-import type { MoveId, TrapExercise } from '@/types'
+import type { MoveId, NodeType, TrapExercise } from '@/types'
 
 export interface DebugHooks {
   state: () => ReturnType<typeof useRunStore.getState>
@@ -37,6 +38,8 @@ export interface DebugHooks {
   aiLog: () => string[]
   /** The scripted model answer for the current Встреча turn. */
   sceneSample: () => string | null
+  /** Rewrites one map node's type on the active run (tests reach a Встреча deterministically). */
+  setNodeType: (step: number, node: number, type: NodeType) => Promise<void>
 }
 
 const FAKE_KEY = 'nemesis.dev.fakeSpeech'
@@ -114,6 +117,15 @@ export function installDebugHooks(): void {
       setAIOverride(null)
     },
     aiLog: () => aiCallLog(),
+    setNodeType: async (step, node, type) => {
+      const st = useRunStore.getState()
+      const run = st.run
+      if (!run) return
+      const map = run.map.map((row, si) => row.map((n, ni) => (si === step && ni === node ? { ...n, type } : n)))
+      const next = { ...run, map }
+      await saveRun(next)
+      useRunStore.setState({ run: next })
+    },
     sceneSample: () => {
       const enc = useRunStore.getState().run?.encounter
       if (!enc) return null

@@ -17,6 +17,7 @@ import { StatsScreen } from '@/screens/Stats'
 import { SettingsScreen } from '@/screens/Settings'
 import { UpgradesScreen } from '@/screens/Upgrades'
 import { LibraryScreen } from '@/screens/Library'
+import { LifeAddScreen } from '@/screens/LifeAdd'
 
 // Heavy screens load lazily so the camp stays small (SPEC §3).
 const BattleScreen = lazy(() => import('@/screens/Battle').then((m) => ({ default: m.BattleScreen })))
@@ -74,6 +75,7 @@ export default function App() {
           <Route path="/chronicle" element={<ChronicleScreen />} />
           <Route path="/trophies" element={<TrophiesScreen />} />
           <Route path="/life" element={<FromLifeScreen />} />
+          <Route path="/life/:mode" element={<LifeAddScreen />} />
           <Route path="/stats" element={<StatsScreen />} />
           <Route path="/settings" element={<SettingsScreen />} />
           <Route path="/upgrades" element={<UpgradesScreen />} />

@@ -16,6 +16,7 @@ import { normalize } from '@/engine/answerCheck'
 import { newPatternStat, reactivatePattern } from '@/engine/patterns'
 import { addCorrectionItem } from '@/db/textRepo'
 import { aiAvailable, sceneTurn } from '@/ai/ai'
+import { enrichNemesis } from '@/ai/daily'
 import { seedScenes } from '@/content/scenes'
 import { applyTurn, chipsUsedIn, finishEncounterNode, scriptedLine, startEncounterNode, type TurnVerdict } from '@/game/encounter'
 import type { SceneDef, SceneOutcome } from '@/types'
@@ -690,6 +691,15 @@ export const useRunStore = create<RunState>((set, get) => {
       }
       await saveProgress(nextP)
       await addAttempt({ id: newId('att'), itemId: item.id, move, ts: t, runId: run.id, correct: result.correct, rating, ms, hintUsed: result.hintUsed, risked, answer: result.answer })
+      if (!p.nemesis && nextP.nemesis) {
+        // A new nemesis gets a mnemonic and fresh contexts when the AI is on (SPEC §4.4), in the background.
+        void enrichNemesis(item, nextP).then((upd) => {
+          set((s) => ({
+            progress: upd.progress && s.progress[item.id]?.nemesis ? { ...s.progress, [item.id]: { ...(s.progress[item.id] as Progress), nemesis: { ...(s.progress[item.id] as Progress).nemesis!, mnemonic: upd.progress.nemesis?.mnemonic } } } : s.progress,
+            items: upd.item ? { ...s.items, [item.id]: upd.item } : s.items,
+          }))
+        })
+      }
 
       const { state, events, flags } = resolve(
         combat,
