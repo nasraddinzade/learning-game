@@ -89,8 +89,20 @@
 
 ## Git
 
-Коммиты этапа и подтверждение пуша в разделе ниже.
+Коммиты этапа (от первого к последнему)
+- `d277be6` feat(engine): learning engine with tests
+- `01cadb9` feat(game): combat state machine, balance and procedural enemy look
+- `12b2eb8` feat(content): 100 seed items across 9 lands and 2 patterns
+- `6fc6470` feat(moves): intro, swipe, build, gap and translate
+- `0c8a566` feat(battle): battle screen, battle store, camp counters and nemesis cards
+- `7675c67` test(e2e): stage 1 battle scenarios against an e2e build
+- `12a5ff7` docs: stage 1 verification report and key screenshots
 
 ## Подтверждение пуша
 
-(заполняется после `git push`)
+- Последний коммит кода этапа: `12a5ff7f2f3032531a5b45c0cd893b3deaeed9e3`.
+- `git push origin main` прошёл (`8fdf0c2..12a5ff7`), `git status` чистый, `HEAD` совпадает с `origin/main`.
+- Тег `stage-1` поставлен на `12a5ff7` и запушен.
+- Staged diff просканирован на ключи (AIza…, gsk_…, sk-…, ghp_…, приватные ключи): ничего не найдено.
+- Последний полный прогон Playwright: 23 из 24 прошли, единственное падение это smoke-тест настроек на десктопе из-за предупреждения Chromium про modulepreload и service worker, после добавления фильтра smoke-набор перегнан отдельно, 12 из 12. Боевые сценарии в том же прогоне 12 из 12.
+- Этот отчёт дополнен хешем в отдельном коммите `docs:` после пуша.
