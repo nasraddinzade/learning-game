@@ -51,7 +51,7 @@ export interface Item {
   en: string
   ru: string
   accept: string[]
-  contexts: { en: string; ru: string; source: 'seed' | 'ai' }[]
+  contexts: { en: string; ru: string; source: 'seed' | 'ai' | 'life' }[]
   /** Situations in Russian for Перевод and Экспромт. */
   promptsRu: string[]
   /** Question for Своя фраза. */
@@ -60,6 +60,16 @@ export interface Item {
   /** One sentence in Russian shown after a miss: why this phrase, how it is used. */
   noteRu: string
   source: 'seed' | 'life' | 'ai-correction'
+  createdAt: number
+  /** The reading-mode text the phrase was taken from (SPEC §9.3). */
+  textId?: string
+}
+
+/** A text pasted into the reading mode; the personal library (SPEC §9.3, table `Text`). */
+export interface TextDoc {
+  id: string
+  title: string
+  body: string
   createdAt: number
 }
 

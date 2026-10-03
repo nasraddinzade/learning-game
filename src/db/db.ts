@@ -1,5 +1,5 @@
 import Dexie, { type EntityTable } from 'dexie'
-import type { Attempt, Item, PatternStat, Profile, Progress, Run } from '@/types'
+import type { Attempt, Item, PatternStat, Profile, Progress, Run, TextDoc } from '@/types'
 
 /** Cached AI responses keyed by a hash of the prompt. */
 export interface AiCacheEntry {
@@ -17,6 +17,7 @@ export class NemesisDB extends Dexie {
   patternStats!: EntityTable<PatternStat, 'patternId'>
   profile!: EntityTable<Profile, 'id'>
   aiCache!: EntityTable<AiCacheEntry, 'key'>
+  texts!: EntityTable<TextDoc, 'id'>
 
   constructor() {
     super('nemesis')
@@ -28,6 +29,11 @@ export class NemesisDB extends Dexie {
       patternStats: 'patternId, active',
       profile: 'id',
       aiCache: 'key, task, createdAt',
+    })
+    // Stage 2a: the reading-mode library and the link from an item to its text.
+    this.version(2).stores({
+      items: 'id, type, land, source, createdAt, textId',
+      texts: 'id, createdAt',
     })
   }
 }

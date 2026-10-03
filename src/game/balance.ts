@@ -121,6 +121,13 @@ export const balance = {
     debtor: 2,
     nemesis: 3,
   },
+  /** Reading mode (SPEC §9.3). */
+  reading: {
+    /** Longest phrase that can be selected, in words. */
+    maxWords: 8,
+    /** Paragraphs rendered per batch while scrolling a long text. */
+    paragraphsPerBatch: 30,
+  },
 } as const
 
 export function comboMultiplier(combo: number): number {
