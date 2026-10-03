@@ -1,0 +1,36 @@
+# Dependencies and build
+node_modules
+dist
+dist-ssr
+dev-dist
+*.local
+*.tsbuildinfo
+
+# Secrets (AI keys live only in IndexedDB, never here)
+.env
+.env.*
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Tests
+playwright-report
+test-results
+blob-report
+playwright/.cache
+docs/verification/screenshots/_scratch
+
+# Editor and OS
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.claude/settings.local.json
