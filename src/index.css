@@ -1,0 +1,78 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #0b0d12;
+  --color-bg-raised: #141822;
+  --color-bg-card: #1b2130;
+  --color-line: #2a3144;
+  --color-fg: #e8ecf5;
+  --color-fg-muted: #9aa4bd;
+  --color-fg-faint: #5d6681;
+  --color-accent: #ffb547;
+  --color-accent-deep: #d98f1f;
+  --color-danger: #ff4d6d;
+  --color-ok: #4ade80;
+  --color-hp: #f87171;
+
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+
+  --radius-card: 1.25rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+    touch-action: manipulation;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .tap {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
