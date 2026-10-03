@@ -310,7 +310,7 @@ export function ReaderScreen() {
       <div
         ref={textRef}
         data-testid="reader-text"
-        className="select-none text-[19px] leading-[1.75] text-fg"
+        className="select-none text-xl leading-relaxed text-fg"
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}

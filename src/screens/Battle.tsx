@@ -116,7 +116,7 @@ function FeedbackPanel({ f, onNext }: { f: Feedback; onNext: () => void }) {
         )}
       </div>
       {f.correct ? (
-        <div className="mt-1 flex items-start justify-between gap-2 text-sm">
+        <div className="mt-1 flex items-start justify-between gap-2 text-base">
           <div>
             <p className="text-base font-semibold text-fg">{f.item.en}</p>
             <p className="text-fg-muted">{f.item.ru}</p>
@@ -125,7 +125,7 @@ function FeedbackPanel({ f, onNext }: { f: Feedback; onNext: () => void }) {
           <SpeakButton text={f.item.en} testId="feedback-speak" />
         </div>
       ) : (
-        <div className="mt-1 flex flex-col gap-1 text-sm">
+        <div className="mt-1 flex flex-col gap-1 text-base">
           <p className="text-fg-muted">❌ {f.answer}</p>
           <div className="flex items-start justify-between gap-2">
             <p className="font-semibold text-fg" data-testid="feedback-expected">
@@ -144,7 +144,7 @@ function FeedbackPanel({ f, onNext }: { f: Feedback; onNext: () => void }) {
               <p>
                 <span className="text-danger">❌ {c.wrong}</span> <span className="text-ok">✅ {c.right}</span>
               </p>
-              {c.ruleRu ? <p className="text-xs text-fg-muted">{c.ruleRu}</p> : null}
+              {c.ruleRu ? <p className="text-sm text-fg-muted">{c.ruleRu}</p> : null}
             </div>
           ))}
           {f.moreNatural ? (

@@ -290,6 +290,23 @@ export function SettingsScreen() {
     <Screen title="Настройки" back="/" testId="screen-settings">
       <section className="flex flex-col gap-2">
         <h2 className="px-1 text-xs font-semibold tracking-wide text-fg-faint uppercase">Игра</h2>
+        <Row label="Размер текста">
+          <div className="flex rounded-xl bg-bg-raised p-1" role="radiogroup" aria-label="Размер текста">
+            {(['normal', 'large', 'xlarge'] as const).map((v) => (
+              <button
+                key={v}
+                type="button"
+                role="radio"
+                aria-checked={s.textSize === v}
+                data-testid={`text-size-${v}`}
+                onClick={() => void updateSettings({ textSize: v })}
+                className={`tap rounded-lg px-3 text-sm font-medium ${s.textSize === v ? 'bg-accent text-bg' : 'text-fg-muted'}`}
+              >
+                {v === 'normal' ? 'A' : v === 'large' ? 'A+' : 'A++'}
+              </button>
+            ))}
+          </div>
+        </Row>
         <Row label="Новых фраз в день">
           <div className="flex items-center gap-2">
             <button

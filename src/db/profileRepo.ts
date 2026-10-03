@@ -2,6 +2,7 @@ import { db } from './db'
 import type { Profile, Settings } from '@/types'
 
 export const DEFAULT_SETTINGS: Settings = {
+  textSize: 'large',
   ttsVoice: 'en-US',
   newPerDay: 6,
   sound: true,

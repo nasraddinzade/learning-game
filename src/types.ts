@@ -317,7 +317,11 @@ export interface PatternStat {
 
 export type TtsVoice = 'en-US' | 'en-GB'
 
+export type TextSize = 'normal' | 'large' | 'xlarge'
+
 export interface Settings {
+  /** Root font size: the whole interface scales with it (SPEC §12). */
+  textSize: TextSize
   ttsVoice: TtsVoice
   newPerDay: number
   sound: boolean

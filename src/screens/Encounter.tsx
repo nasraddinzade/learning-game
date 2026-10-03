@@ -113,7 +113,7 @@ export function EncounterScreen() {
         </span>
       </header>
 
-      <div className="rounded-card bg-bg-card p-3 text-sm">
+      <div className="rounded-card bg-bg-card p-3 text-base">
         <p className="text-fg-muted">{scene.settingRu}</p>
         <p className="mt-1 font-semibold">Цель: {scene.goalRu}</p>
       </div>
@@ -127,7 +127,7 @@ export function EncounterScreen() {
                 key={c.itemId}
                 data-testid="scene-chip"
                 data-used={c.used ? 'true' : 'false'}
-                className={`rounded-full px-3 py-1 text-xs ${c.used ? 'bg-ok/20 text-ok line-through' : 'bg-accent/15 text-accent'}`}
+                className={`rounded-full px-3 py-1 text-sm ${c.used ? 'bg-ok/20 text-ok line-through' : 'bg-accent/15 text-accent'}`}
               >
                 {c.used ? '✓ ' : ''}
                 {it?.en ?? c.itemId}
@@ -145,7 +145,7 @@ export function EncounterScreen() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.18 }}
             data-testid={h.role === 'npc' ? 'npc-line' : 'hero-line'}
-            className={`max-w-[88%] rounded-2xl px-3 py-2 text-base ${h.role === 'npc' ? 'self-start bg-bg-card' : 'self-end bg-accent/20'}`}
+            className={`max-w-[88%] rounded-2xl px-3 py-2 text-lg leading-snug ${h.role === 'npc' ? 'self-start bg-bg-card' : 'self-end bg-accent/20'}`}
           >
             {h.role === 'npc' ? (
               <span className="flex items-start gap-2">
@@ -162,7 +162,7 @@ export function EncounterScreen() {
       {enc.phase === 'talk' && turnDef ? (
         <section className="mt-auto flex flex-col gap-2" data-testid="scene-answer">
           <div className="flex items-center justify-between">
-            <p className="text-sm text-fg-muted" data-testid="scene-hint">
+            <p className="text-base text-fg-muted" data-testid="scene-hint">
               {turnDef.hintRu}
             </p>
             <Clock startedAt={enc.turnStartedAt} ms={balance.encounter.answerMs} onExpire={() => void s.answerScene('')} />
@@ -230,7 +230,7 @@ export function EncounterScreen() {
               {OUTCOME_RU[enc.outcome].emoji}
             </p>
             <p className={`mt-1 text-2xl font-bold ${OUTCOME_RU[enc.outcome].cls}`}>{OUTCOME_RU[enc.outcome].title}</p>
-            {enc.whyRu ? <p className="mt-1 text-sm text-fg-muted">{enc.whyRu}</p> : null}
+            {enc.whyRu ? <p className="mt-1 text-base text-fg-muted">{enc.whyRu}</p> : null}
             <p className="mt-2 font-semibold text-accent" data-testid="scene-runes">
               +{enc.runes} ◆
             </p>
@@ -246,7 +246,7 @@ export function EncounterScreen() {
                   <p>
                     <span className="text-danger">❌ {c.wrong}</span> <span className="text-ok">✅ {c.right}</span>
                   </p>
-                  {c.ruleRu ? <p className="text-xs text-fg-muted">{c.ruleRu}</p> : null}
+                  {c.ruleRu ? <p className="text-sm text-fg-muted">{c.ruleRu}</p> : null}
                 </div>
               ))}
               <p className="text-xs text-fg-muted">Эти ошибки придут врагами в следующий бой.</p>

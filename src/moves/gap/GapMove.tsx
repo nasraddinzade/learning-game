@@ -15,7 +15,7 @@ export function GapMove({ task, onSubmit, onInteract }: MoveProps<GapTask>) {
         </span>
         {task.after}
       </p>
-      <p className="text-sm text-fg-muted">{task.sentenceRu}</p>
+      <p className="text-base text-fg-muted">{task.sentenceRu}</p>
       <TextAnswer
         placeholder="Что пропущено?"
         onInteract={onInteract}

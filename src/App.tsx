@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { ensureSeed } from '@/db/seedRepo'
 import { DEBUG } from '@/debug'
+import type { TextSize } from '@/types'
 import { useProfileStore } from '@/store/profile'
 import { installDebugHooks } from '@/debugHooks'
 import { DevPanel } from '@/ui/DevPanel'
@@ -24,6 +25,8 @@ const BattleScreen = lazy(() => import('@/screens/Battle').then((m) => ({ defaul
 const EncounterScreen = lazy(() => import('@/screens/Encounter').then((m) => ({ default: m.EncounterScreen })))
 const ReaderScreen = lazy(() => import('@/screens/Reader').then((m) => ({ default: m.ReaderScreen })))
 
+const TEXT_SIZE_PX: Record<TextSize, string> = { normal: '16px', large: '18px', xlarge: '20px' }
+
 function Loading() {
   return (
     <div className="flex min-h-full items-center justify-center text-fg-muted" data-testid="loading">
@@ -37,12 +40,18 @@ export default function App() {
   const error = useProfileStore((s) => s.error)
   const load = useProfileStore((s) => s.load)
   const theme = useProfileStore((s) => s.profile?.theme ?? 'ember')
+  const textSize = useProfileStore((s) => s.profile?.settings.textSize ?? 'large')
   const [bootError, setBootError] = useState<string | null>(null)
 
   // Bought themes recolor the accent through a data attribute on <html>.
   useEffect(() => {
     document.documentElement.dataset.theme = theme
   }, [theme])
+
+  // Text size scales the root font: every rem-based size and spacing follows (SPEC §12).
+  useEffect(() => {
+    document.documentElement.style.fontSize = TEXT_SIZE_PX[textSize]
+  }, [textSize])
 
   useEffect(() => {
     if (DEBUG) installDebugHooks()

@@ -122,6 +122,27 @@ test.describe('stage 6: polish', () => {
     await expect(page.getByTestId('feedback')).toHaveCount(0)
   })
 
+  test('text size: the largest step scales the root font and no screen scrolls sideways', async ({ page }) => {
+    await page.goto('/settings')
+    await page.getByTestId('text-size-xlarge').click()
+    await expect(page.getByTestId('text-size-xlarge')).toHaveAttribute('aria-checked', 'true')
+    await expect.poll(() => page.evaluate(() => getComputedStyle(document.documentElement).fontSize)).toBe('20px')
+    for (const path of ['/', '/settings', '/life', '/chronicle', '/stats', '/upgrades']) {
+      await page.goto(path)
+      await page.waitForLoadState('load')
+      const wide = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)
+      expect(wide, `${path} scrolls sideways at the largest text size`).toBe(false)
+    }
+    await page.goto('/')
+    await page.getByTestId('btn-run').click()
+    await expect(page.getByTestId('screen-map')).toBeVisible()
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)).toBe(false)
+    await shot(page, 'text-xlarge-map')
+    await page.goto('/settings')
+    await page.getByTestId('text-size-normal').click()
+    await expect.poll(() => page.evaluate(() => getComputedStyle(document.documentElement).fontSize)).toBe('16px')
+  })
+
   test('the installed app answers every route offline and the manifest points at the base', async ({ page, context }) => {
     await page.goto('/')
     await expect(page.getByTestId('screen-camp')).toBeVisible()

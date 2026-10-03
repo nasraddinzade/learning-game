@@ -20,12 +20,13 @@ export function IntroMove({ task, item, onSubmit }: MoveProps<IntroTask>) {
           </p>
           <SpeakButton text={item.en} auto testId="intro-speak" />
         </div>
-        <p className="mt-1 text-lg text-fg">{item.ru}</p>
-        <p className="mt-4 text-base text-fg">{task.contextEn}</p>
-        <p className="text-sm text-fg-muted">{task.contextRu}</p>
-        {item.noteRu ? <p className="mt-3 text-sm text-fg-faint">{item.noteRu}</p> : null}
+        <p className="mt-1 text-xl text-fg">{item.ru}</p>
+        <p className="mt-4 text-lg leading-relaxed text-fg">{task.contextEn}</p>
+        <p className="text-base text-fg-muted">{task.contextRu}</p>
+        {item.noteRu ? <p className="mt-3 text-base leading-relaxed text-fg-muted">{item.noteRu}</p> : null}
       </div>
-      <div className="flex gap-2">
+      {/* Sticks to the bottom edge while a long card scrolls, so the answer is always one tap away. */}
+      <div className="sticky bottom-2 flex gap-2 rounded-2xl bg-bg/90 py-1 backdrop-blur-sm">
         <Button
           full
           data-testid="intro-repeat"
