@@ -90,4 +90,17 @@
 
 ## Git
 
-(заполняется после пуша)
+Коммиты этапа (от первого к последнему)
+- `7c26302` feat(game): run map, node contents, boons, Echo and pattern progress
+- `3718df0` feat(run): run store and screens: map, battle nodes, rest with traps, boons, summary (сюда же вошли контент, приёмы и UI)
+- `f854868` docs: stage 2 verification report and key screenshots (сюда же вошли e2e-сценарии и CLAUDE.md)
+
+Планировалось пять коммитов, но `git add -A` на втором шаге захватил контент, и следующие шаги слились. История уже в origin, переписывать её по правилам нельзя.
+
+## Подтверждение пуша
+
+- Последний коммит кода этапа: `f8548687cacba29c08048324bddc94bb0f040b66`.
+- `git push origin main` прошёл (`8c43d27..f854868`), `git status` чистый, `HEAD` совпадает с `origin/main`.
+- Тег `stage-2` поставлен на `f854868` и запушен.
+- Staged diff просканирован на ключи: ничего не найдено.
+- Этот отчёт дополнен хешем в отдельном коммите `docs:` после пуша.
