@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { ensureSeed } from '@/db/seedRepo'
 import { DEBUG } from '@/debug'
@@ -37,6 +37,7 @@ export default function App() {
   const error = useProfileStore((s) => s.error)
   const load = useProfileStore((s) => s.load)
   const theme = useProfileStore((s) => s.profile?.theme ?? 'ember')
+  const [bootError, setBootError] = useState<string | null>(null)
 
   // Bought themes recolor the accent through a data attribute on <html>.
   useEffect(() => {
@@ -45,7 +46,10 @@ export default function App() {
 
   useEffect(() => {
     if (DEBUG) installDebugHooks()
-    void ensureSeed().then(load)
+    // The profile loads even when the seed chunk fails: a stale page must never hang on "…".
+    void ensureSeed()
+      .catch((e: unknown) => setBootError(e instanceof Error ? e.message : String(e)))
+      .finally(() => void load())
   }, [load])
 
   if (error) {
@@ -61,6 +65,14 @@ export default function App() {
 
   return (
     <>
+      {bootError ? (
+        <div className="mx-auto flex max-w-[440px] items-center gap-3 px-4 pt-3 text-sm" data-testid="boot-error">
+          <p className="min-w-0 flex-1 text-danger">Контент не загрузился: {bootError}</p>
+          <button type="button" onClick={() => location.reload()} className="tap shrink-0 rounded-xl bg-bg-raised px-3 text-sm font-semibold">
+            Обновить
+          </button>
+        </div>
+      ) : null}
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<CampScreen />} />
