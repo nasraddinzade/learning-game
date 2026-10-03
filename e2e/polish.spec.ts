@@ -87,6 +87,15 @@ test.describe('stage 6: polish', () => {
     await expect(page.getByTestId('screen-settings')).toBeVisible()
     await expect.poll(async () => (await dbItems(page)).some((i) => i.en === 'give it a go')).toBe(true)
     expect(problemsAfter, problemsAfter.join('\n')).toEqual([])
+
+    // The full reset asks twice, wipes everything and restarts from the first launch.
+    await page.getByTestId('data-reset').click()
+    await expect(page.getByTestId('data-reset-warning')).toBeVisible()
+    await shot(page, 'reset-armed')
+    await Promise.all([page.waitForEvent('load'), page.getByTestId('data-reset-confirm').click()])
+    await expect(page.getByTestId('screen-settings')).toBeVisible()
+    await expect.poll(async () => (await dbItems(page)).some((i) => i.en === 'give it a go')).toBe(false)
+    await expect(page.getByTestId('ai-status')).toContainText('нет ключа')
   })
 
   test('keyboard: Enter repeats the intro, a digit picks the listening option, Enter moves on', async ({ page }) => {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { aiStatus, ping, subscribeAI, type AIStatus } from '@/ai/ai'
 import { backupCounts, backupFilename, exportBackup, importBackup, parseBackup, type Backup, type BackupCounts } from '@/db/backup'
+import { resetDatabase } from '@/db/db'
 import { now } from '@/store/clock'
 import { useProfileStore } from '@/store/profile'
 import { Screen } from '@/ui/Screen'
@@ -98,6 +99,14 @@ function DataSection() {
   const [pending, setPending] = useState<{ backup: Backup; counts: BackupCounts; name: string } | null>(null)
   const [message, setMessage] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
+  const [resetArmed, setResetArmed] = useState(false)
+
+  /** Wipes the database (SPEC §13); the app restarts from the first launch. */
+  async function resetAll() {
+    setBusy(true)
+    await resetDatabase()
+    location.reload()
+  }
 
   async function exportAll() {
     setBusy(true)
@@ -177,6 +186,29 @@ function DataSection() {
           {message}
         </p>
       ) : null}
+      <Row label="Полный сброс">
+        {!resetArmed ? (
+          <button type="button" data-testid="data-reset" disabled={busy} onClick={() => setResetArmed(true)} className="tap rounded-xl border border-danger/40 bg-danger/15 px-4 text-sm font-semibold text-danger disabled:opacity-40">
+            Стереть всё
+          </button>
+        ) : (
+          <div className="flex gap-2">
+            <button type="button" onClick={() => setResetArmed(false)} className="tap rounded-xl bg-bg-raised px-3 text-sm">
+              Нет
+            </button>
+            <button type="button" data-testid="data-reset-confirm" disabled={busy} onClick={() => void resetAll()} className="tap rounded-xl bg-danger px-4 text-sm font-semibold text-bg disabled:opacity-40">
+              Да, стереть
+            </button>
+          </div>
+        )}
+      </Row>
+      {resetArmed ? (
+        <p className="px-1 text-xs text-danger" data-testid="data-reset-warning">
+          Уйдёт всё: прогресс, фразы из жизни, походы, тексты, ключи ИИ. Сначала сделай экспорт, если жалко.
+        </p>
+      ) : (
+        <p className="px-1 text-xs text-fg-faint">Стирает всё на этом устройстве и начинает игру заново. Отменить нельзя.</p>
+      )}
     </section>
   )
 }
