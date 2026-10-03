@@ -119,3 +119,24 @@ export function wordOverlap(spoken: string, reference: string): number {
   for (const w of ref) if (got.has(w)) hit++
   return hit / ref.length
 }
+
+/**
+ * Voice check (SPEC §4.7): the target phrase is in the recognized text, or at least `minOverlap`
+ * of its words are (one misheard word in a long phrase), which counts as a typo.
+ */
+export function matchVoice(transcripts: readonly string[], targets: readonly string[], minOverlap = 0.8): CheckResult {
+  for (const t of transcripts) {
+    const exact = containsTarget(t, targets)
+    if (exact.ok && !exact.typo) return exact
+  }
+  for (const t of transcripts) {
+    const partial = containsTarget(t, targets)
+    if (partial.ok) return partial
+  }
+  for (const t of transcripts) {
+    for (const target of targets) {
+      if (words(target).length >= 2 && wordOverlap(t, target) >= minOverlap) return { ok: true, typo: true, matched: target }
+    }
+  }
+  return { ok: false, typo: false, matched: null }
+}

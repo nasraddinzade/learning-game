@@ -34,6 +34,16 @@ export const balance = {
     /** Nemeses pulled into a sortie besides the debtors. */
     nemeses: 1,
   },
+  voice: {
+    /** Share of target words that must be heard when the phrase is not found verbatim. */
+    overlapMin: 0.8,
+    /** How long the microphone listens. */
+    listenMs: 8000,
+  },
+  improv: {
+    /** Time to start answering (type or press the mic) before it counts as a miss. */
+    startWindowMs: 6000,
+  },
   echo: {
     maxPhases: 6,
     cleanPhases: 3,
