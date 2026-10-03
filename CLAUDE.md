@@ -17,9 +17,11 @@ npm run lint         # oxlint
 npm test             # vitest run
 npm run build        # production-сборка в dist/
 npm run preview      # раздать dist/ (порт 4173), нужно для проверки PWA/офлайн
-npm run e2e          # playwright (сам собирает и поднимает preview)
+npm run e2e          # playwright (сам собирает `build:e2e` и поднимает preview)
 npm run check        # typecheck + lint + test + build
 ```
+
+e2e гоняются против `vite build --mode e2e`: это production-сборка, в которой остаются dev-панель и хук `window.__nemesis` (`answer()` отдаёт ожидаемый ответ текущего задания, `state()` стор боя). Флаг `DEBUG` в `src/debug.ts`. В обычной `npm run build` ничего этого нет. Помощники для сценариев в `e2e/helpers.ts` (`answerCurrent`, `wipeAll`, `shiftDays`).
 
 ## Структура
 
