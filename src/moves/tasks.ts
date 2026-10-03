@@ -173,3 +173,18 @@ export function checkTask(task: MoveTask, answer: string, hintUsed: boolean): Mo
       return { correct: true, hintUsed: false, typo: false, answer, expected: '' }
   }
 }
+
+/** For dev tools and e2e: the expected answer of a task, or null when it has none (intro). */
+export function expectedAnswerOf(task: MoveTask | null): string | null {
+  if (!task) return null
+  switch (task.move) {
+    case 'swipe':
+      return task.matches ? 'right' : 'left'
+    case 'build':
+    case 'gap':
+    case 'translate':
+      return task.expected[0] ?? null
+    default:
+      return null
+  }
+}

@@ -1,0 +1,367 @@
+{
+  "id": "phrasal",
+  "name": "Фразовые глаголы в живых контекстах",
+  "emoji": "🔧",
+  "items": [
+    {
+      "id": "phrasal.carry-on",
+      "en": "carry on",
+      "ru": "продолжать",
+      "accept": ["carry on", "carry on with"],
+      "contexts": [
+        { "en": "Sorry, carry on, I didn't mean to interrupt.", "ru": "Извини, продолжай, не хотел перебивать." },
+        { "en": "Carry on with the refactor, I'll handle the bug.", "ru": "Продолжай рефакторинг, я займусь багом." },
+        { "en": "We carried on talking until the café closed.", "ru": "Мы продолжали говорить, пока кафе не закрылось." }
+      ],
+      "promptsRu": ["Скажи коллеге продолжать, ты не хотел перебивать.", "Скажи, чтобы продолжал рефакторинг, а баг возьмёшь ты."],
+      "questionEn": "Use 'carry on' to tell someone to continue.",
+      "falseMeanings": ["нести дальше", "ручная кладь"],
+      "noteRu": "«Carry-on» с дефисом это ручная кладь. Британское «продолжай»."
+    },
+    {
+      "id": "phrasal.hold-on",
+      "en": "hold on",
+      "ru": "подожди (секунду)",
+      "accept": ["hold on", "hold on a second", "hang on"],
+      "contexts": [
+        { "en": "Hold on, let me check the logs.", "ru": "Подожди, дай проверю логи." },
+        { "en": "Hold on a second, is this the right branch?", "ru": "Секунду, это та ветка?" },
+        { "en": "Hang on, I'll grab my jacket.", "ru": "Подожди, возьму куртку." }
+      ],
+      "promptsRu": ["Попроси подождать, пока проверишь логи.", "Останови собеседника: секунду, это та ветка?"],
+      "questionEn": "Use 'hold on' to pause someone.",
+      "falseMeanings": ["держись", "удерживай"],
+      "noteRu": "«Hang on» то же самое. По телефону «hold on» значит «не вешай трубку»."
+    },
+    {
+      "id": "phrasal.show-up",
+      "en": "show up",
+      "ru": "появиться, прийти",
+      "accept": ["show up", "showed up", "turn up"],
+      "contexts": [
+        { "en": "He showed up an hour late with coffee for everyone.", "ru": "Он появился на час позже с кофе для всех." },
+        { "en": "Only five people showed up to the meetup.", "ru": "На митап пришло только пять человек." },
+        { "en": "The bug shows up only on Android.", "ru": "Баг появляется только на Android." }
+      ],
+      "promptsRu": ["Расскажи, что друг опоздал на час, но принёс кофе.", "Скажи, что на митап пришло мало людей."],
+      "questionEn": "Use 'show up' about attendance or a bug.",
+      "falseMeanings": ["показать наверх", "выпендриться"],
+      "noteRu": "Про людей и про проблемы. «Show off» это выпендриваться."
+    },
+    {
+      "id": "phrasal.back-up",
+      "en": "back up",
+      "ru": "сделать резервную копию / поддержать",
+      "accept": ["back up", "backed up", "back it up"],
+      "contexts": [
+        { "en": "Back up the database before the migration.", "ru": "Сделай бэкап базы перед миграцией." },
+        { "en": "I backed up my photos before switching phones.", "ru": "Я сделал копию фото перед сменой телефона." },
+        { "en": "Can you back me up in the meeting if they push back?", "ru": "Поддержишь меня на встрече, если начнут возражать?" }
+      ],
+      "promptsRu": ["Напомни сделать бэкап базы перед миграцией.", "Попроси коллегу поддержать тебя на встрече."],
+      "questionEn": "Use 'back up' in both meanings.",
+      "falseMeanings": ["вернуться наверх", "отступить"],
+      "noteRu": "Существительное «backup» в одно слово. «Back someone up» поддержать."
+    },
+    {
+      "id": "phrasal.roll-out",
+      "en": "roll out",
+      "ru": "выкатывать (постепенно запускать)",
+      "accept": ["roll out", "rolled out", "roll-out"],
+      "contexts": [
+        { "en": "We'll roll out the new design to 10% of users first.", "ru": "Сначала выкатим новый дизайн на 10% пользователей." },
+        { "en": "The update rolled out overnight.", "ru": "Обновление выкатилось за ночь." },
+        { "en": "Roll it out slowly, we got burned last time.", "ru": "Выкатывай постепенно, в прошлый раз обожглись." }
+      ],
+      "promptsRu": ["Предложи выкатить дизайн сначала на 10%.", "Посоветуй выкатывать постепенно."],
+      "questionEn": "Use 'roll out' about a release.",
+      "falseMeanings": ["выкатиться из кровати", "раскатать тесто"],
+      "noteRu": "Постепенный запуск. Откат это «roll back»."
+    },
+    {
+      "id": "phrasal.roll-back",
+      "en": "roll back",
+      "ru": "откатить (изменения, релиз)",
+      "accept": ["roll back", "rolled back", "rollback"],
+      "contexts": [
+        { "en": "Roll back the release, errors are spiking.", "ru": "Откатывай релиз, ошибки растут." },
+        { "en": "We rolled back in five minutes, nobody noticed.", "ru": "Мы откатили за пять минут, никто не заметил." },
+        { "en": "Can we roll back just the migration?", "ru": "Можем откатить только миграцию?" }
+      ],
+      "promptsRu": ["Прикажи откатить релиз из-за роста ошибок.", "Спроси, можно ли откатить только миграцию."],
+      "questionEn": "Use 'roll back' in an incident.",
+      "falseMeanings": ["откатиться назад на стуле", "вернуть цены"],
+      "noteRu": "Существительное «rollback»."
+    },
+    {
+      "id": "phrasal.look-up",
+      "en": "look up",
+      "ru": "посмотреть, найти (в словаре, интернете)",
+      "accept": ["look up", "looked up", "look it up"],
+      "contexts": [
+        { "en": "Let me look up the API docs.", "ru": "Дай посмотрю документацию API." },
+        { "en": "I looked up the word and still didn't get it.", "ru": "Я посмотрел слово в словаре и всё равно не понял." },
+        { "en": "Just look it up, don't guess.", "ru": "Просто посмотри, не гадай." }
+      ],
+      "promptsRu": ["Скажи, что посмотришь документацию.", "Посоветуй посмотреть, а не гадать."],
+      "questionEn": "Use 'look up' about searching for information.",
+      "falseMeanings": ["посмотреть наверх", "уважать"],
+      "noteRu": "«Look up to someone» уже «уважать». «Look it up» с местоимением внутри."
+    },
+    {
+      "id": "phrasal.sort-out",
+      "en": "sort out",
+      "ru": "разобраться, уладить",
+      "accept": ["sort out", "sorted out", "sort it out"],
+      "contexts": [
+        { "en": "I need to sort out my visa before anything else.", "ru": "Сначала нужно уладить визу." },
+        { "en": "We sorted out the merge conflicts in an hour.", "ru": "Мы разобрались с конфликтами слияния за час." },
+        { "en": "Let's sort it out over a call.", "ru": "Давай уладим это на созвоне." }
+      ],
+      "promptsRu": ["Скажи, что сначала уладишь визу.", "Предложи разобраться на созвоне."],
+      "questionEn": "Use 'sort out' about a problem.",
+      "falseMeanings": ["отсортировать наружу", "рассортировать"],
+      "noteRu": "Британское, очень частое. Американцы чаще «figure out» или «fix»."
+    },
+    {
+      "id": "phrasal.cut-off",
+      "en": "cut off",
+      "ru": "отрезать, оборвать (связь, доступ)",
+      "accept": ["cut off", "got cut off", "cut me off"],
+      "contexts": [
+        { "en": "We got cut off, the call dropped.", "ru": "Нас оборвало, звонок сорвался." },
+        { "en": "They cut off our API access without warning.", "ru": "Они отрезали нам доступ к API без предупреждения." },
+        { "en": "Sorry, I didn't mean to cut you off.", "ru": "Извини, не хотел тебя перебивать." }
+      ],
+      "promptsRu": ["Объясни, что звонок оборвался.", "Извинись, что перебил."],
+      "questionEn": "Use 'cut off' about a dropped call.",
+      "falseMeanings": ["вырезать", "срезать путь"],
+      "noteRu": "«Cut someone off» перебить или подрезать на дороге."
+    },
+    {
+      "id": "phrasal.drop-by",
+      "en": "drop by",
+      "ru": "заскочить (ненадолго зайти)",
+      "accept": ["drop by", "drop in", "stop by"],
+      "contexts": [
+        { "en": "Drop by the office if you're nearby.", "ru": "Заскочи в офис, если будешь рядом." },
+        { "en": "I'll drop by after the gym with the charger.", "ru": "Заскочу после зала с зарядкой." },
+        { "en": "She dropped by to say hi and stayed for dinner.", "ru": "Она заскочила поздороваться и осталась на ужин." }
+      ],
+      "promptsRu": ["Пригласи заскочить в офис.", "Пообещай заскочить с зарядкой после зала."],
+      "questionEn": "Use 'drop by' to invite someone briefly.",
+      "falseMeanings": ["уронить рядом", "заехать на машине"],
+      "noteRu": "«Stop by» то же самое. Без предупреждения и ненадолго."
+    },
+    {
+      "id": "phrasal.hang-out",
+      "en": "hang out",
+      "ru": "тусоваться, проводить время вместе",
+      "accept": ["hang out", "hung out", "hang out with"],
+      "contexts": [
+        { "en": "Want to hang out this weekend? Nothing planned.", "ru": "Хочешь потусить на выходных? Ничего не запланировано." },
+        { "en": "We hung out at the boulevard until midnight.", "ru": "Мы тусовались на бульваре до полуночи." },
+        { "en": "I mostly hang out with people from the gym now.", "ru": "Я теперь в основном общаюсь с людьми из зала." }
+      ],
+      "promptsRu": ["Предложи другу потусить на выходных.", "Расскажи, с кем в основном проводишь время."],
+      "questionEn": "Use 'hang out' to make plans.",
+      "falseMeanings": ["вывесить наружу", "повиснуть"],
+      "noteRu": "Без цели, просто вместе. Прошедшее «hung out»."
+    },
+    {
+      "id": "phrasal.wrap-up",
+      "en": "wrap up",
+      "ru": "закруглиться, завершить",
+      "accept": ["wrap up", "wrapped up", "wrap it up"],
+      "contexts": [
+        { "en": "Let's wrap up, we're over time.", "ru": "Давайте закругляться, мы вышли за время." },
+        { "en": "I'll wrap up the report by noon.", "ru": "Закончу отчёт к полудню." },
+        { "en": "We wrapped up the sprint with one ticket left.", "ru": "Мы закрыли спринт с одним незакрытым тикетом." }
+      ],
+      "promptsRu": ["Предложи закругляться на встрече.", "Пообещай закончить отчёт к полудню."],
+      "questionEn": "Use 'wrap up' to end a meeting.",
+      "falseMeanings": ["завернуть вверх", "укутаться"],
+      "noteRu": "«Wrap-up» как существительное это итоги встречи."
+    },
+    {
+      "id": "phrasal.fall-through",
+      "en": "fall through",
+      "ru": "сорваться (о планах, сделке)",
+      "accept": ["fall through", "fell through"],
+      "contexts": [
+        { "en": "The deal fell through at the last minute.", "ru": "Сделка сорвалась в последнюю минуту." },
+        { "en": "Our trip fell through because of the visa.", "ru": "Наша поездка сорвалась из-за визы." },
+        { "en": "If the flat falls through, we stay with my parents.", "ru": "Если с квартирой сорвётся, живём у моих родителей." }
+      ],
+      "promptsRu": ["Расскажи, что сделка сорвалась в последний момент.", "Опиши план Б, если квартира сорвётся."],
+      "questionEn": "Use 'fall through' about a failed plan.",
+      "falseMeanings": ["провалиться сквозь пол", "упасть через"],
+      "noteRu": "Только про планы и сделки."
+    },
+    {
+      "id": "phrasal.take-off",
+      "en": "take off",
+      "ru": "взлететь / резко пойти вверх / снять",
+      "accept": ["take off", "took off"],
+      "contexts": [
+        { "en": "The plane took off two hours late.", "ru": "Самолёт взлетел с опозданием на два часа." },
+        { "en": "The app took off after one viral post.", "ru": "Приложение взлетело после одного вирусного поста." },
+        { "en": "Take off your shoes, we just cleaned.", "ru": "Снимай обувь, мы только что убрались." }
+      ],
+      "promptsRu": ["Скажи, что самолёт взлетел с опозданием.", "Расскажи, как приложение взлетело после поста."],
+      "questionEn": "Use 'take off' about a plane or a product.",
+      "falseMeanings": ["взять выходной", "забрать"],
+      "noteRu": "«Take a day off» взять выходной, не путать."
+    },
+    {
+      "id": "phrasal.pick-up",
+      "en": "pick up",
+      "ru": "забрать / подхватить (навык, привычку)",
+      "accept": ["pick up", "picked up", "pick it up"],
+      "contexts": [
+        { "en": "Can you pick me up from the airport?", "ru": "Можешь забрать меня из аэропорта?" },
+        { "en": "I picked up some Georgian during the trip.", "ru": "Я нахватался грузинского за поездку." },
+        { "en": "Pick up milk on the way home.", "ru": "Захвати молоко по дороге домой." }
+      ],
+      "promptsRu": ["Попроси забрать тебя из аэропорта.", "Скажи, что нахватался грузинского в поездке."],
+      "questionEn": "Use 'pick up' in two meanings.",
+      "falseMeanings": ["поднять ковёр", "выбрать"],
+      "noteRu": "Три значения: забрать, подхватить, купить по пути."
+    },
+    {
+      "id": "phrasal.keep-up-with",
+      "en": "keep up with",
+      "ru": "успевать за, не отставать",
+      "accept": ["keep up with", "keep up"],
+      "contexts": [
+        { "en": "I can't keep up with all the new frameworks.", "ru": "Я не успеваю за всеми новыми фреймворками." },
+        { "en": "Keep up with the reading or the course gets hard.", "ru": "Не отставай с чтением, иначе курс станет тяжёлым." },
+        { "en": "She walks fast, I could barely keep up.", "ru": "Она быстро ходит, я еле поспевал." }
+      ],
+      "promptsRu": ["Пожалуйся, что не успеваешь за фреймворками.", "Скажи, что еле поспевал за быстрым другом."],
+      "questionEn": "Use 'keep up with' about news or pace.",
+      "falseMeanings": ["держать наверху", "поддерживать с"],
+      "noteRu": "«Keep up with the news» следить за новостями."
+    },
+    {
+      "id": "phrasal.get-over",
+      "en": "get over",
+      "ru": "пережить, оправиться",
+      "accept": ["get over", "got over", "get over it"],
+      "contexts": [
+        { "en": "It took me a month to get over the flu.", "ru": "Мне понадобился месяц, чтобы оправиться от гриппа." },
+        { "en": "I still can't get over that ending.", "ru": "Я до сих пор не могу отойти от той концовки." },
+        { "en": "Get over it, it was just a code review.", "ru": "Переживи это, это было всего лишь код-ревью." }
+      ],
+      "promptsRu": ["Скажи, что месяц оправлялся после гриппа.", "Скажи другу, что пора пережить ревью."],
+      "questionEn": "Use 'get over' about recovering.",
+      "falseMeanings": ["перелезть через", "закончить"],
+      "noteRu": "«Can't get over» также «не могу поверить, как удивительно»."
+    },
+    {
+      "id": "phrasal.count-on",
+      "en": "count on",
+      "ru": "рассчитывать на",
+      "accept": ["count on", "counting on", "rely on"],
+      "contexts": [
+        { "en": "You can count on me for the deploy.", "ru": "Можешь рассчитывать на меня на деплое." },
+        { "en": "Don't count on the Wi-Fi at that café.", "ru": "Не рассчитывай на вайфай в том кафе." },
+        { "en": "I'm counting on you to review it today.", "ru": "Я рассчитываю, что ты проверишь это сегодня." }
+      ],
+      "promptsRu": ["Скажи, что на тебя можно рассчитывать.", "Предупреди не рассчитывать на вайфай."],
+      "questionEn": "Use 'count on' to promise or warn.",
+      "falseMeanings": ["считать на", "посчитать"],
+      "noteRu": "«Count on someone to do» рассчитывать, что сделает."
+    },
+    {
+      "id": "phrasal.run-out",
+      "en": "run out",
+      "ru": "закончиться (о запасе)",
+      "accept": ["run out", "ran out", "running out"],
+      "contexts": [
+        { "en": "We ran out of milk, again.", "ru": "У нас снова закончилось молоко." },
+        { "en": "Time is running out, two days to the demo.", "ru": "Время на исходе, два дня до демо." },
+        { "en": "My patience ran out after the third bug.", "ru": "Моё терпение кончилось после третьего бага." }
+      ],
+      "promptsRu": ["Скажи, что закончилось молоко.", "Скажи, что терпение кончилось после третьего бага."],
+      "questionEn": "Use 'run out' about something finishing.",
+      "falseMeanings": ["выбежать", "убежать"],
+      "noteRu": "«Run out of X» с объектом, «run out» без."
+    },
+    {
+      "id": "phrasal.mess-up",
+      "en": "mess up",
+      "ru": "напортачить",
+      "accept": ["mess up", "messed up", "screw up"],
+      "contexts": [
+        { "en": "I messed up the merge, give me ten minutes.", "ru": "Я напортачил со слиянием, дай десять минут." },
+        { "en": "Don't worry about messing up, that's how you learn.", "ru": "Не бойся напортачить, так и учатся." },
+        { "en": "They messed up our order twice.", "ru": "Они дважды напутали с нашим заказом." }
+      ],
+      "promptsRu": ["Признайся, что напортачил со слиянием.", "Успокой новичка: ошибаться нормально."],
+      "questionEn": "Use 'mess up' to admit a mistake.",
+      "falseMeanings": ["намусорить наверху", "перемешать"],
+      "noteRu": "«Screw up» грубее. Оба нормальны в команде."
+    },
+    {
+      "id": "phrasal.get-by",
+      "en": "get by",
+      "ru": "справляться, обходиться (на минимуме)",
+      "accept": ["get by", "getting by", "get by with"],
+      "contexts": [
+        { "en": "I can get by in German, nothing fancy.", "ru": "Я могу объясниться на немецком, ничего особенного." },
+        { "en": "We got by on one salary for a year.", "ru": "Мы год обходились одной зарплатой." },
+        { "en": "You can get by with English in most of Europe.", "ru": "В большей части Европы можно обойтись английским." }
+      ],
+      "promptsRu": ["Скажи, что можешь объясниться на немецком.", "Скажи, что в Европе можно обойтись английским."],
+      "questionEn": "Use 'get by' about language or money.",
+      "falseMeanings": ["проходить мимо", "получать от"],
+      "noteRu": "Минимально, но достаточно."
+    },
+    {
+      "id": "phrasal.stick-to",
+      "en": "stick to",
+      "ru": "придерживаться",
+      "accept": ["stick to", "stick with", "stuck to"],
+      "contexts": [
+        { "en": "Let's stick to the plan and not add features.", "ru": "Давайте придерживаться плана и не добавлять фичи." },
+        { "en": "I'm sticking to two coffees a day.", "ru": "Я держусь двух кофе в день." },
+        { "en": "Stick with TypeScript, it pays off.", "ru": "Держись TypeScript, он окупается." }
+      ],
+      "promptsRu": ["Предложи придерживаться плана.", "Скажи, что держишься двух кофе в день."],
+      "questionEn": "Use 'stick to' about a plan or habit.",
+      "falseMeanings": ["приклеиться к", "ткнуть в"],
+      "noteRu": "«Stick with» ближе к «не бросать»."
+    },
+    {
+      "id": "phrasal.call-off",
+      "en": "call off",
+      "ru": "отменить",
+      "accept": ["call off", "called off", "cancel"],
+      "contexts": [
+        { "en": "They called off the meetup because of the storm.", "ru": "Митап отменили из-за шторма." },
+        { "en": "Let's call off the release, the tests are red.", "ru": "Давайте отменим релиз, тесты красные." },
+        { "en": "The hike was called off at the last minute.", "ru": "Поход отменили в последнюю минуту." }
+      ],
+      "promptsRu": ["Сообщи, что митап отменили из-за шторма.", "Предложи отменить релиз из-за красных тестов."],
+      "questionEn": "Use 'call off' about cancelling.",
+      "falseMeanings": ["позвонить и уйти", "отозвать звонок"],
+      "noteRu": "«Cancel» нейтральное, «call off» разговорное."
+    },
+    {
+      "id": "phrasal.head-out",
+      "en": "head out",
+      "ru": "выдвигаться, выходить",
+      "accept": ["head out", "heading out", "head to"],
+      "contexts": [
+        { "en": "I'm heading out, see you at the café.", "ru": "Я выдвигаюсь, увидимся в кафе." },
+        { "en": "Let's head out before the traffic starts.", "ru": "Давайте выезжать, пока нет пробок." },
+        { "en": "We're heading to Gabala on Saturday.", "ru": "В субботу едем в Габалу." }
+      ],
+      "promptsRu": ["Скажи, что выдвигаешься в кафе.", "Предложи выехать до пробок."],
+      "questionEn": "Use 'head out' when leaving.",
+      "falseMeanings": ["высунуть голову", "выйти из головы"],
+      "noteRu": "«Head to X» направляться в X. Очень частое в сообщениях."
+    }
+  ]
+}

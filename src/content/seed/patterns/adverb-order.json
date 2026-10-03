@@ -1,0 +1,567 @@
+{
+  "id": "adverb-order",
+  "title": "Место just, already, always, usually",
+  "explainRu": "Короткие наречия стоят перед основным глаголом, но после «be» и после первого вспомогательного: «I usually drink», «I'm always late», «I've just finished». В конец предложения их не уносят.",
+  "exercises": [
+    {
+      "tokens": [
+        "I",
+        "drink",
+        "coffee",
+        "usually",
+        "in",
+        "the",
+        "morning."
+      ],
+      "wrongIndex": 3,
+      "fix": "",
+      "ruleRu": "«Usually» стоит перед глаголом: «I usually drink coffee».",
+      "correct": "I usually drink coffee in the morning."
+    },
+    {
+      "tokens": [
+        "I",
+        "usually",
+        "drink",
+        "coffee",
+        "in",
+        "the",
+        "morning."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Наречие перед основным глаголом, всё верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "finished",
+        "just",
+        "the",
+        "report."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«Just» перед глаголом: «I just finished the report».",
+      "correct": "I just finished the report."
+    },
+    {
+      "tokens": [
+        "I",
+        "have",
+        "just",
+        "finished",
+        "the",
+        "report."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "После вспомогательного «have» и перед причастием, верно."
+    },
+    {
+      "tokens": [
+        "He",
+        "always",
+        "is",
+        "late",
+        "to",
+        "standup."
+      ],
+      "wrongIndex": 1,
+      "fix": "is always",
+      "ruleRu": "После «be» наречие идёт следом: «he is always late»."
+    },
+    {
+      "tokens": [
+        "He",
+        "is",
+        "always",
+        "late",
+        "to",
+        "standup."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Be» + наречие, всё верно."
+    },
+    {
+      "tokens": [
+        "We",
+        "already",
+        "have",
+        "deployed",
+        "the",
+        "fix."
+      ],
+      "wrongIndex": 1,
+      "fix": "have already",
+      "ruleRu": "После вспомогательного: «we have already deployed»."
+    },
+    {
+      "tokens": [
+        "I",
+        "go",
+        "always",
+        "to",
+        "the",
+        "gym",
+        "after",
+        "work."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«Always» перед глаголом: «I always go to the gym».",
+      "correct": "I always go to the gym after work."
+    },
+    {
+      "tokens": [
+        "I",
+        "always",
+        "go",
+        "to",
+        "the",
+        "gym",
+        "after",
+        "work."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно: наречие перед глаголом."
+    },
+    {
+      "tokens": [
+        "She",
+        "just",
+        "has",
+        "left",
+        "the",
+        "office."
+      ],
+      "wrongIndex": 1,
+      "fix": "has just",
+      "ruleRu": "«Has just left», наречие после вспомогательного."
+    },
+    {
+      "tokens": [
+        "I",
+        "am",
+        "usually",
+        "online",
+        "by",
+        "ten."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "После «am», всё верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "usually",
+        "am",
+        "online",
+        "by",
+        "ten."
+      ],
+      "wrongIndex": 1,
+      "fix": "am usually",
+      "ruleRu": "«Be» идёт первым: «I am usually online»."
+    },
+    {
+      "tokens": [
+        "They",
+        "already",
+        "know",
+        "about",
+        "the",
+        "bug."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Простое время без вспомогательного, наречие перед глаголом, верно."
+    },
+    {
+      "tokens": [
+        "They",
+        "know",
+        "already",
+        "about",
+        "the",
+        "bug."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«They already know», не после глагола.",
+      "correct": "They already know about the bug."
+    },
+    {
+      "tokens": [
+        "I",
+        "can",
+        "usually",
+        "fix",
+        "it",
+        "in",
+        "an",
+        "hour."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "После модального «can», верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "usually",
+        "can",
+        "fix",
+        "it",
+        "in",
+        "an",
+        "hour."
+      ],
+      "wrongIndex": 1,
+      "fix": "can usually",
+      "ruleRu": "Модальный глагол первым: «I can usually fix it»."
+    },
+    {
+      "tokens": [
+        "Have",
+        "you",
+        "already",
+        "eaten?"
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "В вопросе наречие после подлежащего, верно."
+    },
+    {
+      "tokens": [
+        "Did",
+        "you",
+        "see",
+        "just",
+        "the",
+        "message?"
+      ],
+      "wrongIndex": 3,
+      "fix": "",
+      "ruleRu": "«Did you just see the message?», наречие перед глаголом.",
+      "correct": "Did you just see the message?"
+    },
+    {
+      "tokens": [
+        "He",
+        "never",
+        "answers",
+        "on",
+        "weekends."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Never» как и «always»: перед глаголом."
+    },
+    {
+      "tokens": [
+        "He",
+        "answers",
+        "never",
+        "on",
+        "weekends."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«He never answers», наречие впереди.",
+      "correct": "He never answers on weekends."
+    },
+    {
+      "tokens": [
+        "We",
+        "are",
+        "already",
+        "on",
+        "the",
+        "way."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "После «are», верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "have",
+        "been",
+        "always",
+        "bad",
+        "with",
+        "names."
+      ],
+      "wrongIndex": 3,
+      "fix": "",
+      "ruleRu": "«I have always been bad», после первого вспомогательного.",
+      "correct": "I have always been bad with names."
+    },
+    {
+      "tokens": [
+        "I",
+        "have",
+        "always",
+        "been",
+        "bad",
+        "with",
+        "names."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "После «have», перед «been», верно."
+    },
+    {
+      "tokens": [
+        "She",
+        "usually",
+        "works",
+        "from",
+        "a",
+        "café."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "She",
+        "works",
+        "usually",
+        "from",
+        "a",
+        "café."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«She usually works», не после глагола.",
+      "correct": "She usually works from a café."
+    },
+    {
+      "tokens": [
+        "I",
+        "just",
+        "want",
+        "to",
+        "say",
+        "thanks."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Just want», наречие перед глаголом, верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "want",
+        "just",
+        "to",
+        "say",
+        "thanks."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«I just want to say», не между глаголом и «to».",
+      "correct": "I just want to say thanks."
+    },
+    {
+      "tokens": [
+        "The",
+        "build",
+        "is",
+        "still",
+        "running."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Still» после «is», верно."
+    },
+    {
+      "tokens": [
+        "The",
+        "build",
+        "still",
+        "is",
+        "running."
+      ],
+      "wrongIndex": 2,
+      "fix": "is still",
+      "ruleRu": "«Be» первым: «is still running»."
+    },
+    {
+      "tokens": [
+        "We",
+        "often",
+        "order",
+        "pizza",
+        "on",
+        "Fridays."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Often» перед глаголом, верно."
+    },
+    {
+      "tokens": [
+        "We",
+        "order",
+        "often",
+        "pizza",
+        "on",
+        "Fridays."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«We often order pizza».",
+      "correct": "We often order pizza on Fridays."
+    },
+    {
+      "tokens": [
+        "I",
+        "have",
+        "never",
+        "been",
+        "to",
+        "Georgia."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "После «have», верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "never",
+        "have",
+        "been",
+        "to",
+        "Georgia."
+      ],
+      "wrongIndex": 1,
+      "fix": "have never",
+      "ruleRu": "«I have never been»."
+    },
+    {
+      "tokens": [
+        "You",
+        "should",
+        "always",
+        "back",
+        "up",
+        "first."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "После модального «should», верно."
+    },
+    {
+      "tokens": [
+        "You",
+        "always",
+        "should",
+        "back",
+        "up",
+        "first."
+      ],
+      "wrongIndex": 1,
+      "fix": "should always",
+      "ruleRu": "Модальный первым: «should always back up»."
+    },
+    {
+      "tokens": [
+        "It",
+        "is",
+        "usually",
+        "quiet",
+        "here",
+        "after",
+        "six."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "После «is», верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "already",
+        "sent",
+        "the",
+        "invoice."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "В американском Past Simple с «already» нормально, наречие перед глаголом."
+    },
+    {
+      "tokens": [
+        "I",
+        "sent",
+        "already",
+        "the",
+        "invoice."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«I already sent», не между глаголом и дополнением.",
+      "correct": "I already sent the invoice."
+    },
+    {
+      "tokens": [
+        "He",
+        "rarely",
+        "replies",
+        "before",
+        "noon."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Rarely» как «usually», верно."
+    },
+    {
+      "tokens": [
+        "He",
+        "replies",
+        "rarely",
+        "before",
+        "noon."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«He rarely replies».",
+      "correct": "He rarely replies before noon."
+    },
+    {
+      "tokens": [
+        "We",
+        "have",
+        "already",
+        "tried",
+        "that",
+        "library."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "am",
+        "just",
+        "tired,",
+        "not",
+        "angry."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "После «am», верно."
+    }
+  ]
+}

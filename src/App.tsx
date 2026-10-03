@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { ensureSeed } from '@/db/seedRepo'
 import { DEBUG } from '@/debug'
 import { useProfileStore } from '@/store/profile'
+import { installDebugHooks } from '@/debugHooks'
 import { DevPanel } from '@/ui/DevPanel'
 import { CampScreen } from '@/screens/Camp'
 import { MapScreen } from '@/screens/Map'
@@ -35,6 +36,7 @@ export default function App() {
   const load = useProfileStore((s) => s.load)
 
   useEffect(() => {
+    if (DEBUG) installDebugHooks()
     void ensureSeed().then(load)
   }, [load])
 

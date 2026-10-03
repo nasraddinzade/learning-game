@@ -1,4 +1,3 @@
-import { seedItems } from '@/content/seed'
 import { db } from './db'
 
 /**
@@ -7,5 +6,7 @@ import { db } from './db'
  * Items added "from life" have other sources and are left alone.
  */
 export async function ensureSeed(): Promise<void> {
+  // The seed is ~300 items of text; it lives in its own chunk so the first screen stays small.
+  const { seedItems } = await import('@/content/seed')
   await db.items.bulkPut(seedItems)
 }

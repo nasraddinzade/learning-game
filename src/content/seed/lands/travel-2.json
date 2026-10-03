@@ -1,0 +1,340 @@
+{
+  "id": "travel",
+  "name": "Дорога и переезд",
+  "emoji": "✈️",
+  "items": [
+    {
+      "id": "travel.check-in",
+      "en": "check in",
+      "ru": "зарегистрироваться (на рейс, в отель)",
+      "accept": ["check in", "check-in"],
+      "contexts": [
+        { "en": "I'll check in online so we can skip the queue.", "ru": "Я зарегистрируюсь онлайн, чтобы пропустить очередь." },
+        { "en": "We can't check in until three.", "ru": "Заселиться можно только с трёх." },
+        { "en": "Check in closes forty minutes before departure.", "ru": "Регистрация закрывается за сорок минут до вылета." }
+      ],
+      "promptsRu": ["Скажи, что зарегистрируешься онлайн.", "Скажи, что заселение в отель только с трёх."],
+      "questionEn": "Use 'check in' about a flight or hotel.",
+      "falseMeanings": ["проверить внутри", "отметиться в соцсети"],
+      "noteRu": "Глагол в два слова, существительное «check-in». Выезд: «check out»."
+    },
+    {
+      "id": "travel.boarding",
+      "en": "boarding has started",
+      "ru": "посадка началась",
+      "accept": ["boarding has started", "boarding started", "boarding is starting"],
+      "contexts": [
+        { "en": "Boarding has started, gate 12.", "ru": "Посадка началась, выход 12." },
+        { "en": "Run, boarding has started and we're at the wrong gate.", "ru": "Бежим, посадка началась, а мы не у того выхода." },
+        { "en": "They announced that boarding is starting in five minutes.", "ru": "Объявили, что посадка начнётся через пять минут." }
+      ],
+      "promptsRu": ["Сообщи другу, что посадка началась.", "Поторопи: посадка началась, а вы не у того выхода."],
+      "questionEn": "Use 'boarding has started' at the airport.",
+      "falseMeanings": ["началось катание на доске", "началось обучение в пансионе"],
+      "noteRu": "«Gate» выход на посадку, «boarding pass» посадочный."
+    },
+    {
+      "id": "travel.layover",
+      "type": "word",
+      "en": "layover",
+      "ru": "пересадка (стыковка между рейсами)",
+      "accept": ["layover", "a layover", "stopover"],
+      "contexts": [
+        { "en": "We have a four-hour layover in Istanbul.", "ru": "У нас четырёхчасовая пересадка в Стамбуле." },
+        { "en": "A short layover is risky if the first flight is late.", "ru": "Короткая пересадка рискованна, если первый рейс опоздает." },
+        { "en": "I spent the layover working from the lounge.", "ru": "Я провёл пересадку за работой в лаунже." }
+      ],
+      "promptsRu": ["Скажи, что у вас четырёхчасовая пересадка в Стамбуле.", "Объясни, почему короткая пересадка рискованна."],
+      "questionEn": "Use 'layover' about a connecting flight.",
+      "falseMeanings": ["отложенный рейс", "лежание сверху"],
+      "noteRu": "«Layover» короткая пересадка, «stopover» длинная, с выходом в город."
+    },
+    {
+      "id": "travel.i-m-jet-lagged",
+      "en": "I'm jet-lagged",
+      "ru": "У меня джетлаг",
+      "accept": ["i'm jet-lagged", "i am jet-lagged", "i'm jetlagged", "jet-lagged"],
+      "contexts": [
+        { "en": "I'm jet-lagged, I fell asleep at 7 p.m.", "ru": "У меня джетлаг, я уснул в семь вечера." },
+        { "en": "Still jet-lagged from the US trip.", "ru": "Всё ещё джетлаг после поездки в США." },
+        { "en": "Don't schedule anything, she's jet-lagged.", "ru": "Ничего не планируй, у неё джетлаг." }
+      ],
+      "promptsRu": ["Объясни, что уснул в семь вечера из-за джетлага.", "Попроси ничего не планировать для коллеги с джетлагом."],
+      "questionEn": "Use 'jet-lagged' after a long flight.",
+      "falseMeanings": ["Я отстал от самолёта", "Я устал от перелёта"],
+      "noteRu": "Прилагательное от «jet lag»."
+    },
+    {
+      "id": "travel.is-this-seat-taken",
+      "en": "Is this seat taken?",
+      "ru": "Это место занято?",
+      "accept": ["is this seat taken", "is this taken", "is anyone sitting here"],
+      "contexts": [
+        { "en": "Is this seat taken? — No, go ahead.", "ru": "Это место занято? — Нет, садитесь." },
+        { "en": "Excuse me, is this seat taken?", "ru": "Извините, это место занято?" },
+        { "en": "He asked if the seat was taken and sat down.", "ru": "Он спросил, занято ли место, и сел." }
+      ],
+      "promptsRu": ["Спроси в кафе, занято ли место.", "Спроси в поезде вежливо, свободно ли место."],
+      "questionEn": "Use 'is this seat taken' in a café or train.",
+      "falseMeanings": ["Это место взято с собой?", "Это кресло украдено?"],
+      "noteRu": "Ответ «go ahead» значит «садитесь»."
+    },
+    {
+      "id": "travel.get-off-at",
+      "en": "get off at",
+      "ru": "выйти на (остановке, станции)",
+      "accept": ["get off at", "get off"],
+      "contexts": [
+        { "en": "Get off at the third stop, the café is right there.", "ru": "Выходи на третьей остановке, кафе прямо там." },
+        { "en": "We got off at the wrong station and walked.", "ru": "Мы вышли не на той станции и пошли пешком." },
+        { "en": "Where do I get off for the old town?", "ru": "Где мне выйти к старому городу?" }
+      ],
+      "promptsRu": ["Объясни другу, где выйти.", "Спроси, где выйти к старому городу."],
+      "questionEn": "Use 'get off at' to give transport directions.",
+      "falseMeanings": ["слезть с", "отстать от"],
+      "noteRu": "«Get on» сесть в транспорт, «get off» выйти. Для машины «get in / get out»."
+    },
+    {
+      "id": "travel.a-one-way-ticket",
+      "en": "a one-way ticket",
+      "ru": "билет в одну сторону",
+      "accept": ["a one-way ticket", "one-way ticket", "one way ticket"],
+      "contexts": [
+        { "en": "I bought a one-way ticket, no plan B.", "ru": "Я купил билет в одну сторону, без плана Б." },
+        { "en": "A one-way ticket to Lisbon is cheaper than a return.", "ru": "Билет в одну сторону в Лиссабон дешевле, чем туда-обратно." },
+        { "en": "Immigration may ask why you only have a one-way ticket.", "ru": "На границе могут спросить, почему у тебя только билет в одну сторону." }
+      ],
+      "promptsRu": ["Скажи, что купил билет в одну сторону.", "Предупреди, что на границе спросят про билет в одну сторону."],
+      "questionEn": "Use 'one-way ticket' about moving.",
+      "falseMeanings": ["билет на односторонний проезд", "единственный билет"],
+      "noteRu": "Пара к «round trip» / «return»."
+    },
+    {
+      "id": "travel.do-you-have-anything-to-declare",
+      "en": "anything to declare",
+      "ru": "что-то для декларации (на таможне)",
+      "accept": ["anything to declare", "nothing to declare", "do you have anything to declare"],
+      "contexts": [
+        { "en": "Do you have anything to declare? — No, nothing to declare.", "ru": "Есть что декларировать? — Нет, ничего." },
+        { "en": "I went through the nothing to declare lane.", "ru": "Я прошёл через зелёный коридор." },
+        { "en": "Two laptops? You might need to declare them.", "ru": "Два ноутбука? Возможно, их нужно задекларировать." }
+      ],
+      "promptsRu": ["Ответь на таможне, что декларировать нечего.", "Предупреди друга, что два ноутбука могут попросить задекларировать."],
+      "questionEn": "Use 'nothing to declare' at customs.",
+      "falseMeanings": ["что-то заявить (речь)", "что-то объявить"],
+      "noteRu": "«Customs» таможня, «declare» задекларировать."
+    },
+    {
+      "id": "travel.the-lease",
+      "en": "sign the lease",
+      "ru": "подписать договор аренды",
+      "accept": ["sign the lease", "sign a lease", "the lease"],
+      "contexts": [
+        { "en": "We sign the lease on Monday, a year with a two-month deposit.", "ru": "Подписываем договор аренды в понедельник, год с депозитом за два месяца." },
+        { "en": "Read the lease carefully, especially the exit clause.", "ru": "Внимательно прочитай договор, особенно пункт о расторжении." },
+        { "en": "I don't want to sign a lease before seeing the flat.", "ru": "Не хочу подписывать договор, не увидев квартиру." }
+      ],
+      "promptsRu": ["Скажи, что подписываешь договор аренды в понедельник.", "Откажись подписывать, не увидев квартиру."],
+      "questionEn": "Use 'sign the lease' about renting.",
+      "falseMeanings": ["подписать поводок", "подписать лизинг машины"],
+      "noteRu": "«Lease» договор аренды жилья. «Deposit» залог."
+    },
+    {
+      "id": "travel.utilities-included",
+      "en": "utilities included",
+      "ru": "коммуналка включена",
+      "accept": ["utilities included", "utilities are included", "bills included"],
+      "contexts": [
+        { "en": "Is it 800 with utilities included?", "ru": "Это 800 с коммуналкой?" },
+        { "en": "Utilities included, except electricity.", "ru": "Коммуналка включена, кроме электричества." },
+        { "en": "Bills included makes budgeting much easier.", "ru": "С включённой коммуналкой планировать бюджет гораздо проще." }
+      ],
+      "promptsRu": ["Уточни у арендодателя, включена ли коммуналка.", "Скажи, что всё включено, кроме электричества."],
+      "questionEn": "Use 'utilities included' in a rent negotiation.",
+      "falseMeanings": ["утилиты включены (софт)", "удобства включены"],
+      "noteRu": "В Британии чаще «bills included»."
+    },
+    {
+      "id": "travel.the-landlord",
+      "type": "word",
+      "en": "landlord",
+      "ru": "арендодатель",
+      "accept": ["landlord", "the landlord", "landlady"],
+      "contexts": [
+        { "en": "The landlord wants cash, I want a contract.", "ru": "Арендодатель хочет наличные, я хочу договор." },
+        { "en": "Our landlord fixed the boiler the same day.", "ru": "Наш арендодатель починил бойлер в тот же день." },
+        { "en": "Ask the landlord if pets are allowed.", "ru": "Спроси арендодателя, можно ли с животными." }
+      ],
+      "promptsRu": ["Скажи, что арендодатель хочет наличные, а ты договор.", "Посоветуй спросить про животных."],
+      "questionEn": "Use 'landlord' in a sentence about renting.",
+      "falseMeanings": ["землевладелец", "лорд"],
+      "noteRu": "Женщина «landlady». Жилец «tenant»."
+    },
+    {
+      "id": "travel.move-in",
+      "en": "move in",
+      "ru": "въехать (в новое жильё)",
+      "accept": ["move in", "moved in", "move into"],
+      "contexts": [
+        { "en": "We move in next Saturday.", "ru": "Въезжаем в следующую субботу." },
+        { "en": "I moved in with two suitcases and a monitor.", "ru": "Я въехал с двумя чемоданами и монитором." },
+        { "en": "They moved into a bigger place near the park.", "ru": "Они переехали в квартиру побольше у парка." }
+      ],
+      "promptsRu": ["Скажи, что въезжаете в субботу.", "Расскажи, с чем ты въехал."],
+      "questionEn": "Use 'move in' about a new flat.",
+      "falseMeanings": ["двигаться внутрь", "вмешаться"],
+      "noteRu": "Выезд «move out». «Move in with someone» съехаться."
+    },
+    {
+      "id": "travel.commute",
+      "type": "word",
+      "en": "commute",
+      "ru": "дорога на работу и обратно",
+      "accept": ["commute", "the commute", "commuting"],
+      "contexts": [
+        { "en": "My commute is forty minutes by metro.", "ru": "Моя дорога на работу это сорок минут на метро." },
+        { "en": "I listen to podcasts during the commute.", "ru": "Во время дороги на работу я слушаю подкасты." },
+        { "en": "Remote work killed my commute and I don't miss it.", "ru": "Удалёнка убила мою дорогу на работу, и я не скучаю." }
+      ],
+      "promptsRu": ["Расскажи, сколько занимает дорога на работу.", "Скажи, что слушаешь подкасты по дороге."],
+      "questionEn": "Use 'commute' to describe your way to work.",
+      "falseMeanings": ["коммутировать", "общаться"],
+      "noteRu": "И глагол, и существительное. «Commuter» тот, кто ездит на работу."
+    },
+    {
+      "id": "travel.i-got-lost",
+      "en": "I got lost",
+      "ru": "Я заблудился",
+      "accept": ["i got lost", "got lost", "we got lost"],
+      "contexts": [
+        { "en": "I got lost in the old town for an hour, worth it.", "ru": "Я заблудился в старом городе на час, оно того стоило." },
+        { "en": "We got lost because the map app died.", "ru": "Мы заблудились, потому что карта в телефоне сдохла." },
+        { "en": "It's easy to get lost in that mall.", "ru": "В том торговом центре легко заблудиться." }
+      ],
+      "promptsRu": ["Расскажи, как заблудился в старом городе.", "Объясни, почему заблудились: сел телефон."],
+      "questionEn": "Use 'I got lost' in a travel story.",
+      "falseMeanings": ["я потерялся навсегда", "я проиграл"],
+      "noteRu": "«Get lost!» как грубое «отвали» тоже существует, контекст решает."
+    },
+    {
+      "id": "travel.is-it-within-walking-distance",
+      "en": "within walking distance",
+      "ru": "в пешей доступности",
+      "accept": ["within walking distance", "walking distance"],
+      "contexts": [
+        { "en": "Is the metro within walking distance?", "ru": "Метро в пешей доступности?" },
+        { "en": "Everything is within walking distance in the center.", "ru": "В центре всё в пешей доступности." },
+        { "en": "The gym is walking distance from the new flat.", "ru": "Зал в пешей доступности от новой квартиры." }
+      ],
+      "promptsRu": ["Спроси, в пешей ли доступности метро.", "Похвали район: всё рядом пешком."],
+      "questionEn": "Use 'within walking distance' when choosing a flat.",
+      "falseMeanings": ["на расстоянии прогулки (далеко)", "в пределах пешеходной зоны"],
+      "noteRu": "Удобно при выборе жилья и отеля."
+    },
+    {
+      "id": "travel.the-exchange-rate",
+      "en": "the exchange rate",
+      "ru": "курс обмена валюты",
+      "accept": ["the exchange rate", "exchange rate"],
+      "contexts": [
+        { "en": "The exchange rate at the airport is terrible.", "ru": "Курс обмена в аэропорту ужасный." },
+        { "en": "Check the exchange rate before you pay in cash.", "ru": "Проверь курс, прежде чем платить наличными." },
+        { "en": "The exchange rate moved and the rent got pricier.", "ru": "Курс изменился, и аренда подорожала." }
+      ],
+      "promptsRu": ["Пожалуйся на курс в аэропорту.", "Посоветуй проверить курс перед оплатой."],
+      "questionEn": "Use 'exchange rate' when traveling.",
+      "falseMeanings": ["скорость обмена сообщениями", "частота смены"],
+      "noteRu": "«Exchange money» поменять деньги."
+    },
+    {
+      "id": "travel.could-you-recommend",
+      "en": "Could you recommend",
+      "ru": "Вы не посоветуете",
+      "accept": ["could you recommend", "can you recommend", "any recommendations"],
+      "contexts": [
+        { "en": "Could you recommend a place for breakfast nearby?", "ru": "Не посоветуете место для завтрака поблизости?" },
+        { "en": "Could you recommend a good dentist in this area?", "ru": "Не посоветуете хорошего стоматолога в этом районе?" },
+        { "en": "Any recommendations for a quiet café to work from?", "ru": "Посоветуете тихое кафе для работы?" }
+      ],
+      "promptsRu": ["Спроси у администратора, где позавтракать.", "Попроси порекомендовать тихое кафе для работы."],
+      "questionEn": "Use 'could you recommend' to ask a local.",
+      "falseMeanings": ["Вы могли бы одобрить", "Вы можете повторно поручить"],
+      "noteRu": "Удобно в отеле, кафе и в чате экспатов."
+    },
+    {
+      "id": "travel.i-m-just-passing-through",
+      "en": "I'm just passing through",
+      "ru": "Я проездом",
+      "accept": ["i'm just passing through", "i am just passing through", "passing through"],
+      "contexts": [
+        { "en": "I'm just passing through, one night in Tbilisi.", "ru": "Я проездом, одна ночь в Тбилиси." },
+        { "en": "Not staying long, just passing through on the way to Batumi.", "ru": "Надолго не останусь, проездом в Батуми." },
+        { "en": "He was just passing through and stayed for three years.", "ru": "Он был проездом и остался на три года." }
+      ],
+      "promptsRu": ["Скажи, что ты проездом на одну ночь.", "Скажи, что едешь дальше в Батуми."],
+      "questionEn": "Use 'just passing through' when asked about your stay.",
+      "falseMeanings": ["Я просто прохожу мимо тебя", "Я сдаю экзамен"],
+      "noteRu": "Ответ на «how long are you staying»."
+    },
+    {
+      "id": "travel.the-visa-came-through",
+      "en": "the visa came through",
+      "ru": "виза пришла (одобрена)",
+      "accept": ["the visa came through", "my visa came through", "came through"],
+      "contexts": [
+        { "en": "The visa came through, I'm leaving in May.", "ru": "Виза пришла, уезжаю в мае." },
+        { "en": "If the visa comes through, I'll start in September.", "ru": "Если виза придёт, начну в сентябре." },
+        { "en": "His work permit finally came through after four months.", "ru": "Его разрешение на работу наконец пришло спустя четыре месяца." }
+      ],
+      "promptsRu": ["Сообщи, что виза одобрена и ты уезжаешь в мае.", "Скажи, что начнёшь в сентябре, если виза придёт."],
+      "questionEn": "Use 'came through' about a visa or permit.",
+      "falseMeanings": ["виза прошла насквозь", "виза приехала курьером"],
+      "noteRu": "«Come through» для документов и денег значит «быть одобренным, прийти»."
+    },
+    {
+      "id": "travel.settle-the-bill",
+      "en": "settle the bill",
+      "ru": "расплатиться (закрыть счёт)",
+      "accept": ["settle the bill", "settle up", "settle the check"],
+      "contexts": [
+        { "en": "Let's settle the bill and head to the station.", "ru": "Давай расплатимся и пойдём на вокзал." },
+        { "en": "I settled the bill at the hotel at six in the morning.", "ru": "Я закрыл счёт в отеле в шесть утра." },
+        { "en": "We'll settle up later, I don't have cash.", "ru": "Рассчитаемся позже, у меня нет наличных." }
+      ],
+      "promptsRu": ["Предложи расплатиться и идти на вокзал.", "Скажи, что рассчитаетесь позже."],
+      "questionEn": "Use 'settle the bill' when leaving a restaurant.",
+      "falseMeanings": ["уладить спор", "обосноваться"],
+      "noteRu": "«Settle up» между друзьями, «settle the bill» в заведении."
+    },
+    {
+      "id": "travel.i-m-on-a-budget",
+      "en": "I'm on a budget",
+      "ru": "Я ограничен в бюджете",
+      "accept": ["i'm on a budget", "i am on a budget", "on a budget", "on a tight budget"],
+      "contexts": [
+        { "en": "I'm on a budget, so hostels, not hotels.", "ru": "Я ограничен в бюджете, так что хостелы, а не отели." },
+        { "en": "We're on a tight budget until the first paycheck.", "ru": "Мы сильно ограничены в деньгах до первой зарплаты." },
+        { "en": "Traveling on a budget means lots of walking.", "ru": "Путешествовать с ограниченным бюджетом значит много ходить." }
+      ],
+      "promptsRu": ["Объясни, что из-за бюджета выбираешь хостелы.", "Скажи, что до первой зарплаты вы экономите."],
+      "questionEn": "Use 'on a budget' about travel plans.",
+      "falseMeanings": ["Я на бюджете (госслужба)", "Я работаю над бюджетом"],
+      "noteRu": "«Tight budget» совсем мало денег."
+    },
+    {
+      "id": "travel.worth-a-visit",
+      "en": "worth a visit",
+      "ru": "стоит посетить",
+      "accept": ["worth a visit", "is worth a visit", "worth visiting"],
+      "contexts": [
+        { "en": "The old town is worth a visit even in winter.", "ru": "Старый город стоит посетить даже зимой." },
+        { "en": "Is Sheki worth a visit? — Absolutely, two days.", "ru": "Шеки стоит посетить? — Абсолютно, дня на два." },
+        { "en": "Not worth a visit, honestly, it's just a mall.", "ru": "Честно, не стоит, это просто торговый центр." }
+      ],
+      "promptsRu": ["Посоветуй старый город даже зимой.", "Отговори от места: это просто торговый центр."],
+      "questionEn": "Use 'worth a visit' to recommend a place.",
+      "falseMeanings": ["ценный визит", "достоин посещения врача"],
+      "noteRu": "«Worth + существительное / -ing». Без «of»."
+    }
+  ]
+}

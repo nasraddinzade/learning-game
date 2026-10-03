@@ -1,0 +1,337 @@
+{
+  "id": "opinion",
+  "name": "Мнение, согласие, спор, сомнение",
+  "emoji": "💬",
+  "items": [
+    {
+      "id": "opinion.as-far-as-im-concerned",
+      "en": "As far as I'm concerned",
+      "ru": "Что касается меня (моё мнение)",
+      "accept": ["as far as i'm concerned", "as far as i am concerned"],
+      "contexts": [
+        { "en": "As far as I'm concerned, the second season never happened.", "ru": "Что касается меня, второго сезона не существовало." },
+        { "en": "As far as I'm concerned, tests are not optional.", "ru": "По моему мнению, тесты не опция." },
+        { "en": "As far as I'm concerned, we can ship tomorrow.", "ru": "Что касается меня, можем выкатывать завтра." }
+      ],
+      "promptsRu": ["Выскажи твёрдое мнение: что касается тебя, тесты обязательны.", "Скажи, что по-твоему можно выкатывать завтра."],
+      "questionEn": "Use 'as far as I'm concerned' to give a firm opinion.",
+      "falseMeanings": ["Насколько я обеспокоен", "Пока я переживаю"],
+      "noteRu": "Твёрдое личное мнение. Не про беспокойство, несмотря на «concerned»."
+    },
+    {
+      "id": "opinion.i-d-say",
+      "en": "I'd say",
+      "ru": "Я бы сказал",
+      "accept": ["i'd say", "i would say"],
+      "contexts": [
+        { "en": "I'd say two days for this task, three with tests.", "ru": "Я бы сказал, два дня на задачу, три с тестами." },
+        { "en": "I'd say the book is better than the show.", "ru": "Я бы сказал, книга лучше сериала." },
+        { "en": "Is it worth it? — I'd say yes, if you have the time.", "ru": "Оно того стоит? — Я бы сказал да, если есть время." }
+      ],
+      "promptsRu": ["Дай оценку по времени: я бы сказал, два дня.", "Выскажи мнение мягко: я бы сказал, книга лучше."],
+      "questionEn": "Use 'I'd say' to give an estimate.",
+      "falseMeanings": ["Я сказал", "Я скажу"],
+      "noteRu": "Смягчает оценку. Идеально для эстимейтов на созвонах."
+    },
+    {
+      "id": "opinion.i-m-with-you-on",
+      "en": "I'm with you on",
+      "ru": "Я с тобой согласен насчёт",
+      "accept": ["i'm with you on", "i am with you on", "i'm with you on that"],
+      "contexts": [
+        { "en": "I'm with you on the rewrite, the old code is unreadable.", "ru": "Я с тобой согласен насчёт переписывания, старый код нечитаем." },
+        { "en": "I'm with you on that, the price is too high.", "ru": "Тут я с тобой согласен, цена слишком высокая." },
+        { "en": "I'm with you on the ending, it made no sense.", "ru": "Насчёт концовки я с тобой согласен, в ней не было смысла." }
+      ],
+      "promptsRu": ["Поддержи коллегу насчёт переписывания кода.", "Согласись с другом насчёт концовки сериала."],
+      "questionEn": "Use 'I'm with you on' to agree about one point.",
+      "falseMeanings": ["Я с тобой на связи", "Я рядом с тобой"],
+      "noteRu": "Согласие по конкретному пункту, не по всему. После «on» тема."
+    },
+    {
+      "id": "opinion.i-beg-to-differ",
+      "en": "I beg to differ",
+      "ru": "Позволю себе не согласиться",
+      "accept": ["i beg to differ", "beg to differ"],
+      "contexts": [
+        { "en": "Vim is for masochists. — I beg to differ.", "ru": "Vim для мазохистов. — Позволю себе не согласиться." },
+        { "en": "I beg to differ, the first movie was the best one.", "ru": "Позволю себе не согласиться, первый фильм был лучшим." },
+        { "en": "She begged to differ and listed three reasons.", "ru": "Она не согласилась и перечислила три причины." }
+      ],
+      "promptsRu": ["Вежливо, но твёрдо не согласись с другом.", "Поспорь о том, какой фильм лучший."],
+      "questionEn": "Use 'I beg to differ' in a friendly argument.",
+      "falseMeanings": ["Я умоляю отличаться", "Я прошу о разнице"],
+      "noteRu": "Слегка формально и с улыбкой. В споре с друзьями звучит с юмором."
+    },
+    {
+      "id": "opinion.thats-not-how-i-see-it",
+      "en": "That's not how I see it",
+      "ru": "Я вижу это иначе",
+      "accept": ["that's not how i see it", "that is not how i see it", "that's not how i see things"],
+      "contexts": [
+        { "en": "That's not how I see it. The bug is a symptom, not the cause.", "ru": "Я вижу это иначе. Баг это симптом, а не причина." },
+        { "en": "That's not how I see it, moving is an investment.", "ru": "Я вижу это иначе, переезд это инвестиция." },
+        { "en": "He said that's not how he sees it and explained.", "ru": "Он сказал, что видит это иначе, и объяснил." }
+      ],
+      "promptsRu": ["Не согласись спокойно: ты видишь это иначе.", "Объясни другой взгляд на переезд."],
+      "questionEn": "Use 'that's not how I see it' to disagree calmly.",
+      "falseMeanings": ["Я этого не вижу", "Я так не смотрю"],
+      "noteRu": "Спокойное несогласие без «you're wrong». Дальше обычно «I think…»."
+    },
+    {
+      "id": "opinion.you-have-a-point",
+      "en": "You have a point",
+      "ru": "В этом есть смысл (ты прав)",
+      "accept": ["you have a point", "you've got a point", "you have a point there"],
+      "contexts": [
+        { "en": "You have a point, we should test on a real phone.", "ru": "Ты прав, надо тестировать на реальном телефоне." },
+        { "en": "You have a point there, the rent includes utilities.", "ru": "Тут ты прав, аренда включает коммуналку." },
+        { "en": "Okay, you've got a point. Let's do it your way.", "ru": "Ладно, ты прав. Сделаем по-твоему." }
+      ],
+      "promptsRu": ["Признай аргумент собеседника.", "Сдайся в споре: ладно, ты прав, сделаем по-твоему."],
+      "questionEn": "Use 'you have a point' to concede.",
+      "falseMeanings": ["У тебя есть очко", "У тебя есть точка"],
+      "noteRu": "Признание аргумента без полной капитуляции."
+    },
+    {
+      "id": "opinion.i-m-torn",
+      "en": "I'm torn",
+      "ru": "Я разрываюсь (не могу решить)",
+      "accept": ["i'm torn", "i am torn", "i'm torn between"],
+      "contexts": [
+        { "en": "I'm torn between staying in Baku and moving to Berlin.", "ru": "Я разрываюсь между Баку и переездом в Берлин." },
+        { "en": "I'm torn, both offers are good.", "ru": "Я разрываюсь, оба оффера хорошие." },
+        { "en": "Pizza or ramen? I'm torn.", "ru": "Пицца или рамен? Не могу решить." }
+      ],
+      "promptsRu": ["Скажи, что разрываешься между двумя офферами.", "Не можешь выбрать еду. Скажи об этом."],
+      "questionEn": "Use 'I'm torn' about a decision.",
+      "falseMeanings": ["Я порван", "Я устал"],
+      "noteRu": "«Torn between A and B» для двух вариантов."
+    },
+    {
+      "id": "opinion.it-s-up-to-you",
+      "en": "It's up to you",
+      "ru": "Решай сам (тебе решать)",
+      "accept": ["it's up to you", "it is up to you", "up to you"],
+      "contexts": [
+        { "en": "Redux or Zustand? It's up to you, you'll maintain it.", "ru": "Redux или Zustand? Решай сам, тебе это поддерживать." },
+        { "en": "It's up to you where we eat tonight.", "ru": "Тебе решать, где мы ужинаем." },
+        { "en": "Up to you, I'm fine either way.", "ru": "Решай сам, мне всё равно."}
+      ],
+      "promptsRu": ["Отдай решение коллеге: тебе решать.", "Скажи, что тебе всё равно, пусть выбирает друг."],
+      "questionEn": "Use 'it's up to you' to hand over a decision.",
+      "falseMeanings": ["Это выше тебя", "Это на тебе лежит"],
+      "noteRu": "Ответственность за решение передаётся собеседнику."
+    },
+    {
+      "id": "opinion.i-m-on-the-fence",
+      "en": "I'm on the fence",
+      "ru": "Я ещё не определился",
+      "accept": ["i'm on the fence", "i am on the fence", "on the fence"],
+      "contexts": [
+        { "en": "I'm on the fence about the new framework.", "ru": "Я ещё не определился насчёт нового фреймворка." },
+        { "en": "I'm on the fence, the gym is far but cheap.", "ru": "Я не определился, зал далеко, но дёшево." },
+        { "en": "Half the team is on the fence about remote work.", "ru": "Половина команды не определилась насчёт удалёнки." }
+      ],
+      "promptsRu": ["Скажи, что не определился насчёт нового фреймворка.", "Объясни сомнения насчёт зала: далеко, но дёшево."],
+      "questionEn": "Use 'I'm on the fence' about a choice.",
+      "falseMeanings": ["Я на заборе", "Я на грани"],
+      "noteRu": "Сидеть на заборе между двумя сторонами. После «about» тема."
+    },
+    {
+      "id": "opinion.correct-me-if-im-wrong",
+      "en": "Correct me if I'm wrong",
+      "ru": "Поправь меня, если я ошибаюсь",
+      "accept": ["correct me if i'm wrong", "correct me if i am wrong"],
+      "contexts": [
+        { "en": "Correct me if I'm wrong, but the API returns a string here.", "ru": "Поправь, если ошибаюсь, но API здесь возвращает строку." },
+        { "en": "Correct me if I'm wrong, you said the deadline was Friday.", "ru": "Поправь, если я ошибаюсь, ты говорил, дедлайн в пятницу." },
+        { "en": "Correct me if I'm wrong, but didn't we already try that?", "ru": "Поправь, если ошибаюсь, но разве мы это уже не пробовали?" }
+      ],
+      "promptsRu": ["Уточни факт на созвоне мягко.", "Напомни коллеге, что дедлайн был в пятницу, не настаивая."],
+      "questionEn": "Use 'correct me if I'm wrong' before stating a fact.",
+      "falseMeanings": ["Исправь меня, когда я неправ", "Накажи меня, если я ошибся"],
+      "noteRu": "Позволяет сказать неудобную вещь без конфликта."
+    },
+    {
+      "id": "opinion.i-couldnt-care-less",
+      "en": "I couldn't care less",
+      "ru": "Мне совершенно всё равно",
+      "accept": ["i couldn't care less", "i could not care less"],
+      "contexts": [
+        { "en": "Tabs or spaces? I couldn't care less, just be consistent.", "ru": "Табы или пробелы? Мне всё равно, главное последовательно." },
+        { "en": "I couldn't care less about the ratings, I liked the show.", "ru": "Мне всё равно на рейтинги, мне сериал понравился." },
+        { "en": "He couldn't care less what people think.", "ru": "Ему совершенно всё равно, что думают люди." }
+      ],
+      "promptsRu": ["Скажи, что тебе всё равно, табы или пробелы.", "Скажи, что рейтинги тебе безразличны."],
+      "questionEn": "Use 'I couldn't care less' about something unimportant.",
+      "falseMeanings": ["Я не мог бы заботиться меньше о тебе", "Мне немного не всё равно"],
+      "noteRu": "Именно «couldn't». «Could care less» это ошибка, хоть и частая."
+    },
+    {
+      "id": "opinion.lets-agree-to-disagree",
+      "en": "Let's agree to disagree",
+      "ru": "Давай останемся при своих",
+      "accept": ["let's agree to disagree", "agree to disagree"],
+      "contexts": [
+        { "en": "Let's agree to disagree about pineapple on pizza.", "ru": "Давай останемся при своих насчёт ананаса на пицце." },
+        { "en": "We argued for an hour and agreed to disagree.", "ru": "Мы спорили час и остались при своих." },
+        { "en": "Let's agree to disagree and get back to work.", "ru": "Давай останемся при своих и вернёмся к работе." }
+      ],
+      "promptsRu": ["Закончи бесконечный спор мирно.", "Предложи остаться при своих и вернуться к работе."],
+      "questionEn": "Use 'let's agree to disagree' to end a debate.",
+      "falseMeanings": ["Давай согласимся не соглашаться никогда", "Давай договоримся о споре"],
+      "noteRu": "Мирный выход из спора без победителя."
+    },
+    {
+      "id": "opinion.from-my-experience",
+      "en": "From my experience",
+      "ru": "По моему опыту",
+      "accept": ["from my experience", "in my experience"],
+      "contexts": [
+        { "en": "From my experience, estimates double after the first demo.", "ru": "По моему опыту, оценки удваиваются после первого демо." },
+        { "en": "In my experience, landlords always start high.", "ru": "По моему опыту, арендодатели всегда начинают с высокой цены." },
+        { "en": "From my experience, rewriting rarely pays off.", "ru": "По моему опыту, переписывание редко окупается." }
+      ],
+      "promptsRu": ["Поделись опытом про оценки задач.", "Расскажи, что по твоему опыту арендодатели начинают с высокой цены."],
+      "questionEn": "Use 'from my experience' to back an opinion.",
+      "falseMeanings": ["Из моего эксперимента", "С моей точки зрения на опыт"],
+      "noteRu": "Делает мнение весомее без спора. Оба варианта «from/in» нормальны."
+    },
+    {
+      "id": "opinion.i-have-my-doubts",
+      "en": "I have my doubts",
+      "ru": "У меня есть сомнения",
+      "accept": ["i have my doubts", "i have doubts", "i have my doubts about"],
+      "contexts": [
+        { "en": "I have my doubts about finishing by Friday.", "ru": "У меня есть сомнения, что закончим к пятнице." },
+        { "en": "I have my doubts, the reviews of that gym are mixed.", "ru": "У меня сомнения, отзывы о том зале противоречивые." },
+        { "en": "She has her doubts about the new manager.", "ru": "У неё есть сомнения насчёт нового менеджера." }
+      ],
+      "promptsRu": ["Выскажи сомнение в дедлайне.", "Скажи, что сомневаешься насчёт зала из-за отзывов."],
+      "questionEn": "Use 'I have my doubts' about a plan.",
+      "falseMeanings": ["У меня есть вопросы", "Я сомневаюсь в себе"],
+      "noteRu": "Мягче, чем «I don't believe». После «about» объект сомнения."
+    },
+    {
+      "id": "opinion.i-stand-by",
+      "en": "I stand by",
+      "ru": "Я настаиваю на (не отказываюсь от своих слов)",
+      "accept": ["i stand by", "i stand by what i said"],
+      "contexts": [
+        { "en": "I stand by my estimate, three days.", "ru": "Я настаиваю на своей оценке, три дня." },
+        { "en": "I stand by what I said, the design is overcomplicated.", "ru": "Я не отказываюсь от своих слов, дизайн переусложнён." },
+        { "en": "She stood by her decision to leave.", "ru": "Она не отступила от решения уйти." }
+      ],
+      "promptsRu": ["Подтверди свою оценку, несмотря на давление.", "Скажи, что не отказываешься от своих слов."],
+      "questionEn": "Use 'I stand by' to defend your earlier words.",
+      "falseMeanings": ["Я стою рядом", "Я поддерживаю тебя"],
+      "noteRu": "Твёрдость без агрессии. «Stand by someone» уже значит поддерживать."
+    },
+    {
+      "id": "opinion.i-take-it-back",
+      "en": "I take it back",
+      "ru": "Беру свои слова обратно",
+      "accept": ["i take it back", "i take that back"],
+      "contexts": [
+        { "en": "I take it back, the new UI is actually nice.", "ru": "Беру свои слова обратно, новый интерфейс на самом деле хорош." },
+        { "en": "Okay, I take that back, you were right about the cache.", "ru": "Ладно, беру слова обратно, ты был прав насчёт кэша." },
+        { "en": "I said the show was boring. I take it back.", "ru": "Я сказал, что сериал скучный. Беру слова обратно." }
+      ],
+      "promptsRu": ["Признай, что был неправ про интерфейс.", "Возьми слова обратно после того, как коллега оказался прав."],
+      "questionEn": "Use 'I take it back' after changing your mind.",
+      "falseMeanings": ["Я заберу это назад", "Я верну это"],
+      "noteRu": "Быстрое и честное признание ошибки, без длинных извинений."
+    },
+    {
+      "id": "opinion.the-way-i-see-it",
+      "en": "The way I see it",
+      "ru": "Как я это вижу",
+      "accept": ["the way i see it", "the way i see things"],
+      "contexts": [
+        { "en": "The way I see it, we have two options.", "ru": "Как я это вижу, у нас два варианта." },
+        { "en": "The way I see it, moving now is cheaper than later.", "ru": "Как я это вижу, переехать сейчас дешевле, чем потом." },
+        { "en": "The way I see it, the hero was right all along.", "ru": "Как я это вижу, герой был прав с самого начала." }
+      ],
+      "promptsRu": ["Изложи свой взгляд: у нас два варианта.", "Объясни, почему переезд сейчас дешевле."],
+      "questionEn": "Use 'the way I see it' to introduce your view.",
+      "falseMeanings": ["Как я это увидел", "Дорога, которую я вижу"],
+      "noteRu": "Вступление к своему анализу. Хорошо для структурирования мысли."
+    },
+    {
+      "id": "opinion.i-wouldnt-go-that-far",
+      "en": "I wouldn't go that far",
+      "ru": "Я бы не стал так категорично",
+      "accept": ["i wouldn't go that far", "i would not go that far"],
+      "contexts": [
+        { "en": "It's the worst code I've seen. — I wouldn't go that far.", "ru": "Это худший код, что я видел. — Я бы не стал так категорично." },
+        { "en": "I wouldn't go that far, the city is just different, not bad.", "ru": "Я бы не стал так категорично, город просто другой, не плохой." },
+        { "en": "Genius? I wouldn't go that far, but he's good.", "ru": "Гений? Я бы не стал так говорить, но он хорош." }
+      ],
+      "promptsRu": ["Смягчи категоричное заявление друга.", "Не согласись с преувеличением."],
+      "questionEn": "Use 'I wouldn't go that far' to tone down a claim.",
+      "falseMeanings": ["Я бы не пошёл так далеко пешком", "Я бы не зашёл так далеко в отношениях"],
+      "noteRu": "Мягко снижает градус. Не отрицает, а уточняет."
+    },
+    {
+      "id": "opinion.i-see-both-sides",
+      "en": "I can see both sides",
+      "ru": "Я понимаю обе стороны",
+      "accept": ["i can see both sides", "i see both sides"],
+      "contexts": [
+        { "en": "I can see both sides, the client wants speed and we want quality.", "ru": "Я понимаю обе стороны: клиент хочет скорость, мы качество." },
+        { "en": "I can see both sides of the remote work debate.", "ru": "Я понимаю обе стороны в споре об удалёнке." },
+        { "en": "I see both sides, but I'd still stay.", "ru": "Я понимаю обе стороны, но всё равно остался бы." }
+      ],
+      "promptsRu": ["Покажи, что понимаешь и клиента, и команду.", "Скажи, что понимаешь обе стороны, но склоняешься к одной."],
+      "questionEn": "Use 'I can see both sides' in a debate.",
+      "falseMeanings": ["Я вижу обе стороны монеты", "Я вижу обе стороны улицы"],
+      "noteRu": "Дипломатичная позиция. Хорошо перед собственным выбором."
+    },
+    {
+      "id": "opinion.its-a-matter-of",
+      "en": "It's a matter of",
+      "ru": "Это вопрос (чего-то)",
+      "accept": ["it's a matter of", "it is a matter of", "a matter of"],
+      "contexts": [
+        { "en": "It's a matter of taste, both fonts are fine.", "ru": "Это дело вкуса, оба шрифта нормальные." },
+        { "en": "It's a matter of time before the server goes down.", "ru": "Это вопрос времени, когда сервер упадёт." },
+        { "en": "It's a matter of priorities, not budget.", "ru": "Это вопрос приоритетов, а не бюджета." }
+      ],
+      "promptsRu": ["Скажи, что выбор шрифта это дело вкуса.", "Скажи, что падение сервера это вопрос времени."],
+      "questionEn": "Use 'it's a matter of' to frame a disagreement.",
+      "falseMeanings": ["Это материя", "Это имеет значение"],
+      "noteRu": "«A matter of taste / time / priorities» три самых частых."
+    },
+    {
+      "id": "opinion.point-taken",
+      "en": "Point taken",
+      "ru": "Принято (аргумент услышан)",
+      "accept": ["point taken", "fair point, taken"],
+      "contexts": [
+        { "en": "You're always late to standup. — Point taken.", "ru": "Ты вечно опаздываешь на стендап. — Принято." },
+        { "en": "Point taken, I'll write the docs first next time.", "ru": "Принято, в следующий раз сначала напишу документацию." },
+        { "en": "Point taken, but I still think the price is fair.", "ru": "Принято, но я всё равно думаю, что цена справедливая." }
+      ],
+      "promptsRu": ["Прими критику коротко.", "Прими аргумент, но останься при своём."],
+      "questionEn": "Use 'point taken' after criticism.",
+      "falseMeanings": ["Очко взято", "Точка занята"],
+      "noteRu": "Два слова, без оправданий. Ценится на ревью."
+    },
+    {
+      "id": "opinion.i-m-not-convinced",
+      "en": "I'm not convinced",
+      "ru": "Меня это не убедило",
+      "accept": ["i'm not convinced", "i am not convinced", "not convinced"],
+      "contexts": [
+        { "en": "I'm not convinced microservices will help here.", "ru": "Меня не убедило, что микросервисы здесь помогут." },
+        { "en": "I'm not convinced, show me the numbers.", "ru": "Я не убеждён, покажи цифры." },
+        { "en": "Still not convinced the ending was planned.", "ru": "Всё ещё не убеждён, что концовка была спланирована." }
+      ],
+      "promptsRu": ["Скажи, что тебя не убедили, и попроси цифры.", "Выскажи скепсис насчёт микросервисов."],
+      "questionEn": "Use 'I'm not convinced' to ask for proof.",
+      "falseMeanings": ["Я не осуждён", "Меня не уговорили прийти"],
+      "noteRu": "Скепсис без грубости. Хорошо с просьбой о данных."
+    }
+  ]
+}

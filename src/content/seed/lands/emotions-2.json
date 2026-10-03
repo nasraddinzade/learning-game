@@ -1,0 +1,337 @@
+{
+  "id": "emotions",
+  "name": "Эмоции и состояния",
+  "emoji": "🌦️",
+  "items": [
+    {
+      "id": "emotions.i-m-over-the-moon",
+      "en": "I'm over the moon",
+      "ru": "Я на седьмом небе",
+      "accept": ["i'm over the moon", "i am over the moon", "over the moon"],
+      "contexts": [
+        { "en": "I'm over the moon, they accepted my talk!", "ru": "Я на седьмом небе, мой доклад приняли!" },
+        { "en": "She was over the moon about the new apartment.", "ru": "Она была на седьмом небе от новой квартиры." },
+        { "en": "Honestly, I'm over the moon with the final cut.", "ru": "Честно, я в восторге от финальной версии." }
+      ],
+      "promptsRu": ["Скажи, что ты в восторге, потому что доклад приняли.", "Расскажи, как друг радовался новой квартире."],
+      "questionEn": "Use 'over the moon' about good news.",
+      "falseMeanings": ["Я над луной (в космосе)", "Я пережил луну"],
+      "noteRu": "Сильная радость. Британское, но понятно всем."
+    },
+    {
+      "id": "emotions.i-m-gutted",
+      "en": "I'm gutted",
+      "ru": "Я раздавлен (очень расстроен)",
+      "accept": ["i'm gutted", "i am gutted", "gutted"],
+      "contexts": [
+        { "en": "I'm gutted, the deal fell through.", "ru": "Я раздавлен, сделка сорвалась." },
+        { "en": "Gutted that the concert got cancelled.", "ru": "Очень расстроен, что концерт отменили." },
+        { "en": "He was gutted when they rejected the PR after a week.", "ru": "Он был раздавлен, когда PR отклонили через неделю." }
+      ],
+      "promptsRu": ["Скажи, что ты раздавлен из-за отмены концерта.", "Расскажи, как коллега расстроился из-за отклонённого PR."],
+      "questionEn": "Use 'I'm gutted' about bad news.",
+      "falseMeanings": ["Я выпотрошен (физически)", "Я смел"],
+      "noteRu": "Британское сильное «расстроен». В США скажут «devastated»."
+    },
+    {
+      "id": "emotions.i-m-bummed",
+      "en": "I'm bummed",
+      "ru": "Мне обидно (я расстроен)",
+      "accept": ["i'm bummed", "i am bummed", "bummed out"],
+      "contexts": [
+        { "en": "I'm bummed the hike got cancelled.", "ru": "Обидно, что поход отменили." },
+        { "en": "Kind of bummed about missing the meetup.", "ru": "Немного расстроен, что пропустил митап." },
+        { "en": "Don't be bummed, there's another one next month.", "ru": "Не расстраивайся, в следующем месяце будет ещё один." }
+      ],
+      "promptsRu": ["Скажи, что немного расстроен из-за отмены похода.", "Успокой друга: не расстраивайся, будет ещё."],
+      "questionEn": "Use 'I'm bummed' about a small disappointment.",
+      "falseMeanings": ["Я бездельник", "Я отбит"],
+      "noteRu": "Американское лёгкое расстройство. Слабее, чем «gutted»."
+    },
+    {
+      "id": "emotions.i-m-nervous-about",
+      "en": "I'm nervous about",
+      "ru": "Я волнуюсь перед (из-за)",
+      "accept": ["i'm nervous about", "i am nervous about", "nervous about"],
+      "contexts": [
+        { "en": "I'm nervous about the interview tomorrow.", "ru": "Я волнуюсь перед собеседованием завтра." },
+        { "en": "I'm nervous about speaking English in front of people.", "ru": "Я волнуюсь говорить по-английски перед людьми." },
+        { "en": "She's nervous about the move but excited too.", "ru": "Она волнуется из-за переезда, но и радуется." }
+      ],
+      "promptsRu": ["Скажи, что волнуешься перед собеседованием.", "Признайся, что волнуешься говорить по-английски."],
+      "questionEn": "Use 'I'm nervous about' before an event.",
+      "falseMeanings": ["Я нервный человек", "Я злюсь на"],
+      "noteRu": "«Nervous» это волнение, не злость. Злость это «annoyed» или «angry»."
+    },
+    {
+      "id": "emotions.i-m-annoyed",
+      "en": "I'm annoyed",
+      "ru": "Я раздражён",
+      "accept": ["i'm annoyed", "i am annoyed", "annoyed"],
+      "contexts": [
+        { "en": "I'm annoyed, the meeting could have been an email.", "ru": "Я раздражён, встреча могла быть письмом." },
+        { "en": "I'm annoyed with myself for forgetting the charger.", "ru": "Я раздражён на себя, что забыл зарядку." },
+        { "en": "Slightly annoyed that the café changed the menu.", "ru": "Слегка раздражён, что кафе поменяло меню." }
+      ],
+      "promptsRu": ["Скажи, что раздражён бесполезной встречей.", "Скажи, что злишься на себя за забытую зарядку."],
+      "questionEn": "Use 'I'm annoyed' about a small irritation.",
+      "falseMeanings": ["Я объявлен", "Я удивлён"],
+      "noteRu": "«Annoyed with someone», «annoyed about something»."
+    },
+    {
+      "id": "emotions.it-gets-on-my-nerves",
+      "en": "It gets on my nerves",
+      "ru": "Это действует мне на нервы",
+      "accept": ["it gets on my nerves", "gets on my nerves"],
+      "contexts": [
+        { "en": "The notification sound gets on my nerves.", "ru": "Звук уведомлений действует мне на нервы." },
+        { "en": "It gets on my nerves when people reply-all.", "ru": "Меня нервирует, когда люди отвечают всем." },
+        { "en": "His constant jokes get on my nerves by Friday.", "ru": "Его постоянные шутки к пятнице действуют мне на нервы." }
+      ],
+      "promptsRu": ["Пожалуйся на звук уведомлений.", "Скажи, что тебя нервирует «ответить всем»."],
+      "questionEn": "Use 'it gets on my nerves' about a habit.",
+      "falseMeanings": ["Это попадает на мои нервы (медицина)", "Это меня заводит"],
+      "noteRu": "Чуть мягче, чем «drives me crazy»."
+    },
+    {
+      "id": "emotions.i-m-touched",
+      "en": "I'm touched",
+      "ru": "Я тронут",
+      "accept": ["i'm touched", "i am touched", "touched"],
+      "contexts": [
+        { "en": "I'm touched, you remembered my birthday.", "ru": "Я тронут, ты вспомнил о моём дне рождения." },
+        { "en": "She was touched by the team's farewell video.", "ru": "Её тронуло прощальное видео от команды." },
+        { "en": "Honestly touched that you drove all the way here.", "ru": "Честно тронут, что ты приехал в такую даль." }
+      ],
+      "promptsRu": ["Поблагодари друга, который вспомнил день рождения.", "Скажи, что тронут, что человек приехал издалека."],
+      "questionEn": "Use 'I'm touched' to thank someone warmly.",
+      "falseMeanings": ["До меня дотронулись", "Я тронулся умом"],
+      "noteRu": "Тёплая благодарность. «Touched by X» чем именно."
+    },
+    {
+      "id": "emotions.i-m-embarrassed",
+      "en": "I'm embarrassed",
+      "ru": "Мне неловко (стыдно)",
+      "accept": ["i'm embarrassed", "i am embarrassed", "embarrassed"],
+      "contexts": [
+        { "en": "I'm embarrassed, I called him by the wrong name twice.", "ru": "Мне неловко, я дважды назвал его не тем именем." },
+        { "en": "I was so embarrassed when my mic was on.", "ru": "Мне было так неловко, когда микрофон был включён." },
+        { "en": "Don't be embarrassed, everyone makes that mistake.", "ru": "Не смущайся, все делают эту ошибку." }
+      ],
+      "promptsRu": ["Скажи, что тебе неловко за перепутанное имя.", "Расскажи про неловкий случай с включённым микрофоном."],
+      "questionEn": "Use 'I'm embarrassed' about an awkward moment.",
+      "falseMeanings": ["Я беременна", "Я обнят"],
+      "noteRu": "Это калька-ловушка: «embarrassed» не «embarazada». Стыд за себя, а не за других."
+    },
+    {
+      "id": "emotions.that-s-awkward",
+      "en": "That's awkward",
+      "ru": "Неловко вышло",
+      "accept": ["that's awkward", "that is awkward", "awkward"],
+      "contexts": [
+        { "en": "I waved at a stranger. That's awkward.", "ru": "Я помахал незнакомцу. Неловко вышло." },
+        { "en": "Awkward silence on the call for ten seconds.", "ru": "Неловкая тишина на созвоне секунд десять." },
+        { "en": "That's awkward, my ex works there now.", "ru": "Неловко, там теперь работает моя бывшая." }
+      ],
+      "promptsRu": ["Прокомментируй неловкую ситуацию.", "Расскажи про неловкую паузу на созвоне."],
+      "questionEn": "Use 'that's awkward' about a social slip.",
+      "falseMeanings": ["Это странно (мистика)", "Это сложно"],
+      "noteRu": "Социальная неловкость. Про странное лучше «weird»."
+    },
+    {
+      "id": "emotions.i-m-overwhelmed",
+      "en": "I'm overwhelmed",
+      "ru": "Я перегружен (не справляюсь)",
+      "accept": ["i'm overwhelmed", "i am overwhelmed", "overwhelmed"],
+      "contexts": [
+        { "en": "I'm overwhelmed, three projects and a move at once.", "ru": "Я перегружен, три проекта и переезд одновременно." },
+        { "en": "New joiners feel overwhelmed by the codebase.", "ru": "Новички чувствуют себя перегруженными от кодовой базы." },
+        { "en": "I'm a bit overwhelmed, can we postpone the call?", "ru": "Я немного перегружен, можем перенести созвон?" }
+      ],
+      "promptsRu": ["Скажи, что перегружен тремя проектами.", "Попроси перенести созвон, потому что не справляешься."],
+      "questionEn": "Use 'I'm overwhelmed' when there's too much.",
+      "falseMeanings": ["Я переполнен счастьем", "Я побеждён"],
+      "noteRu": "Слишком много всего. Не стыдно сказать на работе."
+    },
+    {
+      "id": "emotions.i-m-burned-out",
+      "en": "I'm burned out",
+      "ru": "Я выгорел",
+      "accept": ["i'm burned out", "i'm burnt out", "i am burned out", "burned out"],
+      "contexts": [
+        { "en": "I'm burned out, I need a real vacation, not a long weekend.", "ru": "Я выгорел, мне нужен настоящий отпуск, а не длинные выходные." },
+        { "en": "Half the team is burned out after the launch.", "ru": "Половина команды выгорела после запуска." },
+        { "en": "He quit because he was burned out, not for the money.", "ru": "Он уволился, потому что выгорел, а не из-за денег." }
+      ],
+      "promptsRu": ["Скажи, что выгорел и нужен отпуск.", "Объясни, что коллега ушёл из-за выгорания."],
+      "questionEn": "Use 'burned out' about work.",
+      "falseMeanings": ["Я сгорел на солнце", "Я вылетел"],
+      "noteRu": "«Burnout» существительное, «burned out» состояние."
+    },
+    {
+      "id": "emotions.i-m-pumped",
+      "en": "I'm pumped",
+      "ru": "Я заряжен (очень жду, в предвкушении)",
+      "accept": ["i'm pumped", "i am pumped", "pumped"],
+      "contexts": [
+        { "en": "I'm pumped for the hackathon this weekend.", "ru": "Я заряжен на хакатон в эти выходные." },
+        { "en": "Pumped about the new season, finally.", "ru": "Жду не дождусь нового сезона, наконец-то." },
+        { "en": "The team is pumped after the demo went well.", "ru": "Команда на подъёме после удачного демо." }
+      ],
+      "promptsRu": ["Скажи, что заряжен на хакатон.", "Скажи, что команда на подъёме после демо."],
+      "questionEn": "Use 'I'm pumped' before an event.",
+      "falseMeanings": ["Я накачан (мышцы)", "Меня накачали"],
+      "noteRu": "Энергичное предвкушение. Про мышцы тоже бывает, но реже."
+    },
+    {
+      "id": "emotions.i-m-homesick",
+      "en": "I'm homesick",
+      "ru": "Я скучаю по дому",
+      "accept": ["i'm homesick", "i am homesick", "homesick"],
+      "contexts": [
+        { "en": "Two months in Berlin and I'm homesick already.", "ru": "Два месяца в Берлине, и я уже скучаю по дому." },
+        { "en": "I get homesick when I see photos of the boulevard.", "ru": "Я скучаю по дому, когда вижу фото бульвара." },
+        { "en": "She wasn't homesick at all, surprisingly.", "ru": "Она совсем не скучала по дому, на удивление." }
+      ],
+      "promptsRu": ["Скажи, что скучаешь по дому после переезда.", "Расскажи, что скучаешь, когда видишь фото Баку."],
+      "questionEn": "Use 'homesick' about living abroad.",
+      "falseMeanings": ["Я болен дома", "Мне надоел дом"],
+      "noteRu": "Одно слово. Не «miss home sick»."
+    },
+    {
+      "id": "emotions.it-s-a-relief",
+      "en": "It's such a relief",
+      "ru": "Какое облегчение",
+      "accept": ["it's such a relief", "it is such a relief", "what a relief"],
+      "contexts": [
+        { "en": "It's such a relief to have the visa done.", "ru": "Какое облегчение, что виза готова." },
+        { "en": "It's such a relief, the tests finally pass.", "ru": "Какое облегчение, тесты наконец проходят." },
+        { "en": "What a relief, the landlord agreed.", "ru": "Какое облегчение, арендодатель согласился." }
+      ],
+      "promptsRu": ["Вырази облегчение, что виза готова.", "Скажи, что это облегчение, что тесты проходят."],
+      "questionEn": "Use 'it's such a relief' after stress ends.",
+      "falseMeanings": ["Это такая смена", "Это такой рельеф"],
+      "noteRu": "«Relief» существительное, «relieved» прилагательное."
+    },
+    {
+      "id": "emotions.i-m-flattered",
+      "en": "I'm flattered",
+      "ru": "Мне лестно",
+      "accept": ["i'm flattered", "i am flattered", "flattered"],
+      "contexts": [
+        { "en": "I'm flattered, but I can't take the lead role right now.", "ru": "Мне лестно, но я не могу взять роль лида сейчас." },
+        { "en": "I'm flattered you thought of me for the talk.", "ru": "Мне лестно, что вы подумали обо мне для доклада." },
+        { "en": "She was flattered by the offer but said no.", "ru": "Ей было лестно от предложения, но она отказала." }
+      ],
+      "promptsRu": ["Откажись от предложения вежливо: мне лестно, но…", "Поблагодари за приглашение выступить."],
+      "questionEn": "Use 'I'm flattered' to decline politely.",
+      "falseMeanings": ["Я сплющен", "Я польщён, значит согласен"],
+      "noteRu": "Часто перед «but». Вежливый отказ."
+    },
+    {
+      "id": "emotions.i-m-fine-with",
+      "en": "I'm fine with",
+      "ru": "Меня устраивает",
+      "accept": ["i'm fine with", "i am fine with", "i'm okay with"],
+      "contexts": [
+        { "en": "I'm fine with either day, you choose.", "ru": "Меня устраивает любой день, выбирай." },
+        { "en": "I'm fine with working late this week, not next.", "ru": "Меня устраивает поработать допоздна на этой неделе, но не на следующей." },
+        { "en": "I'm okay with the price if utilities are included.", "ru": "Меня устраивает цена, если коммуналка включена." }
+      ],
+      "promptsRu": ["Скажи, что тебя устраивает любой день.", "Согласись на цену при условии включённой коммуналки."],
+      "questionEn": "Use 'I'm fine with' to accept an option.",
+      "falseMeanings": ["Я в порядке благодаря", "Я хорош в"],
+      "noteRu": "Спокойное согласие. После «with» существительное или -ing."
+    },
+    {
+      "id": "emotions.i-m-sick-of",
+      "en": "I'm sick of",
+      "ru": "Меня тошнит от (надоело)",
+      "accept": ["i'm sick of", "i am sick of", "sick of", "sick and tired of"],
+      "contexts": [
+        { "en": "I'm sick of meetings that go nowhere.", "ru": "Мне надоели встречи, которые ни к чему не ведут." },
+        { "en": "I'm sick of this bug, it's been a week.", "ru": "Меня тошнит от этого бага, уже неделя." },
+        { "en": "Sick and tired of the traffic on the way to the gym.", "ru": "Сыт по горло пробками по дороге в зал." }
+      ],
+      "promptsRu": ["Скажи, что тебе надоели бесполезные встречи.", "Пожалуйся на баг, который мучает неделю."],
+      "questionEn": "Use 'I'm sick of' about something you want to end.",
+      "falseMeanings": ["Я болен от", "Я заразился"],
+      "noteRu": "Не про болезнь. Усиление: «sick and tired of»."
+    },
+    {
+      "id": "emotions.i-m-speechless",
+      "en": "I'm speechless",
+      "ru": "У меня нет слов",
+      "accept": ["i'm speechless", "i am speechless", "speechless"],
+      "contexts": [
+        { "en": "I'm speechless, that ending was perfect.", "ru": "У меня нет слов, концовка была идеальной." },
+        { "en": "Speechless. They deleted the production database.", "ru": "Нет слов. Они удалили продовую базу." },
+        { "en": "She was speechless when they announced the bonus.", "ru": "Она потеряла дар речи, когда объявили о бонусе." }
+      ],
+      "promptsRu": ["Отреагируй на идеальную концовку.", "Отреагируй на удаление продовой базы."],
+      "questionEn": "Use 'I'm speechless' about a shock, good or bad.",
+      "falseMeanings": ["Я немой", "Я молчу специально"],
+      "noteRu": "Работает и для восторга, и для ужаса."
+    },
+    {
+      "id": "emotions.i-m-counting-down",
+      "en": "I'm counting down the days",
+      "ru": "Я считаю дни",
+      "accept": ["i'm counting down the days", "i am counting down the days", "counting down the days"],
+      "contexts": [
+        { "en": "I'm counting down the days until the vacation.", "ru": "Считаю дни до отпуска." },
+        { "en": "Counting down the days to the release, five left.", "ru": "Считаю дни до релиза, осталось пять." },
+        { "en": "He's counting down the days until he leaves that job.", "ru": "Он считает дни до ухода с той работы." }
+      ],
+      "promptsRu": ["Скажи, что считаешь дни до отпуска.", "Скажи, что до релиза осталось пять дней и ты их считаешь."],
+      "questionEn": "Use 'counting down the days' before a big date.",
+      "falseMeanings": ["Я отсчитываю дни назад", "Я теряю дни"],
+      "noteRu": "«Until» или «to» после фразы."
+    },
+    {
+      "id": "emotions.it-means-a-lot",
+      "en": "It means a lot to me",
+      "ru": "Это много для меня значит",
+      "accept": ["it means a lot to me", "it means a lot", "that means a lot"],
+      "contexts": [
+        { "en": "Thanks for coming, it means a lot to me.", "ru": "Спасибо, что пришёл, это много для меня значит." },
+        { "en": "Your feedback means a lot, honestly.", "ru": "Твой отзыв много значит, честно." },
+        { "en": "It meant a lot that the team stayed late to help.", "ru": "Много значило, что команда осталась допоздна помочь." }
+      ],
+      "promptsRu": ["Поблагодари друга за то, что пришёл.", "Скажи, что отзыв коллеги много значит."],
+      "questionEn": "Use 'it means a lot to me' to thank sincerely.",
+      "falseMeanings": ["Это значит много вещей", "Это дорого стоит"],
+      "noteRu": "Искренняя благодарность без пафоса."
+    },
+    {
+      "id": "emotions.i-m-in-two-minds",
+      "en": "I'm in two minds",
+      "ru": "Я колеблюсь (двух мнений)",
+      "accept": ["i'm in two minds", "i am in two minds", "in two minds"],
+      "contexts": [
+        { "en": "I'm in two minds about the offer.", "ru": "Я колеблюсь насчёт оффера." },
+        { "en": "In two minds whether to rewrite or refactor.", "ru": "Колеблюсь, переписать или отрефакторить." },
+        { "en": "She's in two minds about moving abroad.", "ru": "Она колеблется насчёт переезда за границу." }
+      ],
+      "promptsRu": ["Скажи, что колеблешься насчёт оффера.", "Скажи, что не решил, переписать или рефакторить."],
+      "questionEn": "Use 'in two minds' about a decision.",
+      "falseMeanings": ["У меня два ума", "Я раздвоился"],
+      "noteRu": "Британский вариант «torn». После «about» или «whether»."
+    },
+    {
+      "id": "emotions.i-can-t-help-it",
+      "en": "I can't help it",
+      "ru": "Ничего не могу с собой поделать",
+      "accept": ["i can't help it", "i cannot help it", "can't help it"],
+      "contexts": [
+        { "en": "I can't help it, I check Slack on vacation.", "ru": "Ничего не могу с собой поделать, проверяю Slack в отпуске." },
+        { "en": "I can't help laughing at that scene.", "ru": "Не могу не смеяться над той сценой." },
+        { "en": "She can't help correcting people's grammar.", "ru": "Она не может не поправлять грамматику людей." }
+      ],
+      "promptsRu": ["Признайся, что проверяешь рабочий чат в отпуске.", "Скажи, что не можешь не смеяться над сценой."],
+      "questionEn": "Use 'I can't help it' about a habit.",
+      "falseMeanings": ["Я не могу помочь", "Я не могу это починить"],
+      "noteRu": "«Can't help + -ing» не могу не делать. Не про помощь."
+    }
+  ]
+}

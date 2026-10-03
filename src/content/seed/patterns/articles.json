@@ -3,47 +3,562 @@
   "title": "Артикли a / the / без артикля",
   "explainRu": "«A» это один из многих, «the» это тот самый, известный обоим. Профессии и исчисляемые в единственном числе без артикля не бывают: «I'm a developer».",
   "exercises": [
-    { "tokens": ["I'm", "developer", "from", "Baku."], "wrongIndex": 1, "fix": "a developer", "ruleRu": "Профессия в единственном числе всегда с «a»." },
-    { "tokens": ["Can", "you", "pass", "me", "salt?"], "wrongIndex": 4, "fix": "the salt", "ruleRu": "Конкретная соль на столе, оба знают какая: «the»." },
-    { "tokens": ["I", "have", "the", "meeting", "at", "ten."], "wrongIndex": 2, "fix": "a", "ruleRu": "Первое упоминание встречи, одна из многих: «a meeting»." },
-    { "tokens": ["She", "works", "as", "a", "designer."], "wrongIndex": null, "fix": null, "ruleRu": "Профессия с «a», всё верно." },
-    { "tokens": ["We", "went", "to", "a", "gym", "near", "my", "house."], "wrongIndex": null, "fix": null, "ruleRu": "Первое упоминание зала: «a gym»." },
-    { "tokens": ["The", "life", "is", "short."], "wrongIndex": 0, "fix": "Life", "ruleRu": "Абстрактные понятия в общем смысле без артикля." },
-    { "tokens": ["I", "need", "advice", "about", "the", "visa."], "wrongIndex": null, "fix": null, "ruleRu": "«Advice» неисчисляемое, без артикля. «The visa» конкретная." },
-    { "tokens": ["He", "gave", "me", "an", "advice."], "wrongIndex": 3, "fix": "some", "ruleRu": "«Advice» неисчисляемое, нельзя «an advice»." },
-    { "tokens": ["Let's", "meet", "at", "the", "café", "we", "went", "to", "last", "week."], "wrongIndex": null, "fix": null, "ruleRu": "Кафе уточняется придаточным, значит «the»." },
-    { "tokens": ["I", "bought", "new", "laptop", "yesterday."], "wrongIndex": 2, "fix": "a new", "ruleRu": "Исчисляемое в единственном числе, первое упоминание: «a»." },
-    { "tokens": ["The", "sun", "is", "too", "bright", "today."], "wrongIndex": null, "fix": null, "ruleRu": "Единственные в своём роде вещи с «the»: the sun, the moon." },
-    { "tokens": ["I", "usually", "go", "to", "the", "work", "by", "metro."], "wrongIndex": 4, "fix": "go to", "ruleRu": "«Go to work» без артикля, как «go to school»." },
-    { "tokens": ["This", "is", "a", "best", "ramen", "in", "the", "city."], "wrongIndex": 2, "fix": "the", "ruleRu": "Превосходная степень всегда с «the»: the best." },
-    { "tokens": ["I", "watched", "a", "movie", "last", "night.", "The", "movie", "was", "boring."], "wrongIndex": null, "fix": null, "ruleRu": "Первый раз «a movie», второй раз уже известный «the movie»." },
-    { "tokens": ["She", "plays", "a", "guitar", "really", "well."], "wrongIndex": 2, "fix": "the", "ruleRu": "Музыкальные инструменты с «the»: play the guitar." },
-    { "tokens": ["Do", "you", "have", "the", "time?"], "wrongIndex": null, "fix": null, "ruleRu": "«Have the time» значит «сколько времени». Всё верно." },
-    { "tokens": ["I", "need", "a", "information", "about", "flights."], "wrongIndex": 2, "fix": "some", "ruleRu": "«Information» неисчисляемое, без «a»." },
-    { "tokens": ["He's", "the", "engineer", "I", "told", "you", "about."], "wrongIndex": null, "fix": null, "ruleRu": "Конкретный инженер, о котором говорили: «the»." },
-    { "tokens": ["We", "had", "a", "dinner", "with", "the", "team."], "wrongIndex": 2, "fix": "had", "ruleRu": "«Have dinner» без артикля, если это просто приём пищи." },
-    { "tokens": ["I", "live", "in", "the", "center", "of", "Baku."], "wrongIndex": null, "fix": null, "ruleRu": "Центр города один, конкретный: «the center»." },
-    { "tokens": ["Internet", "is", "slow", "in", "this", "café."], "wrongIndex": 0, "fix": "The internet", "ruleRu": "«The internet» с артиклем, как единственная сеть." },
-    { "tokens": ["It", "was", "an", "honest", "answer."], "wrongIndex": null, "fix": null, "ruleRu": "«Honest» начинается с гласного звука, поэтому «an»." },
-    { "tokens": ["I", "work", "at", "a", "university."], "wrongIndex": null, "fix": null, "ruleRu": "«University» начинается со звука «ю» (согласный), поэтому «a»." },
-    { "tokens": ["I", "saw", "a", "doctor", "and", "doctor", "said", "it's", "fine."], "wrongIndex": 5, "fix": "the doctor", "ruleRu": "Второе упоминание того же врача: «the»." },
-    { "tokens": ["We", "went", "to", "the", "Turkey", "last", "summer."], "wrongIndex": 3, "fix": "went to", "ruleRu": "Большинство стран без артикля: Turkey, Georgia." },
-    { "tokens": ["He", "is", "from", "the", "Netherlands."], "wrongIndex": null, "fix": null, "ruleRu": "Страны во множественном числе с «the»: the Netherlands, the USA." },
-    { "tokens": ["Could", "you", "open", "window?"], "wrongIndex": 3, "fix": "the window", "ruleRu": "Окно в комнате конкретное: «the window»." },
-    { "tokens": ["I", "want", "to", "become", "the", "senior", "developer."], "wrongIndex": 4, "fix": "a", "ruleRu": "Стать одним из сеньоров, не конкретным: «a senior developer»." },
-    { "tokens": ["Money", "doesn't", "buy", "happiness."], "wrongIndex": null, "fix": null, "ruleRu": "Абстрактные и неисчисляемые в общем смысле без артикля." },
-    { "tokens": ["I", "had", "the", "bad", "day", "yesterday."], "wrongIndex": 2, "fix": "a", "ruleRu": "Один из дней, первое упоминание: «a bad day»." },
-    { "tokens": ["Let's", "go", "to", "the", "cinema", "tonight."], "wrongIndex": null, "fix": null, "ruleRu": "«Go to the cinema» устойчиво с «the»." },
-    { "tokens": ["She", "is", "a", "friend", "of", "mine."], "wrongIndex": null, "fix": null, "ruleRu": "Одна из подруг: «a friend of mine»." },
-    { "tokens": ["I", "read", "the", "book", "a", "week", "and", "it's", "great."], "wrongIndex": 2, "fix": "a", "ruleRu": "Первое упоминание, одна из книг: «a book»." },
-    { "tokens": ["Is", "there", "a", "pharmacy", "nearby?"], "wrongIndex": null, "fix": null, "ruleRu": "Любая аптека, неважно какая: «a pharmacy»." },
-    { "tokens": ["What", "a", "beautiful", "view!"], "wrongIndex": null, "fix": null, "ruleRu": "Восклицание «What a …!» с «a»." },
-    { "tokens": ["I'll", "call", "you", "in", "the", "hour."], "wrongIndex": 4, "fix": "an", "ruleRu": "Через один час: «in an hour». «Hour» начинается с гласного звука." },
-    { "tokens": ["Breakfast", "is", "included", "in", "the", "price."], "wrongIndex": null, "fix": null, "ruleRu": "Приёмы пищи без артикля, конкретная цена с «the»." },
-    { "tokens": ["He", "plays", "the", "football", "every", "Sunday."], "wrongIndex": 2, "fix": "plays", "ruleRu": "Виды спорта без артикля: play football." },
-    { "tokens": ["I", "left", "keys", "at", "home."], "wrongIndex": 2, "fix": "the keys", "ruleRu": "Свои конкретные ключи: «the keys» или «my keys»." },
-    { "tokens": ["It's", "a", "long", "story,", "I'll", "tell", "you", "later."], "wrongIndex": null, "fix": null, "ruleRu": "Одна из историй, первое упоминание: «a long story»." },
-    { "tokens": ["We", "took", "taxi", "to", "the", "airport."], "wrongIndex": 2, "fix": "a taxi", "ruleRu": "Одно такси, первое упоминание: «a taxi»." },
-    { "tokens": ["The", "most", "people", "here", "speak", "Russian."], "wrongIndex": 0, "fix": "Most", "ruleRu": "«Most people» без артикля, когда речь о большинстве вообще." }
+    {
+      "tokens": [
+        "I'm",
+        "developer",
+        "from",
+        "Baku."
+      ],
+      "wrongIndex": 1,
+      "fix": "a developer",
+      "ruleRu": "Профессия в единственном числе всегда с «a»."
+    },
+    {
+      "tokens": [
+        "Can",
+        "you",
+        "pass",
+        "me",
+        "salt?"
+      ],
+      "wrongIndex": 4,
+      "fix": "the salt",
+      "ruleRu": "Конкретная соль на столе, оба знают какая: «the»."
+    },
+    {
+      "tokens": [
+        "I",
+        "have",
+        "the",
+        "meeting",
+        "at",
+        "ten."
+      ],
+      "wrongIndex": 2,
+      "fix": "a",
+      "ruleRu": "Первое упоминание встречи, одна из многих: «a meeting»."
+    },
+    {
+      "tokens": [
+        "She",
+        "works",
+        "as",
+        "a",
+        "designer."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Профессия с «a», всё верно."
+    },
+    {
+      "tokens": [
+        "We",
+        "went",
+        "to",
+        "a",
+        "gym",
+        "near",
+        "my",
+        "house."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Первое упоминание зала: «a gym»."
+    },
+    {
+      "tokens": [
+        "The",
+        "life",
+        "is",
+        "short."
+      ],
+      "wrongIndex": 0,
+      "fix": "",
+      "ruleRu": "Абстрактные понятия в общем смысле без артикля.",
+      "correct": "Life is short."
+    },
+    {
+      "tokens": [
+        "I",
+        "need",
+        "advice",
+        "about",
+        "the",
+        "visa."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Advice» неисчисляемое, без артикля. «The visa» конкретная."
+    },
+    {
+      "tokens": [
+        "He",
+        "gave",
+        "me",
+        "an",
+        "advice."
+      ],
+      "wrongIndex": 3,
+      "fix": "some",
+      "ruleRu": "«Advice» неисчисляемое, нельзя «an advice»."
+    },
+    {
+      "tokens": [
+        "Let's",
+        "meet",
+        "at",
+        "the",
+        "café",
+        "we",
+        "went",
+        "to",
+        "last",
+        "week."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Кафе уточняется придаточным, значит «the»."
+    },
+    {
+      "tokens": [
+        "I",
+        "bought",
+        "new",
+        "laptop",
+        "yesterday."
+      ],
+      "wrongIndex": 2,
+      "fix": "a new",
+      "ruleRu": "Исчисляемое в единственном числе, первое упоминание: «a»."
+    },
+    {
+      "tokens": [
+        "The",
+        "sun",
+        "is",
+        "too",
+        "bright",
+        "today."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Единственные в своём роде вещи с «the»: the sun, the moon."
+    },
+    {
+      "tokens": [
+        "I",
+        "usually",
+        "go",
+        "to",
+        "the",
+        "work",
+        "by",
+        "metro."
+      ],
+      "wrongIndex": 4,
+      "fix": "go to",
+      "ruleRu": "«Go to work» без артикля, как «go to school»."
+    },
+    {
+      "tokens": [
+        "This",
+        "is",
+        "a",
+        "best",
+        "ramen",
+        "in",
+        "the",
+        "city."
+      ],
+      "wrongIndex": 2,
+      "fix": "the",
+      "ruleRu": "Превосходная степень всегда с «the»: the best."
+    },
+    {
+      "tokens": [
+        "I",
+        "watched",
+        "a",
+        "movie",
+        "last",
+        "night.",
+        "The",
+        "movie",
+        "was",
+        "boring."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Первый раз «a movie», второй раз уже известный «the movie»."
+    },
+    {
+      "tokens": [
+        "She",
+        "plays",
+        "a",
+        "guitar",
+        "really",
+        "well."
+      ],
+      "wrongIndex": 2,
+      "fix": "the",
+      "ruleRu": "Музыкальные инструменты с «the»: play the guitar."
+    },
+    {
+      "tokens": [
+        "Do",
+        "you",
+        "have",
+        "the",
+        "time?"
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Have the time» значит «сколько времени». Всё верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "need",
+        "a",
+        "information",
+        "about",
+        "flights."
+      ],
+      "wrongIndex": 2,
+      "fix": "some",
+      "ruleRu": "«Information» неисчисляемое, без «a»."
+    },
+    {
+      "tokens": [
+        "He's",
+        "the",
+        "engineer",
+        "I",
+        "told",
+        "you",
+        "about."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Конкретный инженер, о котором говорили: «the»."
+    },
+    {
+      "tokens": [
+        "We",
+        "had",
+        "a",
+        "dinner",
+        "with",
+        "the",
+        "team."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«Have dinner» без артикля, если это просто приём пищи.",
+      "correct": "We had dinner with the team."
+    },
+    {
+      "tokens": [
+        "I",
+        "live",
+        "in",
+        "the",
+        "center",
+        "of",
+        "Baku."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Центр города один, конкретный: «the center»."
+    },
+    {
+      "tokens": [
+        "Internet",
+        "is",
+        "slow",
+        "in",
+        "this",
+        "café."
+      ],
+      "wrongIndex": 0,
+      "fix": "The internet",
+      "ruleRu": "«The internet» с артиклем, как единственная сеть."
+    },
+    {
+      "tokens": [
+        "It",
+        "was",
+        "an",
+        "honest",
+        "answer."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Honest» начинается с гласного звука, поэтому «an»."
+    },
+    {
+      "tokens": [
+        "I",
+        "work",
+        "at",
+        "a",
+        "university."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«University» начинается со звука «ю» (согласный), поэтому «a»."
+    },
+    {
+      "tokens": [
+        "I",
+        "saw",
+        "a",
+        "doctor",
+        "and",
+        "doctor",
+        "said",
+        "it's",
+        "fine."
+      ],
+      "wrongIndex": 5,
+      "fix": "the doctor",
+      "ruleRu": "Второе упоминание того же врача: «the»."
+    },
+    {
+      "tokens": [
+        "We",
+        "went",
+        "to",
+        "the",
+        "Turkey",
+        "last",
+        "summer."
+      ],
+      "wrongIndex": 3,
+      "fix": "went to",
+      "ruleRu": "Большинство стран без артикля: Turkey, Georgia."
+    },
+    {
+      "tokens": [
+        "He",
+        "is",
+        "from",
+        "the",
+        "Netherlands."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Страны во множественном числе с «the»: the Netherlands, the USA."
+    },
+    {
+      "tokens": [
+        "Could",
+        "you",
+        "open",
+        "window?"
+      ],
+      "wrongIndex": 3,
+      "fix": "the window",
+      "ruleRu": "Окно в комнате конкретное: «the window»."
+    },
+    {
+      "tokens": [
+        "I",
+        "want",
+        "to",
+        "become",
+        "the",
+        "senior",
+        "developer."
+      ],
+      "wrongIndex": 4,
+      "fix": "a",
+      "ruleRu": "Стать одним из сеньоров, не конкретным: «a senior developer»."
+    },
+    {
+      "tokens": [
+        "Money",
+        "doesn't",
+        "buy",
+        "happiness."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Абстрактные и неисчисляемые в общем смысле без артикля."
+    },
+    {
+      "tokens": [
+        "I",
+        "had",
+        "the",
+        "bad",
+        "day",
+        "yesterday."
+      ],
+      "wrongIndex": 2,
+      "fix": "a",
+      "ruleRu": "Один из дней, первое упоминание: «a bad day»."
+    },
+    {
+      "tokens": [
+        "Let's",
+        "go",
+        "to",
+        "the",
+        "cinema",
+        "tonight."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Go to the cinema» устойчиво с «the»."
+    },
+    {
+      "tokens": [
+        "She",
+        "is",
+        "a",
+        "friend",
+        "of",
+        "mine."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Одна из подруг: «a friend of mine»."
+    },
+    {
+      "tokens": [
+        "I",
+        "read",
+        "the",
+        "book",
+        "a",
+        "week",
+        "and",
+        "it's",
+        "great."
+      ],
+      "wrongIndex": 2,
+      "fix": "a",
+      "ruleRu": "Первое упоминание, одна из книг: «a book»."
+    },
+    {
+      "tokens": [
+        "Is",
+        "there",
+        "a",
+        "pharmacy",
+        "nearby?"
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Любая аптека, неважно какая: «a pharmacy»."
+    },
+    {
+      "tokens": [
+        "What",
+        "a",
+        "beautiful",
+        "view!"
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Восклицание «What a …!» с «a»."
+    },
+    {
+      "tokens": [
+        "I'll",
+        "call",
+        "you",
+        "in",
+        "the",
+        "hour."
+      ],
+      "wrongIndex": 4,
+      "fix": "an",
+      "ruleRu": "Через один час: «in an hour». «Hour» начинается с гласного звука."
+    },
+    {
+      "tokens": [
+        "Breakfast",
+        "is",
+        "included",
+        "in",
+        "the",
+        "price."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Приёмы пищи без артикля, конкретная цена с «the»."
+    },
+    {
+      "tokens": [
+        "He",
+        "plays",
+        "the",
+        "football",
+        "every",
+        "Sunday."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "Виды спорта без артикля: play football.",
+      "correct": "He plays football every Sunday."
+    },
+    {
+      "tokens": [
+        "I",
+        "left",
+        "keys",
+        "at",
+        "home."
+      ],
+      "wrongIndex": 2,
+      "fix": "the keys",
+      "ruleRu": "Свои конкретные ключи: «the keys» или «my keys»."
+    },
+    {
+      "tokens": [
+        "It's",
+        "a",
+        "long",
+        "story,",
+        "I'll",
+        "tell",
+        "you",
+        "later."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Одна из историй, первое упоминание: «a long story»."
+    },
+    {
+      "tokens": [
+        "We",
+        "took",
+        "taxi",
+        "to",
+        "the",
+        "airport."
+      ],
+      "wrongIndex": 2,
+      "fix": "a taxi",
+      "ruleRu": "Одно такси, первое упоминание: «a taxi»."
+    },
+    {
+      "tokens": [
+        "The",
+        "most",
+        "people",
+        "here",
+        "speak",
+        "Russian."
+      ],
+      "wrongIndex": 0,
+      "fix": "",
+      "ruleRu": "«Most people» без артикля, когда речь о большинстве вообще.",
+      "correct": "Most people here speak Russian."
+    }
   ]
 }

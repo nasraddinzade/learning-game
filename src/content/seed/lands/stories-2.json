@@ -1,0 +1,338 @@
+{
+  "id": "stories",
+  "name": "Истории, планы, пересказ",
+  "emoji": "📖",
+  "items": [
+    {
+      "id": "stories.it-all-started-when",
+      "en": "It all started when",
+      "ru": "Всё началось, когда",
+      "accept": ["it all started when", "it all started with"],
+      "contexts": [
+        { "en": "It all started when I found a bug in the login form.", "ru": "Всё началось, когда я нашёл баг в форме логина." },
+        { "en": "It all started when a friend showed me an anime from the 90s.", "ru": "Всё началось, когда друг показал мне аниме из девяностых." },
+        { "en": "It all started with one bad commit on a Friday.", "ru": "Всё началось с одного плохого коммита в пятницу." }
+      ],
+      "promptsRu": ["Начни историю: всё началось, когда ты нашёл баг.", "Расскажи, как началось увлечение аниме."],
+      "questionEn": "Use 'it all started when' to open a story.",
+      "falseMeanings": ["Всё стартовало одновременно", "Всё запустилось, когда"],
+      "noteRu": "Классическое начало истории. Дальше Past Simple."
+    },
+    {
+      "id": "stories.to-cut-to-the-chase",
+      "en": "to cut to the chase",
+      "ru": "перейти к сути",
+      "accept": ["to cut to the chase", "cut to the chase", "let's cut to the chase"],
+      "contexts": [
+        { "en": "To cut to the chase, we need two more weeks.", "ru": "Если перейти к сути, нам нужно ещё две недели." },
+        { "en": "Let's cut to the chase: how much is the rent?", "ru": "Давайте к сути: сколько стоит аренда?" },
+        { "en": "He cut to the chase and asked if I wanted the job.", "ru": "Он перешёл к сути и спросил, хочу ли я эту работу." }
+      ],
+      "promptsRu": ["Перейди к сути на созвоне: нужно ещё две недели.", "Спроси у арендодателя сразу про цену."],
+      "questionEn": "Use 'cut to the chase' to skip the preamble.",
+      "falseMeanings": ["перейти к погоне", "сократить путь"],
+      "noteRu": "Из старого кино, где зрители ждали погоню. Чуть резче, чем «long story short»."
+    },
+    {
+      "id": "stories.as-it-turns-out",
+      "en": "As it turns out",
+      "ru": "Как выяснилось",
+      "accept": ["as it turns out", "as it turned out"],
+      "contexts": [
+        { "en": "As it turns out, the API had a rate limit nobody knew about.", "ru": "Как выяснилось, у API был лимит, о котором никто не знал." },
+        { "en": "As it turns out, the café is closed on Mondays.", "ru": "Как выяснилось, кафе по понедельникам закрыто." },
+        { "en": "As it turned out, we had the same manager years ago.", "ru": "Как выяснилось, у нас был один менеджер много лет назад." }
+      ],
+      "promptsRu": ["Расскажи, что, как выяснилось, у API был лимит.", "Скажи, что кафе, как выяснилось, закрыто по понедельникам."],
+      "questionEn": "Use 'as it turns out' to reveal a surprise.",
+      "falseMeanings": ["Пока оно поворачивается", "Как оно выключается"],
+      "noteRu": "Синоним «it turned out that», чуть более разговорный."
+    },
+    {
+      "id": "stories.i-ve-been-meaning-to",
+      "en": "I've been meaning to",
+      "ru": "Я давно собираюсь",
+      "accept": ["i've been meaning to", "i have been meaning to", "been meaning to"],
+      "contexts": [
+        { "en": "I've been meaning to call you for weeks.", "ru": "Я давно собираюсь тебе позвонить, уже несколько недель." },
+        { "en": "I've been meaning to read that book since last summer.", "ru": "Я собираюсь прочитать эту книгу с прошлого лета." },
+        { "en": "Been meaning to fix that flaky test forever.", "ru": "Вечность собираюсь починить тот нестабильный тест." }
+      ],
+      "promptsRu": ["Скажи другу, что давно собираешься позвонить.", "Признайся, что давно собираешься починить тест."],
+      "questionEn": "Use 'I've been meaning to' about something postponed.",
+      "falseMeanings": ["Я имел в виду", "Я был значимым для"],
+      "noteRu": "Намерение, которое всё откладывается. После «to» глагол."
+    },
+    {
+      "id": "stories.i-m-thinking-of",
+      "en": "I'm thinking of",
+      "ru": "Я подумываю о том, чтобы",
+      "accept": ["i'm thinking of", "i am thinking of", "i'm thinking about"],
+      "contexts": [
+        { "en": "I'm thinking of switching to a standing desk.", "ru": "Подумываю перейти на стол для работы стоя." },
+        { "en": "I'm thinking of moving to Georgia for a year.", "ru": "Подумываю переехать в Грузию на год." },
+        { "en": "We're thinking of adopting a cat.", "ru": "Мы подумываем завести кота." }
+      ],
+      "promptsRu": ["Скажи, что подумываешь переехать на год.", "Поделись планом завести кота."],
+      "questionEn": "Use 'I'm thinking of' about a tentative plan.",
+      "falseMeanings": ["Я думаю о тебе", "Я размышляю"],
+      "noteRu": "После «of» идёт -ing: «thinking of moving»."
+    },
+    {
+      "id": "stories.i-m-looking-into",
+      "en": "I'm looking into",
+      "ru": "Я присматриваюсь к (изучаю вариант)",
+      "accept": ["i'm looking into", "i am looking into", "looking into"],
+      "contexts": [
+        { "en": "I'm looking into visas for Portugal.", "ru": "Я изучаю визы в Португалию." },
+        { "en": "I'm looking into a cheaper gym closer to home.", "ru": "Присматриваюсь к залу подешевле и поближе к дому." },
+        { "en": "We're looking into a new state library.", "ru": "Мы присматриваемся к новой библиотеке для состояния." }
+      ],
+      "promptsRu": ["Скажи, что изучаешь визы.", "Скажи, что присматриваешься к другому залу."],
+      "questionEn": "Use 'I'm looking into' about research you're doing.",
+      "falseMeanings": ["Я заглядываю внутрь", "Я смотрю на"],
+      "noteRu": "Изучать возможность. Для работы «I'll look into it» значит «разберусь»."
+    },
+    {
+      "id": "stories.it-didnt-work-out",
+      "en": "It didn't work out",
+      "ru": "Не сложилось",
+      "accept": ["it didn't work out", "it did not work out", "didn't work out"],
+      "contexts": [
+        { "en": "We tried the startup thing, it didn't work out.", "ru": "Мы попробовали стартап, не сложилось." },
+        { "en": "The flat was nice but it didn't work out with the landlord.", "ru": "Квартира была хорошая, но с арендодателем не сложилось." },
+        { "en": "It didn't work out, no hard feelings.", "ru": "Не сложилось, без обид." }
+      ],
+      "promptsRu": ["Расскажи, что со стартапом не сложилось.", "Скажи, что с арендодателем не сложилось."],
+      "questionEn": "Use 'it didn't work out' about a failed plan.",
+      "falseMeanings": ["Это не тренировалось", "Это не сработало вовне"],
+      "noteRu": "Спокойный способ сказать о неудаче без деталей."
+    },
+    {
+      "id": "stories.in-the-meantime",
+      "en": "In the meantime",
+      "ru": "Тем временем / А пока",
+      "accept": ["in the meantime", "meanwhile"],
+      "contexts": [
+        { "en": "The visa takes a month. In the meantime, I'm learning German.", "ru": "Виза делается месяц. А пока я учу немецкий." },
+        { "en": "In the meantime, let's mock the API.", "ru": "А пока давайте замокаем API." },
+        { "en": "Meanwhile, the landlord raised the price again.", "ru": "Тем временем арендодатель снова поднял цену." }
+      ],
+      "promptsRu": ["Скажи, что пока ждёшь визу, учишь немецкий.", "Предложи замокать API, пока бэкенд не готов."],
+      "questionEn": "Use 'in the meantime' to describe a parallel action.",
+      "falseMeanings": ["В среднем времени", "В злое время"],
+      "noteRu": "Связывает два процесса. «Meanwhile» короче и равнозначно."
+    },
+    {
+      "id": "stories.eventually",
+      "type": "word",
+      "en": "eventually",
+      "ru": "в конце концов (спустя время)",
+      "accept": ["eventually"],
+      "contexts": [
+        { "en": "Eventually the bug showed up in the logs.", "ru": "В конце концов баг проявился в логах." },
+        { "en": "We eventually found a flat near the metro.", "ru": "В конце концов мы нашли квартиру у метро." },
+        { "en": "Everyone eventually learns to read stack traces.", "ru": "Все в конце концов учатся читать стектрейсы." }
+      ],
+      "promptsRu": ["Скажи, что в конце концов нашли квартиру у метро.", "Скажи, что баг в итоге проявился в логах."],
+      "questionEn": "Use 'eventually' in a story about waiting.",
+      "falseMeanings": ["возможно", "случайно"],
+      "noteRu": "Ложный друг: не «eventually = возможно». Это «в итоге, спустя время»."
+    },
+    {
+      "id": "stories.i-had-no-idea",
+      "en": "I had no idea",
+      "ru": "Я понятия не имел",
+      "accept": ["i had no idea", "had no idea", "i have no idea"],
+      "contexts": [
+        { "en": "I had no idea the deadline was today.", "ru": "Я понятия не имел, что дедлайн сегодня." },
+        { "en": "I had no idea you played the guitar.", "ru": "Понятия не имел, что ты играешь на гитаре." },
+        { "en": "I have no idea how this code works, and I wrote it.", "ru": "Понятия не имею, как этот код работает, а писал его я." }
+      ],
+      "promptsRu": ["Удивись, что дедлайн сегодня.", "Признайся, что не понимаешь свой же код."],
+      "questionEn": "Use 'I had no idea' to react to news.",
+      "falseMeanings": ["У меня не было идей", "Я не имел плана"],
+      "noteRu": "«Had» про прошлое, «have» про сейчас."
+    },
+    {
+      "id": "stories.i-m-about-to",
+      "en": "I'm about to",
+      "ru": "Я вот-вот (собираюсь прямо сейчас)",
+      "accept": ["i'm about to", "i am about to", "about to"],
+      "contexts": [
+        { "en": "I'm about to deploy, hold your changes.", "ru": "Я вот-вот деплою, придержи свои изменения." },
+        { "en": "I'm about to leave, do you need anything from the store?", "ru": "Я вот-вот выхожу, нужно что-то из магазина?" },
+        { "en": "The talk is about to start.", "ru": "Доклад вот-вот начнётся." }
+      ],
+      "promptsRu": ["Предупреди, что вот-вот деплоишь.", "Скажи, что вот-вот выходишь, и спроси, нужно ли что-то."],
+      "questionEn": "Use 'I'm about to' for something happening right now.",
+      "falseMeanings": ["Я около", "Я о том, чтобы"],
+      "noteRu": "Ближайшее будущее, секунды и минуты. Пара к «I was about to»."
+    },
+    {
+      "id": "stories.i-ended-up-with",
+      "en": "I ended up with",
+      "ru": "В итоге у меня оказалось",
+      "accept": ["i ended up with", "ended up with"],
+      "contexts": [
+        { "en": "I ended up with three monitors and no desk space.", "ru": "В итоге у меня три монитора и ни сантиметра стола." },
+        { "en": "We ended up with a bill twice the estimate.", "ru": "В итоге счёт оказался вдвое больше оценки." },
+        { "en": "She ended up with two job offers in one week.", "ru": "В итоге у неё оказалось два оффера за неделю." }
+      ],
+      "promptsRu": ["Расскажи, что в итоге получил три монитора.", "Пожалуйся, что счёт оказался вдвое больше."],
+      "questionEn": "Use 'ended up with' to describe an outcome.",
+      "falseMeanings": ["закончил вместе с", "дошёл до конца с"],
+      "noteRu": "«End up with + существительное», «end up + -ing» для действий."
+    },
+    {
+      "id": "stories.looking-back",
+      "en": "Looking back",
+      "ru": "Оглядываясь назад",
+      "accept": ["looking back", "looking back on it", "in hindsight"],
+      "contexts": [
+        { "en": "Looking back, I should have asked for more money.", "ru": "Оглядываясь назад, мне стоило просить больше денег." },
+        { "en": "Looking back, the rewrite was a mistake.", "ru": "Оглядываясь назад, переписывание было ошибкой." },
+        { "en": "In hindsight, we should have tested on real phones.", "ru": "Задним умом, надо было тестировать на реальных телефонах." }
+      ],
+      "promptsRu": ["Сделай вывод из прошлого: надо было просить больше.", "Признай, что переписывание было ошибкой."],
+      "questionEn": "Use 'looking back' to reflect on a decision.",
+      "falseMeanings": ["Смотря назад (физически)", "Ища сзади"],
+      "noteRu": "После обычно «should have»."
+    },
+    {
+      "id": "stories.i-should-have",
+      "en": "I should have",
+      "ru": "Мне следовало (но я не)",
+      "accept": ["i should have", "i should've", "should have"],
+      "contexts": [
+        { "en": "I should have written tests before the refactor.", "ru": "Мне следовало написать тесты до рефакторинга." },
+        { "en": "I should have booked earlier, now it's twice the price.", "ru": "Надо было бронировать раньше, теперь вдвое дороже." },
+        { "en": "We should have left before the rain.", "ru": "Нам стоило уйти до дождя." }
+      ],
+      "promptsRu": ["Пожалей, что не написал тесты заранее.", "Пожалей, что не забронировал раньше."],
+      "questionEn": "Use 'I should have' about a regret.",
+      "falseMeanings": ["Я должен иметь", "Мне нужно будет"],
+      "noteRu": "«Should have + причастие»: сожаление о прошлом."
+    },
+    {
+      "id": "stories.i-m-glad-i",
+      "en": "I'm glad I",
+      "ru": "Я рад, что я",
+      "accept": ["i'm glad i", "i am glad i", "glad i"],
+      "contexts": [
+        { "en": "I'm glad I asked, the answer saved me a day.", "ru": "Я рад, что спросил, ответ сэкономил мне день." },
+        { "en": "I'm glad I went to the meetup after all.", "ru": "Я рад, что всё-таки сходил на митап." },
+        { "en": "Glad I didn't take that offer.", "ru": "Рад, что не принял тот оффер." }
+      ],
+      "promptsRu": ["Скажи, что рад, что спросил.", "Скажи, что рад, что не принял оффер."],
+      "questionEn": "Use 'I'm glad I' about a good decision.",
+      "falseMeanings": ["Я весёлый", "Я бы радовался"],
+      "noteRu": "Противоположность «I should have». После Past Simple."
+    },
+    {
+      "id": "stories.next-thing-i-knew",
+      "en": "Next thing I knew",
+      "ru": "Не успел я опомниться",
+      "accept": ["next thing i knew", "the next thing i knew", "before i knew it"],
+      "contexts": [
+        { "en": "Next thing I knew, it was 3 a.m. and the bug was fixed.", "ru": "Не успел я опомниться, было три ночи, и баг был починен." },
+        { "en": "I opened one episode. Next thing I knew, the season was over.", "ru": "Я открыл одну серию. Не успел опомниться, сезон закончился." },
+        { "en": "Before I knew it, I had agreed to organize the whole trip.", "ru": "Не успел я опомниться, как согласился организовать всю поездку." }
+      ],
+      "promptsRu": ["Расскажи, как незаметно просидел до трёх ночи.", "Расскажи, как посмотрел весь сезон за раз."],
+      "questionEn": "Use 'next thing I knew' in a story.",
+      "falseMeanings": ["Следующее, что я узнал", "Следующий факт"],
+      "noteRu": "Для внезапных поворотов и потерянного времени."
+    },
+    {
+      "id": "stories.for-the-time-being",
+      "en": "for the time being",
+      "ru": "пока что (временно)",
+      "accept": ["for the time being", "for now"],
+      "contexts": [
+        { "en": "For the time being, I'm staying with a friend.", "ru": "Пока что я живу у друга." },
+        { "en": "We'll use the old API for the time being.", "ru": "Пока что будем использовать старое API." },
+        { "en": "For now, let's keep both versions.", "ru": "Пока оставим обе версии." }
+      ],
+      "promptsRu": ["Скажи, что пока живёшь у друга.", "Скажи, что пока используете старое API."],
+      "questionEn": "Use 'for the time being' about a temporary setup.",
+      "falseMeanings": ["для существования времени", "ради времени"],
+      "noteRu": "Подчёркивает временность решения."
+    },
+    {
+      "id": "stories.sooner-or-later",
+      "en": "sooner or later",
+      "ru": "рано или поздно",
+      "accept": ["sooner or later"],
+      "contexts": [
+        { "en": "Sooner or later we'll have to rewrite the auth.", "ru": "Рано или поздно придётся переписать авторизацию." },
+        { "en": "Sooner or later everyone leaves that company.", "ru": "Рано или поздно все уходят из той компании." },
+        { "en": "You'll have to learn Git properly sooner or later.", "ru": "Рано или поздно придётся нормально выучить Git." }
+      ],
+      "promptsRu": ["Скажи, что рано или поздно придётся переписать авторизацию.", "Предскажи, что рано или поздно друг уйдёт из компании."],
+      "questionEn": "Use 'sooner or later' to predict something.",
+      "falseMeanings": ["раньше или позже (выбор времени)", "скоро"],
+      "noteRu": "Порядок слов как в русском: sooner первым."
+    },
+    {
+      "id": "stories.that-s-when",
+      "en": "That's when",
+      "ru": "Вот тогда-то и",
+      "accept": ["that's when", "that is when", "and that's when"],
+      "contexts": [
+        { "en": "That's when I realized the config was wrong.", "ru": "Вот тогда я и понял, что конфиг был неправильный." },
+        { "en": "And that's when the lights went out.", "ru": "И вот тогда погас свет." },
+        { "en": "That's when I decided to move.", "ru": "Вот тогда я и решил переехать." }
+      ],
+      "promptsRu": ["Расскажи момент, когда понял причину бага.", "Расскажи момент, когда решил переехать."],
+      "questionEn": "Use 'that's when' to mark a turning point.",
+      "falseMeanings": ["Это когда?", "Это время"],
+      "noteRu": "Поворотный момент истории. Хорошо после «next thing I knew»."
+    },
+    {
+      "id": "stories.i-ll-let-you-know",
+      "en": "I'll let you know",
+      "ru": "Я дам тебе знать",
+      "accept": ["i'll let you know", "i will let you know", "let you know"],
+      "contexts": [
+        { "en": "I'll let you know when the tickets are booked.", "ru": "Дам знать, когда билеты будут забронированы." },
+        { "en": "Not sure about Saturday yet, I'll let you know.", "ru": "Пока не уверен насчёт субботы, дам знать." },
+        { "en": "Let me know if the build fails again.", "ru": "Дай знать, если сборка снова упадёт." }
+      ],
+      "promptsRu": ["Пообещай дать знать, когда забронируешь билеты.", "Попроси сообщить, если сборка упадёт."],
+      "questionEn": "Use 'I'll let you know' to defer an answer.",
+      "falseMeanings": ["Я позволю тебе узнать", "Я тебя выпущу"],
+      "noteRu": "«Let me know» в обратную сторону: дай мне знать."
+    },
+    {
+      "id": "stories.i-m-planning-on",
+      "en": "I'm planning on",
+      "ru": "Я рассчитываю (планирую)",
+      "accept": ["i'm planning on", "i am planning on", "planning on"],
+      "contexts": [
+        { "en": "I'm planning on leaving early to beat the traffic.", "ru": "Планирую выйти пораньше, чтобы обогнать пробки." },
+        { "en": "Are you planning on staying for the whole conference?", "ru": "Ты планируешь остаться на всю конференцию?" },
+        { "en": "I'm planning on finishing the course by June.", "ru": "Планирую закончить курс к июню." }
+      ],
+      "promptsRu": ["Скажи, что планируешь выйти пораньше.", "Спроси, планирует ли друг остаться на всю конференцию."],
+      "questionEn": "Use 'planning on' with an -ing verb.",
+      "falseMeanings": ["Я планирую на (дату)", "Я чертёжник"],
+      "noteRu": "«Planning on + -ing» и «planning to + глагол» равнозначны."
+    },
+    {
+      "id": "stories.it-s-a-long-story",
+      "en": "It's a long story",
+      "ru": "Это долгая история",
+      "accept": ["it's a long story", "it is a long story", "long story"],
+      "contexts": [
+        { "en": "Why do I have two laptops? It's a long story.", "ru": "Почему у меня два ноутбука? Это долгая история." },
+        { "en": "It's a long story, I'll tell you over a beer.", "ru": "Это долгая история, расскажу за пивом." },
+        { "en": "How did you end up in Baku? — Long story.", "ru": "Как ты оказался в Баку? — Долгая история." }
+      ],
+      "promptsRu": ["Отложи объяснение: это долгая история, расскажу за пивом.", "Ответь уклончиво на вопрос, как ты здесь оказался."],
+      "questionEn": "Use 'it's a long story' to postpone an explanation.",
+      "falseMeanings": ["Это длинный рассказ (книга)", "Это долго рассказывать нельзя"],
+      "noteRu": "Иногда это вежливое «не хочу рассказывать»."
+    }
+  ]
+}

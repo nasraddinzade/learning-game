@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCampStore } from '@/store/camp'
 import { useProfileStore } from '@/store/profile'
+import { useRunStore } from '@/store/run'
 import { Button } from '@/ui/Button'
 import { EnemySprite } from '@/ui/EnemySprite'
 
@@ -79,7 +80,18 @@ export function CampScreen() {
 
   if (!profile) return null
   const c = camp.counts
-  const nothingToday = c !== null && c.debts + c.nemeses + c.reviews + c.newAllowed === 0 && !camp.hasActiveRun
+  const total = c ? c.debts + c.nemeses + c.reviews + c.newAllowed : 0
+  const nothingToday = c !== null && total === 0 && !camp.hasActiveRun
+  const canSortie = c !== null && !camp.hasActiveRun && c.debts + c.nemeses + c.reviews > 0
+
+  async function go(kind: 'run' | 'sortie') {
+    if (!camp.hasActiveRun) await useRunStore.getState().startRun(kind)
+    navigate(kind === 'sortie' || camp.hasActiveRun ? routeAfterStart() : '/run')
+  }
+  function routeAfterStart() {
+    const run = useRunStore.getState().run
+    return run?.phase === 'battle' ? '/battle' : run?.phase === 'rest' ? '/rest' : run?.phase === 'boon' ? '/boon' : '/run'
+  }
 
   return (
     <main
@@ -110,20 +122,18 @@ export function CampScreen() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Button
-          full
-          className="h-14 text-lg"
-          data-testid="btn-battle"
-          disabled={nothingToday}
-          onClick={() => navigate('/battle')}
-        >
-          {camp.hasActiveRun ? 'Продолжить бой' : 'В бой'}
+        <Button full className="h-14 text-lg" data-testid="btn-run" disabled={nothingToday} onClick={() => void go('run')}>
+          {camp.hasActiveRun ? 'Продолжить поход' : 'В поход'}
         </Button>
-        <Button full variant="secondary" data-testid="btn-sortie" disabled title="Появится на этапе 2">
+        <Button full variant="secondary" data-testid="btn-sortie" disabled={!canSortie} onClick={() => void go('sortie')}>
           Вылазка · 2 минуты
         </Button>
         <p className="text-center text-xs text-fg-faint">
-          {nothingToday ? 'На сегодня всё. Новые фразы и повторения придут завтра.' : 'Поход с картой появится на этапе 2'}
+          {nothingToday
+            ? 'На сегодня всё. Новые фразы и повторения придут завтра.'
+            : camp.hasActiveRun
+              ? 'Поход не закончен, враги ждут на карте.'
+              : 'Поход это 6 узлов и Эхо, минут 10–15. Вылазка это одна Засада на две минуты.'}
         </p>
       </div>
 

@@ -1,13 +1,14 @@
-import { Suspense, useEffect, useMemo } from 'react'
+import { Suspense, useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'motion/react'
-import { DEBUG } from '@/debug'
 import { MOVE_LABEL_RU, STAGE_LABEL_RU, riskOptions } from '@/engine/moves'
 import { enemiesLeft } from '@/game/combat'
+import { NODE_ICON, NODE_LABEL_RU } from '@/game/map'
 import { MOVE_COMPONENTS, preloadMoves } from '@/moves'
 import { canUse } from '@/moves/tasks'
-import { IMPLEMENTED_MOVES, type MoveProps, type MoveTask } from '@/moves/types'
-import { useBattleStore, type Feedback, type BattleSummary } from '@/store/battle'
+import { IMPLEMENTED_MOVES, type MoveProps } from '@/moves/types'
+import { routeForRun, useRunStore, type Feedback } from '@/store/run'
+import { now } from '@/store/clock'
 import { Button } from '@/ui/Button'
 import { EnemySprite } from '@/ui/EnemySprite'
 import { Hearts } from '@/ui/Hearts'
@@ -19,31 +20,18 @@ const KIND_LABEL: Record<EnemyKind, string> = {
   debtor: 'Должник',
   nemesis: 'Немезида',
   newcomer: 'Новая фраза',
+  echo: 'Эхо',
 }
 
-/** For e2e: the expected answer of the current task. Compiled out of production builds. */
-function debugAnswer(task: MoveTask | null): string | null {
-  if (!task) return null
-  switch (task.move) {
-    case 'swipe':
-      return task.matches ? 'right' : 'left'
-    case 'build':
-    case 'gap':
-      return task.expected[0] ?? null
-    case 'translate':
-      return task.expected[0] ?? null
-    default:
-      return null
-  }
-}
-
-function EnemyHeader({ c, item, shake, down }: { c: Combatant; item: Item; shake: number; down: boolean }) {
+function EnemyHeader({ c, item, shake, down, echoPhase }: { c: Combatant; item: Item; shake: number; down: boolean; echoPhase: string | null }) {
   const nemesis = c.kind === 'nemesis'
+  const echo = c.kind === 'echo'
   return (
     <div className="flex flex-col items-center" data-testid="enemy" data-kind={c.kind} data-item={c.itemId}>
       <div className="flex items-center gap-2 text-xs font-semibold tracking-wide uppercase">
-        <span className={nemesis ? 'text-danger' : c.kind === 'debtor' ? 'text-accent' : 'text-fg-muted'}>
+        <span className={nemesis || echo ? 'text-danger' : c.kind === 'debtor' ? 'text-accent' : 'text-fg-muted'}>
           {KIND_LABEL[c.kind]}
+          {echoPhase ? ` · фаза ${echoPhase}` : ''}
         </span>
         {c.hitsNeeded > 1 ? (
           <span className="flex gap-1" aria-label={`Ударов ${c.hits} из ${c.hitsNeeded}`}>
@@ -59,7 +47,7 @@ function EnemyHeader({ c, item, shake, down }: { c: Combatant; item: Item; shake
           {item.en}
         </p>
       ) : null}
-      <EnemySprite itemId={c.itemId} kind={c.kind} scars={c.winsOverHero} shake={shake} down={down} size={132} />
+      <EnemySprite itemId={c.itemId} kind={c.kind} scars={c.winsOverHero} shake={shake} down={down} size={echo ? 150 : 132} />
     </div>
   )
 }
@@ -67,7 +55,11 @@ function EnemyHeader({ c, item, shake, down }: { c: Combatant; item: Item; shake
 function FeedbackPanel({ f, onNext }: { f: Feedback; onNext: () => void }) {
   const closed = f.events.some((e) => e.type === 'enemyDown')
   const leaves = f.events.find((e): e is Extract<typeof e, { type: 'debtorLeaves' }> => e.type === 'debtorLeaves')
-  const heal = f.events.some((e) => e.type === 'comboHeal')
+  const miss = f.events.find((e): e is Extract<typeof e, { type: 'miss' }> => e.type === 'miss')
+  const heals = f.events.filter((e): e is Extract<typeof e, { type: 'comboHeal' | 'boonHeal' | 'secondWind' }> =>
+    e.type === 'comboHeal' || e.type === 'boonHeal' || e.type === 'secondWind',
+  )
+  const chest = f.events.find((e): e is Extract<typeof e, { type: 'chest' }> => e.type === 'chest')
   const nemesisWon = f.events.some((e) => e.type === 'nemesisWon')
   const stageUp = f.progressEvents.includes('stageUp')
   const debtClosed = f.progressEvents.includes('debtClosed')
@@ -98,7 +90,7 @@ function FeedbackPanel({ f, onNext }: { f: Feedback; onNext: () => void }) {
             +{f.runes} ◆
           </span>
         ) : (
-          <span className="text-danger">−1 ❤</span>
+          <span className={miss?.spared ? 'text-fg-muted' : 'text-danger'}>{miss?.spared ? 'без урона' : '−1 ❤'}</span>
         )}
       </div>
       {f.correct ? (
@@ -124,7 +116,12 @@ function FeedbackPanel({ f, onNext }: { f: Feedback; onNext: () => void }) {
         {closed && !debtClosed ? <span>Враг повержен</span> : null}
         {leaves ? <span>Ушёл в туман, вернётся через {leaves.returnsIn} отв.</span> : null}
         {nemesisWon ? <span className="text-danger">Сегодня она победила. Вернётся завтра</span> : null}
-        {heal ? <span className="text-ok">+1 ❤ за комбо</span> : null}
+        {heals.map((h, i) => (
+          <span key={i} className="text-ok">
+            {h.type === 'secondWind' ? 'Второе дыхание!' : h.type === 'comboHeal' ? '+1 ❤ за комбо' : `+❤ ${h.boon === 'hunter' ? 'Охотник' : 'Упрямство'}`}
+          </span>
+        ))}
+        {chest ? <span className="text-accent">Сундук +{chest.runes} ◆</span> : null}
       </div>
       <Button full className="mt-3" data-testid="feedback-next" onClick={onNext} autoFocus>
         Дальше
@@ -133,107 +130,67 @@ function FeedbackPanel({ f, onNext }: { f: Feedback; onNext: () => void }) {
   )
 }
 
-function SummaryPanel({ s, onLeave }: { s: BattleSummary; onLeave: () => void }) {
+function SortieClock({ endsAt, onTimeUp }: { endsAt: number; onTimeUp: () => void }) {
+  const [left, setLeft] = useState(() => Math.max(0, endsAt - now()))
+  useEffect(() => {
+    const id = setInterval(() => {
+      const l = Math.max(0, endsAt - now())
+      setLeft(l)
+      if (l === 0) onTimeUp()
+    }, 500)
+    return () => clearInterval(id)
+  }, [endsAt, onTimeUp])
+  const s = Math.ceil(left / 1000)
   return (
-    <div className="flex flex-1 flex-col gap-4" data-testid="summary" data-status={s.status}>
-      <div className="text-center">
-        <p className="text-5xl" aria-hidden="true">
-          {s.status === 'won' ? '🏕️' : '🌫️'}
-        </p>
-        <h2 className="mt-2 text-2xl font-bold">{s.status === 'won' ? 'Бой выигран' : 'Отступление'}</h2>
-        <p className="text-fg-muted">
-          {s.status === 'won' ? 'Все враги повержены.' : 'Здоровье кончилось. Руны делятся пополам, долги остаются.'}
-        </p>
-      </div>
-      <div className="grid grid-cols-3 gap-2 text-center">
-        <div className="rounded-2xl bg-bg-card p-3">
-          <p className="text-2xl font-bold text-accent" data-testid="summary-runes">
-            {s.runes}
-          </p>
-          <p className="text-xs text-fg-muted">рун</p>
-        </div>
-        <div className="rounded-2xl bg-bg-card p-3">
-          <p className="text-2xl font-bold">{s.hits}</p>
-          <p className="text-xs text-fg-muted">ударов</p>
-        </div>
-        <div className="rounded-2xl bg-bg-card p-3">
-          <p className="text-2xl font-bold">{s.maxCombo}</p>
-          <p className="text-xs text-fg-muted">комбо</p>
-        </div>
-      </div>
-      {s.levelUp ? <p className="text-center font-semibold text-accent">Новый уровень {s.levelUp}</p> : null}
-      {s.closedDebts.length > 0 ? (
-        <Section title="Долги закрыты" items={s.closedDebts} tone="ok" />
-      ) : null}
-      {s.stillInDebt.length > 0 ? <Section title="Должники ждут" items={s.stillInDebt} tone="accent" /> : null}
-      {s.newNemeses.length > 0 ? <Section title="Стали немезидами" items={s.newNemeses} tone="danger" /> : null}
-      {s.defeatedNemeses.length > 0 ? <Section title="Немезиды побеждены сегодня" items={s.defeatedNemeses} tone="ok" /> : null}
-      <div className="mt-auto">
-        <Button full className="h-14 text-lg" data-testid="summary-leave" onClick={onLeave}>
-          В лагерь
-        </Button>
-      </div>
-    </div>
-  )
-}
-
-function Section({ title, items, tone }: { title: string; items: Item[]; tone: 'ok' | 'accent' | 'danger' }) {
-  const color = tone === 'ok' ? 'text-ok' : tone === 'danger' ? 'text-danger' : 'text-accent'
-  return (
-    <div className="rounded-2xl bg-bg-card p-3">
-      <p className={`text-xs font-semibold tracking-wide uppercase ${color}`}>{title}</p>
-      <ul className="mt-1 flex flex-col gap-0.5 text-sm">
-        {items.map((i) => (
-          <li key={i.id}>
-            <span className="font-medium">{i.en}</span> <span className="text-fg-muted">— {i.ru}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <span className={`tabular-nums ${s <= 15 ? 'text-danger' : 'text-fg-muted'}`} data-testid="sortie-clock">
+      ⏱ {Math.floor(s / 60)}:{String(s % 60).padStart(2, '0')}
+    </span>
   )
 }
 
 export function BattleScreen() {
   const navigate = useNavigate()
-  const s = useBattleStore()
+  const s = useRunStore()
 
   useEffect(() => {
     preloadMoves()
-    void s.load()
-    return () => s.reset()
+    void s.load().then(() => s.resumeBattle())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // Leave when the run moves to another phase (boon, map, summary).
   useEffect(() => {
-    if (!DEBUG) return
-    ;(window as unknown as { __nemesis?: unknown }).__nemesis = {
-      answer: () => debugAnswer(useBattleStore.getState().task),
-      state: () => useBattleStore.getState(),
-    }
-  }, [s.task])
+    if (!s.loaded) return
+    const route = routeForRun(s.run)
+    if (route !== '/battle') navigate(route, { replace: true })
+  }, [s.run, s.loaded, navigate])
 
-  const combat = s.run?.combat ?? null
+  const run = s.run
+  const combat = run?.combat ?? null
   // During feedback the enemy on screen is the one just fought, not the next in line.
-  const current = (s.phase === 'feedback' ? combat?.last : combat?.current) ?? null
+  const current = (s.battlePhase === 'feedback' ? combat?.last : combat?.current) ?? null
   const item = current ? s.items[current.itemId] : undefined
   const progress = current ? s.progress[current.itemId] : undefined
+  const node = run?.position ? run.map[run.position.step]?.[run.position.node] : undefined
   const options = useMemo(() => {
-    if (!s.move || !item || s.risked || s.move === 'intro') return []
+    if (!s.move || !item || s.risked || s.move === 'intro' || current?.kind === 'echo') return []
     return riskOptions(s.move, IMPLEMENTED_MOVES).filter((m) => canUse(m, item))
-  }, [s.move, item, s.risked])
+  }, [s.move, item, s.risked, current?.kind])
 
   const Move = s.move ? MOVE_COMPONENTS[s.move] : undefined
+  const echoPhase =
+    current?.kind === 'echo' && run?.echoItemIds ? `${run.echoItemIds.indexOf(current.itemId) + 1} из ${run.echoItemIds.length}` : null
 
   return (
     <main
       data-testid="screen-battle"
-      data-phase={s.phase}
+      data-phase={s.battlePhase}
       className="safe-top safe-bottom mx-auto flex min-h-full w-full max-w-[440px] flex-col gap-3 px-4 pb-4"
     >
       <header className="flex h-12 items-center justify-between">
         <button
           type="button"
-          aria-label="В лагерь"
+          aria-label="На карту"
           data-testid="battle-leave"
           onClick={() => navigate('/')}
           className="tap -ml-3 flex items-center justify-center rounded-full text-fg-muted"
@@ -242,8 +199,14 @@ export function BattleScreen() {
             <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
           </svg>
         </button>
+        {node ? (
+          <span className="text-sm text-fg-muted" data-testid="node-label">
+            {NODE_ICON[node.type]} {NODE_LABEL_RU[node.type]}
+          </span>
+        ) : null}
         {combat && combat.status === 'active' ? (
           <div className="flex items-center gap-3 text-sm text-fg-muted">
+            {run?.sortieEndsAt ? <SortieClock endsAt={run.sortieEndsAt} onTimeUp={() => void s.timeUp()} /> : null}
             <span data-testid="enemies-left">врагов: {enemiesLeft(combat)}</span>
             {combat.combo >= 2 ? (
               <span className="font-bold text-accent" data-testid="combo">
@@ -251,42 +214,30 @@ export function BattleScreen() {
               </span>
             ) : null}
             <span className="font-semibold text-accent" data-testid="battle-runes">
-              ◆ {combat.runes}
+              ◆ {(run?.runes ?? 0) + combat.runes}
             </span>
           </div>
         ) : null}
       </header>
 
-      {s.phase === 'loading' || s.phase === 'idle' ? (
+      {!s.loaded || s.battlePhase === 'idle' || s.battlePhase === 'loading' ? (
         <div className="flex flex-1 items-center justify-center text-fg-muted">Враги собираются…</div>
       ) : null}
 
       {s.error ? <p className="rounded-2xl bg-danger/10 p-3 text-sm text-danger">{s.error}</p> : null}
 
-      {s.phase === 'empty' ? (
-        <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center" data-testid="battle-empty">
-          <span className="text-5xl" aria-hidden="true">
-            🌙
-          </span>
-          <p className="text-lg font-semibold">Сегодня врагов нет</p>
-          <p className="text-sm text-fg-muted">Все повторения сделаны, а новых фраз на сегодня больше нет. Загляни завтра.</p>
-          <Button onClick={() => navigate('/')}>В лагерь</Button>
-        </div>
-      ) : null}
-
-      {s.phase === 'done' && s.summary ? <SummaryPanel s={s.summary} onLeave={() => navigate('/')} /> : null}
-
-      {(s.phase === 'task' || s.phase === 'feedback') && current && item ? (
+      {(s.battlePhase === 'task' || s.battlePhase === 'feedback') && current && item ? (
         <>
           <EnemyHeader
             c={current}
             item={item}
-            shake={s.phase === 'feedback' ? s.shake : 0}
-            down={s.phase === 'feedback' && (s.feedback?.events.some((e) => e.type === 'enemyDown') ?? false)}
+            shake={s.battlePhase === 'feedback' ? s.shake : 0}
+            down={s.battlePhase === 'feedback' && (s.feedback?.events.some((e) => e.type === 'enemyDown') ?? false)}
+            echoPhase={echoPhase}
           />
           {s.move !== 'intro' ? (
             <div className="flex items-center gap-2">
-              <WindupBar startedAt={s.windupStartedAt} durationMs={s.windupMs} paused={s.phase === 'feedback'} />
+              <WindupBar startedAt={s.windupStartedAt} durationMs={s.windupMs} paused={s.battlePhase === 'feedback'} />
               <span className="shrink-0 text-xs text-fg-muted" data-testid="move-label">
                 {s.move ? MOVE_LABEL_RU[s.move] : ''}
                 {s.risked ? ' · риск' : ''}
@@ -295,7 +246,7 @@ export function BattleScreen() {
           ) : null}
 
           <section className="flex flex-1 flex-col gap-3">
-            {s.phase === 'task' && Move && s.task ? (
+            {s.battlePhase === 'task' && Move && s.task ? (
               <motion.div
                 key={`${current.itemId}-${s.move}-${s.risked}`}
                 initial={{ opacity: 0, y: 12 }}
@@ -323,7 +274,7 @@ export function BattleScreen() {
                 ) : null}
               </motion.div>
             ) : null}
-            {s.phase === 'feedback' && s.feedback ? <FeedbackPanel f={s.feedback} onNext={() => void s.next()} /> : null}
+            {s.battlePhase === 'feedback' && s.feedback ? <FeedbackPanel f={s.feedback} onNext={() => void s.next()} /> : null}
           </section>
 
           <footer className="flex items-center justify-between pt-1">

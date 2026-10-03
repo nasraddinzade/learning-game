@@ -1,0 +1,570 @@
+{
+  "id": "calques",
+  "title": "Кальки с русского и азербайджанского",
+  "explainRu": "Слово, которое кажется очевидным переводом, часто значит другое: «master» это мастер-игрок, а не мастер по ремонту, «feeds» не «моя лента». Такие места нужно узнавать в лицо и заменять живым словом.",
+  "exercises": [
+    {
+      "tokens": [
+        "I",
+        "called",
+        "a",
+        "master",
+        "to",
+        "fix",
+        "the",
+        "boiler."
+      ],
+      "wrongIndex": 3,
+      "fix": "repairman",
+      "ruleRu": "Мастер по ремонту это «repairman» или «plumber», не «master»."
+    },
+    {
+      "tokens": [
+        "I",
+        "called",
+        "a",
+        "plumber",
+        "to",
+        "fix",
+        "the",
+        "boiler."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Plumber» для труб и бойлера, верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "scrolled",
+        "my",
+        "feeds",
+        "for",
+        "an",
+        "hour."
+      ],
+      "wrongIndex": 3,
+      "fix": "feed",
+      "ruleRu": "Лента одна: «my feed». «Feeds» это несколько лент."
+    },
+    {
+      "tokens": [
+        "I",
+        "scrolled",
+        "my",
+        "feed",
+        "for",
+        "an",
+        "hour."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "went",
+        "to",
+        "the",
+        "master",
+        "with",
+        "my",
+        "car."
+      ],
+      "wrongIndex": 4,
+      "fix": "mechanic",
+      "ruleRu": "Автомеханик это «mechanic», «master» так не говорят."
+    },
+    {
+      "tokens": [
+        "Can",
+        "you",
+        "make",
+        "a",
+        "photo",
+        "of",
+        "us?"
+      ],
+      "wrongIndex": 2,
+      "fix": "take",
+      "ruleRu": "Фото «take», не «make»."
+    },
+    {
+      "tokens": [
+        "Can",
+        "you",
+        "take",
+        "a",
+        "photo",
+        "of",
+        "us?"
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "will",
+        "make",
+        "a",
+        "decision",
+        "tomorrow."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Решение «make a decision», верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "want",
+        "to",
+        "do",
+        "a",
+        "mistake",
+        "less."
+      ],
+      "wrongIndex": 3,
+      "fix": "make",
+      "ruleRu": "Ошибки «make», не «do»: «make a mistake»."
+    },
+    {
+      "tokens": [
+        "I",
+        "need",
+        "to",
+        "make",
+        "my",
+        "homework."
+      ],
+      "wrongIndex": 3,
+      "fix": "do",
+      "ruleRu": "Домашняя работа «do»: «do my homework»."
+    },
+    {
+      "tokens": [
+        "Let's",
+        "make",
+        "sport",
+        "on",
+        "Saturday."
+      ],
+      "wrongIndex": 1,
+      "fix": "do",
+      "ruleRu": "Спорт «do sport» или «work out», не «make»."
+    },
+    {
+      "tokens": [
+        "He",
+        "is",
+        "a",
+        "very",
+        "economical",
+        "person."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Economical» бережливый, верно в этом смысле."
+    },
+    {
+      "tokens": [
+        "I",
+        "feel",
+        "myself",
+        "tired",
+        "today."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«I feel tired», без «myself»."
+    },
+    {
+      "tokens": [
+        "I",
+        "feel",
+        "tired",
+        "today."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "We",
+        "discussed",
+        "about",
+        "the",
+        "plan."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«Discuss» без «about»: «we discussed the plan»."
+    },
+    {
+      "tokens": [
+        "We",
+        "talked",
+        "about",
+        "the",
+        "plan."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Talk about» с предлогом, верно."
+    },
+    {
+      "tokens": [
+        "It",
+        "depends",
+        "from",
+        "the",
+        "weather."
+      ],
+      "wrongIndex": 2,
+      "fix": "on",
+      "ruleRu": "«Depends on», не «from»."
+    },
+    {
+      "tokens": [
+        "It",
+        "depends",
+        "on",
+        "the",
+        "budget."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "am",
+        "agree",
+        "with",
+        "you."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "«Agree» глагол: «I agree with you», без «am»."
+    },
+    {
+      "tokens": [
+        "I",
+        "agree",
+        "with",
+        "you."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "Explain",
+        "me",
+        "the",
+        "problem."
+      ],
+      "wrongIndex": 1,
+      "fix": "to me",
+      "ruleRu": "«Explain to me» или «explain the problem to me».",
+      "correct": "Explain the problem to me."
+    },
+    {
+      "tokens": [
+        "Can",
+        "you",
+        "explain",
+        "the",
+        "problem",
+        "to",
+        "me?"
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "have",
+        "a",
+        "good",
+        "mood",
+        "today."
+      ],
+      "wrongIndex": 1,
+      "fix": "am in",
+      "ruleRu": "«I am in a good mood», не «have a mood».",
+      "correct": "I am in a good mood today."
+    },
+    {
+      "tokens": [
+        "How",
+        "is",
+        "it",
+        "called",
+        "in",
+        "English?"
+      ],
+      "wrongIndex": 0,
+      "fix": "What",
+      "ruleRu": "«What is it called», не «how»."
+    },
+    {
+      "tokens": [
+        "What",
+        "is",
+        "it",
+        "called",
+        "in",
+        "English?"
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "will",
+        "go",
+        "to",
+        "the",
+        "nature",
+        "this",
+        "weekend."
+      ],
+      "wrongIndex": 5,
+      "fix": "countryside",
+      "ruleRu": "«На природу» это «to the countryside» или «go hiking», «the nature» не говорят."
+    },
+    {
+      "tokens": [
+        "We",
+        "went",
+        "hiking",
+        "near",
+        "Gabala."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "He",
+        "is",
+        "a",
+        "very",
+        "actual",
+        "developer."
+      ],
+      "wrongIndex": 4,
+      "fix": "relevant",
+      "ruleRu": "«Actual» значит «фактический». Актуальный это «relevant» или «up-to-date»."
+    },
+    {
+      "tokens": [
+        "This",
+        "article",
+        "is",
+        "still",
+        "relevant."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "have",
+        "big",
+        "experience",
+        "in",
+        "React."
+      ],
+      "wrongIndex": 2,
+      "fix": "a lot of",
+      "ruleRu": "«A lot of experience», опыт не бывает «big»."
+    },
+    {
+      "tokens": [
+        "I",
+        "have",
+        "a",
+        "lot",
+        "of",
+        "experience",
+        "in",
+        "React."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "Let's",
+        "meet",
+        "in",
+        "the",
+        "cabinet",
+        "at",
+        "three."
+      ],
+      "wrongIndex": 4,
+      "fix": "office",
+      "ruleRu": "Кабинет это «office», «cabinet» это шкаф."
+    },
+    {
+      "tokens": [
+        "I",
+        "bought",
+        "a",
+        "new",
+        "costume",
+        "for",
+        "the",
+        "interview."
+      ],
+      "wrongIndex": 4,
+      "fix": "suit",
+      "ruleRu": "Костюм деловой это «suit», «costume» карнавальный."
+    },
+    {
+      "tokens": [
+        "She",
+        "wore",
+        "a",
+        "suit",
+        "to",
+        "the",
+        "interview."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "learned",
+        "a",
+        "lot",
+        "of",
+        "new",
+        "informations."
+      ],
+      "wrongIndex": 6,
+      "fix": "information",
+      "ruleRu": "«Information» неисчисляемое, без -s."
+    },
+    {
+      "tokens": [
+        "Thanks",
+        "for",
+        "the",
+        "advices",
+        "about",
+        "the",
+        "visa."
+      ],
+      "wrongIndex": 3,
+      "fix": "advice",
+      "ruleRu": "«Advice» без -s."
+    },
+    {
+      "tokens": [
+        "Thanks",
+        "for",
+        "the",
+        "advice",
+        "about",
+        "the",
+        "visa."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "He",
+        "works",
+        "as",
+        "a",
+        "programmist."
+      ],
+      "wrongIndex": 4,
+      "fix": "programmer",
+      "ruleRu": "«Programmer» или «developer», не «programmist»."
+    },
+    {
+      "tokens": [
+        "She",
+        "is",
+        "a",
+        "senior",
+        "developer."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "Write",
+        "me",
+        "when",
+        "you",
+        "arrive."
+      ],
+      "wrongIndex": 0,
+      "fix": "Text",
+      "ruleRu": "Сообщение это «text me» или «message me», «write me» звучит странно."
+    },
+    {
+      "tokens": [
+        "Text",
+        "me",
+        "when",
+        "you",
+        "arrive."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "am",
+        "boring",
+        "at",
+        "this",
+        "meeting."
+      ],
+      "wrongIndex": 2,
+      "fix": "bored",
+      "ruleRu": "«Bored» мне скучно, «boring» я скучный."
+    },
+    {
+      "tokens": [
+        "This",
+        "meeting",
+        "is",
+        "boring."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Встреча скучная «boring», верно."
+    }
+  ]
+}

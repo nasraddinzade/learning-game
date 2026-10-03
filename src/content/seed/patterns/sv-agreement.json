@@ -1,0 +1,538 @@
+{
+  "id": "sv-agreement",
+  "title": "Согласование: he works, not he work",
+  "explainRu": "В Present Simple с he, she, it и одним человеком или вещью у глагола есть -s: «he works», «the app crashes», «she doesn't» (не «don't»). С I, you, we, they окончания нет.",
+  "exercises": [
+    {
+      "tokens": [
+        "He",
+        "work",
+        "at",
+        "a",
+        "startup."
+      ],
+      "wrongIndex": 1,
+      "fix": "works",
+      "ruleRu": "С «he» нужен -s: «he works»."
+    },
+    {
+      "tokens": [
+        "She",
+        "works",
+        "from",
+        "home",
+        "on",
+        "Fridays."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«She works», верно."
+    },
+    {
+      "tokens": [
+        "The",
+        "app",
+        "crash",
+        "on",
+        "old",
+        "phones."
+      ],
+      "wrongIndex": 2,
+      "fix": "crashes",
+      "ruleRu": "«The app» это «it»: «the app crashes»."
+    },
+    {
+      "tokens": [
+        "My",
+        "friend",
+        "live",
+        "in",
+        "Berlin",
+        "now."
+      ],
+      "wrongIndex": 2,
+      "fix": "lives",
+      "ruleRu": "Один друг = «he»: «my friend lives»."
+    },
+    {
+      "tokens": [
+        "They",
+        "live",
+        "near",
+        "the",
+        "metro."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«They» без -s, верно."
+    },
+    {
+      "tokens": [
+        "He",
+        "don't",
+        "like",
+        "meetings."
+      ],
+      "wrongIndex": 1,
+      "fix": "doesn't",
+      "ruleRu": "С «he» отрицание «doesn't»."
+    },
+    {
+      "tokens": [
+        "She",
+        "doesn't",
+        "drink",
+        "coffee",
+        "after",
+        "six."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Doesn't» + базовый глагол, верно."
+    },
+    {
+      "tokens": [
+        "She",
+        "doesn't",
+        "drinks",
+        "coffee",
+        "after",
+        "six."
+      ],
+      "wrongIndex": 2,
+      "fix": "drink",
+      "ruleRu": "После «doesn't» глагол без -s."
+    },
+    {
+      "tokens": [
+        "The",
+        "test",
+        "fail",
+        "only",
+        "on",
+        "CI."
+      ],
+      "wrongIndex": 2,
+      "fix": "fails",
+      "ruleRu": "«The test fails»."
+    },
+    {
+      "tokens": [
+        "The",
+        "tests",
+        "fail",
+        "only",
+        "on",
+        "CI."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Множественное число «tests» без -s у глагола, верно."
+    },
+    {
+      "tokens": [
+        "Does",
+        "he",
+        "works",
+        "here?"
+      ],
+      "wrongIndex": 2,
+      "fix": "work",
+      "ruleRu": "После «does» базовая форма: «does he work»."
+    },
+    {
+      "tokens": [
+        "Does",
+        "she",
+        "know",
+        "about",
+        "the",
+        "deadline?"
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "My",
+        "landlord",
+        "always",
+        "raise",
+        "the",
+        "rent."
+      ],
+      "wrongIndex": 3,
+      "fix": "raises",
+      "ruleRu": "«My landlord raises»."
+    },
+    {
+      "tokens": [
+        "Everyone",
+        "want",
+        "to",
+        "work",
+        "remotely."
+      ],
+      "wrongIndex": 1,
+      "fix": "wants",
+      "ruleRu": "«Everyone» ведёт себя как единственное число: «everyone wants»."
+    },
+    {
+      "tokens": [
+        "Everyone",
+        "wants",
+        "a",
+        "window",
+        "seat."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "The",
+        "team",
+        "meets",
+        "every",
+        "morning."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«The team» как единое целое с -s, верно."
+    },
+    {
+      "tokens": [
+        "It",
+        "take",
+        "two",
+        "hours",
+        "to",
+        "build."
+      ],
+      "wrongIndex": 1,
+      "fix": "takes",
+      "ruleRu": "«It takes»."
+    },
+    {
+      "tokens": [
+        "It",
+        "takes",
+        "two",
+        "hours",
+        "to",
+        "build."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "He",
+        "have",
+        "two",
+        "monitors."
+      ],
+      "wrongIndex": 1,
+      "fix": "has",
+      "ruleRu": "«Have» с «he» превращается в «has»."
+    },
+    {
+      "tokens": [
+        "She",
+        "has",
+        "a",
+        "meeting",
+        "at",
+        "noon."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "works",
+        "on",
+        "the",
+        "frontend."
+      ],
+      "wrongIndex": 1,
+      "fix": "work",
+      "ruleRu": "С «I» без -s: «I work»."
+    },
+    {
+      "tokens": [
+        "You",
+        "knows",
+        "the",
+        "codebase",
+        "better."
+      ],
+      "wrongIndex": 1,
+      "fix": "know",
+      "ruleRu": "С «you» без -s."
+    },
+    {
+      "tokens": [
+        "The",
+        "café",
+        "close",
+        "at",
+        "nine."
+      ],
+      "wrongIndex": 2,
+      "fix": "closes",
+      "ruleRu": "«The café closes»."
+    },
+    {
+      "tokens": [
+        "The",
+        "cafés",
+        "close",
+        "early",
+        "on",
+        "Sundays."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Множественное число, верно."
+    },
+    {
+      "tokens": [
+        "My",
+        "brother",
+        "play",
+        "guitar."
+      ],
+      "wrongIndex": 2,
+      "fix": "plays",
+      "ruleRu": "«My brother plays»."
+    },
+    {
+      "tokens": [
+        "He",
+        "goes",
+        "to",
+        "the",
+        "gym",
+        "on",
+        "Mondays."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Go» → «goes», верно."
+    },
+    {
+      "tokens": [
+        "He",
+        "go",
+        "to",
+        "the",
+        "gym",
+        "on",
+        "Mondays."
+      ],
+      "wrongIndex": 1,
+      "fix": "goes",
+      "ruleRu": "«He goes»."
+    },
+    {
+      "tokens": [
+        "This",
+        "library",
+        "don't",
+        "support",
+        "SSR."
+      ],
+      "wrongIndex": 2,
+      "fix": "doesn't",
+      "ruleRu": "«This library doesn't support»."
+    },
+    {
+      "tokens": [
+        "These",
+        "libraries",
+        "don't",
+        "support",
+        "SSR."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Множественное число с «don't», верно."
+    },
+    {
+      "tokens": [
+        "Nobody",
+        "like",
+        "Friday",
+        "deploys."
+      ],
+      "wrongIndex": 1,
+      "fix": "likes",
+      "ruleRu": "«Nobody» единственное число: «nobody likes»."
+    },
+    {
+      "tokens": [
+        "Each",
+        "developer",
+        "has",
+        "a",
+        "laptop."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Each» + единственное число, верно."
+    },
+    {
+      "tokens": [
+        "The",
+        "weather",
+        "change",
+        "fast",
+        "in",
+        "Baku."
+      ],
+      "wrongIndex": 2,
+      "fix": "changes",
+      "ruleRu": "«The weather changes»."
+    },
+    {
+      "tokens": [
+        "She",
+        "say",
+        "the",
+        "deadline",
+        "is",
+        "Friday."
+      ],
+      "wrongIndex": 1,
+      "fix": "says",
+      "ruleRu": "«She says»."
+    },
+    {
+      "tokens": [
+        "He",
+        "says",
+        "he's",
+        "on",
+        "his",
+        "way."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "The",
+        "news",
+        "is",
+        "not",
+        "good."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«News» единственное число: «the news is»."
+    },
+    {
+      "tokens": [
+        "The",
+        "news",
+        "are",
+        "not",
+        "good."
+      ],
+      "wrongIndex": 2,
+      "fix": "is",
+      "ruleRu": "«News» неисчисляемое, «the news is»."
+    },
+    {
+      "tokens": [
+        "My",
+        "phone",
+        "die",
+        "by",
+        "noon",
+        "every",
+        "day."
+      ],
+      "wrongIndex": 2,
+      "fix": "dies",
+      "ruleRu": "«My phone dies»."
+    },
+    {
+      "tokens": [
+        "Our",
+        "manager",
+        "doesn't",
+        "read",
+        "Slack",
+        "after",
+        "seven."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Верно."
+    },
+    {
+      "tokens": [
+        "Someone",
+        "always",
+        "forget",
+        "to",
+        "lock",
+        "the",
+        "door."
+      ],
+      "wrongIndex": 2,
+      "fix": "forgets",
+      "ruleRu": "«Someone forgets», единственное число."
+    },
+    {
+      "tokens": [
+        "Water",
+        "boil",
+        "faster",
+        "at",
+        "altitude."
+      ],
+      "wrongIndex": 1,
+      "fix": "boils",
+      "ruleRu": "«Water boils»."
+    },
+    {
+      "tokens": [
+        "People",
+        "say",
+        "the",
+        "sea",
+        "is",
+        "cold",
+        "in",
+        "May."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«People» множественное число, без -s, верно."
+    },
+    {
+      "tokens": [
+        "He",
+        "and",
+        "I",
+        "work",
+        "on",
+        "the",
+        "same",
+        "team."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«He and I» = «we», без -s, верно."
+    }
+  ]
+}

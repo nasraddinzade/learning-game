@@ -1,5 +1,5 @@
-// Seed content: lands with items, and patterns with trap exercises (SPEC §9.1).
-import type { Item, ItemType, PatternDef } from '@/types'
+// Seed content: lands with items (SPEC §9.1). Heavy, so it is imported lazily by ensureSeed.
+import type { Item, ItemType } from '@/types'
 import smalltalk from './lands/smalltalk.json'
 import opinion from './lands/opinion.json'
 import daily from './lands/daily.json'
@@ -9,8 +9,15 @@ import work from './lands/work.json'
 import travel from './lands/travel.json'
 import phrasal from './lands/phrasal.json'
 import fillers from './lands/fillers.json'
-import articles from './patterns/articles.json'
-import habitPresentSimple from './patterns/habit-present-simple.json'
+import smalltalk2 from './lands/smalltalk-2.json'
+import opinion2 from './lands/opinion-2.json'
+import daily2 from './lands/daily-2.json'
+import emotions2 from './lands/emotions-2.json'
+import stories2 from './lands/stories-2.json'
+import work2 from './lands/work-2.json'
+import travel2 from './lands/travel-2.json'
+import phrasal2 from './lands/phrasal-2.json'
+import fillers2 from './lands/fillers-2.json'
 
 interface SeedItemJson {
   id: string
@@ -35,7 +42,27 @@ interface LandJson extends LandDef {
   items: SeedItemJson[]
 }
 
-const LAND_JSON: LandJson[] = [smalltalk, opinion, daily, emotions, stories, work, travel, phrasal, fillers]
+// Several files may share a land id; items are concatenated in this order.
+const LAND_JSON: LandJson[] = [
+  smalltalk,
+  opinion,
+  daily,
+  emotions,
+  stories,
+  work,
+  travel,
+  phrasal,
+  fillers,
+  smalltalk2,
+  opinion2,
+  daily2,
+  emotions2,
+  stories2,
+  work2,
+  travel2,
+  phrasal2,
+  fillers2,
+]
 
 function toItemType(t: string | undefined): ItemType {
   return t === 'word' ? 'word' : 'phrase'
@@ -60,9 +87,11 @@ function toItem(raw: SeedItemJson, land: string, order: number): Item {
   }
 }
 
-export const lands: LandDef[] = LAND_JSON.map(({ id, name, emoji }) => ({ id, name, emoji }))
+export const lands: LandDef[] = LAND_JSON.filter((land, i) => LAND_JSON.findIndex((l) => l.id === land.id) === i).map(
+  ({ id, name, emoji }) => ({ id, name, emoji }),
+)
 
 let order = 0
 export const seedItems: Item[] = LAND_JSON.flatMap((land) => land.items.map((raw) => toItem(raw, land.id, order++)))
 
-export const seedPatterns: PatternDef[] = [articles, habitPresentSimple] as PatternDef[]
+export { seedPatterns } from '../patterns'

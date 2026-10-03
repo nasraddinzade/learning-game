@@ -1,0 +1,339 @@
+{
+  "id": "daily",
+  "name": "Быт и повседневность",
+  "emoji": "☕",
+  "items": [
+    {
+      "id": "daily.i-m-off",
+      "en": "I'm off",
+      "ru": "Я ухожу (пошёл)",
+      "accept": ["i'm off", "i am off", "i'm off to"],
+      "contexts": [
+        { "en": "I'm off, see you tomorrow.", "ru": "Я пошёл, до завтра." },
+        { "en": "I'm off to the gym, back in an hour.", "ru": "Я в зал, вернусь через час." },
+        { "en": "She's off to Tbilisi for the weekend.", "ru": "Она уехала в Тбилиси на выходные." }
+      ],
+      "promptsRu": ["Скажи коллегам, что уходишь.", "Скажи, что идёшь в зал и вернёшься через час."],
+      "questionEn": "Use 'I'm off' when leaving.",
+      "falseMeanings": ["Я выключен", "У меня выходной"],
+      "noteRu": "«I'm off to X» значит «иду в X». «I'm off today» уже значит «у меня выходной»."
+    },
+    {
+      "id": "daily.day-off",
+      "en": "a day off",
+      "ru": "выходной день",
+      "accept": ["a day off", "day off", "the day off"],
+      "contexts": [
+        { "en": "I'm taking a day off on Friday.", "ru": "Я беру выходной в пятницу." },
+        { "en": "It's my day off, don't call me about the build.", "ru": "У меня выходной, не звони мне по поводу сборки." },
+        { "en": "He asked for a day off to deal with the visa.", "ru": "Он попросил выходной, чтобы разобраться с визой." }
+      ],
+      "promptsRu": ["Скажи команде, что берёшь выходной в пятницу.", "Попроси выходной ради визы."],
+      "questionEn": "Use 'a day off' to ask for or describe free time.",
+      "falseMeanings": ["день отключения", "выходной из игры"],
+      "noteRu": "«Take a day off» взять выходной. «Off» здесь «не на работе»."
+    },
+    {
+      "id": "daily.grab-a-bite",
+      "en": "grab a bite",
+      "ru": "перекусить (быстро поесть)",
+      "accept": ["grab a bite", "grab a bite to eat", "grab something to eat"],
+      "contexts": [
+        { "en": "Let's grab a bite before the movie.", "ru": "Давай перекусим перед фильмом." },
+        { "en": "I need to grab a bite, I skipped lunch.", "ru": "Мне нужно перекусить, я пропустил обед." },
+        { "en": "We grabbed a bite at the shawarma place.", "ru": "Мы перекусили в шаурмичной." }
+      ],
+      "promptsRu": ["Предложи другу перекусить перед кино.", "Скажи, что пропустил обед и нужно поесть."],
+      "questionEn": "Use 'grab a bite' to suggest food.",
+      "falseMeanings": ["укусить", "взять кусок"],
+      "noteRu": "Быстрый перекус, не ужин в ресторане."
+    },
+    {
+      "id": "daily.i-overslept",
+      "en": "I overslept",
+      "ru": "Я проспал",
+      "accept": ["i overslept"],
+      "contexts": [
+        { "en": "Sorry, I overslept, my alarm didn't go off.", "ru": "Извини, я проспал, будильник не сработал." },
+        { "en": "I overslept and missed the standup.", "ru": "Я проспал и пропустил стендап." },
+        { "en": "He overslept again after the late game night.", "ru": "Он снова проспал после ночных игр." }
+      ],
+      "promptsRu": ["Извинись за опоздание: проспал, будильник не сработал.", "Скажи, что проспал и пропустил стендап."],
+      "questionEn": "Use 'I overslept' to explain being late.",
+      "falseMeanings": ["я переспал", "я спал слишком долго специально"],
+      "noteRu": "Случайно проспал. Специально поспать подольше это «sleep in»."
+    },
+    {
+      "id": "daily.alarm-go-off",
+      "en": "the alarm went off",
+      "ru": "будильник зазвонил",
+      "accept": ["the alarm went off", "my alarm went off", "alarm went off"],
+      "contexts": [
+        { "en": "The alarm went off at six and I ignored it.", "ru": "Будильник зазвонил в шесть, и я его проигнорировал." },
+        { "en": "My alarm went off during the meeting, embarrassing.", "ru": "Мой будильник зазвонил во время встречи, неловко." },
+        { "en": "The fire alarm went off in the office again.", "ru": "В офисе снова сработала пожарная сигнализация." }
+      ],
+      "promptsRu": ["Расскажи, что будильник зазвонил в шесть, а ты его проигнорировал.", "Расскажи неловкий случай с будильником на встрече."],
+      "questionEn": "Use 'the alarm went off' in a morning story.",
+      "falseMeanings": ["будильник выключился", "будильник сломался"],
+      "noteRu": "«Go off» для будильника и сигнализации значит «сработать», а не «выключиться»."
+    },
+    {
+      "id": "daily.do-the-dishes",
+      "en": "do the dishes",
+      "ru": "мыть посуду",
+      "accept": ["do the dishes", "wash the dishes"],
+      "contexts": [
+        { "en": "I cook, you do the dishes. Deal?", "ru": "Я готовлю, ты моешь посуду. Договорились?" },
+        { "en": "I'll do the dishes after the call.", "ru": "Помою посуду после созвона." },
+        { "en": "Nobody wants to do the dishes after a party.", "ru": "Никто не хочет мыть посуду после вечеринки." }
+      ],
+      "promptsRu": ["Предложи сделку: ты готовишь, друг моет посуду.", "Скажи, что помоешь посуду после созвона."],
+      "questionEn": "Use 'do the dishes' to split chores.",
+      "falseMeanings": ["готовить блюда", "сервировать стол"],
+      "noteRu": "«Do the dishes», не «wash the plates». Так же: do the laundry."
+    },
+    {
+      "id": "daily.do-the-laundry",
+      "en": "do the laundry",
+      "ru": "стирать (заниматься стиркой)",
+      "accept": ["do the laundry", "do laundry"],
+      "contexts": [
+        { "en": "Sunday is when I do the laundry and clean.", "ru": "В воскресенье я стираю и убираюсь." },
+        { "en": "I forgot to do the laundry, no clean shirts.", "ru": "Я забыл постирать, нет чистых рубашек." },
+        { "en": "Can you do the laundry while I'm at the gym?", "ru": "Можешь запустить стирку, пока я в зале?" }
+      ],
+      "promptsRu": ["Скажи, что стираешь по воскресеньям.", "Попроси соседа запустить стирку."],
+      "questionEn": "Use 'do the laundry' in a routine.",
+      "falseMeanings": ["делать прачечную", "складывать вещи"],
+      "noteRu": "«Laundry» и грязное бельё, и процесс. Без артикля «do laundry» тоже нормально."
+    },
+    {
+      "id": "daily.it-s-on-me",
+      "en": "It's on me",
+      "ru": "Я угощаю (плачу)",
+      "accept": ["it's on me", "it is on me", "this one's on me"],
+      "contexts": [
+        { "en": "Put your wallet away, it's on me.", "ru": "Убери кошелёк, я угощаю." },
+        { "en": "Coffee's on me today, I got the bonus.", "ru": "Кофе сегодня за мой счёт, я получил бонус." },
+        { "en": "Dinner's on me, you helped me with the move.", "ru": "Ужин за мой счёт, ты помог мне с переездом." }
+      ],
+      "promptsRu": ["Скажи другу, что платишь за кофе.", "Угости ужином в благодарность за помощь."],
+      "questionEn": "Use 'it's on me' to pay for a friend.",
+      "falseMeanings": ["Это на мне (ответственность)", "Это моя вина"],
+      "noteRu": "Про оплату. «It's on me» как «моя вина» тоже бывает, но контекст ясен."
+    },
+    {
+      "id": "daily.i-m-broke",
+      "en": "I'm broke",
+      "ru": "Я на мели (без денег)",
+      "accept": ["i'm broke", "i am broke"],
+      "contexts": [
+        { "en": "I'm broke until payday, let's cook at home.", "ru": "Я на мели до зарплаты, давай готовить дома." },
+        { "en": "After the trip I'm completely broke.", "ru": "После поездки я совсем на мели." },
+        { "en": "He's always broke by the 20th.", "ru": "Он всегда на мели к двадцатому числу." }
+      ],
+      "promptsRu": ["Скажи, что на мели до зарплаты.", "Объясни, что после поездки без денег."],
+      "questionEn": "Use 'I'm broke' to refuse an expensive plan.",
+      "falseMeanings": ["Я сломан", "Я разорён навсегда"],
+      "noteRu": "Временно нет денег. «Broken» это сломанный, не путать."
+    },
+    {
+      "id": "daily.payday",
+      "type": "word",
+      "en": "payday",
+      "ru": "день зарплаты",
+      "accept": ["payday", "pay day"],
+      "contexts": [
+        { "en": "Payday is on the 5th, then we can book the flight.", "ru": "Зарплата пятого, тогда и забронируем рейс." },
+        { "en": "Everyone's in a good mood on payday.", "ru": "В день зарплаты у всех хорошее настроение." },
+        { "en": "I'll pay you back on payday.", "ru": "Верну тебе деньги в день зарплаты." }
+      ],
+      "promptsRu": ["Скажи, что забронируешь рейс после зарплаты.", "Пообещай вернуть деньги в день зарплаты."],
+      "questionEn": "Use 'payday' in a sentence about money.",
+      "falseMeanings": ["платный день", "день оплаты счетов"],
+      "noteRu": "Одно слово. «On payday» в день зарплаты."
+    },
+    {
+      "id": "daily.pay-back",
+      "en": "pay you back",
+      "ru": "вернуть тебе деньги",
+      "accept": ["pay you back", "pay back", "pay me back"],
+      "contexts": [
+        { "en": "I'll pay you back tomorrow, I promise.", "ru": "Верну тебе завтра, обещаю." },
+        { "en": "Did he ever pay you back for the tickets?", "ru": "Он вообще вернул тебе деньги за билеты?" },
+        { "en": "No rush, pay me back whenever.", "ru": "Не торопись, вернёшь когда сможешь." }
+      ],
+      "promptsRu": ["Пообещай вернуть деньги завтра.", "Скажи другу, что он может вернуть когда угодно."],
+      "questionEn": "Use 'pay you back' about a small loan.",
+      "falseMeanings": ["отплатить тебе (отомстить)", "заплатить тебе снова"],
+      "noteRu": "Про деньги. «Pay back» как месть тоже есть, но звучит иначе."
+    },
+    {
+      "id": "daily.the-wifi-is-down",
+      "en": "the Wi-Fi is down",
+      "ru": "вайфай не работает",
+      "accept": ["the wi-fi is down", "the wifi is down", "wifi is down", "the internet is down"],
+      "contexts": [
+        { "en": "The Wi-Fi is down again, I'll use my phone.", "ru": "Вайфай снова не работает, буду с телефона." },
+        { "en": "The Wi-Fi is down in the whole building.", "ru": "Вайфай не работает во всём здании." },
+        { "en": "If the Wi-Fi is down, the café is useless for work.", "ru": "Если вайфай не работает, кафе бесполезно для работы." }
+      ],
+      "promptsRu": ["Пожалуйся, что вайфай не работает.", "Скажи, что будешь с телефона, потому что интернет упал."],
+      "questionEn": "Use 'the Wi-Fi is down' to explain a connection problem.",
+      "falseMeanings": ["вайфай внизу", "вайфай слабый"],
+      "noteRu": "«Down» значит «не работает» для сети, сайта, сервера."
+    },
+    {
+      "id": "daily.charge-my-phone",
+      "en": "charge my phone",
+      "ru": "зарядить телефон",
+      "accept": ["charge my phone", "charge the phone", "charge your phone"],
+      "contexts": [
+        { "en": "Can I charge my phone here? It's at 3%.", "ru": "Можно здесь зарядить телефон? У меня 3%." },
+        { "en": "I forgot to charge my phone and it died on the way.", "ru": "Я забыл зарядить телефон, и он сел по дороге." },
+        { "en": "Charge your phone before the hike, there's no signal anyway.", "ru": "Заряди телефон перед походом, связи всё равно не будет." }
+      ],
+      "promptsRu": ["Спроси в кафе, можно ли зарядить телефон.", "Скажи, что забыл зарядить телефон и он сел."],
+      "questionEn": "Use 'charge my phone' when the battery is low.",
+      "falseMeanings": ["обвинить мой телефон", "выставить счёт за телефон"],
+      "noteRu": "Телефон «dies» когда садится: «my phone died»."
+    },
+    {
+      "id": "daily.my-phone-died",
+      "en": "my phone died",
+      "ru": "у меня сел телефон",
+      "accept": ["my phone died", "phone died", "my battery died"],
+      "contexts": [
+        { "en": "Sorry I didn't answer, my phone died.", "ru": "Извини, что не ответил, у меня сел телефон." },
+        { "en": "My phone died halfway through the map.", "ru": "Телефон сел на полпути по карте." },
+        { "en": "If my phone dies, meet me at the entrance at eight.", "ru": "Если у меня сядет телефон, встретимся у входа в восемь." }
+      ],
+      "promptsRu": ["Объясни, почему не отвечал: сел телефон.", "Договорись о месте встречи на случай, если телефон сядет."],
+      "questionEn": "Use 'my phone died' as an excuse.",
+      "falseMeanings": ["мой телефон сломался", "мой телефон умер навсегда"],
+      "noteRu": "Про батарею. Сломался это «broke»."
+    },
+    {
+      "id": "daily.i-m-starving",
+      "en": "I'm starving",
+      "ru": "Я умираю с голоду",
+      "accept": ["i'm starving", "i am starving"],
+      "contexts": [
+        { "en": "I'm starving, let's order now.", "ru": "Умираю с голоду, давай закажем сейчас." },
+        { "en": "After the gym I'm always starving.", "ru": "После зала я всегда умираю с голоду." },
+        { "en": "We were starving by the time the food came.", "ru": "К моменту, когда принесли еду, мы умирали с голоду." }
+      ],
+      "promptsRu": ["Скажи, что очень голоден, и предложи заказать еду.", "Скажи, что после зала всегда ужасно хочешь есть."],
+      "questionEn": "Use 'I'm starving' before a meal.",
+      "falseMeanings": ["Я голодаю (диета)", "Я смотрю на звёзды"],
+      "noteRu": "Преувеличение, как в русском. Нормально в любой компании."
+    },
+    {
+      "id": "daily.leftovers",
+      "type": "word",
+      "en": "leftovers",
+      "ru": "остатки еды (вчерашнее)",
+      "accept": ["leftovers", "left-overs"],
+      "contexts": [
+        { "en": "There are leftovers in the fridge, help yourself.", "ru": "В холодильнике есть остатки, угощайся." },
+        { "en": "I had leftovers for lunch, saved some money.", "ru": "Я ел вчерашнее на обед, сэкономил денег." },
+        { "en": "Leftovers from the party lasted three days.", "ru": "Остатков с вечеринки хватило на три дня." }
+      ],
+      "promptsRu": ["Предложи гостю остатки из холодильника.", "Скажи, что обедал вчерашним."],
+      "questionEn": "Use 'leftovers' in a sentence about food.",
+      "falseMeanings": ["оставшиеся люди", "то, что осталось от зарплаты"],
+      "noteRu": "Всегда во множественном числе."
+    },
+    {
+      "id": "daily.help-yourself",
+      "en": "Help yourself",
+      "ru": "Угощайся (бери сам)",
+      "accept": ["help yourself", "help yourself to"],
+      "contexts": [
+        { "en": "Help yourself to coffee, the machine is over there.", "ru": "Угощайся кофе, машина вон там." },
+        { "en": "Help yourself, there's plenty.", "ru": "Угощайся, тут полно." },
+        { "en": "He said help yourself and went back to his laptop.", "ru": "Он сказал «угощайся» и вернулся к ноутбуку." }
+      ],
+      "promptsRu": ["Предложи гостю взять кофе самому.", "Скажи, что еды много, пусть берёт."],
+      "questionEn": "Use 'help yourself' as a host.",
+      "falseMeanings": ["Помоги себе сам", "Спасайся"],
+      "noteRu": "Гостеприимное «бери сам». «Help yourself to X» с конкретной едой."
+    },
+    {
+      "id": "daily.i-m-running-out-of-time",
+      "en": "I'm running out of time",
+      "ru": "У меня заканчивается время",
+      "accept": ["i'm running out of time", "i am running out of time", "running out of time"],
+      "contexts": [
+        { "en": "I'm running out of time, the demo is in ten minutes.", "ru": "У меня заканчивается время, демо через десять минут." },
+        { "en": "We're running out of time to book the cheap tickets.", "ru": "У нас заканчивается время на дешёвые билеты." },
+        { "en": "Running out of time, I'll finish the tests tomorrow.", "ru": "Время кончается, тесты допишу завтра." }
+      ],
+      "promptsRu": ["Скажи, что время кончается, демо через десять минут.", "Предупреди, что дешёвые билеты скоро закончатся."],
+      "questionEn": "Use 'running out of time' under pressure.",
+      "falseMeanings": ["Я бегу не вовремя", "Я выбегаю на время"],
+      "noteRu": "Та же конструкция, что «run out of coffee»."
+    },
+    {
+      "id": "daily.i-ll-be-right-back",
+      "en": "I'll be right back",
+      "ru": "Я сейчас вернусь",
+      "accept": ["i'll be right back", "i will be right back", "be right back", "brb"],
+      "contexts": [
+        { "en": "I'll be right back, someone's at the door.", "ru": "Сейчас вернусь, кто-то в дверь." },
+        { "en": "Be right back, grabbing water.", "ru": "Сейчас вернусь, возьму воды." },
+        { "en": "He said he'd be right back and vanished for an hour.", "ru": "Он сказал, что сейчас вернётся, и пропал на час." }
+      ],
+      "promptsRu": ["Отойди от созвона на минуту.", "Скажи в чате, что сейчас вернёшься."],
+      "questionEn": "Use 'I'll be right back' during a call.",
+      "falseMeanings": ["Я буду прямо сзади", "Я вернусь направо"],
+      "noteRu": "В чате сокращается до «brb»."
+    },
+    {
+      "id": "daily.what-time-works",
+      "en": "What time works for you?",
+      "ru": "Во сколько тебе удобно?",
+      "accept": ["what time works for you", "what time works"],
+      "contexts": [
+        { "en": "Coffee on Thursday? What time works for you?", "ru": "Кофе в четверг? Во сколько тебе удобно?" },
+        { "en": "What time works for the call, morning or after lunch?", "ru": "Во сколько удобно созвониться, утром или после обеда?" },
+        { "en": "Any time after six works for me.", "ru": "Мне удобно в любое время после шести." }
+      ],
+      "promptsRu": ["Договорись о встрече: спроси, во сколько удобно.", "Ответь, что тебе удобно после шести."],
+      "questionEn": "Use 'what time works for you' to schedule.",
+      "falseMeanings": ["Какое время работает?", "Во сколько ты работаешь?"],
+      "noteRu": "«Works for me» значит «мне подходит». Очень частое в переписке."
+    },
+    {
+      "id": "daily.i-m-on-a-diet",
+      "en": "I'm cutting down on",
+      "ru": "Я сокращаю (потребление чего-то)",
+      "accept": ["i'm cutting down on", "i am cutting down on", "cutting down on"],
+      "contexts": [
+        { "en": "I'm cutting down on coffee, two cups max.", "ru": "Я сокращаю кофе, максимум две чашки." },
+        { "en": "I'm cutting down on sugar before summer.", "ru": "Я сокращаю сахар перед летом." },
+        { "en": "He's cutting down on screen time, good luck with that.", "ru": "Он сокращает экранное время, удачи ему." }
+      ],
+      "promptsRu": ["Скажи, что сокращаешь кофе до двух чашек.", "Скажи, что сокращаешь сахар перед летом."],
+      "questionEn": "Use 'cutting down on' about a habit.",
+      "falseMeanings": ["я вырезаю", "я падаю вниз"],
+      "noteRu": "Сократить, а не бросить совсем. Бросить это «cut out» или «give up»."
+    },
+    {
+      "id": "daily.it-slipped-my-mind",
+      "en": "It slipped my mind",
+      "ru": "Вылетело из головы",
+      "accept": ["it slipped my mind", "slipped my mind"],
+      "contexts": [
+        { "en": "Sorry, it slipped my mind, I'll send it now.", "ru": "Извини, вылетело из головы, отправлю сейчас." },
+        { "en": "Her birthday completely slipped my mind.", "ru": "Её день рождения совершенно вылетел у меня из головы." },
+        { "en": "It slipped my mind that the gym closes early on Sundays.", "ru": "Вылетело из головы, что зал по воскресеньям закрывается рано." }
+      ],
+      "promptsRu": ["Извинись, что забыл отправить файл.", "Признайся, что забыл про день рождения."],
+      "questionEn": "Use 'it slipped my mind' to apologize for forgetting.",
+      "falseMeanings": ["Это проскользнуло в моём уме", "Я поскользнулся"],
+      "noteRu": "Мягче, чем «I forgot». Подлежащее то, что забыл."
+    }
+  ]
+}

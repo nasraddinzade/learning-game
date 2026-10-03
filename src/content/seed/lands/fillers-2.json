@@ -1,0 +1,369 @@
+{
+  "id": "fillers",
+  "name": "Связки и заполнители пауз",
+  "emoji": "🧩",
+  "items": [
+    {
+      "id": "fillers.basically",
+      "en": "Basically,",
+      "ru": "По сути, / В общем,",
+      "accept": ["basically", "basically,"],
+      "contexts": [
+        { "en": "Basically, the cache was never invalidated.", "ru": "По сути, кэш никогда не сбрасывался." },
+        { "en": "Basically, we need more time.", "ru": "В общем, нам нужно больше времени." },
+        { "en": "It's basically a to-do app with extra steps.", "ru": "Это, по сути, список дел с лишними шагами." }
+      ],
+      "promptsRu": ["Объясни суть проблемы с кэшем одной фразой.", "Подведи итог: в общем, нужно больше времени."],
+      "questionEn": "Use 'basically' to simplify an explanation.",
+      "falseMeanings": ["базово (в основании)", "в базе данных"],
+      "noteRu": "Упрощает. Не злоупотреблять, иначе звучит как слово-паразит."
+    },
+    {
+      "id": "fillers.the-point-is",
+      "en": "The point is",
+      "ru": "Суть в том, что",
+      "accept": ["the point is", "the point is that", "my point is"],
+      "contexts": [
+        { "en": "The point is, we can't test on real devices.", "ru": "Суть в том, что мы не можем тестировать на реальных устройствах." },
+        { "en": "The point is that the price is above market.", "ru": "Суть в том, что цена выше рынка." },
+        { "en": "My point is, the ending was earned.", "ru": "Я о том, что концовка была заслуженной." }
+      ],
+      "promptsRu": ["Вырази суть: нельзя тестировать на реальных устройствах.", "Вернись к своей мысли: я о том, что концовка заслуженная."],
+      "questionEn": "Use 'the point is' to get to the main idea.",
+      "falseMeanings": ["Точка здесь", "Очко в том"],
+      "noteRu": "Возвращает к главному после отступления."
+    },
+    {
+      "id": "fillers.at-the-end-of-the-day",
+      "en": "At the end of the day",
+      "ru": "В конечном счёте",
+      "accept": ["at the end of the day"],
+      "contexts": [
+        { "en": "At the end of the day, users don't care about the framework.", "ru": "В конечном счёте пользователям всё равно, какой фреймворк." },
+        { "en": "At the end of the day, it's your decision.", "ru": "В конечном счёте, решение за тобой." },
+        { "en": "At the end of the day, we shipped and it works.", "ru": "В конечном счёте мы выкатили, и оно работает." }
+      ],
+      "promptsRu": ["Подведи итог спора о фреймворке.", "Отдай решение собеседнику: в конечном счёте, решать тебе."],
+      "questionEn": "Use 'at the end of the day' to conclude.",
+      "falseMeanings": ["вечером", "в конце рабочего дня"],
+      "noteRu": "Не про время суток. Клише, но живое."
+    },
+    {
+      "id": "fillers.i-guess",
+      "en": "I guess",
+      "ru": "Наверное / Пожалуй",
+      "accept": ["i guess", "i guess so"],
+      "contexts": [
+        { "en": "I guess we could try the other library.", "ru": "Пожалуй, можно попробовать другую библиотеку." },
+        { "en": "Are you coming? — I guess so, if it's not too late.", "ru": "Ты идёшь? — Наверное, если не слишком поздно." },
+        { "en": "I guess the landlord won't lower it.", "ru": "Наверное, арендодатель не снизит цену." }
+      ],
+      "promptsRu": ["Согласись неуверенно попробовать другую библиотеку.", "Ответь «наверное» на приглашение."],
+      "questionEn": "Use 'I guess' for a tentative yes.",
+      "falseMeanings": ["Я угадываю", "Я догадался"],
+      "noteRu": "Мягкое и чуть неуверенное. Американское."
+    },
+    {
+      "id": "fillers.i-suppose",
+      "en": "I suppose",
+      "ru": "Полагаю / Пожалуй",
+      "accept": ["i suppose", "i suppose so"],
+      "contexts": [
+        { "en": "I suppose we could meet halfway on the price.", "ru": "Полагаю, можно сойтись на середине по цене." },
+        { "en": "I suppose so, but let me check the calendar.", "ru": "Пожалуй, но дай проверю календарь." },
+        { "en": "I suppose the tests can wait until Monday.", "ru": "Полагаю, тесты могут подождать до понедельника." }
+      ],
+      "promptsRu": ["Предложи сойтись на середине по цене.", "Согласись с оговоркой: пожалуй, но проверю календарь."],
+      "questionEn": "Use 'I suppose' to agree reluctantly.",
+      "falseMeanings": ["Я предполагаю (научно)", "Я поддерживаю"],
+      "noteRu": "Британский родственник «I guess»."
+    },
+    {
+      "id": "fillers.how-do-i-put-it",
+      "en": "How do I put it",
+      "ru": "Как бы это сказать",
+      "accept": ["how do i put it", "how should i put it", "how can i put it"],
+      "contexts": [
+        { "en": "The code is, how do I put it, creative.", "ru": "Код, как бы это сказать, творческий." },
+        { "en": "How do I put it… the ending was bold.", "ru": "Как бы это сказать… концовка была смелой." },
+        { "en": "He's, how should I put it, not a morning person.", "ru": "Он, как бы это сказать, не жаворонок." }
+      ],
+      "promptsRu": ["Опиши странный код дипломатично.", "Намекни, что коллега не жаворонок."],
+      "questionEn": "Use 'how do I put it' before a delicate phrase.",
+      "falseMeanings": ["Куда мне это положить", "Как мне это поставить"],
+      "noteRu": "Пауза перед деликатной формулировкой. «Put» здесь «сформулировать»."
+    },
+    {
+      "id": "fillers.put-it-this-way",
+      "en": "Let me put it this way",
+      "ru": "Скажем так",
+      "accept": ["let me put it this way", "put it this way", "let's put it this way"],
+      "contexts": [
+        { "en": "Let me put it this way: the demo is not ready.", "ru": "Скажем так: демо не готово." },
+        { "en": "Put it this way, I wouldn't rent there again.", "ru": "Скажем так, я бы там больше не снимал." },
+        { "en": "Let's put it this way, the show has a slow start.", "ru": "Скажем так, у сериала медленное начало." }
+      ],
+      "promptsRu": ["Скажи дипломатично, что демо не готово.", "Намекни, что не стал бы снимать там снова."],
+      "questionEn": "Use 'let me put it this way' before a rephrase.",
+      "falseMeanings": ["Позволь мне положить это сюда", "Дай поставлю так"],
+      "noteRu": "Подготовка к неприятной, но честной формулировке."
+    },
+    {
+      "id": "fillers.where-was-i",
+      "en": "Where was I?",
+      "ru": "На чём я остановился?",
+      "accept": ["where was i", "where was i?"],
+      "contexts": [
+        { "en": "Sorry, where was I? Right, the deploy.", "ru": "Извини, на чём я остановился? Точно, деплой." },
+        { "en": "Where was I… oh yes, the landlord called.", "ru": "На чём я остановился… а, да, звонил арендодатель." },
+        { "en": "After the interruption he asked where was I.", "ru": "После того как его перебили, он спросил, на чём остановился." }
+      ],
+      "promptsRu": ["Вернись к рассказу после отвлечения.", "Спроси себя вслух, на чём остановился."],
+      "questionEn": "Use 'where was I' to resume a story.",
+      "falseMeanings": ["Где я был?", "Где я нахожусь?"],
+      "noteRu": "Про нить разговора, не про место."
+    },
+    {
+      "id": "fillers.if-you-ask-me",
+      "en": "If you ask me",
+      "ru": "Если хочешь знать моё мнение",
+      "accept": ["if you ask me"],
+      "contexts": [
+        { "en": "If you ask me, the old logo was better.", "ru": "Если хочешь знать моё мнение, старый логотип был лучше." },
+        { "en": "If you ask me, two monitors are enough.", "ru": "По-моему, двух мониторов достаточно." },
+        { "en": "If you ask me, he should take the offer.", "ru": "Если спросишь меня, ему стоит принять оффер." }
+      ],
+      "promptsRu": ["Выскажи мнение о логотипе.", "Посоветуй другу принять оффер, оговорившись, что это твоё мнение."],
+      "questionEn": "Use 'if you ask me' to volunteer an opinion.",
+      "falseMeanings": ["Если ты меня спросишь (условие)", "Если попросишь меня"],
+      "noteRu": "Никто не спрашивал, но мнение будет. Дружелюбно."
+    },
+    {
+      "id": "fillers.it-s-not-that",
+      "en": "It's not that",
+      "ru": "Не то чтобы",
+      "accept": ["it's not that", "it is not that", "not that"],
+      "contexts": [
+        { "en": "It's not that I don't like the city, I just miss home.", "ru": "Не то чтобы мне не нравился город, я просто скучаю по дому." },
+        { "en": "It's not that the code is bad, it's just undocumented.", "ru": "Не то чтобы код плохой, он просто без документации." },
+        { "en": "Not that it matters, but I was right.", "ru": "Не то чтобы это важно, но я был прав." }
+      ],
+      "promptsRu": ["Смягчи: не то чтобы город не нравится, просто скучаешь.", "Смягчи критику кода."],
+      "questionEn": "Use 'it's not that' to soften a complaint.",
+      "falseMeanings": ["Это не то", "Это не так"],
+      "noteRu": "Обычно продолжается «it's just…»."
+    },
+    {
+      "id": "fillers.the-thing-about",
+      "en": "The thing about",
+      "ru": "Что касается (особенность чего-то)",
+      "accept": ["the thing about", "the thing about x is"],
+      "contexts": [
+        { "en": "The thing about remote work is you never fully log off.", "ru": "Особенность удалёнки в том, что ты никогда до конца не отключаешься." },
+        { "en": "The thing about Baku wind is it comes from nowhere.", "ru": "Особенность бакинского ветра в том, что он берётся ниоткуда." },
+        { "en": "The thing about this library is the docs are great.", "ru": "Особенность этой библиотеки в том, что документация отличная." }
+      ],
+      "promptsRu": ["Опиши особенность удалёнки.", "Опиши особенность бакинского ветра."],
+      "questionEn": "Use 'the thing about' to introduce a point.",
+      "falseMeanings": ["Вещь про", "Штука о"],
+      "noteRu": "«The thing about X is (that)…»."
+    },
+    {
+      "id": "fillers.i-mean",
+      "en": "I mean",
+      "ru": "В смысле / То есть",
+      "accept": ["i mean", "i mean,"],
+      "contexts": [
+        { "en": "It's fine. I mean, it works, but it's slow.", "ru": "Нормально. В смысле, работает, но медленно." },
+        { "en": "I mean, who deploys on Friday?", "ru": "То есть, ну кто деплоит в пятницу?" },
+        { "en": "She's nice, I mean, she helped me with the visa.", "ru": "Она хорошая, в смысле, помогла мне с визой." }
+      ],
+      "promptsRu": ["Уточни оценку: нормально, в смысле, работает, но медленно.", "Возмутись: ну кто деплоит в пятницу?"],
+      "questionEn": "Use 'I mean' to clarify or correct yourself.",
+      "falseMeanings": ["Я злой", "Я имею значение"],
+      "noteRu": "Самый частый заполнитель у носителей. Уточняет или смягчает."
+    },
+    {
+      "id": "fillers.sort-of",
+      "en": "sort of",
+      "ru": "вроде как, типа",
+      "accept": ["sort of", "sorta"],
+      "contexts": [
+        { "en": "It's sort of done, the UI needs polish.", "ru": "Оно вроде как готово, интерфейс нужно отполировать." },
+        { "en": "I sort of agree, but the timing is bad.", "ru": "Я вроде как согласен, но время неудачное." },
+        { "en": "He's sort of a mentor to me.", "ru": "Он мне вроде как ментор." }
+      ],
+      "promptsRu": ["Скажи, что задача вроде как готова.", "Согласись с оговоркой."],
+      "questionEn": "Use 'sort of' to hedge.",
+      "falseMeanings": ["вид чего-то", "сортировать"],
+      "noteRu": "Близнец «kind of». В речи «sorta»."
+    },
+    {
+      "id": "fillers.you-see",
+      "en": "You see,",
+      "ru": "Понимаешь,",
+      "accept": ["you see", "you see,"],
+
+      "contexts": [
+        { "en": "You see, the API was never meant for this.", "ru": "Понимаешь, API никогда не было рассчитано на это." },
+        { "en": "You see, I can't move before the lease ends.", "ru": "Понимаешь, я не могу переехать до конца договора." },
+        { "en": "You see, that's exactly my point.", "ru": "Понимаешь, именно это я и имею в виду." }
+      ],
+      "promptsRu": ["Объясни причину мягко: понимаешь, API не для этого.", "Объясни, что не можешь переехать до конца аренды."],
+      "questionEn": "Use 'you see' before an explanation.",
+      "falseMeanings": ["Ты видишь?", "Посмотри"],
+      "noteRu": "Вовлекает собеседника в объяснение."
+    },
+    {
+      "id": "fillers.actually",
+      "type": "word",
+      "en": "Actually,",
+      "ru": "На самом деле, / Вообще-то,",
+      "accept": ["actually", "actually,"],
+      "contexts": [
+        { "en": "Actually, the bug is in the backend, not our code.", "ru": "На самом деле баг в бэкенде, а не в нашем коде." },
+        { "en": "Actually, I changed my mind, let's go hiking.", "ru": "Вообще-то, я передумал, пойдём в поход." },
+        { "en": "I actually liked the second season.", "ru": "Мне на самом деле понравился второй сезон." }
+      ],
+      "promptsRu": ["Поправь собеседника: на самом деле баг в бэкенде.", "Скажи, что передумал."],
+      "questionEn": "Use 'actually' to correct or surprise.",
+      "falseMeanings": ["актуально", "сейчас"],
+      "noteRu": "Ложный друг: не «актуально». Это «на самом деле»."
+    },
+    {
+      "id": "fillers.let-me-get-this-straight",
+      "en": "Let me get this straight",
+      "ru": "Давай уточню, правильно ли я понял",
+      "accept": ["let me get this straight", "so let me get this straight"],
+      "contexts": [
+        { "en": "Let me get this straight: the deadline moved up, not back?", "ru": "Давай уточню: дедлайн сдвинули раньше, а не позже?" },
+        { "en": "Let me get this straight, you want the rent in dollars?", "ru": "Правильно понимаю, вы хотите аренду в долларах?" },
+        { "en": "So let me get this straight, he quit by text message?", "ru": "То есть, правильно понимаю, он уволился сообщением?" }
+      ],
+      "promptsRu": ["Уточни, что дедлайн сдвинули раньше.", "Переспроси про аренду в долларах."],
+      "questionEn": "Use 'let me get this straight' to confirm something surprising.",
+      "falseMeanings": ["Дай мне выпрямить это", "Позволь получить это напрямую"],
+      "noteRu": "Часто с лёгким недоверием."
+    },
+    {
+      "id": "fillers.off-the-top-of-my-head",
+      "en": "off the top of my head",
+      "ru": "навскидку",
+      "accept": ["off the top of my head", "top of my head"],
+      "contexts": [
+        { "en": "Off the top of my head, about two hundred users.", "ru": "Навскидку, около двухсот пользователей." },
+        { "en": "I can't give you a number off the top of my head.", "ru": "Не могу назвать цифру навскидку." },
+        { "en": "Off the top of my head, three cafés on that street have Wi-Fi.", "ru": "Навскидку, три кафе на той улице с вайфаем." }
+      ],
+      "promptsRu": ["Дай оценку навскидку: около двухсот пользователей.", "Откажись называть точную цифру навскидку."],
+      "questionEn": "Use 'off the top of my head' when estimating.",
+      "falseMeanings": ["с макушки", "сверху головы"],
+      "noteRu": "Без проверки, по памяти."
+    },
+    {
+      "id": "fillers.to-put-it-mildly",
+      "en": "to put it mildly",
+      "ru": "мягко говоря",
+      "accept": ["to put it mildly", "mildly put"],
+      "contexts": [
+        { "en": "The code review was harsh, to put it mildly.", "ru": "Ревью было жёстким, мягко говоря." },
+        { "en": "The landlord is, to put it mildly, not flexible.", "ru": "Арендодатель, мягко говоря, не гибкий." },
+        { "en": "The ending was disappointing, to put it mildly.", "ru": "Концовка, мягко говоря, разочаровала." }
+      ],
+      "promptsRu": ["Опиши жёсткое ревью мягко говоря.", "Опиши негибкого арендодателя."],
+      "questionEn": "Use 'to put it mildly' for understatement.",
+      "falseMeanings": ["поставить мягко", "положить нежно"],
+      "noteRu": "Подчёркивает, что на самом деле всё хуже."
+    },
+    {
+      "id": "fillers.in-other-words",
+      "en": "In other words",
+      "ru": "Другими словами",
+      "accept": ["in other words"],
+      "contexts": [
+        { "en": "In other words, we need to cache the response.", "ru": "Другими словами, нужно закэшировать ответ." },
+        { "en": "In other words, no.", "ru": "Другими словами, нет." },
+        { "en": "In other words, the deal is off.", "ru": "Другими словами, сделка отменяется." }
+      ],
+      "promptsRu": ["Переформулируй техническое объяснение проще.", "Переведи длинный ответ в короткое «нет»."],
+      "questionEn": "Use 'in other words' to rephrase.",
+      "falseMeanings": ["в других словарях", "в иностранных словах"],
+      "noteRu": "Для переформулировки и вывода."
+    },
+    {
+      "id": "fillers.it-goes-without-saying",
+      "en": "It goes without saying",
+      "ru": "Само собой разумеется",
+      "accept": ["it goes without saying", "goes without saying"],
+      "contexts": [
+        { "en": "It goes without saying, don't commit the API keys.", "ru": "Само собой, не коммить ключи API." },
+        { "en": "It goes without saying that the deposit is refundable.", "ru": "Само собой разумеется, депозит возвращается." },
+        { "en": "Goes without saying, but back up before you migrate.", "ru": "Само собой, но сделай бэкап перед миграцией." }
+      ],
+      "promptsRu": ["Напомни очевидное: не коммитить ключи.", "Уточни, что депозит, само собой, возвращается."],
+      "questionEn": "Use 'it goes without saying' before an obvious point.",
+      "falseMeanings": ["уходит без слов", "идёт молча"],
+      "noteRu": "Говорят именно то, что «не нужно говорить»."
+    },
+    {
+      "id": "fillers.needless-to-say",
+      "en": "Needless to say",
+      "ru": "Излишне говорить",
+      "accept": ["needless to say"],
+      "contexts": [
+        { "en": "Needless to say, the Friday deploy broke everything.", "ru": "Излишне говорить, пятничный деплой сломал всё." },
+        { "en": "Needless to say, I didn't get the deposit back.", "ru": "Излишне говорить, депозит мне не вернули." },
+        { "en": "Needless to say, we watched the whole season.", "ru": "Излишне говорить, мы посмотрели весь сезон." }
+      ],
+      "promptsRu": ["Расскажи о последствиях пятничного деплоя.", "Расскажи, что депозит не вернули."],
+      "questionEn": "Use 'needless to say' for an obvious outcome.",
+      "falseMeanings": ["бесполезно говорить", "не нужно было говорить"],
+      "noteRu": "Часто с иронией о предсказуемом результате."
+    },
+    {
+      "id": "fillers.come-to-think-of-it",
+      "en": "Come to think of it",
+      "ru": "Если подумать",
+      "accept": ["come to think of it", "now that i think about it"],
+      "contexts": [
+        { "en": "Come to think of it, I never tested the logout.", "ru": "Если подумать, я ни разу не тестировал выход." },
+        { "en": "Come to think of it, we haven't been to that café in a year.", "ru": "Если подумать, мы не были в том кафе год." },
+        { "en": "Now that I think about it, the landlord never gave us a receipt.", "ru": "Если подумать, арендодатель так и не дал нам чек." }
+      ],
+      "promptsRu": ["Вспомни по ходу, что не тестировал выход.", "Вспомни, что год не были в кафе."],
+      "questionEn": "Use 'come to think of it' when something occurs to you.",
+      "falseMeanings": ["Приди подумать об этом", "Подумай, чтобы прийти"],
+      "noteRu": "Мысль пришла прямо сейчас."
+    },
+    {
+      "id": "fillers.for-what-it-s-worth",
+      "en": "For what it's worth",
+      "ru": "Если это чего-то стоит (моё скромное мнение)",
+      "accept": ["for what it's worth", "for what it is worth", "fwiw"],
+      "contexts": [
+        { "en": "For what it's worth, I'd take the smaller flat.", "ru": "Если это чего-то стоит, я бы взял квартиру поменьше." },
+        { "en": "For what it's worth, the old design loaded faster.", "ru": "Если это чего-то стоит, старый дизайн грузился быстрее." },
+        { "en": "For what it's worth, I think you did the right thing.", "ru": "Если это чего-то стоит, я думаю, ты поступил правильно." }
+      ],
+      "promptsRu": ["Дай совет скромно: взял бы квартиру поменьше.", "Поддержи друга: ты поступил правильно."],
+      "questionEn": "Use 'for what it's worth' to offer a modest opinion.",
+      "falseMeanings": ["За сколько это стоит", "Ради цены"],
+      "noteRu": "В чате «FWIW»."
+    },
+    {
+      "id": "fillers.that-being-said",
+      "en": "That being said",
+      "ru": "При этом / Тем не менее",
+      "accept": ["that being said", "that said", "having said that"],
+      "contexts": [
+        { "en": "The library is great. That being said, the bundle is huge.", "ru": "Библиотека отличная. При этом бандл огромный." },
+        { "en": "That said, I'd still move there.", "ru": "Тем не менее, я бы всё равно туда переехал." },
+        { "en": "Having said that, the ending redeems the slow start.", "ru": "При этом концовка искупает медленное начало." }
+      ],
+      "promptsRu": ["Похвали библиотеку, но оговорись про размер.", "Сделай оговорку после критики города."],
+      "questionEn": "Use 'that being said' to add a counterpoint.",
+      "falseMeanings": ["Это было сказано", "Как было сказано"],
+      "noteRu": "Поворот после аргумента. Три формы равнозначны."
+    }
+  ]
+}

@@ -3,47 +3,625 @@
   "title": "Привычка это Present Simple, а не can",
   "explainRu": "Про привычку и регулярные действия говорят Present Simple: «I drink coffee in the morning». «Can» это про возможность или умение, а не про то, что ты обычно делаешь.",
   "exercises": [
-    { "tokens": ["I", "can", "drink", "coffee", "every", "morning."], "wrongIndex": 1, "fix": "drink", "ruleRu": "Привычка: «I drink coffee every morning», без «can»." },
-    { "tokens": ["I", "usually", "go", "to", "the", "gym", "after", "work."], "wrongIndex": null, "fix": null, "ruleRu": "Регулярное действие в Present Simple, всё верно." },
-    { "tokens": ["On", "weekends", "I", "can", "sleep", "until", "noon."], "wrongIndex": 3, "fix": "sleep", "ruleRu": "Если это привычка, а не возможность: «I sleep until noon»." },
-    { "tokens": ["She", "can", "work", "from", "home", "on", "Fridays."], "wrongIndex": null, "fix": null, "ruleRu": "Здесь «can» это разрешение или возможность, это верно." },
-    { "tokens": ["Every", "day", "I", "can", "write", "code", "for", "eight", "hours."], "wrongIndex": 3, "fix": "write", "ruleRu": "«Every day» показывает привычку: «I write code»." },
-    { "tokens": ["He", "can", "speak", "three", "languages."], "wrongIndex": null, "fix": null, "ruleRu": "Умение, «can» на месте." },
-    { "tokens": ["We", "can", "eat", "lunch", "together", "every", "day."], "wrongIndex": 1, "fix": "eat", "ruleRu": "Регулярно обедаете вместе: «we eat lunch together»." },
-    { "tokens": ["I", "can", "watch", "anime", "in", "the", "evenings."], "wrongIndex": 1, "fix": "watch", "ruleRu": "Это про привычку по вечерам: «I watch anime»." },
-    { "tokens": ["I", "take", "the", "metro", "to", "work."], "wrongIndex": null, "fix": null, "ruleRu": "Привычный маршрут в Present Simple, верно." },
-    { "tokens": ["My", "friend", "can", "come", "to", "the", "café", "every", "Sunday."], "wrongIndex": 2, "fix": "comes", "ruleRu": "Привычка в третьем лице: «my friend comes»." },
-    { "tokens": ["I", "can", "help", "you", "with", "the", "deploy", "today."], "wrongIndex": null, "fix": null, "ruleRu": "Предложение помощи, «can» здесь правильно." },
-    { "tokens": ["Usually", "I", "can", "wake", "up", "at", "seven."], "wrongIndex": 2, "fix": "wake", "ruleRu": "«Usually» это привычка: «I wake up at seven»." },
-    { "tokens": ["He", "can", "run", "ten", "kilometers", "without", "stopping."], "wrongIndex": null, "fix": null, "ruleRu": "Способность, «can» на месте." },
-    { "tokens": ["In", "winter", "I", "can", "stay", "home", "a", "lot."], "wrongIndex": 3, "fix": "stay", "ruleRu": "Регулярно сидишь дома зимой: «I stay home a lot»." },
-    { "tokens": ["Can", "you", "open", "the", "window?"], "wrongIndex": null, "fix": null, "ruleRu": "Просьба, «can» правильно." },
-    { "tokens": ["I", "can", "read", "before", "bed", "every", "night."], "wrongIndex": 1, "fix": "read", "ruleRu": "Привычка перед сном: «I read before bed»." },
-    { "tokens": ["She", "cooks", "dinner", "on", "Sundays."], "wrongIndex": null, "fix": null, "ruleRu": "Регулярное действие в третьем лице с -s, верно." },
-    { "tokens": ["We", "can", "play", "games", "online", "every", "Friday."], "wrongIndex": 1, "fix": "play", "ruleRu": "Каждую пятницу это привычка: «we play games»." },
-    { "tokens": ["I", "can't", "swim."], "wrongIndex": null, "fix": null, "ruleRu": "Неумение, «can't» правильно." },
-    { "tokens": ["My", "team", "can", "have", "a", "standup", "at", "ten", "every", "day."], "wrongIndex": 2, "fix": "has", "ruleRu": "Ежедневный стендап это привычка: «my team has a standup»." },
-    { "tokens": ["I", "can", "go", "to", "the", "gym", "every", "Monday", "and", "Thursday."], "wrongIndex": 1, "fix": "go", "ruleRu": "Расписание тренировок: «I go to the gym»." },
-    { "tokens": ["I", "drink", "tea", "instead", "of", "coffee", "after", "six."], "wrongIndex": null, "fix": null, "ruleRu": "Привычка в Present Simple, верно." },
-    { "tokens": ["You", "can", "use", "my", "charger", "if", "you", "need."], "wrongIndex": null, "fix": null, "ruleRu": "Разрешение, «can» правильно." },
-    { "tokens": ["I", "can", "listen", "to", "podcasts", "while", "I", "cook."], "wrongIndex": 1, "fix": "listen", "ruleRu": "Обычное занятие во время готовки: «I listen to podcasts»." },
-    { "tokens": ["He", "can", "check", "the", "logs", "every", "morning."], "wrongIndex": 1, "fix": "checks", "ruleRu": "Ежедневная рутина: «he checks the logs»." },
-    { "tokens": ["I", "work", "out", "three", "times", "a", "week."], "wrongIndex": null, "fix": null, "ruleRu": "Регулярность, Present Simple, верно." },
-    { "tokens": ["Sometimes", "I", "can", "forget", "to", "eat", "when", "I", "code."], "wrongIndex": 2, "fix": "forget", "ruleRu": "«Sometimes» это про регулярность: «I forget to eat»." },
-    { "tokens": ["Can", "I", "ask", "you", "something?"], "wrongIndex": null, "fix": null, "ruleRu": "Вежливая просьба, «can» правильно." },
-    { "tokens": ["We", "can", "meet", "at", "this", "café", "every", "week."], "wrongIndex": 1, "fix": "meet", "ruleRu": "Еженедельная встреча это привычка: «we meet»." },
-    { "tokens": ["I", "can", "take", "a", "walk", "after", "lunch", "every", "day."], "wrongIndex": 1, "fix": "take", "ruleRu": "Ежедневная прогулка: «I take a walk»." },
-    { "tokens": ["My", "brother", "plays", "guitar", "in", "the", "evenings."], "wrongIndex": null, "fix": null, "ruleRu": "Привычка в третьем лице, верно." },
-    { "tokens": ["I", "can", "finish", "this", "by", "tomorrow."], "wrongIndex": null, "fix": null, "ruleRu": "Возможность успеть, «can» уместно." },
-    { "tokens": ["On", "Fridays", "we", "can", "order", "pizza", "to", "the", "office."], "wrongIndex": 3, "fix": "order", "ruleRu": "Пятничная традиция: «we order pizza»." },
-    { "tokens": ["She", "can", "visit", "her", "parents", "every", "weekend."], "wrongIndex": 1, "fix": "visits", "ruleRu": "Каждые выходные это привычка: «she visits»." },
-    { "tokens": ["I", "rarely", "eat", "fast", "food."], "wrongIndex": null, "fix": null, "ruleRu": "«Rarely» плюс Present Simple, верно." },
-    { "tokens": ["I", "can", "study", "English", "every", "evening", "after", "work."], "wrongIndex": 1, "fix": "study", "ruleRu": "Регулярная учёба: «I study English every evening»." },
-    { "tokens": ["Can", "you", "see", "the", "screen?"], "wrongIndex": null, "fix": null, "ruleRu": "Вопрос о возможности видеть, «can» правильно." },
-    { "tokens": ["We", "can", "go", "hiking", "in", "Gabala", "every", "spring."], "wrongIndex": 1, "fix": "go", "ruleRu": "Ежегодная традиция: «we go hiking every spring»." },
-    { "tokens": ["He", "can", "fix", "almost", "any", "bug."], "wrongIndex": null, "fix": null, "ruleRu": "Умение, «can» на месте." },
-    { "tokens": ["I", "can", "drink", "water", "instead", "of", "soda", "these", "days."], "wrongIndex": 1, "fix": "drink", "ruleRu": "Новая привычка: «I drink water instead of soda»." },
-    { "tokens": ["They", "can", "have", "breakfast", "at", "the", "same", "café", "every", "day."], "wrongIndex": 1, "fix": "have", "ruleRu": "Ежедневный завтрак это привычка: «they have breakfast»." },
-    { "tokens": ["I", "can", "lift", "100", "kilos", "now."], "wrongIndex": null, "fix": null, "ruleRu": "Физическая способность, «can» правильно." }
+    {
+      "tokens": [
+        "I",
+        "can",
+        "drink",
+        "coffee",
+        "every",
+        "morning."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Привычка: «I drink coffee every morning», без «can».",
+      "correct": "I drink coffee every morning."
+    },
+    {
+      "tokens": [
+        "I",
+        "usually",
+        "go",
+        "to",
+        "the",
+        "gym",
+        "after",
+        "work."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Регулярное действие в Present Simple, всё верно."
+    },
+    {
+      "tokens": [
+        "On",
+        "weekends",
+        "I",
+        "can",
+        "sleep",
+        "until",
+        "noon."
+      ],
+      "wrongIndex": 3,
+      "fix": "",
+      "ruleRu": "Если это привычка, а не возможность: «I sleep until noon».",
+      "correct": "On weekends I sleep until noon."
+    },
+    {
+      "tokens": [
+        "She",
+        "can",
+        "work",
+        "from",
+        "home",
+        "on",
+        "Fridays."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Здесь «can» это разрешение или возможность, это верно."
+    },
+    {
+      "tokens": [
+        "Every",
+        "day",
+        "I",
+        "can",
+        "write",
+        "code",
+        "for",
+        "eight",
+        "hours."
+      ],
+      "wrongIndex": 3,
+      "fix": "",
+      "ruleRu": "«Every day» показывает привычку: «I write code».",
+      "correct": "Every day I write code for eight hours."
+    },
+    {
+      "tokens": [
+        "He",
+        "can",
+        "speak",
+        "three",
+        "languages."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Умение, «can» на месте."
+    },
+    {
+      "tokens": [
+        "We",
+        "can",
+        "eat",
+        "lunch",
+        "together",
+        "every",
+        "day."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Регулярно обедаете вместе: «we eat lunch together».",
+      "correct": "We eat lunch together every day."
+    },
+    {
+      "tokens": [
+        "I",
+        "can",
+        "watch",
+        "anime",
+        "in",
+        "the",
+        "evenings."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Это про привычку по вечерам: «I watch anime».",
+      "correct": "I watch anime in the evenings."
+    },
+    {
+      "tokens": [
+        "I",
+        "take",
+        "the",
+        "metro",
+        "to",
+        "work."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Привычный маршрут в Present Simple, верно."
+    },
+    {
+      "tokens": [
+        "My",
+        "friend",
+        "can",
+        "come",
+        "to",
+        "the",
+        "café",
+        "every",
+        "Sunday."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "Привычка в третьем лице: «my friend comes».",
+      "correct": "My friend comes to the café every Sunday."
+    },
+    {
+      "tokens": [
+        "I",
+        "can",
+        "help",
+        "you",
+        "with",
+        "the",
+        "deploy",
+        "today."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Предложение помощи, «can» здесь правильно."
+    },
+    {
+      "tokens": [
+        "Usually",
+        "I",
+        "can",
+        "wake",
+        "up",
+        "at",
+        "seven."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«Usually» это привычка: «I wake up at seven».",
+      "correct": "Usually I wake up at seven."
+    },
+    {
+      "tokens": [
+        "He",
+        "can",
+        "run",
+        "ten",
+        "kilometers",
+        "without",
+        "stopping."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Способность, «can» на месте."
+    },
+    {
+      "tokens": [
+        "In",
+        "winter",
+        "I",
+        "can",
+        "stay",
+        "home",
+        "a",
+        "lot."
+      ],
+      "wrongIndex": 3,
+      "fix": "",
+      "ruleRu": "Регулярно сидишь дома зимой: «I stay home a lot».",
+      "correct": "In winter I stay home a lot."
+    },
+    {
+      "tokens": [
+        "Can",
+        "you",
+        "open",
+        "the",
+        "window?"
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Просьба, «can» правильно."
+    },
+    {
+      "tokens": [
+        "I",
+        "can",
+        "read",
+        "before",
+        "bed",
+        "every",
+        "night."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Привычка перед сном: «I read before bed».",
+      "correct": "I read before bed every night."
+    },
+    {
+      "tokens": [
+        "She",
+        "cooks",
+        "dinner",
+        "on",
+        "Sundays."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Регулярное действие в третьем лице с -s, верно."
+    },
+    {
+      "tokens": [
+        "We",
+        "can",
+        "play",
+        "games",
+        "online",
+        "every",
+        "Friday."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Каждую пятницу это привычка: «we play games».",
+      "correct": "We play games online every Friday."
+    },
+    {
+      "tokens": [
+        "I",
+        "can't",
+        "swim."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Неумение, «can't» правильно."
+    },
+    {
+      "tokens": [
+        "My",
+        "team",
+        "can",
+        "have",
+        "a",
+        "standup",
+        "at",
+        "ten",
+        "every",
+        "day."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "Ежедневный стендап это привычка: «my team has a standup».",
+      "correct": "My team has a standup at ten every day."
+    },
+    {
+      "tokens": [
+        "I",
+        "can",
+        "go",
+        "to",
+        "the",
+        "gym",
+        "every",
+        "Monday",
+        "and",
+        "Thursday."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Расписание тренировок: «I go to the gym».",
+      "correct": "I go to the gym every Monday and Thursday."
+    },
+    {
+      "tokens": [
+        "I",
+        "drink",
+        "tea",
+        "instead",
+        "of",
+        "coffee",
+        "after",
+        "six."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Привычка в Present Simple, верно."
+    },
+    {
+      "tokens": [
+        "You",
+        "can",
+        "use",
+        "my",
+        "charger",
+        "if",
+        "you",
+        "need."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Разрешение, «can» правильно."
+    },
+    {
+      "tokens": [
+        "I",
+        "can",
+        "listen",
+        "to",
+        "podcasts",
+        "while",
+        "I",
+        "cook."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Обычное занятие во время готовки: «I listen to podcasts».",
+      "correct": "I listen to podcasts while I cook."
+    },
+    {
+      "tokens": [
+        "He",
+        "can",
+        "check",
+        "the",
+        "logs",
+        "every",
+        "morning."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Ежедневная рутина: «he checks the logs».",
+      "correct": "He checks the logs every morning."
+    },
+    {
+      "tokens": [
+        "I",
+        "work",
+        "out",
+        "three",
+        "times",
+        "a",
+        "week."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Регулярность, Present Simple, верно."
+    },
+    {
+      "tokens": [
+        "Sometimes",
+        "I",
+        "can",
+        "forget",
+        "to",
+        "eat",
+        "when",
+        "I",
+        "code."
+      ],
+      "wrongIndex": 2,
+      "fix": "",
+      "ruleRu": "«Sometimes» это про регулярность: «I forget to eat».",
+      "correct": "Sometimes I forget to eat when I code."
+    },
+    {
+      "tokens": [
+        "Can",
+        "I",
+        "ask",
+        "you",
+        "something?"
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Вежливая просьба, «can» правильно."
+    },
+    {
+      "tokens": [
+        "We",
+        "can",
+        "meet",
+        "at",
+        "this",
+        "café",
+        "every",
+        "week."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Еженедельная встреча это привычка: «we meet».",
+      "correct": "We meet at this café every week."
+    },
+    {
+      "tokens": [
+        "I",
+        "can",
+        "take",
+        "a",
+        "walk",
+        "after",
+        "lunch",
+        "every",
+        "day."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Ежедневная прогулка: «I take a walk».",
+      "correct": "I take a walk after lunch every day."
+    },
+    {
+      "tokens": [
+        "My",
+        "brother",
+        "plays",
+        "guitar",
+        "in",
+        "the",
+        "evenings."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Привычка в третьем лице, верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "can",
+        "finish",
+        "this",
+        "by",
+        "tomorrow."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Возможность успеть, «can» уместно."
+    },
+    {
+      "tokens": [
+        "On",
+        "Fridays",
+        "we",
+        "can",
+        "order",
+        "pizza",
+        "to",
+        "the",
+        "office."
+      ],
+      "wrongIndex": 3,
+      "fix": "",
+      "ruleRu": "Пятничная традиция: «we order pizza».",
+      "correct": "On Fridays we order pizza to the office."
+    },
+    {
+      "tokens": [
+        "She",
+        "can",
+        "visit",
+        "her",
+        "parents",
+        "every",
+        "weekend."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Каждые выходные это привычка: «she visits».",
+      "correct": "She visits her parents every weekend."
+    },
+    {
+      "tokens": [
+        "I",
+        "rarely",
+        "eat",
+        "fast",
+        "food."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "«Rarely» плюс Present Simple, верно."
+    },
+    {
+      "tokens": [
+        "I",
+        "can",
+        "study",
+        "English",
+        "every",
+        "evening",
+        "after",
+        "work."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Регулярная учёба: «I study English every evening».",
+      "correct": "I study English every evening after work."
+    },
+    {
+      "tokens": [
+        "Can",
+        "you",
+        "see",
+        "the",
+        "screen?"
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Вопрос о возможности видеть, «can» правильно."
+    },
+    {
+      "tokens": [
+        "We",
+        "can",
+        "go",
+        "hiking",
+        "in",
+        "Gabala",
+        "every",
+        "spring."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Ежегодная традиция: «we go hiking every spring».",
+      "correct": "We go hiking in Gabala every spring."
+    },
+    {
+      "tokens": [
+        "He",
+        "can",
+        "fix",
+        "almost",
+        "any",
+        "bug."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Умение, «can» на месте."
+    },
+    {
+      "tokens": [
+        "I",
+        "can",
+        "drink",
+        "water",
+        "instead",
+        "of",
+        "soda",
+        "these",
+        "days."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Новая привычка: «I drink water instead of soda».",
+      "correct": "I drink water instead of soda these days."
+    },
+    {
+      "tokens": [
+        "They",
+        "can",
+        "have",
+        "breakfast",
+        "at",
+        "the",
+        "same",
+        "café",
+        "every",
+        "day."
+      ],
+      "wrongIndex": 1,
+      "fix": "",
+      "ruleRu": "Ежедневный завтрак это привычка: «they have breakfast».",
+      "correct": "They have breakfast at the same café every day."
+    },
+    {
+      "tokens": [
+        "I",
+        "can",
+        "lift",
+        "100",
+        "kilos",
+        "now."
+      ],
+      "wrongIndex": null,
+      "fix": null,
+      "ruleRu": "Физическая способность, «can» правильно."
+    }
   ]
 }

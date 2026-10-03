@@ -1,0 +1,339 @@
+{
+  "id": "work",
+  "name": "Работа и разработка",
+  "emoji": "💻",
+  "items": [
+    {
+      "id": "work.lgtm",
+      "en": "Looks good to me",
+      "ru": "По мне, всё хорошо (одобряю)",
+      "accept": ["looks good to me", "lgtm"],
+      "contexts": [
+        { "en": "Looks good to me, merging.", "ru": "По мне, всё хорошо, мержу." },
+        { "en": "Looks good to me, just fix the typo in the comment.", "ru": "По мне, всё хорошо, только поправь опечатку в комментарии." },
+        { "en": "The plan looks good to me, let's start Monday.", "ru": "План выглядит хорошо, начнём в понедельник." }
+      ],
+      "promptsRu": ["Одобри PR коллеги.", "Одобри план и предложи начать в понедельник."],
+      "questionEn": "Use 'looks good to me' in a review.",
+      "falseMeanings": ["Выглядит хорошо для меня (внешне)", "Мне нравится, как ты выглядишь"],
+      "noteRu": "На ревью сокращают до «LGTM»."
+    },
+    {
+      "id": "work.can-you-take-a-look",
+      "en": "Can you take a look?",
+      "ru": "Можешь глянуть?",
+      "accept": ["can you take a look", "could you take a look", "take a look"],
+      "contexts": [
+        { "en": "Can you take a look at my PR when you have a minute?", "ru": "Можешь глянуть мой PR, когда будет минутка?" },
+        { "en": "Something's off with the layout, can you take a look?", "ru": "Что-то не так с вёрсткой, можешь глянуть?" },
+        { "en": "I took a look, the issue is in the reducer.", "ru": "Я глянул, проблема в редьюсере." }
+      ],
+      "promptsRu": ["Попроси коллегу глянуть PR.", "Попроси посмотреть на странную вёрстку."],
+      "questionEn": "Use 'can you take a look' to ask for review.",
+      "falseMeanings": ["Можешь сделать взгляд?", "Можешь взять вид?"],
+      "noteRu": "«Take a look at X». Мягче, чем «review»."
+    },
+    {
+      "id": "work.i-m-swamped",
+      "en": "I'm swamped",
+      "ru": "Я завален работой",
+      "accept": ["i'm swamped", "i am swamped", "swamped"],
+      "contexts": [
+        { "en": "I'm swamped this week, can it wait till Monday?", "ru": "Я завален на этой неделе, это может подождать до понедельника?" },
+        { "en": "Sorry for the late reply, totally swamped.", "ru": "Извини за поздний ответ, совсем завален." },
+        { "en": "The support team is swamped after the release.", "ru": "Поддержка завалена после релиза." }
+      ],
+      "promptsRu": ["Скажи, что завален, и попроси подождать до понедельника.", "Извинись за поздний ответ из-за загрузки."],
+      "questionEn": "Use 'I'm swamped' to decline extra work.",
+      "falseMeanings": ["Я в болоте", "Я мокрый"],
+      "noteRu": "От «swamp» (болото). Живее, чем «very busy»."
+    },
+    {
+      "id": "work.push-back",
+      "en": "push back",
+      "ru": "возразить, дать отпор (на требование)",
+      "accept": ["push back", "pushed back", "push back on"],
+      "contexts": [
+        { "en": "I had to push back on the deadline, it wasn't realistic.", "ru": "Мне пришлось возразить против дедлайна, он был нереалистичным." },
+        { "en": "Don't be afraid to push back when the scope grows.", "ru": "Не бойся возражать, когда задача разрастается." },
+        { "en": "The client pushed back on the price.", "ru": "Клиент стал торговаться по цене." }
+      ],
+      "promptsRu": ["Расскажи, что возразил против нереального дедлайна.", "Посоветуй коллеге не бояться возражать."],
+      "questionEn": "Use 'push back' about an unrealistic request.",
+      "falseMeanings": ["толкнуть назад", "отложить (сдвинуть)"],
+      "noteRu": "«Push back on X» возразить против X. «Push back the meeting» уже «перенести»."
+    },
+    {
+      "id": "work.ship-it",
+      "en": "ship it",
+      "ru": "выкатывай (релизь)",
+      "accept": ["ship it", "let's ship it", "ship"],
+      "contexts": [
+        { "en": "Tests pass, ship it.", "ru": "Тесты проходят, выкатывай." },
+        { "en": "We shipped the feature on Friday, bad idea.", "ru": "Мы выкатили фичу в пятницу, плохая идея." },
+        { "en": "Let's ship it and iterate.", "ru": "Давайте выкатим и будем улучшать." }
+      ],
+      "promptsRu": ["Дай добро на релиз.", "Предложи выкатить и улучшать по ходу."],
+      "questionEn": "Use 'ship it' in a release discussion.",
+      "falseMeanings": ["отправь кораблём", "грузи"],
+      "noteRu": "«Ship» в IT значит выпустить в прод."
+    },
+    {
+      "id": "work.it-s-a-blocker",
+      "en": "It's a blocker",
+      "ru": "Это блокер (мешает двигаться дальше)",
+      "accept": ["it's a blocker", "it is a blocker", "blocker"],
+      "contexts": [
+        { "en": "The missing API key is a blocker, I can't test anything.", "ru": "Отсутствующий ключ API это блокер, я ничего не могу тестировать." },
+        { "en": "Any blockers? — Yes, waiting on design.", "ru": "Есть блокеры? — Да, жду дизайн." },
+        { "en": "It's not a blocker, I can work around it.", "ru": "Это не блокер, я могу обойти." }
+      ],
+      "promptsRu": ["Скажи на стендапе, что ключ API это блокер.", "Скажи, что проблема не блокер и её можно обойти."],
+      "questionEn": "Use 'blocker' at a standup.",
+      "falseMeanings": ["блокировщик рекламы", "кубик"],
+      "noteRu": "Стендап-вопрос «any blockers?» стандартный."
+    },
+    {
+      "id": "work.work-around",
+      "en": "a workaround",
+      "ru": "обходной путь",
+      "accept": ["a workaround", "workaround", "work around"],
+      "contexts": [
+        { "en": "There's a workaround: clear the cache before login.", "ru": "Есть обходной путь: очистить кэш перед логином." },
+        { "en": "It's a workaround, not a fix.", "ru": "Это обходной путь, а не исправление." },
+        { "en": "We can work around the limit by batching requests.", "ru": "Можем обойти лимит, объединяя запросы." }
+      ],
+      "promptsRu": ["Предложи обходной путь для бага.", "Уточни, что это обходной путь, а не фикс."],
+      "questionEn": "Use 'workaround' about a temporary solution.",
+      "falseMeanings": ["работа вокруг", "обходной маршрут в городе"],
+      "noteRu": "Существительное в одно слово, глагол «work around» в два."
+    },
+    {
+      "id": "work.on-the-same-page",
+      "en": "on the same page",
+      "ru": "на одной волне (одинаково понимаем)",
+      "accept": ["on the same page", "we're on the same page"],
+      "contexts": [
+        { "en": "Let's make sure we're on the same page before coding.", "ru": "Давай убедимся, что мы одинаково понимаем задачу, прежде чем писать код." },
+        { "en": "Good, we're on the same page about the deadline.", "ru": "Хорошо, насчёт дедлайна мы на одной волне." },
+        { "en": "Design and dev are not on the same page here.", "ru": "Дизайн и разработка здесь не на одной волне." }
+      ],
+      "promptsRu": ["Предложи сверить понимание задачи перед кодом.", "Скажи, что дизайн и разработка понимают задачу по-разному."],
+      "questionEn": "Use 'on the same page' to confirm understanding.",
+      "falseMeanings": ["на той же странице сайта", "в одной книге"],
+      "noteRu": "«Get on the same page» прийти к общему пониманию."
+    },
+    {
+      "id": "work.circle-back",
+      "en": "circle back",
+      "ru": "вернуться к вопросу позже",
+      "accept": ["circle back", "circle back to", "come back to"],
+      "contexts": [
+        { "en": "Let's circle back to the pricing after the demo.", "ru": "Вернёмся к ценам после демо." },
+        { "en": "I'll circle back on this next week.", "ru": "Вернусь к этому на следующей неделе." },
+        { "en": "We never circled back to the accessibility issue.", "ru": "Мы так и не вернулись к вопросу доступности." }
+      ],
+      "promptsRu": ["Отложи обсуждение цены до после демо.", "Пообещай вернуться к вопросу на следующей неделе."],
+      "questionEn": "Use 'circle back' to postpone a topic.",
+      "falseMeanings": ["обойти по кругу", "вернуться назад по кругу"],
+      "noteRu": "Корпоративный жаргон, но его говорят все. «Come back to» нейтральнее."
+    },
+    {
+      "id": "work.take-ownership",
+      "en": "take ownership of",
+      "ru": "взять на себя ответственность за",
+      "accept": ["take ownership of", "take ownership", "own it"],
+      "contexts": [
+        { "en": "I'll take ownership of the migration.", "ru": "Я возьму на себя миграцию." },
+        { "en": "Someone needs to take ownership of the flaky tests.", "ru": "Кто-то должен взять на себя нестабильные тесты." },
+        { "en": "It was my bug, I own it.", "ru": "Это был мой баг, я беру ответственность." }
+      ],
+      "promptsRu": ["Возьми на себя миграцию.", "Признай свой баг и ответственность за него."],
+      "questionEn": "Use 'take ownership of' to volunteer.",
+      "falseMeanings": ["взять в собственность", "купить"],
+      "noteRu": "Не про собственность, а про ответственность."
+    },
+    {
+      "id": "work.heads-down",
+      "en": "heads down",
+      "ru": "с головой в работе (не отвлекаться)",
+      "accept": ["heads down", "heads-down"],
+      "contexts": [
+        { "en": "I'm heads down on the release today, Slack is off.", "ru": "Сегодня я с головой в релизе, Slack выключен." },
+        { "en": "Give me two heads-down days and it's done.", "ru": "Дай мне два дня без отвлечений, и будет готово." },
+        { "en": "The team went heads down after the planning.", "ru": "После планирования команда ушла в работу с головой." }
+      ],
+      "promptsRu": ["Предупреди, что сегодня не отвлекаешься от релиза.", "Попроси два дня без отвлечений."],
+      "questionEn": "Use 'heads down' about focused work.",
+      "falseMeanings": ["головы вниз (стыд)", "пригнись"],
+      "noteRu": "Фокус без встреч. Пара к «heads up» (предупреждение)."
+    },
+    {
+      "id": "work.touch-base",
+      "en": "touch base",
+      "ru": "связаться, коротко обсудить",
+      "accept": ["touch base", "touch base with"],
+      "contexts": [
+        { "en": "Let's touch base on Thursday about the launch.", "ru": "Давайте свяжемся в четверг насчёт запуска." },
+        { "en": "I'll touch base with the designer today.", "ru": "Я сегодня свяжусь с дизайнером." },
+        { "en": "Just touching base, any news on the contract?", "ru": "Просто на связи: есть новости по контракту?" }
+      ],
+      "promptsRu": ["Предложи связаться в четверг.", "Напиши клиенту, чтобы узнать новости по контракту."],
+      "questionEn": "Use 'touch base' to suggest a quick check-in.",
+      "falseMeanings": ["коснуться базы", "тронуть основу"],
+      "noteRu": "Из бейсбола. Короткий контакт, не встреча на час."
+    },
+    {
+      "id": "work.bandwidth",
+      "type": "word",
+      "en": "bandwidth",
+      "ru": "ресурс (время и силы на задачу)",
+      "accept": ["bandwidth"],
+      "contexts": [
+        { "en": "I don't have the bandwidth for another project this month.", "ru": "У меня нет ресурса на ещё один проект в этом месяце." },
+        { "en": "Do you have bandwidth to review this today?", "ru": "У тебя есть время глянуть это сегодня?" },
+        { "en": "Our bandwidth is limited until the new hire starts.", "ru": "Наш ресурс ограничен, пока не выйдет новый сотрудник." }
+      ],
+      "promptsRu": ["Откажись от нового проекта из-за нехватки ресурса.", "Спроси коллегу, есть ли у него время на ревью."],
+      "questionEn": "Use 'bandwidth' to talk about capacity.",
+      "falseMeanings": ["ширина ленты", "скорость интернета (в этом контексте)"],
+      "noteRu": "Переносное значение: время и силы. Не только про сеть."
+    },
+    {
+      "id": "work.it-s-a-known-issue",
+      "en": "It's a known issue",
+      "ru": "Это известная проблема",
+      "accept": ["it's a known issue", "it is a known issue", "known issue"],
+      "contexts": [
+        { "en": "The flicker on Safari is a known issue.", "ru": "Мерцание в Safari это известная проблема." },
+        { "en": "It's a known issue, there's a ticket already.", "ru": "Это известная проблема, тикет уже есть." },
+        { "en": "Known issue, the fix ships next week.", "ru": "Известная проблема, фикс выйдет на следующей неделе." }
+      ],
+      "promptsRu": ["Ответь на баг-репорт: это известная проблема, тикет есть.", "Скажи, что фикс выйдет на следующей неделе."],
+      "questionEn": "Use 'known issue' when answering a bug report.",
+      "falseMeanings": ["это знакомый выпуск", "это известный вопрос"],
+      "noteRu": "«Issue» и проблема, и тикет. Стандарт в release notes."
+    },
+    {
+      "id": "work.i-ll-take-it-from-here",
+      "en": "I'll take it from here",
+      "ru": "Дальше я сам",
+      "accept": ["i'll take it from here", "i will take it from here", "take it from here"],
+      "contexts": [
+        { "en": "Thanks for the setup, I'll take it from here.", "ru": "Спасибо за настройку, дальше я сам." },
+        { "en": "You did the hard part, I'll take it from here.", "ru": "Ты сделал сложную часть, дальше я." },
+        { "en": "She said she'd take it from here and closed my laptop.", "ru": "Она сказала, что дальше сама, и закрыла мой ноутбук." }
+      ],
+      "promptsRu": ["Поблагодари за помощь и возьми задачу на себя.", "Скажи, что дальше справишься сам."],
+      "questionEn": "Use 'I'll take it from here' to take over a task.",
+      "falseMeanings": ["Я возьму это отсюда (унесу)", "Я заберу это с собой"],
+      "noteRu": "Вежливая передача эстафеты."
+    },
+    {
+      "id": "work.in-the-loop",
+      "en": "keep me in the loop",
+      "ru": "держи меня в курсе",
+      "accept": ["keep me in the loop", "in the loop", "keep in the loop"],
+      "contexts": [
+        { "en": "Keep me in the loop on the client's feedback.", "ru": "Держи меня в курсе по отзывам клиента." },
+        { "en": "I'm not in the loop on the new hiring plan.", "ru": "Я не в курсе нового плана по найму." },
+        { "en": "Thanks for keeping me in the loop.", "ru": "Спасибо, что держишь в курсе." }
+      ],
+      "promptsRu": ["Попроси держать тебя в курсе по отзывам клиента.", "Скажи, что ты не в курсе плана по найму."],
+      "questionEn": "Use 'keep me in the loop' to ask for updates.",
+      "falseMeanings": ["держи меня в петле", "держи меня в цикле"],
+      "noteRu": "«Out of the loop» не в курсе."
+    },
+    {
+      "id": "work.deliverable",
+      "type": "word",
+      "en": "deliverable",
+      "ru": "результат, который нужно сдать",
+      "accept": ["deliverable", "deliverables"],
+      "contexts": [
+        { "en": "The deliverable for this sprint is a working login.", "ru": "Результат этого спринта это рабочий логин." },
+        { "en": "List the deliverables before you estimate.", "ru": "Перечисли, что нужно сдать, прежде чем оценивать." },
+        { "en": "The main deliverable is a report, not code.", "ru": "Главное, что нужно сдать, это отчёт, а не код." }
+      ],
+      "promptsRu": ["Назови результат спринта.", "Посоветуй перечислить результаты до оценки."],
+      "questionEn": "Use 'deliverable' when planning.",
+      "falseMeanings": ["доставка", "доставляемый товар"],
+      "noteRu": "Существительное. Часто во множественном: deliverables."
+    },
+    {
+      "id": "work.i-m-not-sure-i-follow",
+      "en": "I'm not sure I follow",
+      "ru": "Я не совсем понимаю (ход мысли)",
+      "accept": ["i'm not sure i follow", "i am not sure i follow", "i don't follow"],
+      "contexts": [
+        { "en": "I'm not sure I follow, why do we need a second queue?", "ru": "Не совсем понимаю, зачем нам вторая очередь?" },
+        { "en": "Sorry, I don't follow. Can you show an example?", "ru": "Извини, не понимаю. Можешь показать пример?" },
+        { "en": "I'm not sure I follow the logic in this function.", "ru": "Не совсем понимаю логику в этой функции." }
+      ],
+      "promptsRu": ["Скажи, что не понимаешь, зачем вторая очередь.", "Попроси пример, потому что не понимаешь."],
+      "questionEn": "Use 'I'm not sure I follow' to ask for clarification.",
+      "falseMeanings": ["Я не уверен, что подписан", "Я не уверен, что иду за тобой"],
+      "noteRu": "«Follow» значит «следить за мыслью». Вежливее, чем «I don't understand»."
+    },
+    {
+      "id": "work.let-s-table-this",
+      "en": "Let's table this",
+      "ru": "Давайте отложим этот вопрос",
+      "accept": ["let's table this", "let us table this", "table this"],
+      "contexts": [
+        { "en": "Let's table this and move on to the roadmap.", "ru": "Давайте отложим это и перейдём к роадмапу." },
+        { "en": "We tabled the discussion about the framework.", "ru": "Мы отложили обсуждение фреймворка." },
+        { "en": "Let's table this until we have the numbers.", "ru": "Отложим это, пока нет цифр." }
+      ],
+      "promptsRu": ["Отложи спор о фреймворке на встрече.", "Предложи отложить вопрос до появления цифр."],
+      "questionEn": "Use 'let's table this' in a meeting.",
+      "falseMeanings": ["Давайте положим на стол (обсудим)", "Давайте сделаем таблицу"],
+      "noteRu": "В американском значит «отложить», в британском наоборот «вынести на обсуждение». В IT почти всегда «отложить»."
+    },
+    {
+      "id": "work.i-m-happy-to",
+      "en": "I'm happy to",
+      "ru": "Я с удовольствием (готов)",
+      "accept": ["i'm happy to", "i am happy to", "happy to"],
+      "contexts": [
+        { "en": "I'm happy to pair on this if you want.", "ru": "Готов попарить над этим, если хочешь." },
+        { "en": "Happy to help, just ping me.", "ru": "С удовольствием помогу, просто напиши." },
+        { "en": "I'm happy to take the night shift this once.", "ru": "Готов взять ночную смену в этот раз." }
+      ],
+      "promptsRu": ["Предложи попарить над задачей.", "Скажи, что готов помочь, пусть напишет."],
+      "questionEn": "Use 'I'm happy to' to offer help.",
+      "falseMeanings": ["Я счастлив, потому что", "Я рад тому, что"],
+      "noteRu": "Вежливое «готов». Не про счастье."
+    },
+    {
+      "id": "work.bear-with-me",
+      "en": "Bear with me",
+      "ru": "Потерпи минутку",
+      "accept": ["bear with me", "please bear with me"],
+      "contexts": [
+        { "en": "Bear with me, the screen share is loading.", "ru": "Потерпи минутку, демонстрация экрана грузится." },
+        { "en": "Bear with me, this will make sense in a second.", "ru": "Потерпи, через секунду станет понятно." },
+        { "en": "Please bear with me while I find the log.", "ru": "Пожалуйста, потерпите, пока я найду лог." }
+      ],
+      "promptsRu": ["Попроси подождать, пока грузится экран.", "Попроси потерпеть, пока ищешь лог."],
+      "questionEn": "Use 'bear with me' during a demo.",
+      "falseMeanings": ["Медведь со мной", "Неси со мной"],
+      "noteRu": "Пишется «bear», не «bare». Вежливая просьба о терпении."
+    },
+    {
+      "id": "work.low-hanging-fruit",
+      "en": "low-hanging fruit",
+      "ru": "лёгкая задача с быстрым эффектом",
+      "accept": ["low-hanging fruit", "low hanging fruit"],
+      "contexts": [
+        { "en": "Let's start with the low-hanging fruit: caching the images.", "ru": "Начнём с простого и эффективного: кэширование картинок." },
+        { "en": "Fixing the typos is low-hanging fruit.", "ru": "Исправить опечатки это лёгкая задача с быстрым результатом." },
+        { "en": "We've picked all the low-hanging fruit, now it gets hard.", "ru": "Лёгкие задачи кончились, теперь будет сложно." }
+      ],
+      "promptsRu": ["Предложи начать с простых и эффективных задач.", "Скажи, что лёгкие задачи кончились."],
+      "questionEn": "Use 'low-hanging fruit' in planning.",
+      "falseMeanings": ["низко висящий фрукт (буквально)", "дешёвые фрукты"],
+      "noteRu": "Неисчисляемое: «some low-hanging fruit»."
+    }
+  ]
+}

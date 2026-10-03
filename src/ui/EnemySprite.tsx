@@ -43,14 +43,15 @@ function Eye({ cx, cy, style, danger }: { cx: number; cy: number; style: EnemyLo
 export function EnemySprite({ itemId, kind, scars = 0, shake = 0, down = false, size = 150 }: Props) {
   const look = enemyLook(itemId)
   const nemesis = kind === 'nemesis'
+  const echo = kind === 'echo'
   const debtor = kind === 'debtor'
-  const hue = nemesis ? 350 : look.hue
-  const sat = nemesis ? 80 : 45
+  const hue = nemesis ? 350 : echo ? 268 : look.hue
+  const sat = nemesis ? 80 : echo ? 55 : 45
   const body = `hsl(${hue} ${sat}% ${nemesis ? 42 : 36}%)`
   const bodyDark = `hsl(${hue} ${sat}% ${nemesis ? 28 : 24}%)`
   const eyesY = look.shape === 'wide' ? 66 : 58
   const eyeXs = look.eyes === 1 ? [60] : look.eyes === 2 ? [46, 74] : [40, 60, 80]
-  const scale = look.scale * (nemesis ? 1.15 + Math.min(scars, 5) * 0.04 : 1)
+  const scale = look.scale * (nemesis ? 1.15 + Math.min(scars, 5) * 0.04 : echo ? 1.2 : 1)
 
   return (
     <motion.svg
@@ -90,7 +91,7 @@ export function EnemySprite({ itemId, kind, scars = 0, shake = 0, down = false, 
           <circle key={i} cx={40 + i * 18} cy={90} r="2.5" fill={bodyDark} />
         ))}
         {eyeXs.map((cx) => (
-          <Eye key={cx} cx={cx} cy={eyesY} style={look.eyeStyle} danger={nemesis} />
+          <Eye key={cx} cx={cx} cy={eyesY} style={look.eyeStyle} danger={nemesis || echo} />
         ))}
         {nemesis
           ? Array.from({ length: Math.min(scars, 6) }).map((_, i) => (

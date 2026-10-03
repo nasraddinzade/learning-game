@@ -35,6 +35,6 @@ export const useCampStore = create<CampState>((set) => ({
         return item ? { item, progress: p } : null
       })
       .filter((x): x is NemesisCard => x !== null)
-    set({ counts, nemeses, hasActiveRun: run !== undefined && run.combat !== null, totalItems: items.length })
+    set({ counts, nemeses, hasActiveRun: run !== undefined && run.status === 'active', totalItems: items.length })
   },
 }))

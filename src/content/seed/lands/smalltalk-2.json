@@ -1,0 +1,337 @@
+{
+  "id": "smalltalk",
+  "name": "Знакомства и small talk",
+  "emoji": "👋",
+  "items": [
+    {
+      "id": "smalltalk.long-time-no-see",
+      "en": "Long time no see",
+      "ru": "Сто лет не виделись",
+      "accept": ["long time no see", "long time, no see"],
+      "contexts": [
+        { "en": "Long time no see! You look great.", "ru": "Сто лет не виделись! Отлично выглядишь." },
+        { "en": "Long time no see, are you still at the same company?", "ru": "Сто лет не виделись, ты всё в той же компании?" },
+        { "en": "He hugged me and said long time no see.", "ru": "Он обнял меня и сказал «сто лет не виделись»." }
+      ],
+      "promptsRu": ["Встретил друга, которого не видел год. Поздоровайся.", "Начни разговор с бывшим коллегой в баре."],
+      "questionEn": "Use 'long time no see' to greet someone from your past.",
+      "falseMeanings": ["Долго не увидимся", "Давно пора увидеться"],
+      "noteRu": "Грамматически странная, но абсолютно нормальная фраза. Только при встрече, не в письме."
+    },
+    {
+      "id": "smalltalk.how-s-it-going",
+      "en": "How's it going?",
+      "ru": "Как дела? (неформально)",
+      "accept": ["how's it going", "how is it going", "how's it going?"],
+      "contexts": [
+        { "en": "Hey man, how's it going? — Not bad, busy week.", "ru": "Привет, как дела? — Неплохо, напряжённая неделя." },
+        { "en": "How's it going with the new job?", "ru": "Как дела с новой работой?" },
+        { "en": "She asked how's it going and I said same old.", "ru": "Она спросила, как дела, а я сказал: всё по-старому." }
+      ],
+      "promptsRu": ["Поздоровайся с приятелем в зале и спроси, как дела.", "Спроси друга, как дела с новой работой."],
+      "questionEn": "Use 'how's it going' to greet a friend casually.",
+      "falseMeanings": ["Куда это идёт?", "Как это работает?"],
+      "noteRu": "Самое частое неформальное приветствие. Ответ короткий: «Good, you?»."
+    },
+    {
+      "id": "smalltalk.same-old",
+      "en": "Same old, same old",
+      "ru": "Всё по-старому",
+      "accept": ["same old, same old", "same old same old", "same old"],
+      "contexts": [
+        { "en": "What's new? — Same old, same old. Work, gym, sleep.", "ru": "Что нового? — Всё по-старому. Работа, зал, сон." },
+        { "en": "Same old, same old, another sprint, another deadline.", "ru": "Всё по-старому, ещё один спринт, ещё один дедлайн." },
+        { "en": "He shrugged and said same old.", "ru": "Он пожал плечами и сказал: всё по-старому." }
+      ],
+      "promptsRu": ["Тебя спросили, что нового. Ответь, что всё по-старому.", "Ответь на вопрос о жизни коротко и без драмы."],
+      "questionEn": "Use 'same old, same old' to answer 'what's new'.",
+      "falseMeanings": ["Такой же старый", "Старые друзья"],
+      "noteRu": "Ответ на «what's new» или «how are things». Звучит слегка устало, но дружелюбно."
+    },
+    {
+      "id": "smalltalk.whats-new",
+      "en": "What's new?",
+      "ru": "Что нового?",
+      "accept": ["what's new", "what is new", "what's new with you"],
+      "contexts": [
+        { "en": "What's new? — I finally started the side project.", "ru": "Что нового? — Я наконец начал пет-проект." },
+        { "en": "What's new with you? Still planning to move?", "ru": "Что у тебя нового? Всё ещё планируешь переезд?" },
+        { "en": "Nothing much. What's new on your side?", "ru": "Ничего особенного. А что у тебя нового?" }
+      ],
+      "promptsRu": ["Спроси друга, что у него нового.", "Переведи вопрос на собеседника: а что нового у тебя?"],
+      "questionEn": "Use 'what's new' to keep a conversation going.",
+      "falseMeanings": ["Что это за новинка?", "Какой новый?"],
+      "noteRu": "Обычный ответ: «Not much» или «Nothing much», это не грубо."
+    },
+    {
+      "id": "smalltalk.i-m-into",
+      "en": "I'm into",
+      "ru": "Я увлекаюсь (мне нравится)",
+      "accept": ["i'm into", "i am into", "i'm really into"],
+      "contexts": [
+        { "en": "I'm into historical series, mostly about Rome.", "ru": "Я увлекаюсь историческими сериалами, в основном про Рим." },
+        { "en": "Are you into anime? — Yeah, mostly the older stuff.", "ru": "Ты увлекаешься аниме? — Да, в основном старым." },
+        { "en": "Lately I'm into philosophy podcasts.", "ru": "В последнее время я увлёкся философскими подкастами." }
+      ],
+      "promptsRu": ["Расскажи, чем увлекаешься, в двух словах.", "Спроси нового знакомого, увлекается ли он аниме."],
+      "questionEn": "Use 'I'm into' to describe a hobby.",
+      "falseMeanings": ["Я внутри", "Я вхожу в"],
+      "noteRu": "Короче и живее, чем «I'm interested in». После «into» существительное или -ing."
+    },
+    {
+      "id": "smalltalk.what-do-you-do-for-fun",
+      "en": "What do you do for fun?",
+      "ru": "Чем ты занимаешься для удовольствия?",
+      "accept": ["what do you do for fun"],
+      "contexts": [
+        { "en": "What do you do for fun? — Games, hiking, too much coffee.", "ru": "Чем занимаешься для удовольствия? — Игры, походы, слишком много кофе." },
+        { "en": "Enough about work. What do you do for fun?", "ru": "Хватит о работе. Чем ты занимаешься для души?" },
+        { "en": "She asked what I do for fun and I had to think.", "ru": "Она спросила, чем я занимаюсь для удовольствия, и мне пришлось задуматься." }
+      ],
+      "promptsRu": ["Переведи разговор с работы на хобби.", "Спроси собеседника, чем он занимается в свободное время."],
+      "questionEn": "Use 'what do you do for fun' to change the topic.",
+      "falseMeanings": ["Что ты делаешь смешного?", "Чем ты занят ради шутки?"],
+      "noteRu": "Удобный мост от работы к личному. Не про хобби в формальном смысле, а про удовольствие."
+    },
+    {
+      "id": "smalltalk.i-ve-heard-a-lot-about-you",
+      "en": "I've heard a lot about you",
+      "ru": "Я много о тебе слышал",
+      "accept": ["i've heard a lot about you", "i have heard a lot about you", "heard a lot about you"],
+      "contexts": [
+        { "en": "I've heard a lot about you, Elvin talks about your project.", "ru": "Я много о тебе слышал, Эльвин рассказывает о твоём проекте." },
+        { "en": "Nice to meet you, I've heard a lot about you. — All good, I hope.", "ru": "Приятно познакомиться, много о тебе слышал. — Надеюсь, только хорошее." },
+        { "en": "I've heard a lot about your team's code reviews.", "ru": "Я много слышал о код-ревью в вашей команде." }
+      ],
+      "promptsRu": ["Тебя знакомят с другом друга. Скажи, что много о нём слышал.", "Ответь на фразу «много о тебе слышал» шуткой."],
+      "questionEn": "Use 'I've heard a lot about you' when meeting a friend's friend.",
+      "falseMeanings": ["Я тебя плохо слышу", "Я много раз тебя слушал"],
+      "noteRu": "Тёплое начало знакомства. Стандартный ответ: «All good, I hope»."
+    },
+    {
+      "id": "smalltalk.how-do-you-know",
+      "en": "How do you know each other?",
+      "ru": "Откуда вы друг друга знаете?",
+      "accept": ["how do you know each other", "how do you two know each other"],
+      "contexts": [
+        { "en": "So how do you know each other? — We worked at the same startup.", "ru": "Так откуда вы друг друга знаете? — Работали в одном стартапе." },
+        { "en": "How do you two know each other, university?", "ru": "Откуда вы двое знакомы, университет?" },
+        { "en": "People always ask how we know each other, it's a long story.", "ru": "Люди вечно спрашивают, откуда мы знакомы, это долгая история." }
+      ],
+      "promptsRu": ["На вечеринке спроси двух людей, откуда они знакомы.", "Спроси пару, как они познакомились."],
+      "questionEn": "Use 'how do you know each other' at a party.",
+      "falseMeanings": ["Как вы узнали друг друга?", "Насколько хорошо вы знакомы?"],
+      "noteRu": "Безопасный вопрос для компании незнакомых людей. Про пару можно «how did you meet»."
+    },
+    {
+      "id": "smalltalk.im-terrible-with-names",
+      "en": "I'm terrible with names",
+      "ru": "Я плохо запоминаю имена",
+      "accept": ["i'm terrible with names", "i am terrible with names", "i'm bad with names"],
+      "contexts": [
+        { "en": "Sorry, I'm terrible with names. Ramin? — Yes!", "ru": "Извини, я плохо запоминаю имена. Рамин? — Да!" },
+        { "en": "I'm terrible with names but I never forget a face.", "ru": "Я плохо запоминаю имена, но никогда не забываю лица." },
+        { "en": "She admitted she's terrible with names too.", "ru": "Она призналась, что тоже плохо запоминает имена." }
+      ],
+      "promptsRu": ["Извинись, что забыл имя человека.", "Признайся, что плохо запоминаешь имена, но помнишь лица."],
+      "questionEn": "Use 'I'm terrible with names' when you forget someone's name.",
+      "falseMeanings": ["У меня ужасное имя", "Я ужасен с именами в коде"],
+      "noteRu": "«Terrible with X» значит «плохо справляюсь с X»: terrible with dates, with directions."
+    },
+    {
+      "id": "smalltalk.it-was-great-catching-up",
+      "en": "It was great catching up",
+      "ru": "Было здорово пообщаться (после перерыва)",
+      "accept": ["it was great catching up", "great catching up", "it was nice catching up"],
+      "contexts": [
+        { "en": "It was great catching up, let's not wait another year.", "ru": "Было здорово пообщаться, давай не будем ждать ещё год." },
+        { "en": "It was great catching up with you over coffee.", "ru": "Было здорово пообщаться с тобой за кофе." },
+        { "en": "Great catching up! Say hi to your brother.", "ru": "Здорово было увидеться! Передай привет брату." }
+      ],
+      "promptsRu": ["Попрощайся с другом после долгого разговора.", "Закончи встречу тёплой фразой."],
+      "questionEn": "Use 'it was great catching up' to end a meeting with an old friend.",
+      "falseMeanings": ["Было здорово догнать тебя", "Было здорово наверстать работу"],
+      "noteRu": "Только после встречи с тем, кого давно не видел. Пара к «let's catch up»."
+    },
+    {
+      "id": "smalltalk.i-dont-want-to-keep-you",
+      "en": "I don't want to keep you",
+      "ru": "Не буду тебя задерживать",
+      "accept": ["i don't want to keep you", "i do not want to keep you", "i won't keep you"],
+      "contexts": [
+        { "en": "I don't want to keep you, you said you had a call.", "ru": "Не буду тебя задерживать, ты говорил, у тебя созвон." },
+        { "en": "Anyway, I don't want to keep you. Talk soon!", "ru": "В общем, не буду задерживать. Спишемся!" },
+        { "en": "I won't keep you, just one quick question.", "ru": "Не задержу, всего один быстрый вопрос." }
+      ],
+      "promptsRu": ["Вежливо закончи разговор, сославшись на занятость собеседника.", "Скажи, что не задержишь, только один вопрос."],
+      "questionEn": "Use 'I don't want to keep you' to end a chat politely.",
+      "falseMeanings": ["Я не хочу тебя оставлять", "Я не хочу тебя хранить"],
+      "noteRu": "Вежливый выход из разговора, когда ты сам хочешь закончить."
+    },
+    {
+      "id": "smalltalk.do-you-come-here-often",
+      "en": "Do you come here often?",
+      "ru": "Ты часто здесь бываешь?",
+      "accept": ["do you come here often", "come here often?"],
+      "contexts": [
+        { "en": "Do you come here often? The coffee is really good.", "ru": "Ты часто здесь бываешь? Кофе здесь очень хороший." },
+        { "en": "Do you come here often? — First time, a friend recommended it.", "ru": "Часто здесь бываешь? — Первый раз, друг посоветовал." },
+        { "en": "It sounds like a cliché, but do you come here often?", "ru": "Звучит как клише, но ты часто здесь бываешь?" }
+      ],
+      "promptsRu": ["Заговори с незнакомцем в кафе: часто ли он здесь бывает.", "Ответь, что ты здесь первый раз по совету друга."],
+      "questionEn": "Use 'do you come here often' to start small talk in a café.",
+      "falseMeanings": ["Ты сюда приходишь работать?", "Ты сюда переехал?"],
+      "noteRu": "Классика и немного шутка. Работает в кафе, зале и на митапах."
+    },
+    {
+      "id": "smalltalk.the-weather-s-been",
+      "en": "The weather's been crazy",
+      "ru": "Погода в последнее время сумасшедшая",
+      "accept": ["the weather's been crazy", "the weather has been crazy", "the weather's been weird"],
+      "contexts": [
+        { "en": "The weather's been crazy, snow in April.", "ru": "Погода сумасшедшая, снег в апреле." },
+        { "en": "The weather's been crazy in Baku, wind every day.", "ru": "В Баку погода сумасшедшая, ветер каждый день." },
+        { "en": "We talked about how the weather's been crazy, as you do.", "ru": "Мы поговорили о том, какая сумасшедшая погода, как водится." }
+      ],
+      "promptsRu": ["Начни разговор с погоды: в последнее время она сумасшедшая.", "Пожалуйся на ветер в Баку."],
+      "questionEn": "Use 'the weather's been crazy' as an opener.",
+      "falseMeanings": ["Погода была сумасшедшей вчера", "Погода сходит с ума из-за нас"],
+      "noteRu": "Present Perfect «has been» про последнее время. Самый безопасный small talk."
+    },
+    {
+      "id": "smalltalk.what-are-you-up-to",
+      "en": "What are you up to?",
+      "ru": "Чем занимаешься? (сейчас / в последнее время)",
+      "accept": ["what are you up to", "what are you up to these days", "what have you been up to"],
+      "contexts": [
+        { "en": "What are you up to this weekend?", "ru": "Чем занимаешься в эти выходные?" },
+        { "en": "What are you up to these days? — Mostly freelancing.", "ru": "Чем занимаешься в последнее время? — В основном фрилансом." },
+        { "en": "What have you been up to since the bootcamp?", "ru": "Чем ты занимался с тех пор, как закончил буткемп?" }
+      ],
+      "promptsRu": ["Спроси друга, чем он занимается в эти выходные.", "Спроси, чем он занимался после буткемпа."],
+      "questionEn": "Use 'what are you up to' in a text to a friend.",
+      "falseMeanings": ["До чего ты дошёл?", "На что ты готов?"],
+      "noteRu": "«Up to» здесь значит «занят чем-то». Не путать с «up to you» (решай сам)."
+    },
+    {
+      "id": "smalltalk.not-much",
+      "en": "Not much",
+      "ru": "Да ничего особенного",
+      "accept": ["not much", "nothing much"],
+      "contexts": [
+        { "en": "What's up? — Not much, you?", "ru": "Как дела? — Ничего особенного, а у тебя?" },
+        { "en": "Not much, just fixing bugs and drinking coffee.", "ru": "Ничего особенного, чиню баги и пью кофе." },
+        { "en": "Nothing much happened at the meetup, same people.", "ru": "На митапе ничего особенного не произошло, те же люди." }
+      ],
+      "promptsRu": ["Ответь на «what's up» коротко.", "Скажи, что ничего особенного, просто работа."],
+      "questionEn": "Use 'not much' to answer 'what's up'.",
+      "falseMeanings": ["Немного", "Недостаточно"],
+      "noteRu": "Стандартный ответ на «what's up» и «what's new». Добавь «you?», чтобы вернуть ход."
+    },
+    {
+      "id": "smalltalk.im-a-big-fan-of",
+      "en": "I'm a big fan of",
+      "ru": "Я большой поклонник",
+      "accept": ["i'm a big fan of", "i am a big fan of", "big fan of"],
+      "contexts": [
+        { "en": "I'm a big fan of Georgian food.", "ru": "Я большой поклонник грузинской кухни." },
+        { "en": "I'm a big fan of TypeScript, can't go back to plain JS.", "ru": "Я большой поклонник TypeScript, не могу вернуться к чистому JS." },
+        { "en": "Not a big fan of open offices, to be honest.", "ru": "Честно говоря, не большой поклонник открытых офисов." }
+      ],
+      "promptsRu": ["Скажи, что ты большой поклонник грузинской кухни.", "Скажи мягко, что не любишь открытые офисы."],
+      "questionEn": "Use 'I'm a big fan of' about food or tech.",
+      "falseMeanings": ["Я большой вентилятор", "Я фанатик"],
+      "noteRu": "Отрицание «not a big fan of» это вежливое «не люблю»."
+    },
+    {
+      "id": "smalltalk.that-reminds-me",
+      "en": "That reminds me",
+      "ru": "Кстати, это напомнило мне",
+      "accept": ["that reminds me", "which reminds me"],
+      "contexts": [
+        { "en": "That reminds me, I still owe you a coffee.", "ru": "Кстати, напомнило: я всё ещё должен тебе кофе." },
+        { "en": "That reminds me of a bug we had last year.", "ru": "Это напоминает мне баг, который был у нас в прошлом году." },
+        { "en": "Which reminds me, did you send the invoice?", "ru": "Кстати, это напомнило: ты отправил счёт?" }
+      ],
+      "promptsRu": ["Вспомни по ходу разговора, что должен другу кофе.", "Свяжи историю собеседника со своей: это напоминает мне…"],
+      "questionEn": "Use 'that reminds me' to add your own story.",
+      "falseMeanings": ["Это напоминание", "Это заставляет меня вспомнить тебя"],
+      "noteRu": "Естественный переход к своей теме, не выглядит как перебивание."
+    },
+    {
+      "id": "smalltalk.speaking-of-which",
+      "en": "Speaking of which",
+      "ru": "Кстати об этом",
+      "accept": ["speaking of which", "speaking of"],
+      "contexts": [
+        { "en": "Speaking of which, how did the interview go?", "ru": "Кстати об этом, как прошло собеседование?" },
+        { "en": "Speaking of coffee, have you tried the new place on Nizami?", "ru": "Кстати о кофе, пробовал новое место на Низами?" },
+        { "en": "Speaking of which, we never finished that series.", "ru": "Кстати об этом, мы так и не досмотрели тот сериал." }
+      ],
+      "promptsRu": ["Собеседник упомянул кофе. Спроси, пробовал ли он новое место.", "Подхвати тему: кстати об этом, как собеседование?"],
+      "questionEn": "Use 'speaking of which' to follow up on a topic.",
+      "falseMeanings": ["Говоря о том, который", "Разговор о выборе"],
+      "noteRu": "Подхватывает тему собеседника. «Speaking of X» с конкретной темой."
+    },
+    {
+      "id": "smalltalk.i-didnt-mean-to-interrupt",
+      "en": "I didn't mean to interrupt",
+      "ru": "Не хотел перебивать",
+      "accept": ["i didn't mean to interrupt", "i did not mean to interrupt", "sorry to interrupt"],
+      "contexts": [
+        { "en": "Sorry, I didn't mean to interrupt, go on.", "ru": "Извини, не хотел перебивать, продолжай." },
+        { "en": "I didn't mean to interrupt your call.", "ru": "Я не хотел прерывать твой созвон." },
+        { "en": "Sorry to interrupt, but the demo starts in two minutes.", "ru": "Извините, что перебиваю, но демо начинается через две минуты." }
+      ],
+      "promptsRu": ["Ты случайно перебил. Извинись и дай продолжить.", "Перебей созвон, чтобы напомнить о демо."],
+      "questionEn": "Use 'I didn't mean to interrupt' after cutting someone off.",
+      "falseMeanings": ["Я не имел в виду прерывание", "Я не хотел останавливаться"],
+      "noteRu": "«Didn't mean to» значит «не хотел, случайно». Работает с любым глаголом."
+    },
+    {
+      "id": "smalltalk.you-must-be",
+      "en": "You must be",
+      "ru": "Вы, должно быть, (догадка)",
+      "accept": ["you must be"],
+      "contexts": [
+        { "en": "You must be Ramin, Elvin told me about you.", "ru": "Вы, должно быть, Рамин, Эльвин рассказывал о вас." },
+        { "en": "You must be tired after that flight.", "ru": "Ты, должно быть, устал после перелёта." },
+        { "en": "You must be the new designer. Welcome!", "ru": "Ты, должно быть, новый дизайнер. Добро пожаловать!" }
+      ],
+      "promptsRu": ["Встречаешь человека, которого ждал. Скажи: вы, должно быть, …", "Посочувствуй коллеге после долгого перелёта."],
+      "questionEn": "Use 'you must be' to guess who someone is.",
+      "falseMeanings": ["Ты должен быть", "Тебе придётся быть"],
+      "noteRu": "«Must» здесь уверенная догадка, а не обязанность."
+    },
+    {
+      "id": "smalltalk.lets-grab-a-drink",
+      "en": "Let's grab a drink sometime",
+      "ru": "Давай как-нибудь выпьем",
+      "accept": ["let's grab a drink sometime", "let's grab a drink", "grab a drink sometime"],
+      "contexts": [
+        { "en": "Let's grab a drink sometime, I want to hear about Berlin.", "ru": "Давай как-нибудь выпьем, хочу послушать про Берлин." },
+        { "en": "We should grab a drink sometime, it's been ages.", "ru": "Надо как-нибудь выпить, сто лет прошло." },
+        { "en": "He suggested we grab a drink after the conference.", "ru": "Он предложил выпить после конференции." }
+      ],
+      "promptsRu": ["Предложи знакомому как-нибудь выпить.", "Закончи разговор предложением встретиться."],
+      "questionEn": "Use 'let's grab a drink sometime' to suggest meeting.",
+      "falseMeanings": ["Давай схватим напиток", "Давай выпьем прямо сейчас"],
+      "noteRu": "«Sometime» делает предложение необязательным. Без него звучит как «сегодня»."
+    },
+    {
+      "id": "smalltalk.take-care",
+      "en": "Take care",
+      "ru": "Береги себя (при прощании)",
+      "accept": ["take care", "take care of yourself"],
+      "contexts": [
+        { "en": "Okay, I'm off. Take care!", "ru": "Ладно, я пошёл. Береги себя!" },
+        { "en": "Take care, and good luck with the move.", "ru": "Береги себя, и удачи с переездом." },
+        { "en": "She waved and said take care.", "ru": "Она помахала и сказала «береги себя»." }
+      ],
+      "promptsRu": ["Попрощайся с другом тепло.", "Пожелай удачи с переездом и попрощайся."],
+      "questionEn": "Use 'take care' to say goodbye.",
+      "falseMeanings": ["Позаботься об этом", "Будь осторожен на дороге"],
+      "noteRu": "Универсальное прощание. «Take care of X» уже значит «позаботься об X»."
+    }
+  ]
+}

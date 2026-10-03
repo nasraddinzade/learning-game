@@ -61,6 +61,16 @@ describe('seed content (SPEC §9.1)', () => {
         } else {
           expect(ex.wrongIndex).toBeLessThan(ex.tokens.length)
           expect(typeof ex.fix).toBe('string')
+          // The fixed sentence must read naturally: no word doubled by a sloppy replacement.
+          const fixed =
+            ex.correct ??
+            ex.tokens
+              .map((t, i) => (i === ex.wrongIndex ? ex.fix : t))
+              .filter((t) => t !== '')
+              .join(' ')
+          const w = fixed.toLowerCase().split(/\s+/)
+          for (let i = 1; i < w.length; i++) expect(w[i], `${p.id}: "${fixed}"`).not.toBe(w[i - 1])
+          expect(fixed.toLowerCase(), `${p.id}: fix must change the sentence`).not.toBe(ex.tokens.join(' ').toLowerCase())
         }
       }
       // Some sentences must be correct, otherwise "Всё правильно" is never the answer.
