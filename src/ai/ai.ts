@@ -58,7 +58,7 @@ function providerFor(): AIProvider | null {
   if (override) return override
   const s = aiSettings()
   if (!s) return null
-  if (s.geminiKey.trim() && !broken.has('gemini')) return createGemini(s.geminiKey.trim(), s.geminiModel.trim() || 'gemini-2.5-flash')
+  if (s.geminiKey.trim() && !broken.has('gemini')) return createGemini(s.geminiKey.trim(), s.geminiModel.trim() || 'gemini-3.8-flash')
   if (s.groqKey.trim() && !broken.has('groq')) return createGroq(s.groqKey.trim(), s.groqModel.trim() || 'llama-3.3-70b-versatile')
   return null
 }

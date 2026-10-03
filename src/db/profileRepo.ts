@@ -8,11 +8,14 @@ export const DEFAULT_SETTINGS: Settings = {
   vibration: true,
   ai: {
     geminiKey: '',
-    geminiModel: 'gemini-2.5-flash',
+    geminiModel: 'gemini-3.8-flash',
     groqKey: '',
     groqModel: 'llama-3.3-70b-versatile',
   },
 }
+
+/** Model ids Google has retired for new keys; a saved default moves on to the current one. */
+const RETIRED_GEMINI_MODELS = ['gemini-2.5-flash']
 
 export function defaultProfile(): Profile {
   return {
@@ -38,13 +41,15 @@ export async function loadProfile(): Promise<Profile> {
   const existing = await db.profile.get('me')
   if (existing) {
     // Fill in settings added by later versions without touching user values.
+    const ai = { ...DEFAULT_SETTINGS.ai, ...existing.settings.ai }
+    if (RETIRED_GEMINI_MODELS.includes(ai.geminiModel)) ai.geminiModel = DEFAULT_SETTINGS.ai.geminiModel
     return {
       ...defaultProfile(),
       ...existing,
       settings: {
         ...DEFAULT_SETTINGS,
         ...existing.settings,
-        ai: { ...DEFAULT_SETTINGS.ai, ...existing.settings.ai },
+        ai,
       },
     }
   }
