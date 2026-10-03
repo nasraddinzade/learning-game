@@ -27,6 +27,10 @@ e2e гоняются против `vite build --mode e2e`: это production-с�
 
 Один стор `src/store/run.ts` ведёт весь поход: `run.phase` (`map | battle | rest | boon | summary`) решает экран, `routeForRun(run)` даёт маршрут, каждый экран при расхождении редиректит. Чистая логика похода в `src/game/run.ts` (создание, содержимое узлов, слияние боя, привал, усиления), карта в `map.ts`, Эхо в `echo.ts`, усиления в `boons.ts`. Бой (`combat.ts`) получает `CombatOptions { boons, flags }` и меняет только руны и здоровье. Встречи (`encounter`) на карту не ставятся до этапа 5 (`allowEncounter`).
 
+## Звук и речь (этап 3)
+
+`src/speech/tts.ts` и `recognition.ts` оборачивают Web Speech API и принимают подмену (`setSpeaker`, `setRecognizer`), которой пользуются тестовые хуки `fakeSpeech`. `src/ui/fx.ts` синтезирует звуки через Web Audio и вибрирует, читая выключатели из настроек. Приёмы На слух и Диктант доступны только при озвучке (`moves/availability.ts`), Голос без распознавания идёт через самооценку, Экспромт даёт 6 секунд на старт (`balance.improv`). В e2e `wipeAll` всегда ставит фальшивую речь, `__nemesis.forceMove(move)` задаёт приём следующего задания.
+
 ## Структура
 
 ```
