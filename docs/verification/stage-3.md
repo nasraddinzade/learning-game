@@ -78,4 +78,16 @@
 
 ## Git
 
-(заполняется после пуша)
+Коммиты этапа (от первого к последнему)
+- `ab1cd15` feat(speech): Web Speech wrappers, synthesized sounds and vibration
+- `e184683` feat(moves): На слух, Диктант, Голос with self-assessment fallback, Экспромт
+- `d4b2583` test: speech unit tests and e2e scenarios with fake speech
+- `63e821e` docs: stage 3 verification report, screenshots and CLAUDE.md notes
+
+## Подтверждение пуша
+
+- Последний коммит кода этапа: `63e821ef65515fc396bb1e59f6dcbc678c6e6c67`.
+- `git push origin main` прошёл (`18786b3..63e821e`), `git status` чистый, `HEAD` совпадает с `origin/main`.
+- Тег `stage-3` поставлен на `63e821e` и запушен.
+- Staged diff просканирован на ключи: ничего не найдено.
+- Этот отчёт дополнен хешем в отдельном коммите `docs:` после пуша.
