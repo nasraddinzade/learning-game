@@ -1,4 +1,3 @@
-import { motion } from 'motion/react'
 import { enemyLook, type EnemyLook } from '@/game/enemyLook'
 import type { EnemyKind } from '@/types'
 
@@ -55,22 +54,14 @@ export function EnemySprite({ itemId, kind, scars = 0, shake = 0, down = false, 
   const scale = look.scale * (nemesis ? 1.15 + Math.min(scars, 5) * 0.04 : echo ? 1.2 : 1)
 
   return (
-    <motion.svg
+    <svg
       key={shake}
       viewBox="0 0 120 130"
       width={size}
       height={size * (130 / 120)}
-      initial={shake > 0 ? { x: 0 } : false}
-      animate={
-        down
-          ? { scale: 0, opacity: 0, rotate: 20 }
-          : shake > 0
-            ? { x: [0, -10, 10, -6, 6, 0] }
-            : { x: 0, y: [0, -4, 0] }
-      }
-      transition={
-        down ? { duration: 0.45 } : shake > 0 ? { duration: 0.35 } : { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }
-      }
+      // CSS keyframes (index.css): idle bob, a shake on every answer, a shrink when defeated. No motion here, so
+      // the camp and the chronicle stay off the animation library.
+      className={down ? 'enemy-down' : shake > 0 ? 'enemy-shake' : 'enemy-idle'}
       style={{ opacity: debtor ? 0.75 : 1 }}
       data-testid="enemy-sprite"
       data-kind={kind}
@@ -112,6 +103,6 @@ export function EnemySprite({ itemId, kind, scars = 0, shake = 0, down = false, 
           <stop offset="1" stopColor="#000" stopOpacity="0.45" />
         </linearGradient>
       </defs>
-    </motion.svg>
+    </svg>
   )
 }

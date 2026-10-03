@@ -5,8 +5,12 @@ import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import { defineConfig } from 'vite'
 
+// GitHub Pages serves the app under /learning-game/ (SPEC §19); local builds stay at the root.
+const base = process.env.BASE_PATH ?? '/'
+
 // https://vite.dev/config/
 export default defineConfig({
+  base,
   plugins: [
     react(),
     tailwindcss(),
@@ -18,8 +22,8 @@ export default defineConfig({
         short_name: 'Nemesis',
         description: 'Личная игра для разговорного английского',
         lang: 'ru',
-        start_url: '/',
-        scope: '/',
+        start_url: base,
+        scope: base,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#0b0d12',
@@ -37,7 +41,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
-        navigateFallback: '/index.html',
+        navigateFallback: `${base}index.html`,
         cleanupOutdatedCaches: true,
       },
     }),

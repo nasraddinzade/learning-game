@@ -1,3 +1,4 @@
+import { useKeys } from '@/ui/keys'
 import { useEffect, useRef, useState } from 'react'
 import { balance } from '@/game/balance'
 import { listen, recognitionAvailable, stopListening } from '@/speech/recognition'
@@ -88,6 +89,7 @@ export function VoiceMove({ task, onSubmit, onInteract }: MoveProps<VoiceTask>) 
 /** Fallback: say it out loud, then compare with the model answer and grade yourself. */
 function SelfAssess({ task, onSubmit }: { task: VoiceTask; onSubmit: MoveProps<VoiceTask>['onSubmit'] }) {
   const [revealed, setRevealed] = useState(false)
+  useKeys({ '1': () => onSubmit(checkTask(task, 'self:ok', false)), '2': () => onSubmit(checkTask(task, 'self:typo', false)), '3': () => onSubmit(checkTask(task, 'self:fail', false)) }, revealed)
   return (
     <div className="flex flex-col gap-3 rounded-card bg-bg-card p-4" data-testid="voice-self">
       {!revealed ? (

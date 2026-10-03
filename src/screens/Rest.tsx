@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'motion/react'
+import { motion, MotionConfig } from 'motion/react'
 import { patternDef } from '@/db/patternRepo'
 import { TrapMove } from '@/moves/trap/TrapMove'
 import { routeForRun, useRunStore } from '@/store/run'
@@ -72,6 +72,7 @@ export function RestScreen() {
   const clean = rest.done && total > 0 && rest.correct === total
 
   return (
+    <MotionConfig reducedMotion="user">
     <main data-testid="screen-rest" className="safe-top safe-bottom mx-auto flex min-h-full w-full max-w-[440px] flex-col gap-3 px-4 pb-6">
       <header className="flex h-12 items-center justify-between">
         <h1 className="text-xl font-bold tracking-tight">🔥 Привал</h1>
@@ -125,11 +126,12 @@ export function RestScreen() {
               )}
             </p>
           ) : null}
-          <Button full className="h-14 text-lg" data-testid="rest-leave" onClick={() => void s.leaveRest()}>
+          <Button full className="h-14 text-lg" data-testid="rest-leave" onClick={() => void s.leaveRest()} autoFocus>
             Идти дальше
           </Button>
         </section>
       ) : null}
     </main>
+    </MotionConfig>
   )
 }

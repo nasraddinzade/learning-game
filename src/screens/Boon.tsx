@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'motion/react'
+import { motion, MotionConfig } from 'motion/react'
 import { BOONS } from '@/game/boons'
 import { routeForRun, useRunStore } from '@/store/run'
 
@@ -40,6 +40,7 @@ export function BoonScreen() {
   }
 
   return (
+    <MotionConfig reducedMotion="user">
     <main data-testid="screen-boon" className="safe-top safe-bottom mx-auto flex min-h-full w-full max-w-[440px] flex-col gap-4 px-4 pb-6">
       <header className="flex h-14 items-center">
         <h1 className="text-xl font-bold tracking-tight">Выбери усиление</h1>
@@ -72,5 +73,6 @@ export function BoonScreen() {
         })}
       </div>
     </main>
+    </MotionConfig>
   )
 }

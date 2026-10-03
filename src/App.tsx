@@ -6,24 +6,22 @@ import { useProfileStore } from '@/store/profile'
 import { installDebugHooks } from '@/debugHooks'
 import { DevPanel } from '@/ui/DevPanel'
 import { CampScreen } from '@/screens/Camp'
-import { MapScreen } from '@/screens/Map'
-import { RestScreen } from '@/screens/Rest'
-import { BoonScreen } from '@/screens/Boon'
-import { SummaryScreen } from '@/screens/Summary'
-import { ChronicleScreen } from '@/screens/Chronicle'
-import { TrophiesScreen } from '@/screens/Trophies'
-import { FromLifeScreen } from '@/screens/FromLife'
-import { StatsScreen } from '@/screens/Stats'
-import { SettingsScreen } from '@/screens/Settings'
-import { UpgradesScreen } from '@/screens/Upgrades'
-import { LibraryScreen } from '@/screens/Library'
-import { LifeAddScreen } from '@/screens/LifeAdd'
 
-// Heavy screens load lazily so the camp stays small (SPEC §3).
+// Only the camp ships in the first chunk (SPEC §3): every other screen loads on demand.
+const MapScreen = lazy(() => import('@/screens/Map').then((m) => ({ default: m.MapScreen })))
+const RestScreen = lazy(() => import('@/screens/Rest').then((m) => ({ default: m.RestScreen })))
+const BoonScreen = lazy(() => import('@/screens/Boon').then((m) => ({ default: m.BoonScreen })))
+const SummaryScreen = lazy(() => import('@/screens/Summary').then((m) => ({ default: m.SummaryScreen })))
+const ChronicleScreen = lazy(() => import('@/screens/Chronicle').then((m) => ({ default: m.ChronicleScreen })))
+const TrophiesScreen = lazy(() => import('@/screens/Trophies').then((m) => ({ default: m.TrophiesScreen })))
+const FromLifeScreen = lazy(() => import('@/screens/FromLife').then((m) => ({ default: m.FromLifeScreen })))
+const StatsScreen = lazy(() => import('@/screens/Stats').then((m) => ({ default: m.StatsScreen })))
+const SettingsScreen = lazy(() => import('@/screens/Settings').then((m) => ({ default: m.SettingsScreen })))
+const UpgradesScreen = lazy(() => import('@/screens/Upgrades').then((m) => ({ default: m.UpgradesScreen })))
+const LibraryScreen = lazy(() => import('@/screens/Library').then((m) => ({ default: m.LibraryScreen })))
+const LifeAddScreen = lazy(() => import('@/screens/LifeAdd').then((m) => ({ default: m.LifeAddScreen })))
 const BattleScreen = lazy(() => import('@/screens/Battle').then((m) => ({ default: m.BattleScreen })))
-const EncounterScreen = lazy(() =>
-  import('@/screens/Encounter').then((m) => ({ default: m.EncounterScreen })),
-)
+const EncounterScreen = lazy(() => import('@/screens/Encounter').then((m) => ({ default: m.EncounterScreen })))
 const ReaderScreen = lazy(() => import('@/screens/Reader').then((m) => ({ default: m.ReaderScreen })))
 
 function Loading() {

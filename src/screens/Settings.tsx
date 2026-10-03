@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { aiStatus, ping, subscribeAI, type AIStatus } from '@/ai/ai'
+import { backupCounts, backupFilename, exportBackup, importBackup, parseBackup, type Backup, type BackupCounts } from '@/db/backup'
+import { now } from '@/store/clock'
 import { useProfileStore } from '@/store/profile'
 import { Screen } from '@/ui/Screen'
 import { SpeakButton } from '@/ui/SpeakButton'
@@ -88,6 +90,94 @@ function ModelField({ label, value, testId, onChange }: { label: string; value: 
         className="h-11 w-44 rounded-xl border border-line bg-bg px-3 text-sm text-fg outline-none focus:border-accent"
       />
     </label>
+  )
+}
+
+/** Export and import of everything as JSON (SPEC §13). AI keys are never written to the file. */
+function DataSection() {
+  const [pending, setPending] = useState<{ backup: Backup; counts: BackupCounts; name: string } | null>(null)
+  const [message, setMessage] = useState<string | null>(null)
+  const [busy, setBusy] = useState(false)
+
+  async function exportAll() {
+    setBusy(true)
+    const b = await exportBackup(now())
+    const blob = new Blob([JSON.stringify(b)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = backupFilename(now())
+    document.body.appendChild(a)
+    a.click()
+    a.remove()
+    setTimeout(() => URL.revokeObjectURL(url), 10_000)
+    setMessage(`Сохранено: ${a.download}`)
+    setBusy(false)
+  }
+
+  async function pick(file: File | undefined) {
+    if (!file) return
+    setMessage(null)
+    try {
+      const b = parseBackup(JSON.parse(await file.text()))
+      setPending({ backup: b, counts: backupCounts(b), name: file.name })
+    } catch (e) {
+      setPending(null)
+      setMessage(e instanceof Error ? e.message : 'Не удалось прочитать файл')
+    }
+  }
+
+  async function importAll() {
+    if (!pending) return
+    setBusy(true)
+    try {
+      await importBackup(pending.backup)
+      setPending(null)
+      location.reload()
+    } catch (e) {
+      setMessage(e instanceof Error ? e.message : 'Импорт не удался')
+      setBusy(false)
+    }
+  }
+
+  return (
+    <section className="flex flex-col gap-2">
+      <h2 className="px-1 text-xs font-semibold tracking-wide text-fg-faint uppercase">Данные</h2>
+      <Row label="Экспорт в JSON">
+        <button type="button" data-testid="data-export" disabled={busy} onClick={() => void exportAll()} className="tap rounded-xl bg-bg-raised px-4 text-sm font-semibold disabled:opacity-40">
+          Сохранить файл
+        </button>
+      </Row>
+      <Row label="Импорт из JSON">
+        <label className="tap flex cursor-pointer items-center rounded-xl bg-bg-raised px-4 text-sm font-semibold">
+          Выбрать файл
+          <input type="file" accept="application/json,.json" data-testid="data-import-input" className="sr-only" onChange={(e) => void pick(e.target.files?.[0])} />
+        </label>
+      </Row>
+      <p className="px-1 text-xs text-fg-faint">В файл уходит всё: фразы, прогресс, попытки, походы, тексты и профиль. Ключи ИИ не уходят. Импорт заменяет текущие данные целиком.</p>
+      {pending ? (
+        <div className="rounded-2xl border border-accent/40 bg-bg-card p-3 text-sm" data-testid="data-import-summary">
+          <p className="font-semibold">{pending.name}</p>
+          <p className="text-fg-muted">
+            фраз: {pending.counts.items} · прогресса: {pending.counts.progress} · попыток: {pending.counts.attempts} · походов: {pending.counts.runs} · текстов: {pending.counts.texts}
+          </p>
+          <p className="mt-1 text-danger">Текущие данные будут заменены.</p>
+          <div className="mt-2 flex gap-2">
+            <button type="button" onClick={() => setPending(null)} className="tap rounded-xl bg-bg-raised px-4 text-sm">
+              Отмена
+            </button>
+            <button type="button" data-testid="data-import-confirm" disabled={busy} onClick={() => void importAll()} className="tap flex-1 rounded-xl bg-accent px-4 text-sm font-semibold text-bg disabled:opacity-40">
+              Заменить и перезагрузить
+            </button>
+          </div>
+        </div>
+      ) : null}
+      {message ? (
+        <p className="px-1 text-xs text-fg-muted" data-testid="data-message">
+          {message}
+        </p>
+      ) : null}
+    </section>
   )
 }
 
@@ -250,12 +340,7 @@ export function SettingsScreen() {
 
       <AISection />
 
-      <section className="flex flex-col gap-2">
-        <h2 className="px-1 text-xs font-semibold tracking-wide text-fg-faint uppercase">Данные</h2>
-        <div className="rounded-2xl border border-dashed border-line p-4 text-sm text-fg-muted">
-          Экспорт и импорт в JSON появятся на этапе 6.
-        </div>
-      </section>
+      <DataSection />
     </Screen>
   )
 }

@@ -86,3 +86,55 @@
     min-width: 48px;
   }
 }
+
+/* Enemy sprite (ui/EnemySprite.tsx): transform-only animations, paused by prefers-reduced-motion above. */
+.enemy-idle,
+.enemy-shake,
+.enemy-down {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.enemy-idle {
+  animation: enemy-idle 2.4s ease-in-out infinite;
+}
+.enemy-shake {
+  animation: enemy-shake 0.35s ease-out;
+}
+.enemy-down {
+  animation: enemy-down 0.45s ease-in forwards;
+}
+@keyframes enemy-idle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+@keyframes enemy-shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-10px);
+  }
+  40% {
+    transform: translateX(10px);
+  }
+  60% {
+    transform: translateX(-6px);
+  }
+  80% {
+    transform: translateX(6px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes enemy-down {
+  to {
+    transform: scale(0) rotate(20deg);
+    opacity: 0;
+  }
+}

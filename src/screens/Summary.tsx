@@ -93,7 +93,7 @@ function Body({ s, onLeave }: { s: RunSummary; onLeave: () => void }) {
       <Section title="Стали немезидами" items={s.newNemeses} tone="danger" />
       <Section title="Немезиды побеждены сегодня" items={s.defeatedNemeses} tone="ok" />
       <div className="mt-auto pt-2">
-        <Button full className="h-14 text-lg" data-testid="summary-leave" onClick={onLeave}>
+        <Button full className="h-14 text-lg" data-testid="summary-leave" onClick={onLeave} autoFocus>
           В лагерь
         </Button>
       </div>

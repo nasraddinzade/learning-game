@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'motion/react'
+import { motion, MotionConfig } from 'motion/react'
 import { aiAvailable } from '@/ai/ai'
 import { seedScenes } from '@/content/scenes'
 import { balance } from '@/game/balance'
@@ -11,6 +11,7 @@ import { Button } from '@/ui/Button'
 import { fx } from '@/ui/fx'
 import { SpeakButton } from '@/ui/SpeakButton'
 import { TextAnswer } from '@/ui/TextAnswer'
+import { useKeys } from '@/ui/keys'
 import type { SceneOutcome } from '@/types'
 
 const OUTCOME_RU: Record<SceneOutcome, { title: string; emoji: string; cls: string }> = {
@@ -74,6 +75,7 @@ export function EncounterScreen() {
 
   const run = s.run
   const enc = run?.encounter ?? null
+  useKeys({ '1': () => void s.assessScene('ok'), '2': () => void s.assessScene('typo'), '3': () => void s.assessScene('fail') }, enc?.phase === 'self')
   const scene = enc ? seedScenes.find((sc) => sc.id === enc.sceneId) : undefined
   if (!run || run.phase !== 'encounter' || !enc || !scene) {
     return (
@@ -95,6 +97,7 @@ export function EncounterScreen() {
   }
 
   return (
+    <MotionConfig reducedMotion="user">
     <main data-testid="screen-encounter" className="safe-top safe-bottom mx-auto flex min-h-full w-full max-w-[440px] flex-col gap-3 px-4 pb-6">
       <header className="flex h-14 items-center justify-between">
         <div className="flex items-center gap-2">
@@ -255,5 +258,6 @@ export function EncounterScreen() {
         </section>
       ) : null}
     </main>
+    </MotionConfig>
   )
 }

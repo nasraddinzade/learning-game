@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'motion/react'
+import { motion, MotionConfig } from 'motion/react'
 import { MOVE_LABEL_RU, STAGE_LABEL_RU, riskOptions } from '@/engine/moves'
 import { enemiesLeft } from '@/game/combat'
 import { NODE_ICON, NODE_LABEL_RU } from '@/game/map'
@@ -239,6 +239,7 @@ export function BattleScreen() {
     current?.kind === 'echo' && run?.echoItemIds ? `${run.echoItemIds.indexOf(current.itemId) + 1} из ${run.echoItemIds.length}` : null
 
   return (
+    <MotionConfig reducedMotion="user">
     <main
       data-testid="screen-battle"
       data-phase={s.battlePhase}
@@ -375,5 +376,6 @@ export function BattleScreen() {
         </>
       ) : null}
     </main>
+    </MotionConfig>
   )
 }

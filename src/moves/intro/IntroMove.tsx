@@ -1,3 +1,4 @@
+import { useKeys } from '@/ui/keys'
 import { Button } from '@/ui/Button'
 import { SpeakButton } from '@/ui/SpeakButton'
 import type { IntroTask, MoveProps } from '../types'
@@ -8,6 +9,8 @@ import type { IntroTask, MoveProps } from '../types'
  * risk with Перевод, so here it submits answer 'know'.
  */
 export function IntroMove({ task, item, onSubmit }: MoveProps<IntroTask>) {
+  // Enter = "Повторил вслух" on a keyboard (SPEC §12).
+  useKeys({ Enter: () => onSubmit({ correct: true, hintUsed: false, typo: false, answer: 'repeat', expected: '' }) })
   return (
     <div className="flex flex-col gap-4" data-testid="move-intro">
       <div className="rounded-card bg-bg-card p-5">

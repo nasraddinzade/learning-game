@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { motion } from 'motion/react'
+import { motion, MotionConfig } from 'motion/react'
 import { burstConfetti } from './confetti'
 import { buzz, fx } from './fx'
 
@@ -36,6 +36,7 @@ export function Celebration({ emoji, title, subtitle, tone = 'big', testId = 'ce
   }, [])
 
   return (
+    <MotionConfig reducedMotion="user">
     <motion.div
       role="dialog"
       aria-label={title}
@@ -65,5 +66,6 @@ export function Celebration({ emoji, title, subtitle, tone = 'big', testId = 'ce
       ) : null}
       <p className="mt-6 text-sm text-fg-faint">Тапни, чтобы продолжить</p>
     </motion.div>
+    </MotionConfig>
   )
 }

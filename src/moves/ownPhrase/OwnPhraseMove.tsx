@@ -6,6 +6,7 @@ import { useProfileStore } from '@/store/profile'
 import { Button } from '@/ui/Button'
 import { SpeakButton } from '@/ui/SpeakButton'
 import { TextAnswer } from '@/ui/TextAnswer'
+import { useKeys } from '@/ui/keys'
 import { checkWithAI } from '../production'
 import { checkTask } from '../tasks'
 import type { MoveProps, OwnPhraseTask } from '../types'
@@ -51,6 +52,8 @@ export function OwnPhraseMove({ task, item, onSubmit, onInteract }: MoveProps<Ow
     if (!result) return
     void submit(result.transcripts[0] ?? '')
   }
+
+  useKeys({ '1': () => selfAssess('ok'), '2': () => selfAssess('typo'), '3': () => selfAssess('fail') }, answer !== null)
 
   function selfAssess(v: 'ok' | 'typo' | 'fail') {
     const r = checkTask(task, `self:${v}`, false)

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, useMotionValue, useTransform, animate } from 'motion/react'
+import { MotionConfig, motion, useMotionValue, useTransform, animate } from 'motion/react'
 import { checkTask } from '../tasks'
 import type { MoveProps, SwipeTask } from '../types'
 
@@ -46,6 +46,7 @@ export function SwipeMove({ task, onSubmit, onInteract }: MoveProps<SwipeTask>) 
   }, [])
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="flex flex-col gap-3" data-testid="move-swipe">
       <p className="text-center text-sm text-fg-muted">Совпадает ли смысл? Вправо — да, влево — нет</p>
       <div className="relative">
@@ -101,5 +102,6 @@ export function SwipeMove({ task, onSubmit, onInteract }: MoveProps<SwipeTask>) 
         </button>
       </div>
     </div>
+    </MotionConfig>
   )
 }
