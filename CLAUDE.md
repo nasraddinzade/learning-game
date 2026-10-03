@@ -35,6 +35,10 @@ e2e гоняются против `vite build --mode e2e`: это production-с�
 
 Профиль (`src/db/profileRepo.ts`) хранит `camp` (уровни улучшений), `freezes`, `trophyLog`, `unlockedLands`, `heroLook`, `theme`. Улучшения в `src/game/upgrades.ts` (цены в `balance.upgrades`): `heroMaxHp`, `boonChoices`, `hasStartBoon` читает стор похода при старте. Серия дней с заморозками в `engine/streak.ts` (`advanceStreak`), открытие земель в `engine/lands.ts` (следующая земля после `balance.lands.unlockAfter` встреченных фраз), планировщик вводит новые фразы только из открытых земель (`unlockedLands`). Немезида после третьего дня побед уничтожается: `nemesisResult` в фидбеке боя, трофей в `trophyLog`. Празднования (`ui/Celebration.tsx`, оверлей `data-testid="celebration-*"`) показывает Summary (Эхо, уровень, земля) и Battle (немезида, трофей); тема применяется через `data-theme` на `<html>`. В e2e `dismissCelebrations` закрывает оверлеи, автопилот пишет `celebration:<id>` в trail и принимает `onCelebration` для скриншотов.
 
+## Режим чтения (шаг 2а, SPEC §9.3)
+
+Чистая логика в `src/reading/text.ts` (абзацы и токены, правило выделения до `balance.reading.maxWords` слов, предложение вокруг выделения, поиск уже существующих фраз). Тексты в таблице `texts` (Dexie v2), фразы из текста создаёт `addLifeItem` в `src/db/textRepo.ts`: `source: 'life'`, `land: 'life'`, один контекст, остальное пустое до ИИ, `canUse` сам ограничивает приёмы. Экраны `Library` (`/read`) и ленивый `Reader` (`/read/:id`): протяжка начинается только с выделенного слова (`touch-action: none` на нём), панель позиционируется от `getBoundingClientRect` выделения. В e2e слова адресуются как `[data-testid=reader-word][data-p][data-w]`.
+
 ## Структура
 
 ```
