@@ -15,6 +15,10 @@ import type { Correction } from '@/ai/types'
 import { normalize } from '@/engine/answerCheck'
 import { newPatternStat, reactivatePattern } from '@/engine/patterns'
 import { addCorrectionItem } from '@/db/textRepo'
+import { aiAvailable, sceneTurn } from '@/ai/ai'
+import { seedScenes } from '@/content/scenes'
+import { applyTurn, chipsUsedIn, finishEncounterNode, scriptedLine, startEncounterNode, type TurnVerdict } from '@/game/encounter'
+import type { SceneDef, SceneOutcome } from '@/types'
 import { buildQueue } from '@/engine/scheduler'
 import { balance, levelForXp } from '@/game/balance'
 import { boonChoices, hasStartBoon, heroMaxHp } from '@/game/upgrades'
@@ -129,6 +133,11 @@ interface RunState {
   answerTrap: (result: TrapResult) => Promise<void>
   nextTrap: () => Promise<void>
   leaveRest: () => Promise<void>
+  /** Встреча: the learner's answer (empty when the clock ran out). */
+  answerScene: (text: string) => Promise<void>
+  /** Self-assessment of the pending answer when the AI is off. */
+  assessScene: (v: 'ok' | 'typo' | 'fail') => Promise<void>
+  leaveEncounter: () => Promise<void>
   pickBoon: (boon: Run['boons'][number]) => Promise<void>
   leaveSummary: () => void
 }
@@ -147,6 +156,8 @@ export function routeForRun(run: Run | null): string {
       return '/boon'
     case 'summary':
       return '/summary'
+    case 'encounter':
+      return '/encounter'
     default:
       return '/run'
   }
@@ -381,6 +392,41 @@ export const useRunStore = create<RunState>((set, get) => {
   }
 
   /** After a battle node ends: merge into the run and move on (boon, map or summary). */
+  /** Records one scene exchange: chips used are stage-5 hits, corrections materialize, the state moves on. */
+  async function applySceneTurn(
+    run: Run,
+    scene: SceneDef,
+    text: string,
+    verdict: TurnVerdict,
+    npcLine: string,
+    usedChipIds: readonly string[],
+    outcome: SceneOutcome | null,
+    whyRu: string | null,
+    t: number,
+  ): Promise<void> {
+    if (!run.encounter) return
+    const { items, progress } = get()
+    const nextProgress = { ...progress }
+    for (const id of usedChipIds) {
+      const item = items[id]
+      if (!item) continue
+      const p = progress[id] ?? newProgress(id, t)
+      const rating: Rating = verdict.typo ? 2 : 3
+      const out = applyAnswer(p, { move: 'improv', correct: true, rating, risked: false, now: t })
+      nextProgress[id] = out.progress
+      await saveProgress(out.progress)
+      await addAttempt({ id: newId('att'), itemId: id, move: 'improv', ts: t, runId: run.id, correct: true, rating, ms: 0, hintUsed: false, risked: false, answer: text })
+    }
+    const encounter = applyTurn(run.encounter, scene, { text, verdict, npcLine, usedChipIds, outcome, whyRu, now: t })
+    let next: Run = { ...run, encounter }
+    if (verdict.corrections.length > 0) {
+      next = await materialize(next, { correct: true, hintUsed: false, typo: false, answer: text, expected: text, corrections: verdict.corrections }, t)
+    }
+    await saveRun(next)
+    set({ run: next, progress: nextProgress })
+    if (encounter.phase === 'result') fx.win()
+  }
+
   /** Errors the AI caught become enemies of the next battle node (SPEC §8). */
   async function materialize(run: Run, result: MoveResult, t: number): Promise<Run> {
     const corrections = result.corrections ?? []
@@ -476,7 +522,7 @@ export const useRunStore = create<RunState>((set, get) => {
         unlockedLands: unlockedLandIds(landDefs.map((l) => l.id), Object.values(items), pm, balance.lands.unlockAfter),
       })
       const seed = (t ^ Math.floor(Math.random() * 0xffffffff)) >>> 0
-      const input = { id: newId(kind), seed, now: t, queue, maxHp: heroMaxHp(profile) }
+      const input = { id: newId(kind), seed, now: t, queue, maxHp: heroMaxHp(profile), allowEncounter: kind === 'run' }
       let run = kind === 'sortie' ? createSortie(input) : createRun(input)
       if (kind === 'sortie') {
         run = startBattleNode(run, { step: 0, node: 0 }, pm)
@@ -493,6 +539,12 @@ export const useRunStore = create<RunState>((set, get) => {
       if (!run || run.phase !== 'map') return
       const target = run.map[step]?.[node]
       if (!target) return
+      if (target.type === 'encounter') {
+        const { items } = get()
+        const next = startEncounterNode(run, { step, node }, seedScenes, new Map(Object.entries(items)), new Map(Object.entries(progress)), now())
+        await persist(next)
+        return
+      }
       if (target.type === 'rest') {
         const stat = patternStats[0] ?? null
         const def = stat ? patternDef(stat.patternId) : undefined
@@ -731,6 +783,73 @@ export const useRunStore = create<RunState>((set, get) => {
       if (!run || run.phase !== 'rest') return
       const rng = mulberry32((run.seed ^ ((run.position?.step ?? 0) + 7) * 0x2545f491) >>> 0)
       await persist(finishRestNode(run, rng, AVAILABLE_MOVES, boonChoices(useProfileStore.getState().profile)))
+    },
+
+    answerScene: async (text) => {
+      const { run, items } = get()
+      const enc = run?.encounter
+      if (!run || run.phase !== 'encounter' || !enc || enc.phase !== 'talk') return
+      const scene = seedScenes.find((sc) => sc.id === enc.sceneId)
+      if (!scene) return
+      const itemMap = new Map(Object.entries(items))
+      const usedChipIds = chipsUsedIn(enc, text, itemMap)
+      const targets = enc.chips.map((c) => items[c.itemId]?.en ?? '').filter(Boolean)
+      const t = now()
+      const closing = enc.turn + 1 >= scene.turns.length
+      if (text.trim().length > 0 && aiAvailable()) {
+        await persist({ ...run, encounter: { ...enc, phase: 'checking', pendingText: text } })
+        const reply = await sceneTurn({
+          title: scene.title,
+          settingEn: scene.settingEn,
+          goalEn: scene.goalEn,
+          character: scene.character,
+          targets,
+          history: [...enc.history, { role: 'hero', text }],
+          turn: enc.turn + 1,
+          totalTurns: scene.turns.length,
+        })
+        const current = get().run
+        if (!current || current.phase !== 'encounter' || !current.encounter) return
+        if (reply) {
+          const check = reply.check
+          const verdict: TurnVerdict = {
+            ok: check ? check.ok || (check.usedTarget && check.errors.length === 0) : true,
+            typo: check ? check.errors.length > 0 : false,
+            corrections: check?.errors ?? [],
+            ai: true,
+          }
+          // An answer with errors still counts as a step forward when the character understood it.
+          if (check && check.errors.length > 0) verdict.ok = true
+          const outcome: SceneOutcome | null = closing ? reply.outcome : null
+          await applySceneTurn(current, scene, text, verdict, reply.npcLine || scriptedLine(scene, enc.turn), usedChipIds, outcome, closing ? reply.whyRu : null, t)
+          return
+        }
+        // The AI did not answer: fall back to the script and the self-assessment.
+        await persist({ ...current, encounter: { ...current.encounter, phase: 'self', pendingText: text } })
+        return
+      }
+      if (text.trim().length === 0) {
+        await applySceneTurn(run, scene, '', { ok: false, typo: false, corrections: [], ai: false }, scriptedLine(scene, enc.turn), [], null, null, t)
+        return
+      }
+      await persist({ ...run, encounter: { ...enc, phase: 'self', pendingText: text } })
+    },
+
+    assessScene: async (v) => {
+      const { run } = get()
+      const enc = run?.encounter
+      if (!run || run.phase !== 'encounter' || !enc || enc.phase !== 'self') return
+      const scene = seedScenes.find((sc) => sc.id === enc.sceneId)
+      if (!scene) return
+      const text = enc.pendingText ?? ''
+      const usedChipIds = chipsUsedIn(enc, text, new Map(Object.entries(get().items)))
+      await applySceneTurn(run, scene, text, { ok: v !== 'fail', typo: v === 'typo', corrections: [], ai: false }, scriptedLine(scene, enc.turn), usedChipIds, null, null, now())
+    },
+
+    leaveEncounter: async () => {
+      const { run } = get()
+      if (!run || run.phase !== 'encounter' || !run.encounter || run.encounter.phase !== 'result') return
+      await persist(finishEncounterNode(run))
     },
 
     pickBoon: async (boon) => {

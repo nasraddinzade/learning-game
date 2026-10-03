@@ -74,6 +74,7 @@ export function createRun(input: CreateRunInput): Run {
     boonOffer: null,
     flags: { firstMissForgiven: false, secondWindUsed: false },
     rest: null,
+    encounter: null,
     pool,
     stats: emptyStats(),
     echoItemIds: null,
@@ -313,6 +314,7 @@ export function finishRestNode(
     ...run,
     map,
     rest: null,
+    encounter: null,
     phase: boonOffer.length > 0 ? 'boon' : 'map',
     boonOffer: boonOffer.length > 0 ? boonOffer : null,
   }

@@ -121,6 +121,15 @@ export const balance = {
     debtor: 2,
     nemesis: 3,
   },
+  /** Встреча (SPEC §8). */
+  encounter: {
+    turns: 3,
+    answerMs: 25000,
+    chips: 3,
+    /** Phrases at this stage or above are offered as chips first. */
+    chipStageMin: 2,
+    runes: { success: 60, partial: 30, fail: 10 },
+  },
   /** AI layer quota and pauses (SPEC §10.2). */
   ai: {
     dailyLimit: 100,

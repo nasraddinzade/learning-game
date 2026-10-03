@@ -2,6 +2,7 @@
 import { aiCallLog, setAIOverride } from '@/ai/ai'
 import { createFakeAI, type FakeScript } from '@/ai/fake'
 import { seedPatterns } from '@/content/patterns'
+import { seedScenes } from '@/content/scenes'
 import { expectedAnswerOf } from '@/moves/tasks'
 import { fixedSentence } from '@/moves/trap/fixedSentence'
 import { setRecognizer } from '@/speech/recognition'
@@ -34,6 +35,8 @@ export interface DebugHooks {
   realAI: () => void
   /** Tasks sent to the provider since the double was installed. */
   aiLog: () => string[]
+  /** The scripted model answer for the current Встреча turn. */
+  sceneSample: () => string | null
 }
 
 const FAKE_KEY = 'nemesis.dev.fakeSpeech'
@@ -111,6 +114,12 @@ export function installDebugHooks(): void {
       setAIOverride(null)
     },
     aiLog: () => aiCallLog(),
+    sceneSample: () => {
+      const enc = useRunStore.getState().run?.encounter
+      if (!enc) return null
+      const scene = seedScenes.find((sc) => sc.id === enc.sceneId)
+      return scene?.turns[enc.turn]?.sampleEn ?? null
+    },
   }
   ;(window as unknown as { __nemesis: DebugHooks }).__nemesis = hooks
   try {

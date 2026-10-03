@@ -133,7 +133,7 @@ export interface Attempt {
 
 export type RunStatus = 'active' | 'won' | 'retreated'
 
-export type RunPhase = 'map' | 'battle' | 'rest' | 'boon' | 'summary'
+export type RunPhase = 'map' | 'battle' | 'rest' | 'boon' | 'summary' | 'encounter'
 
 export interface RunFlags {
   /** Память рода: the first miss of the run was forgiven. */
@@ -153,6 +153,49 @@ export interface RestState {
   feedback: { correct: boolean; ruleRu: string; fixed: string } | null
   healed: boolean
   done: boolean
+}
+
+/** A scene for the Встреча node (SPEC §8). */
+export interface SceneTurnDef {
+  /** The character's line after the learner's answer of this turn (the last one closes the scene). */
+  npcLine: string
+  /** What the learner should achieve with this answer. */
+  hintRu: string
+  /** Model answer for the scripted mode without AI. */
+  sampleEn: string
+}
+
+export interface SceneDef {
+  id: string
+  title: string
+  emoji: string
+  settingRu: string
+  settingEn: string
+  goalRu: string
+  goalEn: string
+  character: string
+  opening: string
+  turns: SceneTurnDef[]
+}
+
+export type SceneOutcome = 'success' | 'partial' | 'fail'
+
+export interface EncounterState {
+  sceneId: string
+  /** Index of the learner's answer being awaited. */
+  turn: number
+  history: { role: 'npc' | 'hero'; text: string }[]
+  chips: { itemId: string; used: boolean }[]
+  answers: { text: string; ok: boolean; typo: boolean; ai: boolean }[]
+  corrections: { wrong: string; right: string; ruleRu: string; patternId: string | null }[]
+  outcome: SceneOutcome | null
+  whyRu: string | null
+  /** talk: answering · checking: the AI replies · self: self-assessment without AI · result: the scene is over. */
+  phase: 'talk' | 'checking' | 'self' | 'result'
+  /** The answer waiting for the self-assessment. */
+  pendingText: string | null
+  turnStartedAt: number
+  runes: number
 }
 
 /** Items still waiting for later nodes of this run, by queue kind. */
@@ -203,6 +246,7 @@ export interface Run {
   boonOffer: BoonId[] | null
   flags: RunFlags
   rest: RestState | null
+  encounter: EncounterState | null
   pool: RunPool
   stats: RunStats
   /** Items that form the final boss, decided when the Echo node starts. */

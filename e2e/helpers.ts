@@ -28,6 +28,7 @@ interface HookState {
     map: { type: string; next: number[]; done: boolean }[][]
     combat: { current: { itemId: string; kind: string; hits: number } | null; hp: number; answers: number; runes: number; status: string } | null
     rest: { done: boolean; feedback: unknown; index: number; exercises: number[]; correct: number } | null
+    encounter: { phase: string; turn: number; outcome: string | null; chips: { itemId: string; used: boolean }[] } | null
     boonOffer: string[] | null
     echoItemIds: string[] | null
     status: string
@@ -355,6 +356,43 @@ export async function autopilot(page: Page, opts: AutopilotOptions = {}): Promis
       const id = await btn.getAttribute('data-testid')
       trail.push(`boon:${id}`)
       await clickVolatile(btn, async () => (await battleInfo(page)).runPhase !== 'boon')
+      continue
+    }
+    if (info.runPhase === 'encounter') {
+      await expect(page.getByTestId('screen-encounter')).toBeVisible()
+      const enc = await page.evaluate(() => {
+        const hook = (window as unknown as { __nemesis?: { state: () => HookState; sceneSample: () => string | null } }).__nemesis
+        const e = hook?.state().run?.encounter ?? null
+        return e ? { ...e, sample: hook?.sceneSample() ?? '' } : null
+      })
+      if (!enc) continue
+      if (enc.phase === 'result') {
+        trail.push(`encounter:${enc.outcome}`)
+        await clickVolatile(page.getByTestId('scene-leave'), async () => (await battleInfo(page)).runPhase !== 'encounter')
+        continue
+      }
+      if (enc.phase === 'self') {
+        const ok = opts.decide ? await opts.decide(info) : true
+        await clickVolatile(page.getByTestId(ok ? 'scene-self-ok' : 'scene-self-fail'), async () => {
+          const st = await page.evaluate(() => (window as unknown as { __nemesis: { state: () => HookState } }).__nemesis.state().run?.encounter?.phase ?? null)
+          return st !== 'self'
+        })
+        continue
+      }
+      if (enc.phase === 'talk') {
+        const ok = opts.decide ? await opts.decide(info) : true
+        const turnBefore = enc.turn
+        await page.getByTestId('answer-input').fill(ok ? enc.sample : 'blah blah mistake')
+        await page.getByTestId('answer-submit').click()
+        await expect
+          .poll(async () => {
+            const e = await page.evaluate(() => (window as unknown as { __nemesis: { state: () => HookState } }).__nemesis.state().run?.encounter ?? null)
+            return !e || e.phase !== 'talk' || e.turn !== turnBefore
+          })
+          .toBe(true)
+        continue
+      }
+      await page.waitForTimeout(100)
       continue
     }
     if (info.runPhase === 'rest') {
