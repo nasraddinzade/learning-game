@@ -1,0 +1,140 @@
+import { expect, test, type Page } from '@playwright/test'
+
+// Raw screenshots land in a gitignored scratch folder; key ones are copied into
+// docs/verification/screenshots/stage-N by hand when the stage report is written.
+const SHOTS = 'docs/verification/screenshots/_scratch/stage-0'
+
+function shot(page: Page, name: string) {
+  return page.screenshot({ path: `${SHOTS}/${test.info().project.name}-${name}.png`, fullPage: true })
+}
+
+/** Collects console errors and warnings, failing the test if any appear (SPEC §16.4). */
+function watchConsole(page: Page): string[] {
+  const problems: string[] = []
+  page.on('console', (m) => {
+    if (m.type() === 'error' || m.type() === 'warning') problems.push(`[${m.type()}] ${m.text()}`)
+  })
+  page.on('pageerror', (e) => problems.push(`[pageerror] ${e.message}`))
+  page.on('requestfailed', (r) => {
+    // Offline tests deliberately fail network requests; those are filtered by the test itself.
+    problems.push(`[requestfailed] ${r.url()} ${r.failure()?.errorText ?? ''}`)
+  })
+  return problems
+}
+
+test.describe('stage 0: scaffold', () => {
+  test('camp opens, every screen is reachable, no console noise', async ({ page }) => {
+    const problems = watchConsole(page)
+    await page.goto('/')
+    await expect(page.getByTestId('screen-camp')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Лагерь' })).toBeVisible()
+    await expect(page.getByTestId('count-debts')).toHaveText('0')
+    await shot(page, 'camp')
+
+    // No horizontal overflow on the phone.
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    )
+    expect(overflow, 'horizontal scroll').toBe(false)
+
+    const links: [string, string][] = [
+      ['Из жизни', 'screen-life'],
+      ['Летопись и земли', 'screen-chronicle'],
+      ['Зал трофеев', 'screen-trophies'],
+      ['Статистика', 'screen-stats'],
+      ['Настройки', 'screen-settings'],
+    ]
+    for (const [label, testId] of links) {
+      await page.getByRole('link', { name: label }).click()
+      await expect(page.getByTestId(testId)).toBeVisible()
+      await shot(page, testId)
+      await page.getByRole('button', { name: 'Назад' }).click()
+      await expect(page.getByTestId('screen-camp')).toBeVisible()
+    }
+
+    // Lazy screens and direct URLs (deep links must work for an installed PWA).
+    for (const [path, testId] of [
+      ['/battle', 'screen-battle'],
+      ['/encounter', 'screen-encounter'],
+      ['/run', 'screen-map'],
+      ['/boon', 'screen-boon'],
+      ['/summary', 'screen-summary'],
+      ['/rest', 'screen-rest'],
+    ] as const) {
+      await page.goto(path)
+      await expect(page.getByTestId(testId)).toBeVisible()
+    }
+    await shot(page, 'screen-battle')
+
+    // Unknown route falls back to the camp.
+    await page.goto('/nope')
+    await expect(page.getByTestId('screen-camp')).toBeVisible()
+
+    expect(problems, problems.join('\n')).toEqual([])
+  })
+
+  test('settings persist in IndexedDB across reload', async ({ page }) => {
+    const problems = watchConsole(page)
+    await page.goto('/settings')
+    await expect(page.getByTestId('newPerDay')).toHaveText('6')
+    await page.getByTestId('newPerDay-plus').click()
+    await page.getByTestId('newPerDay-plus').click()
+    await expect(page.getByTestId('newPerDay')).toHaveText('8')
+    await page.getByTestId('toggle-sound').click()
+    await expect(page.getByTestId('toggle-sound')).toHaveAttribute('aria-checked', 'false')
+    await page.getByTestId('voice-en-GB').click()
+    await expect(page.getByTestId('voice-en-GB')).toHaveAttribute('aria-checked', 'true')
+
+    await page.reload()
+    await expect(page.getByTestId('newPerDay')).toHaveText('8')
+    await expect(page.getByTestId('toggle-sound')).toHaveAttribute('aria-checked', 'false')
+    await expect(page.getByTestId('voice-en-GB')).toHaveAttribute('aria-checked', 'true')
+    await shot(page, 'settings-changed')
+
+    expect(problems, problems.join('\n')).toEqual([])
+  })
+
+  test('works offline after first load (PWA)', async ({ page, context }) => {
+    await page.goto('/')
+    await expect(page.getByTestId('screen-camp')).toBeVisible()
+
+    // Wait until the service worker controls the page and has finished precaching.
+    await page.waitForFunction(async () => {
+      const reg = await navigator.serviceWorker.ready
+      return reg.active?.state === 'activated' && navigator.serviceWorker.controller !== null
+    })
+    await page.reload()
+    await expect(page.getByTestId('screen-camp')).toBeVisible()
+
+    await context.setOffline(true)
+    await page.reload()
+    await expect(page.getByTestId('screen-camp')).toBeVisible()
+    await page.getByRole('link', { name: 'Настройки' }).click()
+    await expect(page.getByTestId('screen-settings')).toBeVisible()
+
+    // A deep link while offline must also be served from the cache.
+    await page.goto('/battle')
+    await expect(page.getByTestId('screen-battle')).toBeVisible()
+    await shot(page, 'offline-battle')
+    await context.setOffline(false)
+  })
+
+  test('manifest is served and has installable fields', async ({ request }) => {
+    const res = await request.get('/manifest.webmanifest')
+    expect(res.ok()).toBe(true)
+    const manifest = (await res.json()) as {
+      name: string
+      display: string
+      start_url: string
+      icons: { sizes: string; purpose?: string }[]
+    }
+    expect(manifest.display).toBe('standalone')
+    expect(manifest.start_url).toBe('/')
+    expect(manifest.icons.some((i) => i.sizes === '512x512' && i.purpose === 'maskable')).toBe(true)
+    for (const icon of ['icon-192.png', 'icon-512.png', 'icon-maskable-512.png']) {
+      const r = await request.get(`/icons/${icon}`)
+      expect(r.ok(), icon).toBe(true)
+      expect(r.headers()['content-type']).toContain('image/png')
+    }
+  })
+})
