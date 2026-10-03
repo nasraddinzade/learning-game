@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
-import { answerCurrent, autopilot, battleInfo, expectedAnswer, next, waitForTask, watchConsole, wipeAll } from './helpers.js'
+import { answerCurrent, autopilot, battleInfo, expectedAnswer, next, waitForSetting, waitForTask, watchConsole, wipeAll } from './helpers.js'
 
 const SHOTS = 'docs/verification/screenshots/_scratch/stage-3'
 
@@ -154,8 +154,8 @@ test.describe('stage 3: sound and speech', () => {
     await expect(page.getByTestId('toggle-sound')).toHaveAttribute('aria-checked', 'false')
     await page.getByTestId('toggle-vibration').click()
     await expect(page.getByTestId('toggle-vibration')).toHaveAttribute('aria-checked', 'false')
-    // Give IndexedDB a moment to commit before the reload.
-    await page.waitForTimeout(300)
+    await waitForSetting(page, 'sound', false)
+    await waitForSetting(page, 'vibration', false)
     await page.reload()
     await expect(page.getByTestId('toggle-sound')).toHaveAttribute('aria-checked', 'false')
     await expect(page.getByTestId('toggle-vibration')).toHaveAttribute('aria-checked', 'false')

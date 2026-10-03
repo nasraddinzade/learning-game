@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
-import { watchConsole } from './helpers.js'
+import { waitForSetting, watchConsole } from './helpers.js'
 
 // Raw screenshots land in a gitignored scratch folder; key ones are copied into
 // docs/verification/screenshots/stage-N by hand when the stage report is written.
@@ -70,6 +70,7 @@ test.describe('stage 0: scaffold', () => {
     await expect(page.getByTestId('toggle-sound')).toHaveAttribute('aria-checked', 'false')
     await page.getByTestId('voice-en-GB').click()
     await expect(page.getByTestId('voice-en-GB')).toHaveAttribute('aria-checked', 'true')
+    await waitForSetting(page, 'ttsVoice', 'en-GB')
 
     await page.reload()
     await expect(page.getByTestId('newPerDay')).toHaveText('8')

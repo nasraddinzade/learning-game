@@ -70,7 +70,8 @@ test.describe('stage 2: the run', () => {
           debtorMove = info.move
           await shot(page, 'debtor')
         }
-        if (!risked && info.kind === 'shadow' && info.move === 'swipe' && info.nodeType !== 'echo') {
+        // A stage-1 shadow (Свайп or На слух) may be risked up to Перевод.
+        if (!risked && info.kind === 'shadow' && (info.move === 'swipe' || info.move === 'listen') && info.nodeType !== 'echo') {
           await page.getByTestId('risk-translate').click()
           await expect(page.getByTestId('move-label')).toContainText('риск')
           risked = true

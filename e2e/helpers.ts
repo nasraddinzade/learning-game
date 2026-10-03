@@ -182,12 +182,65 @@ async function clickVolatile(locator: ReturnType<Page['locator']>, settled: () =
 }
 
 /**
+ * Waits until the profile row in IndexedDB holds `settings[key] === value`. State in the store is
+ * optimistic, so a reload right after a tap could race the write; persistence tests wait for it.
+ */
+export async function waitForSetting(page: Page, key: string, value: unknown): Promise<void> {
+  await page.waitForFunction(
+    ([k, v]) =>
+      new Promise<boolean>((resolve) => {
+        const req = indexedDB.open('nemesis')
+        req.onerror = () => resolve(false)
+        req.onsuccess = () => {
+          const db = req.result
+          try {
+            const get = db.transaction('profile').objectStore('profile').get('me')
+            get.onsuccess = () => {
+              const row = get.result as { settings?: Record<string, unknown> } | undefined
+              db.close()
+              resolve(row?.settings?.[k] === v)
+            }
+            get.onerror = () => {
+              db.close()
+              resolve(false)
+            }
+          } catch {
+            db.close()
+            resolve(false)
+          }
+        }
+      }),
+    [key, value] as [string, unknown],
+  )
+}
+
+/** Closes any full-screen celebration overlays (tap to continue); returns their test ids. */
+export async function dismissCelebrations(
+  page: Page,
+  onCelebration?: (id: string, page: Page) => Promise<void>,
+): Promise<string[]> {
+  const seen: string[] = []
+  for (let i = 0; i < 6; i++) {
+    const dialog = page.locator('[data-testid^="celebration"]')
+    if ((await dialog.count()) === 0) break
+    const id = (await dialog.first().getAttribute('data-testid')) ?? 'celebration'
+    seen.push(id)
+    if (onCelebration) await onCelebration(id, page)
+    // Queued celebrations replace each other in place, so wait for this one to go, not for an empty screen.
+    await page.getByTestId(id).click({ timeout: 3000 }).catch(() => undefined)
+    await expect(page.getByTestId(id)).toHaveCount(0)
+  }
+  return seen
+}
+
+/**
  * Presses "Дальше" if feedback is showing. After the last enemy of a node the button leaves
  * the DOM while the click is in flight (the run moves to the boon screen), which Playwright
  * reports as a detached element, so the click is best-effort and the phase change is what is
  * verified.
  */
 export async function next(page: Page): Promise<void> {
+  await dismissCelebrations(page)
   const btn = page.getByTestId('feedback-next')
   if (!(await btn.isVisible())) return
   await btn.click({ timeout: 3000 }).catch(() => undefined)
@@ -242,6 +295,8 @@ export interface AutopilotOptions {
   /** Stop when this returns true (checked on every loop). */
   stopWhen?: (info: BattleInfo) => boolean | Promise<boolean>
   maxSteps?: number
+  /** Called with each celebration overlay before it is dismissed (e.g. to take a screenshot). */
+  onCelebration?: (id: string, page: Page) => Promise<void>
 }
 
 export interface AutopilotResult {
@@ -254,10 +309,12 @@ export async function autopilot(page: Page, opts: AutopilotOptions = {}): Promis
   const trail: string[] = []
   const max = opts.maxSteps ?? 200
   for (let i = 0; i < max; i++) {
+    for (const id of await dismissCelebrations(page, opts.onCelebration)) trail.push(`celebration:${id}`)
     const info = await battleInfo(page)
     if (opts.stopWhen && (await opts.stopWhen(info))) return { trail, info }
     if (info.url === '/summary' || (info.runPhase === 'summary')) {
       await expect(page.getByTestId('summary')).toBeVisible()
+      for (const id of await dismissCelebrations(page, opts.onCelebration)) trail.push(`celebration:${id}`)
       trail.push('summary')
       return { trail, info }
     }
