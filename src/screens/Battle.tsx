@@ -11,6 +11,7 @@ import { routeForRun, useRunStore, type Feedback } from '@/store/run'
 import { now } from '@/store/clock'
 import { Button } from '@/ui/Button'
 import { EnemySprite } from '@/ui/EnemySprite'
+import { Celebration } from '@/ui/Celebration'
 import { Hearts } from '@/ui/Hearts'
 import { SpeakButton } from '@/ui/SpeakButton'
 import { WindupBar } from '@/ui/WindupBar'
@@ -78,10 +79,23 @@ function FeedbackPanel({ f, onNext }: { f: Feedback; onNext: () => void }) {
       initial={{ y: 40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.2 }}
-      className={`rounded-card border p-4 ${f.correct ? 'border-ok/40 bg-ok/10' : 'border-danger/40 bg-danger/10'}`}
+      className={`relative rounded-card border p-4 ${f.correct ? 'border-ok/40 bg-ok/10' : 'border-danger/40 bg-danger/10'}`}
       data-testid="feedback"
       data-correct={f.correct ? 'true' : 'false'}
     >
+      {f.correct && f.runes > 0 ? (
+        // Runes fly up and fade (SPEC §7.3).
+        <motion.span
+          aria-hidden="true"
+          data-testid="runes-fly"
+          className="pointer-events-none absolute top-0 right-4 text-xl font-bold text-accent"
+          initial={{ y: 0, opacity: 1 }}
+          animate={{ y: -48, opacity: 0 }}
+          transition={{ duration: 0.9, ease: 'easeOut' }}
+        >
+          +{f.runes} ◆
+        </motion.span>
+      ) : null}
       <div className="flex items-baseline justify-between">
         <p className={`text-lg font-bold ${f.correct ? 'text-ok' : 'text-danger'}`}>
           {f.correct ? (f.crit ? 'Перехват! Крит' : 'Удар!') : 'Удар врага'}
@@ -118,7 +132,17 @@ function FeedbackPanel({ f, onNext }: { f: Feedback; onNext: () => void }) {
       )}
       <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-fg-muted">
         {f.risked && f.correct ? <span>Рискнул и попал</span> : null}
-        {stageUp ? <span>Ступень ↑ {STAGE_LABEL_RU[f.stage]}</span> : null}
+        {stageUp ? (
+          <motion.span
+            data-testid="stage-up"
+            className="rounded-full bg-accent/20 px-2 text-accent"
+            initial={{ scale: 0.6, y: 10, opacity: 0 }}
+            animate={{ scale: 1, y: 0, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 16, delay: 0.1 }}
+          >
+            Ступень ↑ {STAGE_LABEL_RU[f.stage]}
+          </motion.span>
+        ) : null}
         {debtClosed ? <span className="text-ok">Долг закрыт</span> : null}
         {closed && !debtClosed ? <span>Враг повержен</span> : null}
         {leaves ? <span>Ушёл в туман, вернётся через {leaves.returnsIn} отв.</span> : null}
@@ -158,6 +182,7 @@ function SortieClock({ endsAt, onTimeUp }: { endsAt: number; onTimeUp: () => voi
 export function BattleScreen() {
   const navigate = useNavigate()
   const s = useRunStore()
+  const [celebrated, setCelebrated] = useState<number>(-1)
 
   useEffect(() => {
     preloadMoves()
@@ -226,6 +251,21 @@ export function BattleScreen() {
           </div>
         ) : null}
       </header>
+
+      {s.battlePhase === 'feedback' && s.feedback && (s.feedback.nemesisResult === 'destroyed' || s.feedback.nemesisResult === 'won') && celebrated !== s.shake ? (
+        <Celebration
+          emoji={s.feedback.nemesisResult === 'destroyed' ? '🏆' : '🩸'}
+          title={s.feedback.nemesisResult === 'destroyed' ? 'Немезида уничтожена' : 'Немезида повержена'}
+          subtitle={
+            s.feedback.nemesisResult === 'destroyed'
+              ? `${s.feedback.item.en} отправляется в Зал трофеев`
+              : `${s.feedback.item.en} · ещё ${3 - ((s.progress[s.feedback.item.id]?.nemesis?.defeatedDays.length ?? 0))} дн. до трофея`
+          }
+          tone={s.feedback.nemesisResult === 'destroyed' ? 'big' : 'small'}
+          testId={s.feedback.nemesisResult === 'destroyed' ? 'celebration-trophy' : 'celebration-nemesis'}
+          onDone={() => setCelebrated(s.shake)}
+        />
+      ) : null}
 
       {s.battlePhase === 'feedback' && s.feedback?.crit ? (
         <motion.div

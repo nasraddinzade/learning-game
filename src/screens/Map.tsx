@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { hasBoon, BOONS } from '@/game/boons'
 import { NODE_HINT_RU, NODE_ICON, NODE_LABEL_RU, reachableNodes, visibleSteps } from '@/game/map'
+import { lands } from '@/content/seed'
 import { routeForRun, useRunStore } from '@/store/run'
+import { useProfileStore } from '@/store/profile'
 import { Button } from '@/ui/Button'
 import { Hearts } from '@/ui/Hearts'
 import type { MapNode, NodeType } from '@/types'
@@ -38,6 +40,8 @@ export function MapScreen() {
   const navigate = useNavigate()
   const s = useRunStore()
   const [picked, setPicked] = useState<{ step: number; node: number } | null>(null)
+  const unlockedLands = useProfileStore((p) => p.profile?.unlockedLands ?? ['smalltalk'])
+  const land = lands.find((l) => l.id === unlockedLands[unlockedLands.length - 1]) ?? lands[0]
 
   useEffect(() => {
     void s.load()
@@ -101,7 +105,8 @@ export function MapScreen() {
         </div>
       ) : null}
 
-      <p className="text-sm text-fg-muted">
+      <p className="text-sm text-fg-muted" data-testid="map-land">
+        {land ? `${land.emoji} ${land.name}. ` : ''}
         {run.position === null ? 'Выбери, куда идти. Видно на два шага вперёд.' : 'Следующий узел. Повторений не избежать, но путь твой.'}
       </p>
 

@@ -1,9 +1,23 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BOONS } from '@/game/boons'
 import { useRunStore, type RunSummary } from '@/store/run'
 import { Button } from '@/ui/Button'
+import { Celebration, type CelebrationData } from '@/ui/Celebration'
 import type { Item } from '@/types'
+
+/** Full-screen moments owed by this run, shown one after another before the numbers. */
+function celebrationsFor(s: RunSummary): CelebrationData[] {
+  const list: CelebrationData[] = []
+  if (s.status === 'won' && s.kind === 'run') {
+    list.push({ emoji: '👁️', title: 'Эхо развеяно', subtitle: s.cleanRun ? 'Чистый поход, без единой ошибки' : 'Твои ошибки больше не преследуют тебя', tone: 'small', testId: 'celebration-echo' })
+  }
+  if (s.levelUp) list.push({ emoji: '⭐', title: `Уровень ${s.levelUp}`, subtitle: 'Опыт за трудные приёмы растёт быстрее', tone: 'big', testId: 'celebration-level' })
+  for (const land of s.newLands) {
+    list.push({ emoji: land.emoji, title: 'Новая земля', subtitle: land.name, tone: 'big', testId: 'celebration-land' })
+  }
+  return list
+}
 
 function Section({ title, items, tone }: { title: string; items: Item[]; tone: 'ok' | 'accent' | 'danger' | 'muted' }) {
   if (items.length === 0) return null
@@ -60,6 +74,15 @@ function Body({ s, onLeave }: { s: RunSummary; onLeave: () => void }) {
           Новый уровень {s.levelUp}
         </p>
       ) : null}
+      {s.newLands.length > 0 ? (
+        <p className="text-center font-semibold text-accent" data-testid="summary-newland">
+          Открыта земля: {s.newLands.map((l) => `${l.emoji} ${l.name}`).join(', ')}
+        </p>
+      ) : null}
+      <p className="text-center text-xs text-fg-muted" data-testid="summary-streak">
+        Серия дней: {s.streak}
+        {s.usedFreezes > 0 ? ` · заморозка спасла серию (${s.usedFreezes})` : ''}
+      </p>
       {s.boons.length > 0 ? (
         <p className="text-center text-xs text-fg-muted">{s.boons.map((b) => `${BOONS[b].icon} ${BOONS[b].name}`).join(' · ')}</p>
       ) : null}
@@ -82,6 +105,8 @@ function Body({ s, onLeave }: { s: RunSummary; onLeave: () => void }) {
 export function SummaryScreen() {
   const navigate = useNavigate()
   const s = useRunStore()
+  const celebrations = useMemo(() => (s.summary ? celebrationsFor(s.summary) : []), [s.summary])
+  const [shown, setShown] = useState(0)
 
   useEffect(() => {
     void s.load()
@@ -98,6 +123,9 @@ export function SummaryScreen() {
       <header className="flex h-12 items-center">
         <h1 className="text-xl font-bold tracking-tight">Итог</h1>
       </header>
+      {s.summary && shown < celebrations.length ? (
+        <Celebration key={shown} {...(celebrations[shown] as CelebrationData)} onDone={() => setShown((n) => n + 1)} />
+      ) : null}
       {s.summary ? (
         <Body
           s={s.summary}

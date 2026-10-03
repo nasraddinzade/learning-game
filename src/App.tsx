@@ -15,6 +15,7 @@ import { TrophiesScreen } from '@/screens/Trophies'
 import { FromLifeScreen } from '@/screens/FromLife'
 import { StatsScreen } from '@/screens/Stats'
 import { SettingsScreen } from '@/screens/Settings'
+import { UpgradesScreen } from '@/screens/Upgrades'
 
 // Heavy screens load lazily so the camp stays small (SPEC §3).
 const BattleScreen = lazy(() => import('@/screens/Battle').then((m) => ({ default: m.BattleScreen })))
@@ -34,6 +35,12 @@ export default function App() {
   const loaded = useProfileStore((s) => s.loaded)
   const error = useProfileStore((s) => s.error)
   const load = useProfileStore((s) => s.load)
+  const theme = useProfileStore((s) => s.profile?.theme ?? 'ember')
+
+  // Bought themes recolor the accent through a data attribute on <html>.
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+  }, [theme])
 
   useEffect(() => {
     if (DEBUG) installDebugHooks()
@@ -67,6 +74,7 @@ export default function App() {
           <Route path="/life" element={<FromLifeScreen />} />
           <Route path="/stats" element={<StatsScreen />} />
           <Route path="/settings" element={<SettingsScreen />} />
+          <Route path="/upgrades" element={<UpgradesScreen />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>

@@ -24,6 +24,16 @@
     color-scheme: dark;
   }
 
+  /* Bought themes (SPEC §7.2): one accent swap each, nothing else moves. */
+  :root[data-theme='tide'] {
+    --color-accent: #4fd1c5;
+    --color-accent-deep: #2c9d92;
+  }
+  :root[data-theme='violet'] {
+    --color-accent: #b794f4;
+    --color-accent-deep: #8b5cf6;
+  }
+
   html,
   body,
   #root {

@@ -29,8 +29,8 @@ export function DevPanel() {
 
   async function giveRunes() {
     if (!profile) return
-    setMsg('+100 рун')
-    await update({ runes: profile.runes + 100 })
+    setMsg('+500 рун')
+    await update({ runes: profile.runes + 500 })
   }
 
   async function forceNemesis() {
@@ -68,7 +68,7 @@ export function DevPanel() {
             <Btn label="+1 день" onClick={() => shiftDays(1)} />
             <Btn label="+7 дней" onClick={() => shiftDays(7)} />
             <Btn label="Сброс дня" onClick={resetOffset} />
-            <Btn label="+100 рун" onClick={giveRunes} />
+            <Btn label="+500 рун" onClick={giveRunes} />
             <Btn label="Немезида" onClick={forceNemesis} />
             <Btn label="Стереть всё" onClick={reset} />
           </div>
