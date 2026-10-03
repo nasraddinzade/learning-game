@@ -45,7 +45,7 @@ export function hitsFor(kind: EnemyKind): number {
   }
 }
 
-export type CombatEntry = QueueEntry | { itemId: string; kind: 'echo' }
+export type CombatEntry = QueueEntry | { itemId: string; kind: 'echo' } | { itemId: string; kind: 'chameleon' }
 
 function toCombatant(entry: CombatEntry, p: Progress | undefined): Combatant {
   const kind: EnemyKind =
@@ -57,7 +57,9 @@ function toCombatant(entry: CombatEntry, p: Progress | undefined): Combatant {
           ? 'nemesis'
           : entry.kind === 'echo'
             ? 'echo'
-            : 'shadow'
+            : entry.kind === 'chameleon'
+              ? 'chameleon'
+              : 'shadow'
   return {
     itemId: entry.itemId,
     kind,
@@ -95,7 +97,7 @@ export function createCombat(
     misses: 0,
     crits: 0,
     failedItemIds: [],
-    seenItemIds: entries.map((e) => e.itemId),
+    seenItemIds: entries.filter((e) => e.kind !== 'chameleon').map((e) => e.itemId),
     closedDebtIds: [],
     defeatedNemesisIds: [],
     typoShieldUsed: false,
@@ -249,6 +251,8 @@ export function resolve(state: CombatState, input: ResolveInput, options: Combat
   } else {
     // Hp is spared on the first miss with Память рода, and in Разведка on an item's first miss.
     const firstMissHere = !state.failedItemIds.includes(c.itemId)
+    // A pattern enemy is not an item: it never joins the Echo or comes back as a debtor.
+    const isItem = c.kind !== 'chameleon'
     let spared = false
     if (hasBoon(options.boons, 'kinMemory') && !flags.firstMissForgiven) {
       spared = true
@@ -261,7 +265,7 @@ export function resolve(state: CombatState, input: ResolveInput, options: Combat
       ...next,
       combo: 0,
       misses: state.misses + 1,
-      failedItemIds: firstMissHere ? [...state.failedItemIds, c.itemId] : state.failedItemIds,
+      failedItemIds: firstMissHere && isItem ? [...state.failedItemIds, c.itemId] : state.failedItemIds,
     }
     if (hp <= 0 && hasBoon(options.boons, 'secondWind') && !flags.secondWindUsed) {
       hp = balance.boons.secondWindHp
@@ -275,6 +279,8 @@ export function resolve(state: CombatState, input: ResolveInput, options: Combat
     if (c.kind === 'nemesis') {
       // She won today. She leaves and will be back tomorrow, bigger.
       events.push({ type: 'nemesisWon', itemId: c.itemId })
+    } else if (c.kind === 'chameleon') {
+      // The pattern stays active; the Привал will bring the exercises back.
     } else {
       const returnsIn = debtReturnDelay(rng)
       const debtor: Combatant = {

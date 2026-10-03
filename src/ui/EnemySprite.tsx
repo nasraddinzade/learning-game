@@ -45,8 +45,9 @@ export function EnemySprite({ itemId, kind, scars = 0, shake = 0, down = false, 
   const nemesis = kind === 'nemesis'
   const echo = kind === 'echo'
   const debtor = kind === 'debtor'
-  const hue = nemesis ? 350 : echo ? 268 : look.hue
-  const sat = nemesis ? 80 : echo ? 55 : 45
+  const chameleon = kind === 'chameleon'
+  const hue = nemesis ? 350 : echo ? 268 : chameleon ? 130 : look.hue
+  const sat = nemesis ? 80 : echo ? 55 : chameleon ? 50 : 45
   const body = `hsl(${hue} ${sat}% ${nemesis ? 42 : 36}%)`
   const bodyDark = `hsl(${hue} ${sat}% ${nemesis ? 28 : 24}%)`
   const eyesY = look.shape === 'wide' ? 66 : 58

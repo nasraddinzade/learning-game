@@ -154,6 +154,20 @@ export async function answerCurrent(page: Page, correct: boolean): Promise<void>
       await page.getByTestId('answer-submit').click()
       break
     }
+    case 'trap': {
+      await clickTrap(page, correct)
+      break
+    }
+    case 'ownPhrase': {
+      // Without AI a present phrase leads to a self-assessment; with the fake AI the verdict is instant.
+      if (!expected) throw new Error('no expected answer')
+      await page.getByTestId('answer-input').fill(correct ? expected : 'blah blah blah')
+      await page.getByTestId('answer-submit').click()
+      const self = page.getByTestId('own-self-ok')
+      await Promise.race([self.waitFor({ state: 'visible' }), page.getByTestId('feedback').waitFor({ state: 'visible' })])
+      if (await self.isVisible()) await self.click()
+      break
+    }
     case 'listen': {
       const right = Number(expected)
       await page.getByTestId(`listen-option-${correct ? right : (right + 1) % 3}`).click()
@@ -253,7 +267,8 @@ export async function next(page: Page): Promise<void> {
 }
 
 /** Answers the current Ловушка exercise through the UI, right or wrong. */
-export async function answerTrap(page: Page, correct: boolean): Promise<void> {
+/** Clicks through a Ловушка exercise (Привал or a Хамелеон in battle) without waiting for feedback. */
+export async function clickTrap(page: Page, correct: boolean): Promise<void> {
   const ex = await page.evaluate(() => {
     const hook = (window as unknown as { __nemesis?: { trap: () => { wrongIndex: number | null; fix: string | null } | null } }).__nemesis
     return hook?.trap() ?? null
@@ -278,6 +293,10 @@ export async function answerTrap(page: Page, correct: boolean): Promise<void> {
   } else {
     await page.getByTestId('trap-all-right').click()
   }
+}
+
+export async function answerTrap(page: Page, correct: boolean): Promise<void> {
+  await clickTrap(page, correct)
   await expect(page.getByTestId('trap-feedback')).toBeVisible()
 }
 

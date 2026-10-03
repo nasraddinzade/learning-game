@@ -1,5 +1,5 @@
 import type { Correction } from '@/ai/types'
-import type { Item, MoveId } from '@/types'
+import type { Item, MoveId, TrapExercise } from '@/types'
 
 export interface IntroTask {
   move: 'intro'
@@ -71,6 +71,14 @@ export interface VoiceTask {
   sample: string
 }
 
+/** Ловушка inside a battle: a Хамелеон enemy (SPEC §5.4). */
+export interface TrapTask {
+  move: 'trap'
+  patternId: string
+  exerciseIndex: number
+  exercise: TrapExercise
+}
+
 export interface OwnPhraseTask {
   move: 'ownPhrase'
   /** The question about the learner's life, in English. */
@@ -90,7 +98,7 @@ export interface ImprovTask {
   startWindowMs: number
 }
 
-export type MoveTask = IntroTask | SwipeTask | ListenTask | BuildTask | GapTask | TranslateTask | DictationTask | VoiceTask | OwnPhraseTask | ImprovTask
+export type MoveTask = IntroTask | SwipeTask | ListenTask | BuildTask | GapTask | TranslateTask | DictationTask | VoiceTask | OwnPhraseTask | ImprovTask | TrapTask
 
 export interface MoveResult {
   correct: boolean

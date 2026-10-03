@@ -161,6 +161,10 @@ export interface RunPool {
   nemeses: string[]
   reviews: string[]
   fresh: string[]
+  /** Items made from AI corrections this run; they open the next battle node (SPEC §8). */
+  materialized: string[]
+  /** Patterns the AI caught in free speech; a Хамелеон comes to the next battle node. */
+  chameleons: string[]
 }
 
 export interface RunStats {
@@ -210,7 +214,7 @@ export interface Run {
   endedAt: number | null
 }
 
-export type EnemyKind = 'shadow' | 'debtor' | 'nemesis' | 'newcomer' | 'echo'
+export type EnemyKind = 'shadow' | 'debtor' | 'nemesis' | 'newcomer' | 'echo' | 'chameleon'
 
 export interface Combatant {
   itemId: string

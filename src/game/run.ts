@@ -27,7 +27,7 @@ export function emptyStats(): RunStats {
 
 /** Splits the full priority queue into per-kind pools for the run's nodes. */
 export function poolFromQueue(queue: readonly QueueEntry[]): RunPool {
-  const pool: RunPool = { debts: [], nemeses: [], reviews: [], fresh: [] }
+  const pool: RunPool = { debts: [], nemeses: [], reviews: [], fresh: [], materialized: [], chameleons: [] }
   for (const e of queue) {
     if (e.kind === 'debt') pool.debts.push(e.itemId)
     else if (e.kind === 'nemesis') pool.nemeses.push(e.itemId)
@@ -107,6 +107,8 @@ export function entriesForNode(run: Run, type: NodeType, progress: ReadonlyMap<s
     nemeses: [...run.pool.nemeses],
     reviews: [...run.pool.reviews],
     fresh: [...run.pool.fresh],
+    materialized: [...(run.pool.materialized ?? [])],
+    chameleons: [...(run.pool.chameleons ?? [])],
   }
   const rng = mulberry32((run.seed ^ (run.stats.seenItemIds.length * 0x27d4eb2f)) >>> 0)
   const entries: CombatEntry[] = []
@@ -150,6 +152,15 @@ export function entriesForNode(run: Run, type: NodeType, progress: ReadonlyMap<s
     }
     default:
       break
+  }
+  // Materialized errors open the next ordinary battle (SPEC §8): fixed phrases as shadows,
+  // caught patterns as a Хамелеон.
+  if (type === 'ambush' || type === 'skirmish' || type === 'scout') {
+    const extra: CombatEntry[] = [
+      ...take(pool.materialized, pool.materialized.length).map((id): CombatEntry => ({ itemId: id, kind: 'review' })),
+      ...take(pool.chameleons, pool.chameleons.length).map((id): CombatEntry => ({ itemId: `pattern:${id}`, kind: 'chameleon' })),
+    ]
+    entries.unshift(...extra)
   }
   // A battle node must have someone to fight; fall back to anything left (never a nemesis,
   // she belongs to the Lair and the sortie), then to a light review of items not met this run.

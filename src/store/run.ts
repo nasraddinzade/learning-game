@@ -10,8 +10,11 @@ import { pickMove } from '@/engine/moves'
 import { endRunForItem, recordNemesisFight } from '@/engine/nemesis'
 import { recordTrap } from '@/engine/patterns'
 import { applyAnswer, applyIntro, newProgress, type ProgressEvent } from '@/engine/progress'
-import { mulberry32 } from '@/engine/rng'
+import { mulberry32, rngInt } from '@/engine/rng'
 import type { Correction } from '@/ai/types'
+import { normalize } from '@/engine/answerCheck'
+import { newPatternStat, reactivatePattern } from '@/engine/patterns'
+import { addCorrectionItem } from '@/db/textRepo'
 import { buildQueue } from '@/engine/scheduler'
 import { balance, levelForXp } from '@/game/balance'
 import { boonChoices, hasStartBoon, heroMaxHp } from '@/game/upgrades'
@@ -37,7 +40,7 @@ import { IMPLEMENTED_MOVES, type MoveResult, type MoveTask } from '@/moves/types
 import type { TrapResult } from '@/moves/trap/TrapMove'
 import { speak } from '@/speech/tts'
 import { buzz, fx } from '@/ui/fx'
-import type { CombatState, Item, MoveId, PatternStat, Progress, Rating, Run, Trophy } from '@/types'
+import type { CombatState, Item, MoveId, PatternStat, Progress, Rating, Run, Trophy, TrapExercise, RunPool } from '@/types'
 import { lands as landDefs, type LandDef } from '@/content/seed'
 import { now } from './clock'
 import { useProfileStore } from './profile'
@@ -119,6 +122,8 @@ interface RunState {
   resumeBattle: () => void
   risk: (move: MoveId) => void
   submit: (result: MoveResult) => Promise<void>
+  /** Answer of a Хамелеон (trap) enemy inside a battle. */
+  submitTrap: (result: { correct: boolean; fixed: string }) => Promise<void>
   next: () => Promise<void>
   timeUp: () => Promise<void>
   answerTrap: (result: TrapResult) => Promise<void>
@@ -201,10 +206,61 @@ export const useRunStore = create<RunState>((set, get) => {
   }
 
   /** Chooses the move and task for the current enemy and shows it. */
+  /** A pattern enemy is shown through a transient item: the pattern title and its rule. */
+  function chameleonItem(patternId: string): Item {
+    const def = patternDef(patternId)
+    return {
+      id: `pattern:${patternId}`,
+      type: 'pattern',
+      land: 'life',
+      en: `Хамелеон · ${def?.title ?? patternId}`,
+      ru: def?.explainRu ?? '',
+      accept: [],
+      contexts: [],
+      promptsRu: [],
+      questionEn: '',
+      falseMeanings: [],
+      noteRu: '',
+      source: 'seed',
+      createdAt: 0,
+    }
+  }
+
+  function prepareTrap(run: Run, patternId: string) {
+    const combat = combatOf(run)
+    const def = patternDef(patternId)
+    const { items } = get()
+    if (!def || def.exercises.length === 0) {
+      set({ error: `Нет упражнений для ${patternId}` })
+      return
+    }
+    const rng = combatRng(combat)
+    const exerciseIndex = rngInt(rng, 0, def.exercises.length - 1)
+    const exercise = def.exercises[exerciseIndex] as TrapExercise
+    const base = balance.windupMs.trap
+    const shown = hasBoon(run.boons, 'coolHead') ? Math.round(base * balance.boons.coolHeadSlowdown) : base
+    set({
+      run,
+      items: items[`pattern:${patternId}`] ? items : { ...items, [`pattern:${patternId}`]: chameleonItem(patternId) },
+      battlePhase: 'task',
+      move: 'trap',
+      task: { move: 'trap', patternId, exerciseIndex, exercise },
+      risked: false,
+      windupStartedAt: Date.now(),
+      windupMs: shown,
+      baseWindupMs: base,
+      feedback: null,
+    })
+  }
+
   function prepare(run: Run) {
     const combat = combatOf(run)
     const c = combat.current
     if (!c) return
+    if (c.kind === 'chameleon') {
+      prepareTrap(run, c.itemId.slice('pattern:'.length))
+      return
+    }
     const { items, progress } = get()
     const item = items[c.itemId]
     if (!item) {
@@ -325,6 +381,40 @@ export const useRunStore = create<RunState>((set, get) => {
   }
 
   /** After a battle node ends: merge into the run and move on (boon, map or summary). */
+  /** Errors the AI caught become enemies of the next battle node (SPEC §8). */
+  async function materialize(run: Run, result: MoveResult, t: number): Promise<Run> {
+    const corrections = result.corrections ?? []
+    if (corrections.length === 0) return run
+    const pool: RunPool = { ...run.pool, materialized: [...(run.pool.materialized ?? [])], chameleons: [...(run.pool.chameleons ?? [])] }
+    const { items, patternStats } = get()
+    const nextItems = { ...items }
+    const stats = [...patternStats]
+    for (const c of corrections) {
+      if (c.patternId) {
+        if (!pool.chameleons.includes(c.patternId)) pool.chameleons.push(c.patternId)
+        const i = stats.findIndex((st) => st.patternId === c.patternId)
+        const woken = reactivatePattern(i >= 0 ? (stats[i] as PatternStat) : newPatternStat(c.patternId))
+        if (i >= 0) stats[i] = woken
+        else stats.push(woken)
+        await savePatternStat(woken)
+        continue
+      }
+      const existing = Object.values(nextItems).find((it) => normalize(it.en) === normalize(c.right))
+      let id: string
+      if (existing) id = existing.id
+      else {
+        const made = await addCorrectionItem({ wrong: c.wrong, right: c.right, ruleRu: c.ruleRu, sentence: result.expected, now: t })
+        nextItems[made.id] = made
+        id = made.id
+      }
+      if (!pool.materialized.includes(id)) pool.materialized.push(id)
+    }
+    const next: Run = { ...run, pool }
+    await saveRun(next)
+    set({ items: nextItems, patternStats: stats })
+    return next
+  }
+
   async function afterBattle(run: Run, combat: CombatState): Promise<void> {
     const rng = mulberry32((run.seed ^ (run.stats.seenItemIds.length + combat.answers) * 0x6c078965) >>> 0)
     let next = finishBattleNode(run, combat, rng, AVAILABLE_MOVES, boonChoices(useProfileStore.getState().profile))
@@ -428,6 +518,57 @@ export const useRunStore = create<RunState>((set, get) => {
       prepare(run)
     },
 
+    submitTrap: async (result) => {
+      const { run, move, task, patternStats, battlePhase, windupStartedAt } = get()
+      if (!run || !run.combat || move !== 'trap' || !task || task.move !== 'trap' || battlePhase !== 'task') return
+      const combat = run.combat
+      const c = combat.current
+      if (!c) return
+      const t = now()
+      const idx = patternStats.findIndex((st) => st.patternId === task.patternId)
+      const stat = recordTrap(idx >= 0 ? (patternStats[idx] as PatternStat) : newPatternStat(task.patternId), result.correct, t)
+      await savePatternStat(stat)
+      const stats = [...patternStats]
+      if (idx >= 0) stats[idx] = stat
+      else stats.push(stat)
+      const { state, events, flags } = resolve(
+        combat,
+        { move: 'trap', correct: result.correct, crit: false, risked: false, typo: false, debtClosed: false },
+        { boons: run.boons, flags: run.flags },
+      )
+      const nextRun: Run = { ...withCombat(run, state), flags }
+      await saveRun(nextRun)
+      const item = get().items[c.itemId] ?? chameleonItem(task.patternId)
+      const hitEvent = events.find((e): e is Extract<CombatEvent, { type: 'hit' }> => e.type === 'hit')
+      playFeedbackFx(events, [], false, { ...item, en: result.fixed }, useProfileStore.getState().profile?.settings.ttsVoice ?? 'en-US')
+      set((s) => ({
+        run: nextRun,
+        patternStats: stats,
+        battlePhase: 'feedback',
+        shake: s.shake + 1,
+        feedback: {
+          correct: result.correct,
+          crit: false,
+          rating: result.correct ? 3 : 1,
+          typo: false,
+          runes: hitEvent?.runes ?? 0,
+          answer: result.correct ? result.fixed : task.exercise.tokens.join(' '),
+          expected: result.fixed,
+          item: { ...item, en: result.fixed, ru: task.exercise.ruleRu },
+          move: 'trap',
+          risked: false,
+          events,
+          progressEvents: [],
+          stage: 2,
+          nemesisResult: null,
+          corrections: [],
+          moreNatural: null,
+          aiChecked: false,
+        },
+      }))
+      void windupStartedAt
+    },
+
     risk: (move) => {
       const { run, items, battlePhase } = get()
       if (!run || !run.combat || battlePhase !== 'task') return
@@ -506,8 +647,9 @@ export const useRunStore = create<RunState>((set, get) => {
       const stats = { ...run.stats }
       if (outcome.events.includes('stageUp') && !stats.stageUpIds.includes(item.id)) stats.stageUpIds = [...stats.stageUpIds, item.id]
       if (outcome.events.includes('mastered') && !stats.masteredIds.includes(item.id)) stats.masteredIds = [...stats.masteredIds, item.id]
-      const nextRun: Run = { ...withCombat(run, state), flags, stats }
-      await saveRun(nextRun)
+      const savedRun: Run = { ...withCombat(run, state), flags, stats }
+      await saveRun(savedRun)
+      const nextRun = await materialize(savedRun, result, t)
       const hitEvent = events.find((e): e is Extract<CombatEvent, { type: 'hit' }> => e.type === 'hit')
       playFeedbackFx(events, outcome.events, crit, item, useProfileStore.getState().profile?.settings.ttsVoice ?? 'en-US')
       set((s) => ({

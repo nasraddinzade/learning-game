@@ -255,6 +255,9 @@ export function buildTask(move: MoveId, item: Item, rng: Rng, pool: readonly Ite
 /** Checks a typed or assembled answer for the task. Swipe and intro are decided in the UI. */
 export function checkTask(task: MoveTask, answer: string, hintUsed: boolean): MoveResult {
   switch (task.move) {
+    case 'trap':
+      // Trap answers are judged by the TrapMove itself (place and fix); this path is never used.
+      return { correct: false, hintUsed: false, typo: false, answer, expected: task.exercise.tokens.join(' ') }
     case 'build': {
       const r = checkAnswer(answer, task.expected)
       return { correct: r.ok, hintUsed, typo: r.typo, answer, expected: task.expected[0] ?? '' }

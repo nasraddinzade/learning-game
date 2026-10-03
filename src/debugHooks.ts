@@ -46,7 +46,9 @@ export function installDebugHooks(): void {
     state: () => useRunStore.getState(),
     answer: () => expectedAnswerOf(useRunStore.getState().task),
     trap: () => {
-      const rest = useRunStore.getState().run?.rest
+      const st = useRunStore.getState()
+      if (st.task?.move === 'trap' && st.battlePhase === 'task') return { ...st.task.exercise, fixed: fixedSentence(st.task.exercise) }
+      const rest = st.run?.rest
       if (!rest) return null
       const def = seedPatterns.find((p) => p.id === rest.patternId)
       const idx = rest.exercises[rest.index]

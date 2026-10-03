@@ -5,6 +5,7 @@ import { MOVE_LABEL_RU, STAGE_LABEL_RU, riskOptions } from '@/engine/moves'
 import { enemiesLeft } from '@/game/combat'
 import { NODE_ICON, NODE_LABEL_RU } from '@/game/map'
 import { MOVE_COMPONENTS, preloadMoves } from '@/moves'
+import { TrapMove } from '@/moves/trap/TrapMove'
 import { canUse } from '@/moves/tasks'
 import { IMPLEMENTED_MOVES, type MoveProps } from '@/moves/types'
 import { routeForRun, useRunStore, type Feedback } from '@/store/run'
@@ -22,6 +23,7 @@ const KIND_LABEL: Record<EnemyKind, string> = {
   debtor: 'Должник',
   nemesis: 'Немезида',
   newcomer: 'Новая фраза',
+  chameleon: 'Хамелеон',
   echo: 'Эхо',
 }
 
@@ -223,7 +225,7 @@ export function BattleScreen() {
   const progress = current ? s.progress[current.itemId] : undefined
   const node = run?.position ? run.map[run.position.step]?.[run.position.node] : undefined
   const options = useMemo(() => {
-    if (!s.move || !item || s.risked || s.move === 'intro' || current?.kind === 'echo') return []
+    if (!s.move || !item || s.risked || s.move === 'intro' || current?.kind === 'echo' || current?.kind === 'chameleon') return []
     return riskOptions(s.move, IMPLEMENTED_MOVES).filter((m) => canUse(m, item))
   }, [s.move, item, s.risked, current?.kind])
 
@@ -323,16 +325,20 @@ export function BattleScreen() {
           ) : null}
 
           <section className="flex flex-1 flex-col gap-3">
-            {s.battlePhase === 'task' && Move && s.task ? (
+            {s.battlePhase === 'task' && (Move || s.task?.move === 'trap') && s.task ? (
               <motion.div
                 key={`${current.itemId}-${s.move}-${s.risked}`}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.18 }}
               >
-                <Suspense fallback={<div className="py-6 text-center text-fg-muted">…</div>}>
-                  <Move {...({ task: s.task, item, onSubmit: (r) => void s.submit(r) } as MoveProps<never>)} />
-                </Suspense>
+                {s.task.move === 'trap' ? (
+                  <TrapMove exercise={s.task.exercise} onSubmit={(r) => void s.submitTrap(r)} />
+                ) : Move ? (
+                  <Suspense fallback={<div className="py-6 text-center text-fg-muted">…</div>}>
+                    <Move {...({ task: s.task, item, onSubmit: (r) => void s.submit(r) } as MoveProps<never>)} />
+                  </Suspense>
+                ) : null}
                 {options.length > 0 ? (
                   <div className="mt-3 flex flex-wrap items-center gap-2" data-testid="risk-row">
                     <span className="text-xs text-fg-faint">Рискнуть:</span>

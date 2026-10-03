@@ -73,3 +73,36 @@ export async function addLifeItem(input: LifeItemInput): Promise<Item> {
   await db.items.put(item)
   return item
 }
+
+export interface CorrectionItemInput {
+  wrong: string
+  right: string
+  ruleRu: string
+  /** The corrected sentence the error came from; becomes the first context. */
+  sentence: string
+  now: number
+}
+
+/**
+ * An error the AI caught in free speech becomes a phrase with the right variant (SPEC §8).
+ * The Russian side is filled later by the daily enrichment; until then the rule is the hint.
+ */
+export async function addCorrectionItem(input: CorrectionItemInput): Promise<Item> {
+  const item: Item = {
+    id: newId('fix'),
+    type: 'phrase',
+    land: 'life',
+    en: input.right.trim(),
+    ru: `вместо «${input.wrong.trim()}»`,
+    accept: [],
+    contexts: input.sentence.trim() ? [{ en: input.sentence.trim(), ru: '', source: 'ai' }] : [],
+    promptsRu: [],
+    questionEn: '',
+    falseMeanings: [],
+    noteRu: input.ruleRu.trim(),
+    source: 'ai-correction',
+    createdAt: input.now,
+  }
+  await db.items.put(item)
+  return item
+}
