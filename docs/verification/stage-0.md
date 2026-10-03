@@ -69,8 +69,19 @@
 
 ## Git
 
-Коммиты этапа см. в `git log`. Хеш последнего коммита и подтверждение пуша записаны в разделе ниже после пуша.
+Коммиты этапа (conventional commits, от первого к последнему)
+- `ed1ec1e` chore: scaffold Vite + React + TypeScript PWA project
+- `52fee34` feat: data model, Dexie schema, profile store and app clock
+- `8b1fbf0` feat: router, camp, settings, placeholder screens and dev panel
+- `08f9482` test: vitest clock tests and Playwright smoke e2e with offline PWA check
+- `966be7e` docs: stage 0 verification report and key screenshots
+- `37f78a0` chore: normalize line endings to LF, drop template asset
 
 ## Подтверждение пуша
 
-(заполняется после `git push`)
+- Последний коммит кода этапа: `37f78a0e83d0e91650913b12f460992c64303d43`.
+- `git push -u origin main` прошёл, ветка `main` создана в удалённом репозитории.
+- `git status` чистый, `git rev-parse HEAD` совпадает с `origin/main`.
+- Тег `stage-0` поставлен на `37f78a0` и запушен (`git ls-remote --tags origin` его показывает).
+- Перед пушем staged diff просканирован на ключи (AIza…, gsk_…, sk-…, ghp_…, приватные ключи): ничего не найдено.
+- Этот отчёт дополнен хешем в отдельном коммите `docs:` после пуша, он будет последним в истории этапа.
