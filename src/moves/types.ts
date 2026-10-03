@@ -1,3 +1,4 @@
+import type { Correction } from '@/ai/types'
 import type { Item, MoveId } from '@/types'
 
 export interface IntroTask {
@@ -70,6 +71,15 @@ export interface VoiceTask {
   sample: string
 }
 
+export interface OwnPhraseTask {
+  move: 'ownPhrase'
+  /** The question about the learner's life, in English. */
+  questionEn: string
+  targets: string[]
+  /** Example answers shown for the self-assessment without AI and in feedback. */
+  samples: string[]
+}
+
 export interface ImprovTask {
   move: 'improv'
   /** A situation the item has not shown before (second prompt). */
@@ -80,7 +90,7 @@ export interface ImprovTask {
   startWindowMs: number
 }
 
-export type MoveTask = IntroTask | SwipeTask | ListenTask | BuildTask | GapTask | TranslateTask | DictationTask | VoiceTask | ImprovTask
+export type MoveTask = IntroTask | SwipeTask | ListenTask | BuildTask | GapTask | TranslateTask | DictationTask | VoiceTask | OwnPhraseTask | ImprovTask
 
 export interface MoveResult {
   correct: boolean
@@ -89,6 +99,11 @@ export interface MoveResult {
   answer: string
   /** What a correct answer looks like, shown in feedback. */
   expected: string
+  /** Corrections from the AI production check (SPEC §10.3), shown in feedback after the move. */
+  corrections?: Correction[]
+  moreNatural?: string | null
+  /** True when the AI judged the answer (false or absent: local check or self-assessment). */
+  aiChecked?: boolean
 }
 
 export interface MoveProps<T extends MoveTask = MoveTask> {
@@ -99,4 +114,4 @@ export interface MoveProps<T extends MoveTask = MoveTask> {
   onInteract?: () => void
 }
 
-export const IMPLEMENTED_MOVES: readonly MoveId[] = ['swipe', 'listen', 'build', 'gap', 'translate', 'dictation', 'voice', 'improv']
+export const IMPLEMENTED_MOVES: readonly MoveId[] = ['swipe', 'listen', 'build', 'gap', 'translate', 'dictation', 'voice', 'ownPhrase', 'improv']

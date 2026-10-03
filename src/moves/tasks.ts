@@ -13,6 +13,7 @@ import type {
   ListenTask,
   MoveResult,
   MoveTask,
+  OwnPhraseTask,
   SwipeTask,
   TranslateTask,
   VoiceTask,
@@ -44,6 +45,7 @@ export function canUse(move: MoveId, item: Item): boolean {
     case 'intro':
     case 'translate':
     case 'voice':
+    case 'ownPhrase':
       return true
     case 'swipe':
       return item.contexts.length > 0 && item.falseMeanings.length > 0
@@ -201,6 +203,17 @@ export function buildVoice(item: Item, rng: Rng): VoiceTask {
 }
 
 /** Экспромт: a situation not seen before, a few seconds to start, voice or typing. */
+/** Своя фраза (stage 4): a question about the learner's life that needs the target phrase. */
+export function buildOwnPhrase(item: Item): OwnPhraseTask {
+  const samples = item.contexts.map((c) => c.en).filter((c) => c.trim().length > 0).slice(0, 3)
+  return {
+    move: 'ownPhrase',
+    questionEn: item.questionEn.trim() || `Use "${item.en}" to say something true about your life.`,
+    targets: [item.en, ...item.accept],
+    samples: samples.length > 0 ? samples : [item.en],
+  }
+}
+
 export function buildImprov(item: Item, rng: Rng): ImprovTask {
   const found = contextWithPhrase(item)
   return {
@@ -230,6 +243,8 @@ export function buildTask(move: MoveId, item: Item, rng: Rng, pool: readonly Ite
       return buildDictation(item, rng)
     case 'voice':
       return buildVoice(item, rng)
+    case 'ownPhrase':
+      return buildOwnPhrase(item)
     case 'improv':
       return buildImprov(item, rng)
     default:
@@ -275,6 +290,15 @@ export function checkTask(task: MoveTask, answer: string, hintUsed: boolean): Mo
       const r = matchVoice(answer.split('\n'), task.targets, balance.voice.overlapMin)
       return { correct: r.ok, hintUsed: false, typo: r.typo, answer, expected: task.sample }
     }
+    case 'ownPhrase': {
+      // Self-assessment after the local presence check: 'self:ok' | 'self:typo' | 'self:fail'.
+      if (answer.startsWith('self:')) {
+        const v = answer.slice(5)
+        return { correct: v !== 'fail', hintUsed: false, typo: v === 'typo', answer: '(самооценка)', expected: task.samples[0] ?? '' }
+      }
+      const r = containsTarget(answer, task.targets)
+      return { correct: r.ok, hintUsed: false, typo: r.typo, answer, expected: task.samples[0] ?? '' }
+    }
     case 'improv': {
       if (answer === '') return { correct: false, hintUsed: false, typo: false, answer: '(не начал)', expected: task.sample }
       const r = answer.includes('\n')
@@ -313,6 +337,9 @@ export function expectedAnswerOf(task: MoveTask | null): string | null {
     case 'voice':
     case 'improv':
       return task.targets[0] ?? null
+    case 'ownPhrase':
+      // A full sentence that contains the phrase, so the local check and the fake AI both pass.
+      return task.samples.find((s) => containsTarget(s, task.targets).ok) ?? task.targets[0] ?? null
     default:
       return null
   }

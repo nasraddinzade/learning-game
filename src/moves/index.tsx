@@ -14,6 +14,7 @@ const loaders = {
   listen: () => import('./listen/ListenMove').then((m) => ({ default: m.ListenMove })),
   dictation: () => import('./dictation/DictationMove').then((m) => ({ default: m.DictationMove })),
   voice: () => import('./voice/VoiceMove').then((m) => ({ default: m.VoiceMove })),
+  ownPhrase: () => import('./ownPhrase/OwnPhraseMove').then((m) => ({ default: m.OwnPhraseMove })),
   improv: () => import('./improv/ImprovMove').then((m) => ({ default: m.ImprovMove })),
 }
 
@@ -26,6 +27,7 @@ export const MOVE_COMPONENTS: Partial<Record<MoveId, MoveComponent>> = {
   listen: lazy(loaders.listen),
   dictation: lazy(loaders.dictation),
   voice: lazy(loaders.voice),
+  ownPhrase: lazy(loaders.ownPhrase),
   improv: lazy(loaders.improv),
 }
 

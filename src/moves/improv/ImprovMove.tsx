@@ -4,6 +4,7 @@ import { listen, recognitionAvailable, stopListening } from '@/speech/recognitio
 import { useProfileStore } from '@/store/profile'
 import { fx } from '@/ui/fx'
 import { TextAnswer } from '@/ui/TextAnswer'
+import { checkWithAI } from '../production'
 import { checkTask } from '../tasks'
 import type { ImprovTask, MoveProps } from '../types'
 
@@ -16,6 +17,7 @@ export function ImprovMove({ task, onSubmit, onInteract }: MoveProps<ImprovTask>
   const [left, setLeft] = useState(task.startWindowMs)
   const [started, setStarted] = useState(false)
   const [listening, setListening] = useState(false)
+  const [checking, setChecking] = useState(false)
   const startedRef = useRef(false)
   const submitted = useRef(false)
   const supported = recognitionAvailable()
@@ -30,7 +32,16 @@ export function ImprovMove({ task, onSubmit, onInteract }: MoveProps<ImprovTask>
   function submit(result: ReturnType<typeof checkTask>) {
     if (submitted.current) return
     submitted.current = true
-    onSubmit(result)
+    // With AI the answer is judged for real errors (SPEC §10.3); the local check stays the gate.
+    if (!result.correct || result.answer === '(не начал)') {
+      onSubmit(result)
+      return
+    }
+    setChecking(true)
+    void checkWithAI({ answer: result.answer, target: task.targets[0] ?? '', accept: task.targets.slice(1), situation: task.promptRu }, result).then((r) => {
+      setChecking(false)
+      onSubmit(r ?? result)
+    })
   }
 
   useEffect(() => {
@@ -84,6 +95,11 @@ export function ImprovMove({ task, onSubmit, onInteract }: MoveProps<ImprovTask>
       <p className="text-xl font-medium leading-snug" data-testid="improv-prompt">
         {task.promptRu}
       </p>
+      {checking ? (
+        <p className="text-sm text-fg-muted" data-testid="ai-checking">
+          Проверяю…
+        </p>
+      ) : null}
       <div className="flex items-start gap-2">
         {supported ? (
           <button

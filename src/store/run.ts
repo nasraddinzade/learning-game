@@ -11,6 +11,7 @@ import { endRunForItem, recordNemesisFight } from '@/engine/nemesis'
 import { recordTrap } from '@/engine/patterns'
 import { applyAnswer, applyIntro, newProgress, type ProgressEvent } from '@/engine/progress'
 import { mulberry32 } from '@/engine/rng'
+import type { Correction } from '@/ai/types'
 import { buildQueue } from '@/engine/scheduler'
 import { balance, levelForXp } from '@/game/balance'
 import { boonChoices, hasStartBoon, heroMaxHp } from '@/game/upgrades'
@@ -59,6 +60,10 @@ export interface Feedback {
   stage: Progress['stage']
   /** Outcome of a nemesis fight that ended with this answer. */
   nemesisResult: 'won' | 'destroyed' | 'lost' | null
+  /** AI corrections for a production move (SPEC §8, §10.3). */
+  corrections: Correction[]
+  moreNatural: string | null
+  aiChecked: boolean
 }
 
 export interface RunSummary {
@@ -518,6 +523,9 @@ export const useRunStore = create<RunState>((set, get) => {
           runes: hitEvent?.runes ?? 0,
           answer: result.answer,
           expected: result.expected,
+          corrections: result.corrections ?? [],
+          moreNatural: result.moreNatural ?? null,
+          aiChecked: result.aiChecked ?? false,
           item,
           move,
           risked,

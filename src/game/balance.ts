@@ -121,6 +121,20 @@ export const balance = {
     debtor: 2,
     nemesis: 3,
   },
+  /** AI layer quota and pauses (SPEC §10.2). */
+  ai: {
+    dailyLimit: 100,
+    minGapMs: 5000,
+    /** Pauses after a 429, one per retry. */
+    backoffMs: [5000, 10000, 20000],
+    /** After the retries fail the AI stays off for this long. */
+    pauseAfterRateMs: 10 * 60_000,
+    pauseAfterNetworkMs: 60_000,
+    /** Items prepared one day ahead by freshContexts, per daily request. */
+    freshContextsPerDay: 10,
+    /** Life items completed per day when they were added without AI. */
+    enrichPerDay: 5,
+  },
   /** Reading mode (SPEC §9.3). */
   reading: {
     /** Longest phrase that can be selected, in words. */

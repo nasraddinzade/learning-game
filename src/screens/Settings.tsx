@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { aiStatus, ping, subscribeAI, type AIStatus } from '@/ai/ai'
 import { useProfileStore } from '@/store/profile'
 import { Screen } from '@/ui/Screen'
 import { SpeakButton } from '@/ui/SpeakButton'
@@ -43,6 +45,116 @@ function Toggle({
         }`}
       />
     </button>
+  )
+}
+
+function KeyField({ label, value, placeholder, testId, onChange }: { label: string; value: string; placeholder: string; testId: string; onChange: (v: string) => void }) {
+  const [show, setShow] = useState(false)
+  return (
+    <label className="flex flex-col gap-1 rounded-2xl bg-bg-card px-4 py-3">
+      <span className="text-sm font-medium">{label}</span>
+      <div className="flex items-center gap-2">
+        <input
+          type={show ? 'text' : 'password'}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          data-testid={testId}
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck={false}
+          autoComplete="off"
+          className="h-11 min-w-0 flex-1 rounded-xl border border-line bg-bg px-3 text-sm text-fg outline-none focus:border-accent"
+        />
+        <button type="button" aria-label={show ? 'Скрыть ключ' : 'Показать ключ'} onClick={() => setShow((v) => !v)} className="tap rounded-xl px-2 text-xs text-fg-muted">
+          {show ? 'скрыть' : 'показать'}
+        </button>
+      </div>
+    </label>
+  )
+}
+
+function ModelField({ label, value, testId, onChange }: { label: string; value: string; testId: string; onChange: (v: string) => void }) {
+  return (
+    <label className="flex items-center justify-between gap-3 rounded-2xl bg-bg-card px-4 py-2">
+      <span className="text-sm font-medium">{label}</span>
+      <input
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        data-testid={testId}
+        autoCorrect="off"
+        autoCapitalize="off"
+        spellCheck={false}
+        className="h-11 w-44 rounded-xl border border-line bg-bg px-3 text-sm text-fg outline-none focus:border-accent"
+      />
+    </label>
+  )
+}
+
+/** AI keys and model ids (SPEC §10.1): kept only in IndexedDB on this device. */
+function AISection() {
+  const ai = useProfileStore((s) => s.profile?.settings.ai)
+  const updateSettings = useProfileStore((s) => s.updateSettings)
+  const [status, setStatus] = useState<AIStatus | null>(null)
+  const [pingResult, setPingResult] = useState<string | null>(null)
+  const [pinging, setPinging] = useState(false)
+
+  useEffect(() => {
+    let alive = true
+    const refresh = () => void aiStatus().then((st) => alive && setStatus(st))
+    refresh()
+    const off = subscribeAI(refresh)
+    return () => {
+      alive = false
+      off()
+    }
+  }, [ai])
+
+  if (!ai) return null
+  const set = (patch: Partial<typeof ai>) => void updateSettings({ ai: { ...ai, ...patch } })
+
+  async function check() {
+    setPinging(true)
+    setPingResult(null)
+    const err = await ping()
+    setPingResult(err === null ? 'Ответил. ИИ работает.' : err)
+    setPinging(false)
+  }
+
+  return (
+    <section className="flex flex-col gap-2">
+      <h2 className="px-1 text-xs font-semibold tracking-wide text-fg-faint uppercase">ИИ</h2>
+      <p className="px-1 text-xs text-fg-faint">
+        Бесплатные ключи Google AI Studio и Groq. Хранятся только на этом устройстве. В запросы уходят только учебные фразы и твои ответы в сценах.
+      </p>
+      <KeyField label="Ключ Gemini (основной)" value={ai.geminiKey} placeholder="AIza…" testId="ai-gemini-key" onChange={(v) => set({ geminiKey: v })} />
+      <ModelField label="Модель Gemini" value={ai.geminiModel} testId="ai-gemini-model" onChange={(v) => set({ geminiModel: v })} />
+      <KeyField label="Ключ Groq (запасной)" value={ai.groqKey} placeholder="gsk_…" testId="ai-groq-key" onChange={(v) => set({ groqKey: v })} />
+      <ModelField label="Модель Groq" value={ai.groqModel} testId="ai-groq-model" onChange={(v) => set({ groqModel: v })} />
+      <Row label="Связь с ИИ">
+        <button
+          type="button"
+          data-testid="ai-ping"
+          disabled={!status?.configured || pinging}
+          onClick={() => void check()}
+          className="tap rounded-xl bg-accent px-4 text-sm font-semibold text-bg disabled:opacity-40"
+        >
+          {pinging ? 'Проверяю…' : 'Проверить'}
+        </button>
+      </Row>
+      <p className="px-1 text-xs text-fg-muted" data-testid="ai-status">
+        {!status
+          ? '…'
+          : !status.configured
+            ? 'ИИ выключен: нет ключа. Игра полностью работает без него.'
+            : `ИИ: ${status.provider ?? 'нет'} · сегодня ${status.usedToday} из ${status.limit}${status.available ? '' : status.lastError ? ` · пауза: ${status.lastError}` : ' · пауза'}`}
+      </p>
+      {pingResult ? (
+        <p className="px-1 text-xs" data-testid="ai-ping-result">
+          {pingResult}
+        </p>
+      ) : null}
+    </section>
   )
 }
 
@@ -136,12 +248,7 @@ export function SettingsScreen() {
         </p>
       </section>
 
-      <section className="flex flex-col gap-2">
-        <h2 className="px-1 text-xs font-semibold tracking-wide text-fg-faint uppercase">ИИ</h2>
-        <div className="rounded-2xl border border-dashed border-line p-4 text-sm text-fg-muted">
-          Ключи Gemini и Groq появятся на этапе 5. Они хранятся только на этом устройстве.
-        </div>
-      </section>
+      <AISection />
 
       <section className="flex flex-col gap-2">
         <h2 className="px-1 text-xs font-semibold tracking-wide text-fg-faint uppercase">Данные</h2>

@@ -130,8 +130,26 @@ function FeedbackPanel({ f, onNext }: { f: Feedback; onNext: () => void }) {
           {f.item.noteRu ? <p className="text-fg-muted">{f.item.noteRu}</p> : null}
         </div>
       )}
+      {f.corrections.length > 0 || f.moreNatural ? (
+        <div className="mt-2 flex flex-col gap-1 rounded-xl bg-bg px-3 py-2 text-sm" data-testid="feedback-corrections">
+          {f.corrections.map((c, i) => (
+            <div key={i} data-testid="correction">
+              <p>
+                <span className="text-danger">❌ {c.wrong}</span> <span className="text-ok">✅ {c.right}</span>
+              </p>
+              {c.ruleRu ? <p className="text-xs text-fg-muted">{c.ruleRu}</p> : null}
+            </div>
+          ))}
+          {f.moreNatural ? (
+            <p className="text-xs text-fg-muted" data-testid="more-natural">
+              Естественнее: <span className="text-fg">{f.moreNatural}</span>
+            </p>
+          ) : null}
+        </div>
+      ) : null}
       <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-fg-muted">
         {f.risked && f.correct ? <span>Рискнул и попал</span> : null}
+        {f.aiChecked ? <span data-testid="ai-checked">проверил ИИ</span> : null}
         {stageUp ? (
           <motion.span
             data-testid="stage-up"

@@ -1,4 +1,6 @@
 // Test hooks on window for the dev panel session and Playwright (dev and e2e builds only).
+import { aiCallLog, setAIOverride } from '@/ai/ai'
+import { createFakeAI, type FakeScript } from '@/ai/fake'
 import { seedPatterns } from '@/content/patterns'
 import { expectedAnswerOf } from '@/moves/tasks'
 import { fixedSentence } from '@/moves/trap/fixedSentence'
@@ -27,9 +29,15 @@ export interface DebugHooks {
   spoken: () => string[]
   /** Deletes the database and the dev clock offset without reloading (the caller reloads). */
   wipe: () => Promise<void>
+  /** Replaces the model with the rule-based double (optionally with canned answers per task). */
+  fakeAI: (script?: FakeScript) => void
+  realAI: () => void
+  /** Tasks sent to the provider since the double was installed. */
+  aiLog: () => string[]
 }
 
 const FAKE_KEY = 'nemesis.dev.fakeSpeech'
+const FAKE_AI_KEY = 'nemesis.dev.fakeAI'
 
 export function installDebugHooks(): void {
   const spoken: string[] = []
@@ -84,11 +92,30 @@ export function installDebugHooks(): void {
       await resetDatabase()
       useClockStore.getState().resetOffset()
     },
+    fakeAI: (script = {}) => {
+      try {
+        sessionStorage.setItem(FAKE_AI_KEY, JSON.stringify(script))
+      } catch {
+        /* ignore */
+      }
+      setAIOverride(createFakeAI(script))
+    },
+    realAI: () => {
+      try {
+        sessionStorage.removeItem(FAKE_AI_KEY)
+      } catch {
+        /* ignore */
+      }
+      setAIOverride(null)
+    },
+    aiLog: () => aiCallLog(),
   }
   ;(window as unknown as { __nemesis: DebugHooks }).__nemesis = hooks
   try {
     const saved = sessionStorage.getItem(FAKE_KEY)
     if (saved) hooks.fakeSpeech(JSON.parse(saved) as { recognition?: boolean })
+    const savedAI = sessionStorage.getItem(FAKE_AI_KEY)
+    if (savedAI) hooks.fakeAI(JSON.parse(savedAI) as FakeScript)
   } catch {
     /* ignore */
   }
