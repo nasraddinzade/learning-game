@@ -1,0 +1,187 @@
+{
+  "id": "phrasal",
+  "name": "Фразовые глаголы в живых контекстах",
+  "emoji": "🔧",
+  "items": [
+    {
+      "id": "phrasal.figure-out",
+      "en": "figure out",
+      "ru": "разобраться, понять",
+      "accept": ["figure out", "figure it out"],
+      "contexts": [
+        { "en": "I need to figure out why the build fails on CI only.", "ru": "Мне нужно разобраться, почему сборка падает только на CI." },
+        { "en": "We'll figure it out together, don't worry.", "ru": "Мы вместе разберёмся, не волнуйся." },
+        { "en": "I can't figure out the plot of this anime at all.", "ru": "Я вообще не могу понять сюжет этого аниме." }
+      ],
+      "promptsRu": ["Скажи, что нужно разобраться, почему сборка падает на CI.", "Успокой друга: вы разберётесь вместе."],
+      "questionEn": "Use 'figure out' about a problem you solved recently.",
+      "falseMeanings": ["нарисовать фигуру", "вычислить число"],
+      "noteRu": "Местоимение между: «figure it out», но «figure out the bug»."
+    },
+    {
+      "id": "phrasal.put-off",
+      "en": "put off",
+      "ru": "отложить, откладывать",
+      "accept": ["put off", "put it off", "postpone"],
+      "contexts": [
+        { "en": "I keep putting off the dentist.", "ru": "Я всё откладываю стоматолога." },
+        { "en": "Let's put off the release until Monday.", "ru": "Давайте отложим релиз до понедельника." },
+        { "en": "Don't put it off, the visa takes weeks.", "ru": "Не откладывай, виза делается неделями." }
+      ],
+      "promptsRu": ["Признайся, что всё откладываешь стоматолога.", "Предложи отложить релиз до понедельника."],
+      "questionEn": "Use 'put off' about something you keep postponing.",
+      "falseMeanings": ["снять одежду", "потушить огонь"],
+      "noteRu": "«Keep putting off» + -ing: «keep putting off going to the dentist»."
+    },
+    {
+      "id": "phrasal.come-up-with",
+      "en": "come up with",
+      "ru": "придумать",
+      "accept": ["come up with", "came up with"],
+      "contexts": [
+        { "en": "We need to come up with a name for the app.", "ru": "Нам нужно придумать название для приложения." },
+        { "en": "She came up with a much simpler solution.", "ru": "Она придумала гораздо более простое решение." },
+        { "en": "I can't come up with a good excuse for skipping the gym.", "ru": "Не могу придумать хорошую отговорку, чтобы пропустить зал." }
+      ],
+      "promptsRu": ["Скажи, что нужно придумать название для приложения.", "Расскажи, что коллега придумала решение проще."],
+      "questionEn": "Use 'come up with' about an idea you had.",
+      "falseMeanings": ["подняться вместе с", "прийти вместе с"],
+      "noteRu": "Не «invent» для идей и названий, живая речь использует «come up with»."
+    },
+    {
+      "id": "phrasal.look-forward-to",
+      "en": "look forward to",
+      "ru": "ждать с нетерпением",
+      "accept": ["look forward to", "looking forward to"],
+      "contexts": [
+        { "en": "I'm looking forward to the hike this weekend.", "ru": "Жду с нетерпением похода в эти выходные." },
+        { "en": "We look forward to working with you.", "ru": "Мы с нетерпением ждём совместной работы." },
+        { "en": "I look forward to hearing from you.", "ru": "Жду вашего ответа." }
+      ],
+      "promptsRu": ["Скажи, что с нетерпением ждёшь похода в выходные.", "Закончи письмо: жду ответа."],
+      "questionEn": "Use 'look forward to' about your next weekend.",
+      "falseMeanings": ["смотреть вперёд на дорогу", "ожидать проблем"],
+      "noteRu": "После «to» идёт -ing: «looking forward to seeing you», не «to see»."
+    },
+    {
+      "id": "phrasal.run-into",
+      "en": "run into",
+      "ru": "случайно встретить / наткнуться",
+      "accept": ["run into", "ran into", "bump into"],
+      "contexts": [
+        { "en": "I ran into my old teacher at the market.", "ru": "Я случайно встретил своего бывшего учителя на рынке." },
+        { "en": "We ran into a weird bug with Safari.", "ru": "Мы наткнулись на странный баг в Safari." },
+        { "en": "You might run into problems with the visa.", "ru": "Ты можешь столкнуться с проблемами с визой." }
+      ],
+      "promptsRu": ["Расскажи, что случайно встретил бывшего учителя.", "Скажи, что команда наткнулась на странный баг."],
+      "questionEn": "Use 'run into' to tell about meeting someone unexpectedly.",
+      "falseMeanings": ["вбежать внутрь", "пробежать сквозь"],
+      "noteRu": "И про людей, и про проблемы. «Bump into» только про людей."
+    },
+    {
+      "id": "phrasal.give-up",
+      "en": "give up",
+      "ru": "сдаться, бросить",
+      "accept": ["give up", "gave up"],
+      "contexts": [
+        { "en": "I almost gave up on this boss fight.", "ru": "Я чуть не сдался на этом боссе." },
+        { "en": "Don't give up on the project, it's almost done.", "ru": "Не бросай проект, он почти готов." },
+        { "en": "I gave up coffee for a month and it was hard.", "ru": "Я бросил кофе на месяц, и было тяжело." }
+      ],
+      "promptsRu": ["Расскажи, что чуть не сдался на боссе в игре.", "Скажи, что бросил кофе на месяц."],
+      "questionEn": "Use 'give up' about something hard you didn't quit.",
+      "falseMeanings": ["отдать наверх", "подарить"],
+      "noteRu": "«Give up on something» бросить попытки. «Give up something» отказаться от привычки."
+    },
+    {
+      "id": "phrasal.catch-up",
+      "en": "catch up",
+      "ru": "наверстать / пообщаться после перерыва",
+      "accept": ["catch up", "catch up on"],
+      "contexts": [
+        { "en": "Let's catch up over coffee next week.", "ru": "Давай увидимся и поболтаем за кофе на следующей неделе." },
+        { "en": "I need to catch up on the chat, I was offline.", "ru": "Мне нужно нагнать чат, я был офлайн." },
+        { "en": "We spent the evening catching up on the last two years.", "ru": "Мы провели вечер, рассказывая друг другу про последние два года." }
+      ],
+      "promptsRu": ["Предложи другу увидеться и поболтать за кофе.", "Скажи, что нужно нагнать переписку в чате."],
+      "questionEn": "Use 'catch up' to arrange a meeting with an old friend.",
+      "falseMeanings": ["поймать наверху", "догнать автобус"],
+      "noteRu": "«Catch up with someone» пообщаться, «catch up on something» нагнать."
+    },
+    {
+      "id": "phrasal.turn-down",
+      "en": "turn down",
+      "ru": "отклонить, отказаться",
+      "accept": ["turn down", "turned down"],
+      "contexts": [
+        { "en": "I turned down the offer, the salary was too low.", "ru": "Я отклонил оффер, зарплата была слишком низкой." },
+        { "en": "They turned down our proposal without explanation.", "ru": "Они отклонили наше предложение без объяснений." },
+        { "en": "Can you turn down the music a bit?", "ru": "Можешь немного убавить музыку?" }
+      ],
+      "promptsRu": ["Расскажи, что отклонил оффер из-за зарплаты.", "Попроси убавить музыку."],
+      "questionEn": "Use 'turn down' about an offer you refused.",
+      "falseMeanings": ["повернуть вниз", "спуститься"],
+      "noteRu": "Два значения: отказаться (offer) и убавить (music, volume)."
+    },
+    {
+      "id": "phrasal.set-up",
+      "en": "set up",
+      "ru": "настроить, развернуть",
+      "accept": ["set up", "set it up"],
+      "contexts": [
+        { "en": "It took me a day to set up the dev environment.", "ru": "У меня ушёл день на настройку окружения." },
+        { "en": "Can you set up a call with the client?", "ru": "Можешь организовать созвон с клиентом?" },
+        { "en": "We set up CI on the first day of the project.", "ru": "Мы настроили CI в первый день проекта." }
+      ],
+      "promptsRu": ["Скажи, что настройка окружения заняла день.", "Попроси коллегу организовать созвон с клиентом."],
+      "questionEn": "Use 'set up' about a tool you configured recently.",
+      "falseMeanings": ["поставить наверх", "подставить"],
+      "noteRu": "Глагол «set up» в два слова, существительное «setup» в одно."
+    },
+    {
+      "id": "phrasal.get-along-with",
+      "en": "get along with",
+      "ru": "ладить с",
+      "accept": ["get along with", "get on with"],
+      "contexts": [
+        { "en": "I get along with everyone on the team.", "ru": "Я лажу со всеми в команде." },
+        { "en": "Do you get along with your roommate?", "ru": "Ты ладишь с соседом по квартире?" },
+        { "en": "She doesn't get along with the new manager.", "ru": "Она не ладит с новым менеджером." }
+      ],
+      "promptsRu": ["Скажи, что ладишь со всеми в команде.", "Спроси друга, ладит ли он с соседом."],
+      "questionEn": "Use 'get along with' to describe your team.",
+      "falseMeanings": ["идти вдоль с", "справляться с"],
+      "noteRu": "Про отношения с людьми. «Get on with» британский вариант."
+    },
+    {
+      "id": "phrasal.work-out",
+      "en": "work out",
+      "ru": "получиться, сложиться / тренироваться",
+      "accept": ["work out", "worked out"],
+      "contexts": [
+        { "en": "The plan didn't work out, so we changed the approach.", "ru": "План не сработал, и мы поменяли подход." },
+        { "en": "I work out three times a week.", "ru": "Я тренируюсь три раза в неделю." },
+        { "en": "I hope the move works out for you.", "ru": "Надеюсь, переезд у тебя сложится." }
+      ],
+      "promptsRu": ["Скажи, что план не сработал и вы сменили подход.", "Скажи, что тренируешься три раза в неделю."],
+      "questionEn": "Use 'work out' in both meanings if you can.",
+      "falseMeanings": ["работать на улице", "выработать ресурс"],
+      "noteRu": "Два значения: «сложиться» (it worked out) и «тренироваться» (I work out)."
+    },
+    {
+      "id": "phrasal.bring-up",
+      "en": "bring up",
+      "ru": "поднять тему, упомянуть",
+      "accept": ["bring up", "brought up"],
+      "contexts": [
+        { "en": "I'll bring up the salary question at the next one-on-one.", "ru": "Подниму вопрос зарплаты на следующем один-на-один." },
+        { "en": "Don't bring up politics at dinner.", "ru": "Не поднимай политику за ужином." },
+        { "en": "She brought up a good point about accessibility.", "ru": "Она подняла хороший вопрос про доступность." }
+      ],
+      "promptsRu": ["Скажи, что поднимешь вопрос зарплаты на встрече.", "Попроси друга не поднимать политику за ужином."],
+      "questionEn": "Use 'bring up' about a topic you want to discuss with your manager.",
+      "falseMeanings": ["принести наверх", "воспитать ребёнка"],
+      "noteRu": "Есть и значение «воспитывать» (bring up a child), но в разговоре чаще «поднять тему»."
+    }
+  ]
+}

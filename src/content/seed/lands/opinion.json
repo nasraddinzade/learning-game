@@ -1,0 +1,187 @@
+{
+  "id": "opinion",
+  "name": "Мнение, согласие, спор, сомнение",
+  "emoji": "💬",
+  "items": [
+    {
+      "id": "opinion.it-depends-on",
+      "en": "it depends on",
+      "ru": "это зависит от",
+      "accept": ["it depends on", "depends on"],
+      "contexts": [
+        { "en": "Should we use Redux? — It depends on how big the app gets.", "ru": "Нам брать Redux? — Это зависит от того, насколько большим будет приложение." },
+        { "en": "It depends on the weather, the hike might get cancelled.", "ru": "Это зависит от погоды, поход могут отменить." },
+        { "en": "Whether I move abroad depends on the offer.", "ru": "Перееду ли я за границу, зависит от оффера." }
+      ],
+      "promptsRu": ["Скажи, что это зависит от погоды.", "Тебя спросили, нужен ли проекту бэкенд. Ответь, что это зависит от размера приложения."],
+      "questionEn": "Use 'it depends on' to answer whether you'd move to another country.",
+      "falseMeanings": ["это ожидает", "это откладывается"],
+      "noteRu": "После «depends» всегда «on», а не «from». Это одна из самых частых калек с русского."
+    },
+    {
+      "id": "opinion.to-be-honest",
+      "en": "to be honest",
+      "ru": "честно говоря",
+      "accept": ["to be honest", "honestly", "to be fair"],
+      "contexts": [
+        { "en": "To be honest, I didn't finish the series, the last season was boring.", "ru": "Честно говоря, я не досмотрел сериал, последний сезон был скучный." },
+        { "en": "To be honest, I'd rather rewrite this module than fix it.", "ru": "Честно говоря, я бы лучше переписал этот модуль, чем чинил." },
+        { "en": "It's not my favorite café, to be honest.", "ru": "Честно говоря, это не моё любимое кафе." }
+      ],
+      "promptsRu": ["Скажи честно, что тебе не понравился фильм.", "Признайся, что ты бы лучше переписал код, чем чинил его."],
+      "questionEn": "Use 'to be honest' to share an unpopular opinion about a popular game.",
+      "falseMeanings": ["по правде сказать, нет", "быть честным человеком"],
+      "noteRu": "Смягчает прямое мнение. Ставится в начало или в конец предложения."
+    },
+    {
+      "id": "opinion.i-see-your-point",
+      "en": "I see your point",
+      "ru": "Понимаю, о чём ты (принимаю твой аргумент)",
+      "accept": ["i see your point", "i get your point", "i take your point"],
+      "contexts": [
+        { "en": "I see your point, but the deadline is on Friday.", "ru": "Понимаю, о чём ты, но дедлайн в пятницу." },
+        { "en": "Okay, I see your point about tests, let's add them.", "ru": "Окей, понимаю твой аргумент про тесты, давай добавим." },
+        { "en": "I see your point, I just don't agree with it.", "ru": "Понимаю, о чём ты, просто не согласен." }
+      ],
+      "promptsRu": ["Коллега привёл аргумент. Скажи, что понимаешь его точку зрения, но не согласен.", "Признай аргумент друга в споре о сериале."],
+      "questionEn": "Use 'I see your point' in a disagreement about code review.",
+      "falseMeanings": ["Я вижу твой указатель", "Я вижу, куда ты идёшь"],
+      "noteRu": "Вежливо признаёт аргумент, не соглашаясь с ним. Удобно перед «but»."
+    },
+    {
+      "id": "opinion.im-not-sure-about-that",
+      "en": "I'm not sure about that",
+      "ru": "Я в этом не уверен",
+      "accept": ["i'm not sure about that", "i am not sure about that", "not sure about that"],
+      "contexts": [
+        { "en": "Rust for a weekend project? I'm not sure about that.", "ru": "Rust для проекта на выходные? Я в этом не уверен." },
+        { "en": "I'm not sure about that, let me check the docs.", "ru": "Я в этом не уверен, дай гляну документацию." },
+        { "en": "He said the gym closes at ten, but I'm not sure about that.", "ru": "Он сказал, что зал закрывается в десять, но я не уверен." }
+      ],
+      "promptsRu": ["Выскажи сомнение в предложении коллеги мягко.", "Скажи, что не уверен, во сколько закрывается спортзал."],
+      "questionEn": "Use 'I'm not sure about that' to doubt a friend's claim about anime.",
+      "falseMeanings": ["Я ничего об этом не знаю", "Я уверен, что это не так"],
+      "noteRu": "Мягкое несогласие. Звучит гораздо вежливее, чем «you're wrong»."
+    },
+    {
+      "id": "opinion.fair-enough",
+      "en": "Fair enough",
+      "ru": "Ладно, справедливо (принимаю)",
+      "accept": ["fair enough", "fair point"],
+      "contexts": [
+        { "en": "I can't come, I have a deadline. — Fair enough.", "ru": "Не смогу прийти, у меня дедлайн. — Ладно, справедливо." },
+        { "en": "Fair enough, let's ship it and fix the edge cases later.", "ru": "Справедливо, давай выкатим и починим крайние случаи потом." },
+        { "en": "You want to split the bill? Fair enough.", "ru": "Хочешь разделить счёт? Справедливо." }
+      ],
+      "promptsRu": ["Друг объяснил, почему не придёт. Прими это коротко.", "Согласись с аргументом в споре одним выражением."],
+      "questionEn": "Use 'fair enough' to accept someone's excuse.",
+      "falseMeanings": ["Достаточно честно, но не очень", "Хватит уже"],
+      "noteRu": "Короткое «окей, принимаю». Очень частое в живой речи."
+    },
+    {
+      "id": "opinion.i-couldnt-agree-more",
+      "en": "I couldn't agree more",
+      "ru": "Полностью согласен",
+      "accept": ["i couldn't agree more", "i could not agree more", "couldn't agree more"],
+      "contexts": [
+        { "en": "TypeScript saves hours of debugging. — I couldn't agree more.", "ru": "TypeScript экономит часы отладки. — Полностью согласен." },
+        { "en": "I couldn't agree more, that café makes the best flat white in Baku.", "ru": "Полностью согласен, в том кафе лучший флэт уайт в Баку." },
+        { "en": "She said the ending was rushed and I couldn't agree more.", "ru": "Она сказала, что концовка скомканная, и я полностью согласен." }
+      ],
+      "promptsRu": ["Друг хвалит твой любимый сериал. Скажи, что полностью согласен.", "Коллега говорит, что тесты экономят время. Согласись на сто процентов."],
+      "questionEn": "Use 'I couldn't agree more' about a statement on remote work.",
+      "falseMeanings": ["Я больше не могу соглашаться", "Я не могу согласиться"],
+      "noteRu": "Здесь отрицание означает максимум: «сильнее согласиться невозможно»."
+    },
+    {
+      "id": "opinion.thats-a-good-point",
+      "en": "That's a good point",
+      "ru": "Хорошее замечание",
+      "accept": ["that's a good point", "that is a good point", "good point"],
+      "contexts": [
+        { "en": "That's a good point, we never tested it on slow phones.", "ru": "Хорошее замечание, мы ни разу не тестировали на слабых телефонах." },
+        { "en": "Good point, I'll add a loading state.", "ru": "Хорошее замечание, добавлю состояние загрузки." },
+        { "en": "That's a good point about the rent, let's negotiate.", "ru": "Это хорошее замечание про аренду, давай торговаться." }
+      ],
+      "promptsRu": ["Коллега на код-ревью заметил проблему. Признай, что это хорошее замечание.", "Друг привёл аргумент про аренду. Скажи, что он прав."],
+      "questionEn": "Use 'that's a good point' in a discussion about moving abroad.",
+      "falseMeanings": ["Это хорошее место", "Это хорошая оценка"],
+      "noteRu": "Признаёт аргумент собеседника. В ответе на ревью часто сокращают до «good point»."
+    },
+    {
+      "id": "opinion.i-have-mixed-feelings",
+      "en": "I have mixed feelings about",
+      "ru": "У меня смешанные чувства по поводу",
+      "accept": ["i have mixed feelings about", "mixed feelings about"],
+      "contexts": [
+        { "en": "I have mixed feelings about the new season.", "ru": "У меня смешанные чувства по поводу нового сезона." },
+        { "en": "I have mixed feelings about moving, Baku is home after all.", "ru": "У меня смешанные чувства по поводу переезда, Баку всё-таки дом." },
+        { "en": "Honestly, I have mixed feelings about AI code review.", "ru": "Честно, у меня смешанные чувства по поводу ИИ-ревью кода." }
+      ],
+      "promptsRu": ["Скажи, что у тебя смешанные чувства по поводу переезда.", "Выскажи двойственное отношение к новому сезону аниме."],
+      "questionEn": "Use 'I have mixed feelings about' to talk about a game you both love and hate.",
+      "falseMeanings": ["Я путаюсь в чувствах к", "Мне всё равно насчёт"],
+      "noteRu": "После «about» идёт существительное или -ing: «about moving», не «about to move»."
+    },
+    {
+      "id": "opinion.i-get-where-youre-coming-from",
+      "en": "I get where you're coming from",
+      "ru": "Понимаю, почему ты так думаешь",
+      "accept": ["i get where you're coming from", "i get where you are coming from", "i see where you're coming from"],
+      "contexts": [
+        { "en": "I get where you're coming from, but we can't rewrite everything now.", "ru": "Понимаю, почему ты так думаешь, но мы не можем сейчас всё переписать." },
+        { "en": "I get where you're coming from, the price does seem high.", "ru": "Понимаю, почему ты так считаешь, цена и правда кажется высокой." },
+        { "en": "She said she got where I was coming from, then said no anyway.", "ru": "Она сказала, что понимает мою позицию, а потом всё равно отказала." }
+      ],
+      "promptsRu": ["Покажи, что понимаешь позицию собеседника, прежде чем возразить.", "Арендодатель объясняет цену. Скажи, что понимаешь его, но…"],
+      "questionEn": "Use 'I get where you're coming from' in an argument with a friend.",
+      "falseMeanings": ["Я понимаю, откуда ты приехал", "Я знаю, где ты был"],
+      "noteRu": "Про позицию, не про географию. Тёплый способ показать понимание перед «but»."
+    },
+    {
+      "id": "opinion.thats-debatable",
+      "en": "That's debatable",
+      "ru": "Это спорно",
+      "accept": ["that's debatable", "that is debatable", "debatable"],
+      "contexts": [
+        { "en": "Vim is faster than any IDE. — That's debatable.", "ru": "Vim быстрее любой IDE. — Это спорно." },
+        { "en": "Whether the book is better than the show is debatable.", "ru": "Лучше ли книга сериала, спорный вопрос." },
+        { "en": "That's debatable, a lot depends on the team.", "ru": "Это спорно, многое зависит от команды." }
+      ],
+      "promptsRu": ["Друг говорит, что аниме лучше любого сериала. Скажи, что это спорно.", "Ответь на категоричное утверждение коллеги мягко."],
+      "questionEn": "Use 'that's debatable' to respond to a bold claim about philosophy.",
+      "falseMeanings": ["Это обсуждается сейчас", "Это запрещено"],
+      "noteRu": "Короткий способ не согласиться без спора. Часто с улыбкой."
+    },
+    {
+      "id": "opinion.i-have-a-feeling-that",
+      "en": "I have a feeling that",
+      "ru": "У меня такое чувство, что",
+      "accept": ["i have a feeling that", "i have a feeling", "i've got a feeling that"],
+      "contexts": [
+        { "en": "I have a feeling that this bug is in the cache layer.", "ru": "У меня такое чувство, что этот баг в слое кэша." },
+        { "en": "I have a feeling that the landlord will raise the rent.", "ru": "У меня чувство, что арендодатель поднимет цену." },
+        { "en": "I have a feeling we've met before.", "ru": "У меня чувство, что мы уже встречались." }
+      ],
+      "promptsRu": ["Скажи, что у тебя чувство, что баг в кэше.", "Предположи, что арендодатель поднимет цену."],
+      "questionEn": "Use 'I have a feeling that' to predict the ending of a series.",
+      "falseMeanings": ["Я чувствую себя так, будто", "Мне нравится, что"],
+      "noteRu": "Интуитивное предположение. Мягче, чем «I think»."
+    },
+    {
+      "id": "opinion.no-offense-but",
+      "en": "No offense, but",
+      "ru": "Без обид, но",
+      "accept": ["no offense, but", "no offense but", "no offence but"],
+      "contexts": [
+        { "en": "No offense, but this function does five things at once.", "ru": "Без обид, но эта функция делает пять вещей сразу." },
+        { "en": "No offense, but the second season was a mess.", "ru": "Без обид, но второй сезон был полным хаосом." },
+        { "en": "He said no offense, but your estimate is way off.", "ru": "Он сказал: без обид, но твоя оценка сильно мимо." }
+      ],
+      "promptsRu": ["Хочешь покритиковать код друга. Начни с «без обид, но».", "Скажи другу, что его любимый сериал так себе, мягко."],
+      "questionEn": "Use 'no offense, but' to criticize a friend's favorite game.",
+      "falseMeanings": ["Не нападай, но", "Без защиты, но"],
+      "noteRu": "Предупреждает, что дальше будет критика. Американское написание offense, британское offence."
+    }
+  ]
+}

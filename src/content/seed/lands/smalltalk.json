@@ -1,0 +1,203 @@
+{
+  "id": "smalltalk",
+  "name": "Знакомства и small talk",
+  "emoji": "👋",
+  "items": [
+    {
+      "id": "smalltalk.how-have-you-been",
+      "en": "How have you been?",
+      "ru": "Как ты всё это время? (давно не виделись)",
+      "accept": ["how have you been", "how've you been"],
+      "contexts": [
+        { "en": "Hey, long time no see! How have you been?", "ru": "Привет, сто лет не виделись! Как ты всё это время?" },
+        { "en": "How have you been since you left the company?", "ru": "Как ты с тех пор, как ушёл из компании?" },
+        { "en": "I ran into Elvin at the gym and asked how he had been.", "ru": "Я столкнулся с Эльвином в зале и спросил, как он поживает." }
+      ],
+      "promptsRu": ["Ты встретил старого знакомого в кафе. Спроси, как он всё это время.", "Напиши бывшему коллеге, спроси, как у него дела с тех пор."],
+      "questionEn": "Use 'how have you been' to greet a friend you haven't seen for months.",
+      "falseMeanings": ["Где ты был?", "Как тебя зовут?"],
+      "noteRu": "Так спрашивают, когда давно не виделись. «How are you» это про сейчас, «how have you been» про всё время с прошлой встречи."
+    },
+    {
+      "id": "smalltalk.what-do-you-do",
+      "en": "What do you do?",
+      "ru": "Чем ты занимаешься? (кем работаешь)",
+      "accept": ["what do you do", "what do you do for a living"],
+      "contexts": [
+        { "en": "So, what do you do? — I'm a front-end developer.", "ru": "А чем ты занимаешься? — Я фронтенд-разработчик." },
+        { "en": "People at the bar always ask what do you do first.", "ru": "В баре люди всегда первым делом спрашивают, чем ты занимаешься." },
+        { "en": "What do you do when you're not coding?", "ru": "Чем ты занимаешься, когда не пишешь код?" }
+      ],
+      "promptsRu": ["Познакомился с человеком в баре. Спроси, кем он работает.", "Спроси нового коллегу, чем он занимается в команде."],
+      "questionEn": "Use 'what do you do' to ask someone you just met about their job.",
+      "falseMeanings": ["Что ты сейчас делаешь?", "Что ты натворил?"],
+      "noteRu": "Это вопрос про профессию, а не про то, что человек делает прямо сейчас. Для «сейчас» нужно «what are you doing»."
+    },
+    {
+      "id": "smalltalk.nice-to-meet-you",
+      "en": "Nice to meet you",
+      "ru": "Приятно познакомиться",
+      "accept": ["nice to meet you", "it's nice to meet you", "good to meet you"],
+      "contexts": [
+        { "en": "I'm Ramin, nice to meet you.", "ru": "Я Рамин, приятно познакомиться." },
+        { "en": "Nice to meet you too, I've heard a lot about your project.", "ru": "Мне тоже приятно, я много слышал о твоём проекте." },
+        { "en": "It was nice to meet you, let's grab a coffee sometime.", "ru": "Было приятно познакомиться, давай как-нибудь выпьем кофе." }
+      ],
+      "promptsRu": ["Тебя представили новому тиммейту. Скажи, что приятно познакомиться.", "Прощаешься с человеком, с которым только что познакомился."],
+      "questionEn": "Use 'nice to meet you' as if you were introduced to a new teammate.",
+      "falseMeanings": ["Рад тебя видеть снова", "Давай встретимся"],
+      "noteRu": "Говорят только при первой встрече. Если видишь человека не первый раз, это «nice to see you»."
+    },
+    {
+      "id": "smalltalk.i-didnt-catch-your-name",
+      "en": "I didn't catch your name",
+      "ru": "Я не расслышал, как тебя зовут",
+      "accept": ["i did not catch your name", "sorry, i didn't catch your name"],
+      "contexts": [
+        { "en": "Sorry, I didn't catch your name, it's loud in here.", "ru": "Извини, я не расслышал, как тебя зовут, тут шумно." },
+        { "en": "I didn't catch your name at the meetup yesterday.", "ru": "Я вчера на митапе не расслышал, как тебя зовут." },
+        { "en": "She said I didn't catch your name and smiled.", "ru": "Она сказала «я не расслышала твоё имя» и улыбнулась." }
+      ],
+      "promptsRu": ["В баре шумно, ты не расслышал имя собеседника. Переспроси вежливо.", "На созвоне представили нового человека, но ты прослушал имя."],
+      "questionEn": "Use 'I didn't catch your name' in a noisy bar situation.",
+      "falseMeanings": ["Я не запомнил твой номер", "Я не поймал тебя вовремя"],
+      "noteRu": "«Catch» здесь значит «расслышать». Это мягче, чем «What's your name again?»."
+    },
+    {
+      "id": "smalltalk.where-are-you-from",
+      "en": "Where are you from originally?",
+      "ru": "Откуда ты родом?",
+      "accept": ["where are you from originally", "where are you originally from"],
+      "contexts": [
+        { "en": "Where are you from originally? — Baku, but I've been thinking about moving.", "ru": "Откуда ты родом? — Из Баку, но подумываю о переезде." },
+        { "en": "Your accent is interesting, where are you from originally?", "ru": "У тебя интересный акцент, откуда ты родом?" },
+        { "en": "He asked where I was from originally and we ended up talking for an hour.", "ru": "Он спросил, откуда я родом, и в итоге мы проговорили час." }
+      ],
+      "promptsRu": ["Спроси нового знакомого, откуда он родом.", "Ты в хостеле в Тбилиси. Спроси соседа по комнате, откуда он."],
+      "questionEn": "Use 'where are you from originally' when chatting with a traveler.",
+      "falseMeanings": ["Куда ты едешь?", "Где ты сейчас живёшь?"],
+      "noteRu": "«Originally» уточняет, что интересует родной город, а не где человек живёт сейчас."
+    },
+    {
+      "id": "smalltalk.what-brings-you-here",
+      "en": "What brings you here?",
+      "ru": "Что тебя сюда привело?",
+      "accept": ["what brings you here", "what brings you to"],
+      "contexts": [
+        { "en": "What brings you here? — A friend dragged me to this meetup.", "ru": "Что тебя сюда привело? — Друг затащил меня на этот митап." },
+        { "en": "So what brings you to Baku in the middle of winter?", "ru": "Так что привело тебя в Баку посреди зимы?" },
+        { "en": "The bartender asked what brings you here tonight.", "ru": "Бармен спросил, что привело меня сюда сегодня." }
+      ],
+      "promptsRu": ["Спроси незнакомца на конференции, что его сюда привело.", "Встретил иностранца в Баку. Спроси, что привело его в город."],
+      "questionEn": "Use 'what brings you here' to start a conversation with a stranger at an event.",
+      "falseMeanings": ["Что ты сюда принёс?", "Как ты сюда добрался?"],
+      "noteRu": "Удобный способ начать разговор, звучит дружелюбно и не слишком лично."
+    },
+    {
+      "id": "smalltalk.i-work-in",
+      "en": "I'm in tech",
+      "ru": "Я из айти (работаю в технологиях)",
+      "accept": ["i am in tech", "i'm in tech", "i work in tech"],
+      "contexts": [
+        { "en": "I'm in tech, mostly React and TypeScript.", "ru": "Я из айти, в основном React и TypeScript." },
+        { "en": "Half the people at this bar are in tech, it's Baku after all.", "ru": "Половина людей в этом баре из айти, всё-таки Баку." },
+        { "en": "She's in tech too, we talked about remote work for an hour.", "ru": "Она тоже из айти, мы час говорили про удалёнку." }
+      ],
+      "promptsRu": ["Тебя спросили, чем ты занимаешься. Ответь коротко, что ты из айти.", "Расскажи незнакомцу, что работаешь в технологиях, в основном фронтенд."],
+      "questionEn": "Use 'I'm in tech' to answer a question about your job.",
+      "falseMeanings": ["Я в технике разбираюсь", "Я на связи"],
+      "noteRu": "«In tech» это сфера, а не должность. Короткий и естественный ответ в small talk."
+    },
+    {
+      "id": "smalltalk.how-was-your-weekend",
+      "en": "How was your weekend?",
+      "ru": "Как прошли выходные?",
+      "accept": ["how was your weekend", "how was the weekend"],
+      "contexts": [
+        { "en": "Morning! How was your weekend? — Quiet, I binge-watched a historical series.", "ru": "Доброе утро! Как прошли выходные? — Тихо, запоем смотрел исторический сериал." },
+        { "en": "How was your weekend, did you make it to the gym?", "ru": "Как выходные, добрался до зала?" },
+        { "en": "Nobody actually wants a long answer to how was your weekend.", "ru": "На самом деле никто не ждёт длинного ответа на «как прошли выходные»." }
+      ],
+      "promptsRu": ["Понедельник, созвон. Спроси коллегу, как прошли выходные.", "Спроси друга в кафе, как у него выходные."],
+      "questionEn": "Use 'how was your weekend' at the start of a Monday call.",
+      "falseMeanings": ["Какие у тебя планы на выходные?", "Где ты был на выходных?"],
+      "noteRu": "Стандартное начало разговора в понедельник. Ответ обычно короткий: «Pretty good, and yours?»."
+    },
+    {
+      "id": "smalltalk.any-plans-for",
+      "en": "Any plans for the weekend?",
+      "ru": "Есть планы на выходные?",
+      "accept": ["any plans for the weekend", "got any plans for the weekend", "do you have any plans for the weekend"],
+      "contexts": [
+        { "en": "Any plans for the weekend? — Not really, maybe a hike.", "ru": "Есть планы на выходные? — Не особо, может, поход." },
+        { "en": "Any plans for the evening, or are you free for a beer?", "ru": "Есть планы на вечер или свободен для пива?" },
+        { "en": "He asked if I had any plans for the holidays.", "ru": "Он спросил, есть ли у меня планы на праздники." }
+      ],
+      "promptsRu": ["Пятница. Спроси друга, есть ли планы на выходные.", "Спроси коллегу, есть ли у него планы на вечер."],
+      "questionEn": "Use 'any plans for the weekend' to invite a friend somewhere.",
+      "falseMeanings": ["Какие у тебя планы по проекту?", "Ты занят на выходных?"],
+      "noteRu": "Без «do you have» звучит разговорно и естественно, именно так говорят вживую."
+    },
+    {
+      "id": "smalltalk.i-should-get-going",
+      "en": "I should get going",
+      "ru": "Мне пора (идти)",
+      "accept": ["i should get going", "i'd better get going", "i have to get going"],
+      "contexts": [
+        { "en": "It's late, I should get going, early standup tomorrow.", "ru": "Уже поздно, мне пора, завтра ранний стендап." },
+        { "en": "I should get going, but let's do this again.", "ru": "Мне пора, но давай повторим." },
+        { "en": "She looked at her phone and said she should get going.", "ru": "Она посмотрела на телефон и сказала, что ей пора." }
+      ],
+      "promptsRu": ["Сидишь с друзьями в кафе, уже поздно. Скажи, что тебе пора.", "Заканчиваешь разговор на вечеринке вежливо."],
+      "questionEn": "Use 'I should get going' to leave a party politely.",
+      "falseMeanings": ["Мне нужно начать", "Я должен продолжать"],
+      "noteRu": "Мягкий способ закончить встречу. «I must go» звучит резко, а это вежливо."
+    },
+    {
+      "id": "smalltalk.lets-keep-in-touch",
+      "en": "Let's keep in touch",
+      "ru": "Давай оставаться на связи",
+      "accept": ["let's keep in touch", "let us keep in touch", "keep in touch"],
+      "contexts": [
+        { "en": "Great meeting you, let's keep in touch.", "ru": "Рад был познакомиться, давай оставаться на связи." },
+        { "en": "We said let's keep in touch, and for once we actually did.", "ru": "Мы сказали «давай на связи», и на этот раз правда остались." },
+        { "en": "Keep in touch, I'd love to hear how the project goes.", "ru": "Будь на связи, хочу знать, как пойдёт проект." }
+      ],
+      "promptsRu": ["Прощаешься с человеком после конференции, предложи оставаться на связи.", "Друг уезжает из Баку. Скажи, чтобы был на связи."],
+      "questionEn": "Use 'let's keep in touch' when saying goodbye after an event.",
+      "falseMeanings": ["Давай не будем трогать", "Давай держаться вместе"],
+      "noteRu": "Универсальное прощание после знакомства, не обязывает ни к чему конкретному."
+    },
+    {
+      "id": "smalltalk.i-dont-mean-to-pry",
+      "en": "I don't mean to pry",
+      "ru": "Не хочу лезть не в своё дело, но…",
+      "accept": ["i don't mean to pry", "i do not mean to pry", "not to pry"],
+      "contexts": [
+        { "en": "I don't mean to pry, but are you two together?", "ru": "Не хочу лезть не в своё дело, но вы вместе?" },
+        { "en": "I don't mean to pry, how much do they pay you there?", "ru": "Не хочу лезть не в своё дело, сколько тебе там платят?" },
+        { "en": "Not to pry, but you looked upset after the call.", "ru": "Не хочу лезть, но ты выглядел расстроенным после созвона." }
+      ],
+      "promptsRu": ["Хочешь задать другу личный вопрос. Начни с того, что не хочешь лезть не в своё дело.", "Спроси коллегу про зарплату, смягчив вопрос."],
+      "questionEn": "Use 'I don't mean to pry' before asking a personal question.",
+      "falseMeanings": ["Я не хочу молиться", "Я не хочу спорить"],
+      "noteRu": "«Pry» это совать нос в чужие дела. Фраза смягчает личный вопрос."
+    },
+    {
+      "id": "smalltalk.small-talk",
+      "type": "word",
+      "en": "small talk",
+      "ru": "лёгкая беседа ни о чём",
+      "accept": ["small talk", "smalltalk"],
+      "contexts": [
+        { "en": "I'm bad at small talk, I always jump straight to work.", "ru": "Я плохо веду лёгкую беседу, всегда сразу перехожу к работе." },
+        { "en": "Five minutes of small talk before the interview helps a lot.", "ru": "Пять минут лёгкой беседы перед собеседованием сильно помогают." },
+        { "en": "Taxi drivers in Baku love small talk.", "ru": "Таксисты в Баку обожают поболтать ни о чём." }
+      ],
+      "promptsRu": ["Признайся, что плохо умеешь вести светскую беседу.", "Скажи, что перед собеседованием полезно немного поболтать ни о чём."],
+      "questionEn": "Use 'small talk' to describe something you find hard or easy.",
+      "falseMeanings": ["короткий доклад", "тихий разговор"],
+      "noteRu": "Это существительное: «make small talk», «bad at small talk». Не «small conversation»."
+    }
+  ]
+}

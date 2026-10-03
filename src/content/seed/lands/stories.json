@@ -1,0 +1,172 @@
+{
+  "id": "stories",
+  "name": "Истории, планы, пересказ",
+  "emoji": "📖",
+  "items": [
+    {
+      "id": "stories.ended-up",
+      "en": "ended up",
+      "ru": "в итоге оказался / в итоге сделал",
+      "accept": ["ended up", "end up"],
+      "contexts": [
+        { "en": "We ended up rewriting the whole module.", "ru": "В итоге мы переписали весь модуль." },
+        { "en": "I ended up watching three episodes instead of one.", "ru": "В итоге я посмотрел три серии вместо одной." },
+        { "en": "They ended up in a tiny bar near the Old City.", "ru": "В итоге они оказались в крошечном баре у Старого города." }
+      ],
+      "promptsRu": ["Расскажи, что в итоге посмотрел три серии вместо одной.", "Скажи, что в итоге команда переписала весь модуль."],
+      "questionEn": "Use 'ended up' to tell how your last weekend went.",
+      "falseMeanings": ["закончил вовремя", "поднялся наверх"],
+      "noteRu": "После «end up» глагол с -ing: «ended up watching». Значит неожиданный итог."
+    },
+    {
+      "id": "stories.it-turned-out-that",
+      "en": "it turned out that",
+      "ru": "оказалось, что",
+      "accept": ["it turned out that", "it turned out", "turned out that"],
+      "contexts": [
+        { "en": "It turned out that the bug was in the config, not the code.", "ru": "Оказалось, что баг был в конфиге, а не в коде." },
+        { "en": "It turned out that the café closes at nine.", "ru": "Оказалось, что кафе закрывается в девять." },
+        { "en": "It turned out he had already seen the movie.", "ru": "Оказалось, он уже видел этот фильм." }
+      ],
+      "promptsRu": ["Расскажи, что оказалось, баг был в конфиге.", "Скажи, что оказалось, кафе закрывается в девять."],
+      "questionEn": "Use 'it turned out that' to tell about a surprise.",
+      "falseMeanings": ["это обернулось против", "это выключилось"],
+      "noteRu": "Для поворота в истории. Можно и «turned out to be»: «it turned out to be easy»."
+    },
+    {
+      "id": "stories.long-story-short",
+      "en": "long story short",
+      "ru": "короче говоря",
+      "accept": ["long story short", "to make a long story short", "to cut a long story short"],
+      "contexts": [
+        { "en": "Long story short, we missed the flight.", "ru": "Короче говоря, мы опоздали на рейс." },
+        { "en": "Long story short, the client wants it in a week.", "ru": "Короче говоря, клиент хочет это через неделю." },
+        { "en": "Long story short, I'm not using that library again.", "ru": "Короче, я больше не буду использовать эту библиотеку." }
+      ],
+      "promptsRu": ["Сократи длинную историю: короче, вы опоздали на рейс.", "Начни пересказ с «короче говоря»."],
+      "questionEn": "Use 'long story short' to summarize a bad day.",
+      "falseMeanings": ["длинная история вкратце не рассказывается", "это длинная и короткая история"],
+      "noteRu": "Ставится в начало вывода. Самая частая форма без «to make»."
+    },
+    {
+      "id": "stories.i-was-about-to",
+      "en": "I was about to",
+      "ru": "Я как раз собирался",
+      "accept": ["i was about to", "was about to", "i was just about to"],
+      "contexts": [
+        { "en": "I was about to push when I saw the failing test.", "ru": "Я как раз собирался запушить, когда увидел падающий тест." },
+        { "en": "I was about to call you!", "ru": "Я как раз собирался тебе звонить!" },
+        { "en": "We were about to leave when it started raining.", "ru": "Мы как раз собирались уходить, когда пошёл дождь." }
+      ],
+      "promptsRu": ["Скажи, что как раз собирался позвонить другу.", "Расскажи, что собирался запушить, когда увидел ошибку."],
+      "questionEn": "Use 'I was about to' in a story about a coincidence.",
+      "falseMeanings": ["Я был рядом с", "Я говорил о"],
+      "noteRu": "Действие, которое вот-вот должно было случиться. После «to» базовый глагол."
+    },
+    {
+      "id": "stories.in-the-end",
+      "en": "in the end",
+      "ru": "в конце концов",
+      "accept": ["in the end", "at the end of the day"],
+      "contexts": [
+        { "en": "In the end, we chose Postgres.", "ru": "В конце концов мы выбрали Postgres." },
+        { "en": "In the end, it was worth the money.", "ru": "В конце концов оно того стоило." },
+        { "en": "In the end, he moved to Berlin anyway.", "ru": "В конце концов он всё равно переехал в Берлин." }
+      ],
+      "promptsRu": ["Скажи, что в конце концов команда выбрала Postgres.", "Подведи итог: в конце концов оно того стоило."],
+      "questionEn": "Use 'in the end' to finish a story about a decision.",
+      "falseMeanings": ["в самом конце списка", "в тупике"],
+      "noteRu": "«In the end» это итог после долгого процесса. «At the end» это конец чего-то конкретного (at the end of the film)."
+    },
+    {
+      "id": "stories.im-planning-to",
+      "en": "I'm planning to",
+      "ru": "Я планирую",
+      "accept": ["i'm planning to", "i am planning to", "i plan to"],
+      "contexts": [
+        { "en": "I'm planning to move abroad next year.", "ru": "Я планирую переехать за границу в следующем году." },
+        { "en": "I'm planning to rewrite the app in TypeScript.", "ru": "Я планирую переписать приложение на TypeScript." },
+        { "en": "We're planning to hike in Gabala this spring.", "ru": "Мы планируем поход в Габалу этой весной." }
+      ],
+      "promptsRu": ["Скажи, что планируешь переехать в следующем году.", "Расскажи, что планируешь переписать приложение."],
+      "questionEn": "Use 'I'm planning to' to describe next year.",
+      "falseMeanings": ["Я чертёж", "Я занят планом"],
+      "noteRu": "После «planning» всегда «to» + глагол, не -ing."
+    },
+    {
+      "id": "stories.out-of-the-blue",
+      "en": "out of the blue",
+      "ru": "ни с того ни с сего (неожиданно)",
+      "accept": ["out of the blue", "out of nowhere"],
+      "contexts": [
+        { "en": "A recruiter messaged me out of the blue.", "ru": "Рекрутер написал мне ни с того ни с сего." },
+        { "en": "Out of the blue, the server went down.", "ru": "Ни с того ни с сего сервер упал." },
+        { "en": "An old friend called out of the blue last night.", "ru": "Старый друг позвонил вчера совершенно неожиданно." }
+      ],
+      "promptsRu": ["Расскажи, что рекрутер написал тебе неожиданно.", "Скажи, что старый друг позвонил ни с того ни с сего."],
+      "questionEn": "Use 'out of the blue' to tell about an unexpected message.",
+      "falseMeanings": ["из синего цвета", "из моря"],
+      "noteRu": "Про неожиданные события. Ставится в начало или конец предложения."
+    },
+    {
+      "id": "stories.it-was-worth-it",
+      "en": "it was worth it",
+      "ru": "оно того стоило",
+      "accept": ["it was worth it", "worth it", "it's worth it"],
+      "contexts": [
+        { "en": "The hike was brutal, but the view was worth it.", "ru": "Поход был жёсткий, но вид того стоил." },
+        { "en": "Refactoring took a week, and it was worth it.", "ru": "Рефакторинг занял неделю, и оно того стоило." },
+        { "en": "Is the premium version worth it? — Totally.", "ru": "Премиум-версия того стоит? — Абсолютно." }
+      ],
+      "promptsRu": ["Скажи, что поход был тяжёлый, но оно того стоило.", "Спроси друга, стоит ли премиум своих денег."],
+      "questionEn": "Use 'worth it' to recommend something expensive.",
+      "falseMeanings": ["это было ценно для неё", "это была ценность"],
+      "noteRu": "«Worth» + существительное или «it»: worth the money, worth it. Без «of»."
+    },
+    {
+      "id": "stories.i-was-supposed-to",
+      "en": "I was supposed to",
+      "ru": "Я должен был (но не сделал)",
+      "accept": ["i was supposed to", "was supposed to"],
+      "contexts": [
+        { "en": "I was supposed to finish the review yesterday.", "ru": "Я должен был закончить ревью вчера." },
+        { "en": "We were supposed to meet at seven, but he forgot.", "ru": "Мы должны были встретиться в семь, но он забыл." },
+        { "en": "It was supposed to be a quick fix.", "ru": "Это должен был быть быстрый фикс." }
+      ],
+      "promptsRu": ["Скажи, что должен был закончить ревью вчера, но не успел.", "Расскажи, что вы должны были встретиться в семь."],
+      "questionEn": "Use 'I was supposed to' to explain something you didn't do.",
+      "falseMeanings": ["Я предполагал", "Я был вынужден"],
+      "noteRu": "Подразумевает, что план не выполнен. «Supposed» со «s» на конце после «was»."
+    },
+    {
+      "id": "stories.the-other-day",
+      "en": "the other day",
+      "ru": "на днях",
+      "accept": ["the other day", "a few days ago"],
+      "contexts": [
+        { "en": "I saw your old teammate the other day.", "ru": "На днях я видел твоего бывшего тиммейта." },
+        { "en": "The other day I found a bug from 2019.", "ru": "На днях я нашёл баг 2019 года." },
+        { "en": "We tried that new café the other day, not bad.", "ru": "На днях мы попробовали то новое кафе, неплохо." }
+      ],
+      "promptsRu": ["Начни историю с «на днях я видел…».", "Скажи, что на днях нашёл очень старый баг."],
+      "questionEn": "Use 'the other day' to start a short story.",
+      "falseMeanings": ["в другой день", "через день"],
+      "noteRu": "Значит «недавно, несколько дней назад». Не «another day»."
+    },
+    {
+      "id": "stories.on-second-thought",
+      "en": "on second thought",
+      "ru": "хотя, если подумать",
+      "accept": ["on second thought", "on second thoughts", "actually"],
+      "contexts": [
+        { "en": "On second thought, let's not deploy on Friday.", "ru": "Хотя, если подумать, давай не деплоить в пятницу." },
+        { "en": "I'll have the burger. On second thought, the salad.", "ru": "Мне бургер. Хотя нет, салат." },
+        { "en": "On second thought, maybe the landlord has a point.", "ru": "Хотя, если подумать, может, арендодатель прав." }
+      ],
+      "promptsRu": ["Передумай: хотя, давай не деплоить в пятницу.", "Поменяй заказ в кафе: хотя нет, салат."],
+      "questionEn": "Use 'on second thought' to change your mind about plans.",
+      "falseMeanings": ["по второй мысли с утра", "о второй идее"],
+      "noteRu": "Когда передумал на ходу. Американцы говорят «thought», британцы «thoughts»."
+    }
+  ]
+}

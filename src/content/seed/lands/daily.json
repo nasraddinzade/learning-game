@@ -1,0 +1,173 @@
+{
+  "id": "daily",
+  "name": "Быт и повседневность",
+  "emoji": "☕",
+  "items": [
+    {
+      "id": "daily.grab-a-coffee",
+      "en": "grab a coffee",
+      "ru": "взять кофе (быстро, по пути)",
+      "accept": ["grab a coffee", "grab coffee", "grab some coffee"],
+      "contexts": [
+        { "en": "Let's grab a coffee before the standup.", "ru": "Давай возьмём кофе перед стендапом." },
+        { "en": "I usually grab a coffee on the way to the gym.", "ru": "Обычно я беру кофе по дороге в зал." },
+        { "en": "Want to grab a coffee and talk about the project?", "ru": "Хочешь взять кофе и обсудить проект?" }
+      ],
+      "promptsRu": ["Предложи коллеге взять кофе перед созвоном.", "Скажи, что обычно берёшь кофе по пути в зал."],
+      "questionEn": "Use 'grab a coffee' to invite a friend to catch up.",
+      "falseMeanings": ["схватить чашку", "заварить кофе дома"],
+      "noteRu": "«Grab» значит быстро взять что-то по пути: grab a coffee, grab lunch, grab a taxi."
+    },
+    {
+      "id": "daily.i-usually",
+      "en": "I usually",
+      "ru": "я обычно (про привычку)",
+      "accept": ["i usually", "usually i"],
+      "contexts": [
+        { "en": "I usually drink coffee in the morning, not tea.", "ru": "Обычно я пью кофе по утрам, а не чай." },
+        { "en": "I usually go to the gym after work.", "ru": "Обычно я хожу в зал после работы." },
+        { "en": "I usually code at night, it's quieter.", "ru": "Обычно я пишу код ночью, так тише." }
+      ],
+      "promptsRu": ["Скажи, что обычно пьёшь кофе по утрам.", "Расскажи, что обычно ходишь в зал после работы."],
+      "questionEn": "Use 'I usually' to describe your morning routine.",
+      "falseMeanings": ["я могу", "я иногда"],
+      "noteRu": "Привычка это Present Simple: «I usually drink», а не «I can drink». «Can» это про возможность, а не про привычку."
+    },
+    {
+      "id": "daily.run-errands",
+      "en": "run errands",
+      "ru": "бегать по делам (магазин, банк, почта)",
+      "accept": ["run errands", "run some errands", "run a few errands"],
+      "contexts": [
+        { "en": "I need to run errands on Saturday: bank, pharmacy, groceries.", "ru": "В субботу мне нужно бегать по делам: банк, аптека, продукты." },
+        { "en": "I spent the whole morning running errands.", "ru": "Я всё утро бегал по делам." },
+        { "en": "Can you run a few errands for me while I'm on the call?", "ru": "Можешь сделать пару дел за меня, пока я на созвоне?" }
+      ],
+      "promptsRu": ["Скажи, что в субботу тебе нужно бегать по делам.", "Объясни, что всё утро провёл в делах по городу."],
+      "questionEn": "Use 'run errands' to explain why you're late.",
+      "falseMeanings": ["бегать на пробежке", "совершать ошибки"],
+      "noteRu": "«Errands» это мелкие дела вне дома. Не «do affairs» и не «make things»."
+    },
+    {
+      "id": "daily.im-running-late",
+      "en": "I'm running late",
+      "ru": "Я опаздываю",
+      "accept": ["i'm running late", "i am running late", "running late"],
+      "contexts": [
+        { "en": "I'm running late, the traffic near Ganjlik is terrible.", "ru": "Я опаздываю, пробка около Гянджлика ужасная." },
+        { "en": "Start without me, I'm running late.", "ru": "Начинайте без меня, я опаздываю." },
+        { "en": "She texted that she was running late again.", "ru": "Она написала, что снова опаздывает." }
+      ],
+      "promptsRu": ["Напиши другу, что опаздываешь на 10 минут.", "Предупреди команду, что опаздываешь на созвон."],
+      "questionEn": "Use 'I'm running late' to warn a friend before a meetup.",
+      "falseMeanings": ["Я бегу поздно вечером", "Я задержусь на работе"],
+      "noteRu": "Значит «опаздываю прямо сейчас». «I'm late» это уже опоздал."
+    },
+    {
+      "id": "daily.hit-the-gym",
+      "en": "hit the gym",
+      "ru": "сходить в зал",
+      "accept": ["hit the gym", "go to the gym"],
+      "contexts": [
+        { "en": "I try to hit the gym three times a week.", "ru": "Стараюсь ходить в зал три раза в неделю." },
+        { "en": "Let's hit the gym before it gets crowded.", "ru": "Пойдём в зал, пока там не набилось народу." },
+        { "en": "I didn't hit the gym at all last week, deadline.", "ru": "На прошлой неделе я вообще не ходил в зал, дедлайн." }
+      ],
+      "promptsRu": ["Скажи, что стараешься ходить в зал три раза в неделю.", "Предложи другу пойти в зал, пока там мало людей."],
+      "questionEn": "Use 'hit the gym' to describe your weekly routine.",
+      "falseMeanings": ["ударить по стене зала", "попасть в спортивную команду"],
+      "noteRu": "Разговорное «сходить в зал». Так же: hit the road, hit the sack (лечь спать)."
+    },
+    {
+      "id": "daily.i-cant-be-bothered",
+      "en": "I can't be bothered",
+      "ru": "Мне лень (неохота заморачиваться)",
+      "accept": ["i can't be bothered", "i cannot be bothered", "can't be bothered"],
+      "contexts": [
+        { "en": "I can't be bothered to cook tonight, let's order.", "ru": "Мне лень готовить сегодня, давай закажем." },
+        { "en": "I can't be bothered to set up the linter again.", "ru": "Неохота снова настраивать линтер." },
+        { "en": "He can't be bothered to reply to messages.", "ru": "Ему лень отвечать на сообщения." }
+      ],
+      "promptsRu": ["Скажи, что тебе лень готовить и ты закажешь еду.", "Признайся, что неохота снова настраивать окружение."],
+      "questionEn": "Use 'I can't be bothered' about a chore you keep postponing.",
+      "falseMeanings": ["Меня нельзя беспокоить", "Я не могу волноваться"],
+      "noteRu": "Британское и очень живое «лень». После него «to» + глагол."
+    },
+    {
+      "id": "daily.on-my-way",
+      "en": "I'm on my way",
+      "ru": "Я уже еду (иду)",
+      "accept": ["i'm on my way", "i am on my way", "on my way"],
+      "contexts": [
+        { "en": "I'm on my way, be there in ten.", "ru": "Уже еду, буду через десять минут." },
+        { "en": "Order me a flat white, I'm on my way.", "ru": "Закажи мне флэт уайт, я уже в пути." },
+        { "en": "He said he was on his way an hour ago.", "ru": "Он сказал, что уже едет, час назад." }
+      ],
+      "promptsRu": ["Напиши другу, что уже едешь и будешь через 10 минут.", "Попроси заказать тебе кофе, потому что ты уже в пути."],
+      "questionEn": "Use 'I'm on my way' in a text to a friend waiting at a café.",
+      "falseMeanings": ["Я иду своим путём", "Я на своей дороге"],
+      "noteRu": "В сообщениях часто сокращают до «omw»."
+    },
+    {
+      "id": "daily.sleep-in",
+      "en": "sleep in",
+      "ru": "поспать подольше (не вставать рано)",
+      "accept": ["sleep in"],
+      "contexts": [
+        { "en": "On Sundays I sleep in until eleven.", "ru": "По воскресеньям я сплю до одиннадцати." },
+        { "en": "I wanted to sleep in, but the neighbors started drilling.", "ru": "Хотел поспать подольше, но соседи начали сверлить." },
+        { "en": "Let's sleep in tomorrow and skip the morning run.", "ru": "Давай завтра поспим подольше и пропустим утреннюю пробежку." }
+      ],
+      "promptsRu": ["Скажи, что по воскресеньям спишь до одиннадцати.", "Пожалуйся, что хотел поспать подольше, а соседи сверлили."],
+      "questionEn": "Use 'sleep in' to describe your ideal weekend morning.",
+      "falseMeanings": ["спать внутри", "заснуть на работе"],
+      "noteRu": "Не путать с «oversleep» (проспать случайно). «Sleep in» это по желанию."
+    },
+    {
+      "id": "daily.i-ran-out-of",
+      "en": "I ran out of",
+      "ru": "У меня закончился (закончилось)",
+      "accept": ["i ran out of", "ran out of", "i've run out of", "i have run out of"],
+      "contexts": [
+        { "en": "I ran out of coffee, that's a real emergency.", "ru": "У меня закончился кофе, это настоящая катастрофа." },
+        { "en": "We ran out of time before the demo.", "ru": "У нас закончилось время перед демо." },
+        { "en": "I've run out of ideas for the side project.", "ru": "У меня закончились идеи для пет-проекта." }
+      ],
+      "promptsRu": ["Скажи, что у тебя закончился кофе.", "Объясни, что у команды закончилось время перед демо."],
+      "questionEn": "Use 'ran out of' to explain why you went to the store late at night.",
+      "falseMeanings": ["я выбежал из", "я убежал от"],
+      "noteRu": "«Run out of X» это «X закончился». Подлежащее тот, у кого закончилось."
+    },
+    {
+      "id": "daily.split-the-bill",
+      "en": "split the bill",
+      "ru": "разделить счёт",
+      "accept": ["split the bill", "split the check", "go dutch"],
+      "contexts": [
+        { "en": "Let's split the bill, it's easier.", "ru": "Давай разделим счёт, так проще." },
+        { "en": "We always split the bill when we go out with the team.", "ru": "Мы всегда делим счёт, когда идём куда-то с командой." },
+        { "en": "Can we split the bill three ways?", "ru": "Можно разделить счёт на троих?" }
+      ],
+      "promptsRu": ["Предложи друзьям разделить счёт в кафе.", "Спроси официанта, можно ли разделить счёт на троих."],
+      "questionEn": "Use 'split the bill' at the end of dinner with friends.",
+      "falseMeanings": ["порвать счёт", "оплатить счёт частями"],
+      "noteRu": "В США чаще «check», в Британии «bill». «Three ways» значит на троих."
+    },
+    {
+      "id": "daily.chores",
+      "type": "word",
+      "en": "chores",
+      "ru": "домашние дела (уборка, посуда)",
+      "accept": ["chores", "household chores"],
+      "contexts": [
+        { "en": "I do my chores on Sunday morning, then I'm free.", "ru": "Домашние дела я делаю в воскресенье утром, потом свободен." },
+        { "en": "Chores are easier with a podcast on.", "ru": "Домашние дела легче идут под подкаст." },
+        { "en": "We split the chores: I cook, she cleans.", "ru": "Мы делим домашние дела: я готовлю, она убирает." }
+      ],
+      "promptsRu": ["Скажи, что домашние дела делаешь по воскресеньям утром.", "Расскажи, что делаешь уборку под подкаст."],
+      "questionEn": "Use 'chores' to describe what you do on Sunday.",
+      "falseMeanings": ["хоры", "выборы"],
+      "noteRu": "«Do chores», а не «make chores». «Homework» это уроки, а не домашние дела."
+    }
+  ]
+}

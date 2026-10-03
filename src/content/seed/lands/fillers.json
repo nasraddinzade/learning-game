@@ -1,0 +1,129 @@
+{
+  "id": "fillers",
+  "name": "Связки и заполнители пауз",
+  "emoji": "🧩",
+  "items": [
+    {
+      "id": "fillers.the-thing-is",
+      "en": "the thing is",
+      "ru": "дело в том, что",
+      "accept": ["the thing is", "the thing is that"],
+      "contexts": [
+        { "en": "I'd love to come. The thing is, I have a deadline.", "ru": "Я бы с радостью пришёл. Дело в том, что у меня дедлайн." },
+        { "en": "The thing is, nobody tested it on a real phone.", "ru": "Дело в том, что никто не тестировал на реальном телефоне." },
+        { "en": "The thing is, I don't actually like the series that much.", "ru": "Дело в том, что мне этот сериал не так уж и нравится." }
+      ],
+      "promptsRu": ["Объясни отказ: дело в том, что у тебя дедлайн.", "Начни объяснение проблемы с «дело в том, что»."],
+      "questionEn": "Use 'the thing is' to explain why you can't come.",
+      "falseMeanings": ["вещь находится", "суть вещи"],
+      "noteRu": "Готовит собеседника к объяснению или отговорке. Даёт секунду подумать."
+    },
+    {
+      "id": "fillers.what-i-mean-is",
+      "en": "what I mean is",
+      "ru": "я имею в виду, что",
+      "accept": ["what i mean is", "i mean"],
+      "contexts": [
+        { "en": "What I mean is, we don't need a backend for this.", "ru": "Я имею в виду, что бэкенд для этого не нужен." },
+        { "en": "It's not bad. What I mean is, it could be simpler.", "ru": "Это неплохо. Я имею в виду, что могло бы быть проще." },
+        { "en": "What I mean is, the price should include utilities.", "ru": "Я имею в виду, что цена должна включать коммуналку." }
+      ],
+      "promptsRu": ["Уточни свою мысль: я имею в виду, что бэкенд не нужен.", "Переформулируй мягко: имею в виду, могло быть проще."],
+      "questionEn": "Use 'what I mean is' to clarify a point you made.",
+      "falseMeanings": ["что я значу", "что я подразумевал раньше"],
+      "noteRu": "Для переформулировки, когда первая версия прозвучала не так."
+    },
+    {
+      "id": "fillers.well",
+      "type": "word",
+      "en": "Well,",
+      "ru": "Ну… (заполнитель паузы в начале ответа)",
+      "accept": ["well", "well,"],
+      "contexts": [
+        { "en": "Well, it depends on the budget.", "ru": "Ну, это зависит от бюджета." },
+        { "en": "Well, I wouldn't say it's a bug exactly.", "ru": "Ну, я бы не сказал, что это прямо баг." },
+        { "en": "Well, that was unexpected.", "ru": "Ну, это было неожиданно." }
+      ],
+      "promptsRu": ["Начни ответ с паузы: ну, это зависит от бюджета.", "Отреагируй на неожиданность: ну, это было неожиданно."],
+      "questionEn": "Start an answer with 'well' to buy time.",
+      "falseMeanings": ["хорошо (одобрение)", "колодец"],
+      "noteRu": "Даёт полсекунды на то, чтобы собрать фразу. Самый безопасный заполнитель."
+    },
+    {
+      "id": "fillers.let-me-think",
+      "en": "Let me think",
+      "ru": "Дай подумать",
+      "accept": ["let me think", "let me see", "let me think about it"],
+      "contexts": [
+        { "en": "Let me think… the last time I saw him was in May.", "ru": "Дай подумать… последний раз я видел его в мае." },
+        { "en": "Good question. Let me think about it for a second.", "ru": "Хороший вопрос. Дай секунду подумать." },
+        { "en": "Let me see, which version did we deploy?", "ru": "Дай вспомню, какую версию мы задеплоили?" }
+      ],
+      "promptsRu": ["Попроси секунду подумать на вопрос собеседования.", "Начни вспоминать вслух: дай подумать…"],
+      "questionEn": "Use 'let me think' when asked a hard question.",
+      "falseMeanings": ["Позволь мне поразмышлять о жизни", "Думай вместе со мной"],
+      "noteRu": "Нормально брать паузу вслух. Лучше, чем молчание или «эээ»."
+    },
+    {
+      "id": "fillers.you-know-what",
+      "en": "You know what,",
+      "ru": "Знаешь что, (перед решением или переменой мнения)",
+      "accept": ["you know what", "you know what,"],
+      "contexts": [
+        { "en": "You know what, let's just order pizza.", "ru": "Знаешь что, давай просто закажем пиццу." },
+        { "en": "You know what, I'll take the job.", "ru": "Знаешь что, я возьму эту работу." },
+        { "en": "You know what, forget the gym, let's go for a walk.", "ru": "Знаешь что, забудь про зал, пойдём гулять." }
+      ],
+      "promptsRu": ["Прими внезапное решение: знаешь что, давай закажем пиццу.", "Объяви решение другу: знаешь что, я возьму эту работу."],
+      "questionEn": "Use 'you know what' before a sudden decision.",
+      "falseMeanings": ["Ты знаешь, что…?", "Ты знаешь это"],
+      "noteRu": "Не вопрос, а вступление к решению. Интонация падающая."
+    },
+    {
+      "id": "fillers.anyway",
+      "type": "word",
+      "en": "Anyway,",
+      "ru": "В общем, / Так или иначе, (возврат к теме)",
+      "accept": ["anyway", "anyway,", "anyways"],
+      "contexts": [
+        { "en": "Anyway, back to the bug.", "ru": "В общем, вернёмся к багу." },
+        { "en": "Anyway, how was your trip?", "ru": "Так или иначе, как прошла поездка?" },
+        { "en": "It was a long night. Anyway, the release went out.", "ru": "Была длинная ночь. В общем, релиз вышел." }
+      ],
+      "promptsRu": ["Верни разговор к теме: в общем, вернёмся к багу.", "Смени тему: так или иначе, как прошла поездка?"],
+      "questionEn": "Use 'anyway' to get back to the main topic.",
+      "falseMeanings": ["любым способом", "в любую сторону"],
+      "noteRu": "Переключает или возвращает тему. «Anyways» разговорный американский вариант."
+    },
+    {
+      "id": "fillers.as-far-as-i-know",
+      "en": "as far as I know",
+      "ru": "насколько я знаю",
+      "accept": ["as far as i know", "afaik", "as far as i'm aware"],
+      "contexts": [
+        { "en": "As far as I know, the API doesn't support pagination.", "ru": "Насколько я знаю, API не поддерживает пагинацию." },
+        { "en": "As far as I know, the gym is open on Sundays.", "ru": "Насколько я знаю, зал работает по воскресеньям." },
+        { "en": "He's still in Baku, as far as I know.", "ru": "Он всё ещё в Баку, насколько я знаю." }
+      ],
+      "promptsRu": ["Скажи, что насколько ты знаешь, API не поддерживает пагинацию.", "Ответь с оговоркой: насколько я знаю, зал открыт."],
+      "questionEn": "Use 'as far as I know' when you're not 100% sure.",
+      "falseMeanings": ["так далеко, как я знаю", "как я и знал"],
+      "noteRu": "Снимает ответственность за точность. В чате часто «AFAIK»."
+    },
+    {
+      "id": "fillers.kind-of",
+      "en": "kind of",
+      "ru": "вроде как, типа (смягчение)",
+      "accept": ["kind of", "kinda", "sort of"],
+      "contexts": [
+        { "en": "I kind of liked the ending, actually.", "ru": "Мне, вроде как, даже понравилась концовка." },
+        { "en": "It's kind of expensive for what it is.", "ru": "Это, типа, дороговато для того, что это есть." },
+        { "en": "I'm kind of busy right now, can we talk later?", "ru": "Я вроде как занят сейчас, поговорим позже?" }
+      ],
+      "promptsRu": ["Смягчи мнение: тебе, вроде как, понравилась концовка.", "Скажи, что ты вроде как занят и поговорите позже."],
+      "questionEn": "Use 'kind of' to soften an opinion.",
+      "falseMeanings": ["вид чего-то", "добрый к"],
+      "noteRu": "Перед глаголом или прилагательным. В речи звучит как «kinda»."
+    }
+  ]
+}

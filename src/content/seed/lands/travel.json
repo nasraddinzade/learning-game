@@ -1,0 +1,158 @@
+{
+  "id": "travel",
+  "name": "Дорога и переезд",
+  "emoji": "✈️",
+  "items": [
+    {
+      "id": "travel.purpose-of-visit",
+      "en": "I'm here for",
+      "ru": "Я здесь по (цель поездки)",
+      "accept": ["i'm here for", "i am here for"],
+      "contexts": [
+        { "en": "I'm here for a conference, three days.", "ru": "Я здесь на конференцию, три дня." },
+        { "en": "I'm here for tourism, just a week.", "ru": "Я здесь как турист, всего неделю." },
+        { "en": "I'm here for work, my company has an office in Berlin.", "ru": "Я здесь по работе, у моей компании офис в Берлине." }
+      ],
+      "promptsRu": ["На паспортном контроле скажи, что приехал на конференцию.", "Объясни, что здесь как турист на неделю."],
+      "questionEn": "Use 'I'm here for' as if you were at passport control.",
+      "falseMeanings": ["Я здесь ради тебя", "Я здесь уже"],
+      "noteRu": "Самый простой ответ на «purpose of your visit?»."
+    },
+    {
+      "id": "travel.im-staying-at",
+      "en": "I'm staying at",
+      "ru": "Я остановился в",
+      "accept": ["i'm staying at", "i am staying at", "staying at"],
+      "contexts": [
+        { "en": "I'm staying at a hostel near the station.", "ru": "Я остановился в хостеле у вокзала." },
+        { "en": "I'm staying at a friend's place for the first month.", "ru": "Первый месяц я живу у друга." },
+        { "en": "Where are you staying? — At an Airbnb in Kreuzberg.", "ru": "Где ты остановился? — В Airbnb в Кройцберге." }
+      ],
+      "promptsRu": ["Скажи, что остановился в хостеле у вокзала.", "Ответь, что первый месяц живёшь у друга."],
+      "questionEn": "Use 'I'm staying at' to answer a question at the border.",
+      "falseMeanings": ["Я остаюсь на", "Я стою у"],
+      "noteRu": "«Stay» это временно жить. Для постоянного «live». Предлог «at» с местом."
+    },
+    {
+      "id": "travel.how-do-i-get-to",
+      "en": "How do I get to",
+      "ru": "Как добраться до",
+      "accept": ["how do i get to", "how can i get to", "how to get to"],
+      "contexts": [
+        { "en": "How do I get to the airport from here?", "ru": "Как отсюда добраться до аэропорта?" },
+        { "en": "How do I get to the old town by metro?", "ru": "Как добраться до старого города на метро?" },
+        { "en": "She asked how to get to the conference venue.", "ru": "Она спросила, как добраться до места конференции." }
+      ],
+      "promptsRu": ["Спроси прохожего, как добраться до аэропорта.", "Спроси, как доехать до старого города на метро."],
+      "questionEn": "Use 'how do I get to' to ask for directions.",
+      "falseMeanings": ["Как мне получить", "Как мне понять"],
+      "noteRu": "«Get to» это добраться. Ответ обычно «take the bus / turn left»."
+    },
+    {
+      "id": "travel.a-round-trip",
+      "en": "a round trip",
+      "ru": "поездка туда и обратно",
+      "accept": ["a round trip", "round trip", "a return ticket"],
+      "contexts": [
+        { "en": "Is this a round trip or one way?", "ru": "Это туда-обратно или в одну сторону?" },
+        { "en": "A round trip to Tbilisi is cheaper than I thought.", "ru": "Поездка туда-обратно в Тбилиси дешевле, чем я думал." },
+        { "en": "I booked a round trip for the conference.", "ru": "Я забронировал билеты туда и обратно на конференцию." }
+      ],
+      "promptsRu": ["Спроси в кассе, это билет туда-обратно или в одну сторону.", "Скажи, что забронировал билеты туда-обратно."],
+      "questionEn": "Use 'round trip' when booking tickets.",
+      "falseMeanings": ["круговая экскурсия", "поездка по кругу"],
+      "noteRu": "В Британии чаще «return ticket», в США «round trip». Одна сторона: «one way»."
+    },
+    {
+      "id": "travel.the-flight-got-delayed",
+      "en": "the flight got delayed",
+      "ru": "рейс задержали",
+      "accept": ["the flight got delayed", "the flight was delayed", "my flight got delayed"],
+      "contexts": [
+        { "en": "The flight got delayed by two hours, so I missed the connection.", "ru": "Рейс задержали на два часа, и я пропустил пересадку." },
+        { "en": "My flight got delayed again, I'll be late for the standup.", "ru": "Мой рейс снова задержали, опоздаю на стендап." },
+        { "en": "If the flight gets delayed, I'll text you.", "ru": "Если рейс задержат, я напишу." }
+      ],
+      "promptsRu": ["Объясни, что рейс задержали на два часа.", "Предупреди команду, что рейс задержали и ты опоздаешь."],
+      "questionEn": "Use 'the flight got delayed' to tell a travel story.",
+      "falseMeanings": ["рейс отменили", "рейс перенесли на завтра"],
+      "noteRu": "«Delayed» задержан, «cancelled» отменён. «By two hours» на два часа."
+    },
+    {
+      "id": "travel.move-abroad",
+      "en": "move abroad",
+      "ru": "переехать за границу",
+      "accept": ["move abroad", "moving abroad", "relocate"],
+      "contexts": [
+        { "en": "I've been thinking about moving abroad for a year now.", "ru": "Я уже год думаю о переезде за границу." },
+        { "en": "Half of my friends want to move abroad.", "ru": "Половина моих друзей хочет переехать за границу." },
+        { "en": "If I move abroad, I'll miss the Caspian sea.", "ru": "Если перееду за границу, буду скучать по Каспию." }
+      ],
+      "promptsRu": ["Скажи, что уже год думаешь о переезде за границу.", "Расскажи, по чему будешь скучать, если переедешь."],
+      "questionEn": "Use 'move abroad' to talk about your plans.",
+      "falseMeanings": ["сесть на корабль", "переехать на дачу"],
+      "noteRu": "«Abroad» без предлога: «move abroad», не «move to abroad»."
+    },
+    {
+      "id": "travel.the-rent",
+      "en": "the rent is too high",
+      "ru": "аренда слишком дорогая",
+      "accept": ["the rent is too high", "rent is too high", "the rent is too expensive"],
+      "contexts": [
+        { "en": "The rent is too high for a one-bedroom this far from the center.", "ru": "Аренда слишком дорогая для однушки так далеко от центра." },
+        { "en": "I like the flat, but the rent is too high.", "ru": "Квартира нравится, но аренда слишком дорогая." },
+        { "en": "Rent is too high everywhere now, not just in Baku.", "ru": "Аренда теперь везде дорогая, не только в Баку." }
+      ],
+      "promptsRu": ["Скажи арендодателю, что цена слишком высокая.", "Пожалуйся другу, что квартира нравится, но дорого."],
+      "questionEn": "Use 'the rent is too high' to start negotiating.",
+      "falseMeanings": ["арендованный этаж слишком высокий", "аренда закончилась"],
+      "noteRu": "«Rent» неисчисляемое. Торговаться: «Could you lower the rent?»."
+    },
+    {
+      "id": "travel.could-you-lower",
+      "en": "Could you lower the price?",
+      "ru": "Вы не могли бы снизить цену?",
+      "accept": ["could you lower the price", "can you lower the price", "could you bring the price down"],
+      "contexts": [
+        { "en": "Could you lower the price if I pay for six months upfront?", "ru": "Вы не могли бы снизить цену, если я заплачу за полгода вперёд?" },
+        { "en": "Could you lower the price a bit? It's above my budget.", "ru": "Не могли бы немного снизить цену? Это выше моего бюджета." },
+        { "en": "He asked if they could lower the price and they did.", "ru": "Он спросил, могут ли они снизить цену, и они снизили." }
+      ],
+      "promptsRu": ["Попроси арендодателя снизить цену за оплату вперёд.", "Попроси снизить цену, потому что это выше бюджета."],
+      "questionEn": "Use 'could you lower the price' in a negotiation.",
+      "falseMeanings": ["Вы могли бы опустить ценник ниже", "Вы можете понизить этаж?"],
+      "noteRu": "Вежливо через «could». «Lower» здесь глагол «снизить»."
+    },
+    {
+      "id": "travel.jet-lag",
+      "type": "word",
+      "en": "jet lag",
+      "ru": "джетлаг (сбой из-за смены часовых поясов)",
+      "accept": ["jet lag", "jetlag", "jet-lag"],
+      "contexts": [
+        { "en": "The jet lag hit me on the second day.", "ru": "Джетлаг накрыл меня на второй день." },
+        { "en": "I still have jet lag, I wake up at four.", "ru": "У меня всё ещё джетлаг, просыпаюсь в четыре." },
+        { "en": "Coffee doesn't help with jet lag, sleep does.", "ru": "Кофе не помогает от джетлага, помогает сон." }
+      ],
+      "promptsRu": ["Скажи, что джетлаг накрыл на второй день.", "Пожалуйся, что из-за джетлага просыпаешься в четыре."],
+      "questionEn": "Use 'jet lag' to explain why you're tired.",
+      "falseMeanings": ["задержка самолёта", "усталость от полёта"],
+      "noteRu": "«Have jet lag» или «be jet-lagged». Это именно про часовые пояса."
+    },
+    {
+      "id": "travel.settle-in",
+      "en": "settle in",
+      "ru": "обжиться (на новом месте)",
+      "accept": ["settle in", "get settled"],
+      "contexts": [
+        { "en": "It took me a month to settle in after the move.", "ru": "После переезда мне понадобился месяц, чтобы обжиться." },
+        { "en": "Give yourself time to settle in before judging the city.", "ru": "Дай себе время обжиться, прежде чем судить о городе." },
+        { "en": "Have you settled in at the new job?", "ru": "Ты уже освоился на новой работе?" }
+      ],
+      "promptsRu": ["Скажи, что после переезда месяц обживался.", "Спроси друга, освоился ли он на новой работе."],
+      "questionEn": "Use 'settle in' to talk about a new city or job.",
+      "falseMeanings": ["уладить спор", "осесть на дно"],
+      "noteRu": "Про привыкание к новому месту или работе. Без «in» значение другое."
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "id": "emotions",
+  "name": "Эмоции и состояния",
+  "emoji": "🌦️",
+  "items": [
+    {
+      "id": "emotions.im-exhausted",
+      "en": "I'm exhausted",
+      "ru": "Я вымотан",
+      "accept": ["i'm exhausted", "i am exhausted", "exhausted"],
+      "contexts": [
+        { "en": "I'm exhausted, three releases in one week.", "ru": "Я вымотан, три релиза за неделю." },
+        { "en": "After leg day I'm exhausted for two days.", "ru": "После дня ног я вымотан два дня." },
+        { "en": "She looked exhausted after the flight from Istanbul.", "ru": "Она выглядела вымотанной после перелёта из Стамбула." }
+      ],
+      "promptsRu": ["Скажи, что ты вымотан после недели релизов.", "Объясни другу, что после тренировки ног ты без сил."],
+      "questionEn": "Use 'I'm exhausted' to describe your week.",
+      "falseMeanings": ["Я выдохся с идеями", "Я взволнован"],
+      "noteRu": "Сильнее, чем «tired». Не путать с «excited» (в восторге)."
+    },
+    {
+      "id": "emotions.im-fed-up-with",
+      "en": "I'm fed up with",
+      "ru": "Меня достало",
+      "accept": ["i'm fed up with", "i am fed up with", "fed up with"],
+      "contexts": [
+        { "en": "I'm fed up with flaky tests.", "ru": "Меня достали нестабильные тесты." },
+        { "en": "I'm fed up with the traffic in this city.", "ru": "Меня достали пробки в этом городе." },
+        { "en": "He's fed up with his landlord raising the rent every year.", "ru": "Его достало, что арендодатель каждый год поднимает цену." }
+      ],
+      "promptsRu": ["Скажи, что тебя достали нестабильные тесты.", "Пожалуйся, что тебя достали пробки."],
+      "questionEn": "Use 'I'm fed up with' about something at work.",
+      "falseMeanings": ["Я сыт", "Я накормлен"],
+      "noteRu": "После «with» существительное или -ing. Это раздражение, которое копилось долго."
+    },
+    {
+      "id": "emotions.i-cant-wait",
+      "en": "I can't wait to",
+      "ru": "Жду не дождусь",
+      "accept": ["i can't wait to", "i cannot wait to", "can't wait to"],
+      "contexts": [
+        { "en": "I can't wait to see the new season.", "ru": "Жду не дождусь нового сезона." },
+        { "en": "I can't wait to ship this feature and forget about it.", "ru": "Жду не дождусь, когда выкачу эту фичу и забуду о ней." },
+        { "en": "We can't wait to try that new ramen place.", "ru": "Нам не терпится попробовать то новое место с раменом." }
+      ],
+      "promptsRu": ["Скажи, что ждёшь не дождёшься нового сезона аниме.", "Скажи, что не терпится выкатить фичу."],
+      "questionEn": "Use 'I can't wait to' about your next trip.",
+      "falseMeanings": ["Я не могу ждать, некогда", "Я не умею ждать"],
+      "noteRu": "Значит нетерпение в хорошем смысле, а не «нет времени ждать»."
+    },
+    {
+      "id": "emotions.im-a-bit-under-the-weather",
+      "en": "I'm a bit under the weather",
+      "ru": "Мне нездоровится",
+      "accept": ["i'm a bit under the weather", "i am a bit under the weather", "under the weather"],
+      "contexts": [
+        { "en": "I'm a bit under the weather, I'll skip the gym today.", "ru": "Мне нездоровится, сегодня пропущу зал." },
+        { "en": "I'm a bit under the weather, can we move the call?", "ru": "Мне нездоровится, можем перенести созвон?" },
+        { "en": "He's been under the weather since the trip.", "ru": "Ему нездоровится с самой поездки." }
+      ],
+      "promptsRu": ["Напиши команде, что тебе нездоровится и ты пропустишь созвон.", "Скажи другу, что приболел и не пойдёшь в зал."],
+      "questionEn": "Use 'under the weather' to cancel plans politely.",
+      "falseMeanings": ["Я под дождём", "Мне не нравится погода"],
+      "noteRu": "Лёгкое недомогание, не серьёзная болезнь. Мягче, чем «I'm sick»."
+    },
+    {
+      "id": "emotions.im-stressed-out",
+      "en": "I'm stressed out",
+      "ru": "Я на нервах (сильно нервничаю)",
+      "accept": ["i'm stressed out", "i am stressed out", "stressed out"],
+      "contexts": [
+        { "en": "I'm stressed out about the interview tomorrow.", "ru": "Я на нервах из-за собеседования завтра." },
+        { "en": "Everyone is stressed out before the release.", "ru": "Все на нервах перед релизом." },
+        { "en": "I was so stressed out I forgot to eat.", "ru": "Я так нервничал, что забыл поесть." }
+      ],
+      "promptsRu": ["Скажи, что нервничаешь из-за собеседования.", "Объясни, что вся команда на нервах перед релизом."],
+      "questionEn": "Use 'stressed out' to describe a deadline week.",
+      "falseMeanings": ["Я выгнан на улицу", "Я подчёркнут"],
+      "noteRu": "«Stressed out» сильнее, чем просто «stressed». После него «about»."
+    },
+    {
+      "id": "emotions.i-feel-like",
+      "en": "I feel like",
+      "ru": "Мне хочется / у меня ощущение, что",
+      "accept": ["i feel like"],
+      "contexts": [
+        { "en": "I feel like pizza tonight.", "ru": "Мне сегодня хочется пиццы." },
+        { "en": "I feel like I'm wasting time on this bug.", "ru": "У меня ощущение, что я теряю время на этот баг." },
+        { "en": "I don't feel like going out, let's watch something.", "ru": "Мне не хочется никуда идти, давай что-нибудь посмотрим." }
+      ],
+      "promptsRu": ["Скажи, что тебе хочется пиццы.", "Скажи, что тебе не хочется никуда идти сегодня."],
+      "questionEn": "Use 'I feel like' to say what you want for dinner.",
+      "falseMeanings": ["Я чувствую себя как", "Мне нравится"],
+      "noteRu": "Два значения: «хочется» (feel like pizza) и «ощущение, что» (feel like I'm wasting time)."
+    },
+    {
+      "id": "emotions.it-drives-me-crazy",
+      "en": "it drives me crazy",
+      "ru": "это сводит меня с ума (бесит)",
+      "accept": ["it drives me crazy", "drives me crazy", "it drives me nuts"],
+      "contexts": [
+        { "en": "Inconsistent indentation drives me crazy.", "ru": "Непоследовательные отступы сводят меня с ума." },
+        { "en": "It drives me crazy when people are late.", "ru": "Меня бесит, когда люди опаздывают." },
+        { "en": "The noise from the construction site drives me crazy.", "ru": "Шум со стройки сводит меня с ума." }
+      ],
+      "promptsRu": ["Скажи, что тебя бесят кривые отступы в коде.", "Пожалуйся, что тебя сводит с ума шум со стройки."],
+      "questionEn": "Use 'it drives me crazy' about a habit of a coworker.",
+      "falseMeanings": ["это ведёт меня к безумным идеям", "это меня веселит"],
+      "noteRu": "Сильное раздражение. Подлежащее то, что бесит: «it drives me crazy», не «I drive crazy»."
+    },
+    {
+      "id": "emotions.im-relieved",
+      "en": "I'm relieved",
+      "ru": "У меня отлегло (я испытываю облегчение)",
+      "accept": ["i'm relieved", "i am relieved", "what a relief"],
+      "contexts": [
+        { "en": "I'm relieved the tests finally pass.", "ru": "У меня отлегло, тесты наконец проходят." },
+        { "en": "I'm relieved the landlord agreed to the old price.", "ru": "Отлегло, арендодатель согласился на старую цену." },
+        { "en": "What a relief, the flight wasn't cancelled.", "ru": "Какое облегчение, рейс не отменили." }
+      ],
+      "promptsRu": ["Скажи, что у тебя отлегло, когда тесты прошли.", "Вырази облегчение, что рейс не отменили."],
+      "questionEn": "Use 'I'm relieved' after a stressful situation ended well.",
+      "falseMeanings": ["Я освобождён от работы", "Я уволен"],
+      "noteRu": "«Relieved» это чувство, «relief» существительное. Часто: «I'm so relieved»."
+    },
+    {
+      "id": "emotions.im-in-a-good-mood",
+      "en": "I'm in a good mood",
+      "ru": "Я в хорошем настроении",
+      "accept": ["i'm in a good mood", "i am in a good mood", "in a good mood"],
+      "contexts": [
+        { "en": "I'm in a good mood, the PR got merged without comments.", "ru": "Я в хорошем настроении, PR смержили без комментариев." },
+        { "en": "Don't talk to him before coffee, he's not in a good mood.", "ru": "Не говори с ним до кофе, он не в настроении." },
+        { "en": "Sunny Baku always puts me in a good mood.", "ru": "Солнечный Баку всегда поднимает мне настроение." }
+      ],
+      "promptsRu": ["Скажи, что ты в хорошем настроении, потому что PR смержили.", "Предупреди, что коллега не в настроении до кофе."],
+      "questionEn": "Use 'in a good mood' to explain why you're being generous today.",
+      "falseMeanings": ["Я в хорошей форме", "Мне хорошо спится"],
+      "noteRu": "Предлог «in»: in a good mood, in a bad mood. Без артикля нельзя."
+    },
+    {
+      "id": "emotions.i-freaked-out",
+      "en": "I freaked out",
+      "ru": "Я запаниковал (психанул)",
+      "accept": ["i freaked out", "freaked out"],
+      "contexts": [
+        { "en": "I freaked out when I saw the production error.", "ru": "Я запаниковал, когда увидел ошибку на проде." },
+        { "en": "Don't freak out, it's just a warning.", "ru": "Не паникуй, это просто предупреждение." },
+        { "en": "She freaked out about the exam and then passed easily.", "ru": "Она психовала из-за экзамена, а потом легко сдала." }
+      ],
+      "promptsRu": ["Расскажи, что запаниковал, увидев ошибку на проде.", "Скажи другу, чтобы не паниковал, это просто предупреждение."],
+      "questionEn": "Use 'freaked out' to tell a story about a bug in production.",
+      "falseMeanings": ["я выключился", "я обрадовался"],
+      "noteRu": "Разговорное «запаниковать». Можно и про страх, и про злость."
+    }
+  ]
+}

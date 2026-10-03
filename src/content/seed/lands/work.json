@@ -1,0 +1,218 @@
+{
+  "id": "work",
+  "name": "Работа и разработка",
+  "emoji": "💻",
+  "items": [
+    {
+      "id": "work.lets-sync-up",
+      "en": "Let's sync up",
+      "ru": "Давай синхронизируемся (коротко обсудим)",
+      "accept": ["let's sync up", "let us sync up", "let's sync"],
+      "contexts": [
+        { "en": "Let's sync up after lunch about the API changes.", "ru": "Давай синхронизируемся после обеда по изменениям в API." },
+        { "en": "Can we sync up for five minutes? I'm stuck.", "ru": "Можем синхронизироваться на пять минут? Я застрял." },
+        { "en": "We sync up every morning before the standup.", "ru": "Мы синхронизируемся каждое утро перед стендапом." }
+      ],
+      "promptsRu": ["Предложи коллеге коротко созвониться после обеда.", "Попроси пять минут, чтобы синхронизироваться, ты застрял."],
+      "questionEn": "Use 'let's sync up' in a message to a teammate.",
+      "falseMeanings": ["Давай сделаем синхронный запрос", "Давай подтянемся"],
+      "noteRu": "Короткая встреча для сверки. Нормально и в чате, и голосом."
+    },
+    {
+      "id": "work.im-stuck-on",
+      "en": "I'm stuck on",
+      "ru": "Я застрял на",
+      "accept": ["i'm stuck on", "i am stuck on", "stuck on"],
+      "contexts": [
+        { "en": "I'm stuck on this CORS error for two hours.", "ru": "Я застрял на этой ошибке CORS уже два часа." },
+        { "en": "I'm stuck on the last level of this game.", "ru": "Я застрял на последнем уровне этой игры." },
+        { "en": "If you're stuck on something, just ask.", "ru": "Если на чём-то застрял, просто спроси." }
+      ],
+      "promptsRu": ["Скажи команде, что застрял на ошибке CORS.", "Скажи, что застрял на последнем уровне игры."],
+      "questionEn": "Use 'I'm stuck on' to ask for help on a bug.",
+      "falseMeanings": ["Я приклеен к", "Я зациклен на"],
+      "noteRu": "«Stuck on» + задача или проблема. Нормально признаваться, что застрял."
+    },
+    {
+      "id": "work.can-you-walk-me-through",
+      "en": "Can you walk me through",
+      "ru": "Можешь по шагам объяснить",
+      "accept": ["can you walk me through", "walk me through", "could you walk me through"],
+      "contexts": [
+        { "en": "Can you walk me through the deploy process?", "ru": "Можешь по шагам объяснить процесс деплоя?" },
+        { "en": "Walk me through your solution, step by step.", "ru": "Объясни мне своё решение по шагам." },
+        { "en": "She walked me through the codebase on my first day.", "ru": "В первый день она провела меня по кодовой базе." }
+      ],
+      "promptsRu": ["Попроси коллегу по шагам объяснить деплой.", "На собеседовании попроси объяснить решение по шагам."],
+      "questionEn": "Use 'walk me through' to ask about a new codebase.",
+      "falseMeanings": ["Можешь прогуляться со мной", "Можешь провести меня через здание"],
+      "noteRu": "Объяснить шаг за шагом. Очень частое на созвонах и собеседованиях."
+    },
+    {
+      "id": "work.heads-up",
+      "en": "heads up",
+      "ru": "предупреждаю заранее",
+      "accept": ["heads up", "just a heads up", "heads-up"],
+      "contexts": [
+        { "en": "Heads up, the API will be down for an hour tonight.", "ru": "Предупреждаю: API будет недоступен час сегодня вечером." },
+        { "en": "Just a heads up, I'll be offline on Friday.", "ru": "Предупреждаю заранее, в пятницу меня не будет на связи." },
+        { "en": "Thanks for the heads up about the deadline.", "ru": "Спасибо, что предупредил о дедлайне." }
+      ],
+      "promptsRu": ["Предупреди команду, что API будет недоступен вечером.", "Поблагодари коллегу за предупреждение о дедлайне."],
+      "questionEn": "Use 'heads up' to warn the team about something.",
+      "falseMeanings": ["головы вверх, не грустите", "выше голову"],
+      "noteRu": "Короткое предупреждение в чате. Как существительное: «a heads up»."
+    },
+    {
+      "id": "work.i-ll-look-into-it",
+      "en": "I'll look into it",
+      "ru": "Я разберусь (посмотрю, в чём дело)",
+      "accept": ["i'll look into it", "i will look into it", "let me look into it"],
+      "contexts": [
+        { "en": "The form doesn't submit on Safari. — I'll look into it.", "ru": "Форма не отправляется в Safari. — Я разберусь." },
+        { "en": "I'll look into it after the standup.", "ru": "Разберусь после стендапа." },
+        { "en": "Let me look into it and get back to you.", "ru": "Дай разберусь и вернусь к тебе." }
+      ],
+      "promptsRu": ["Тебе сообщили о баге. Скажи, что разберёшься.", "Пообещай разобраться и вернуться с ответом."],
+      "questionEn": "Use 'I'll look into it' to respond to a bug report.",
+      "falseMeanings": ["Я посмотрю внутрь", "Я загляну к тебе"],
+      "noteRu": "«Look into» это изучить проблему. Не «I'll see it»."
+    },
+    {
+      "id": "work.get-back-to-you",
+      "en": "I'll get back to you",
+      "ru": "Я вернусь к тебе с ответом",
+      "accept": ["i'll get back to you", "i will get back to you", "get back to you"],
+      "contexts": [
+        { "en": "I'll get back to you by the end of the day.", "ru": "Отвечу тебе до конца дня." },
+        { "en": "Let me check with the backend team and get back to you.", "ru": "Дай уточню у бэкендеров и вернусь с ответом." },
+        { "en": "They said they'd get back to me after the interview.", "ru": "Сказали, что свяжутся со мной после собеседования." }
+      ],
+      "promptsRu": ["Пообещай ответить до конца дня.", "Скажи, что уточнишь у бэкенда и вернёшься."],
+      "questionEn": "Use 'I'll get back to you' when you need time to answer.",
+      "falseMeanings": ["Я вернусь к тебе домой", "Я отомщу тебе"],
+      "noteRu": "Стандартное обещание ответить позже. Без «with an answer» всё понятно."
+    },
+    {
+      "id": "work.it-makes-sense",
+      "en": "it makes sense",
+      "ru": "это логично (имеет смысл)",
+      "accept": ["it makes sense", "makes sense", "that makes sense"],
+      "contexts": [
+        { "en": "It makes sense to cache this response.", "ru": "Логично закэшировать этот ответ." },
+        { "en": "Makes sense, let's go with your approach.", "ru": "Логично, давай пойдём твоим путём." },
+        { "en": "Does it make sense to split this component?", "ru": "Есть смысл разбить этот компонент?" }
+      ],
+      "promptsRu": ["Согласись, что логично закэшировать ответ.", "Спроси, есть ли смысл разбить компонент."],
+      "questionEn": "Use 'it makes sense' in a code review discussion.",
+      "falseMeanings": ["это создаёт ощущение", "это чувствуется"],
+      "noteRu": "«Make sense», не «have sense». Очень частый ответ на созвонах: «Makes sense»."
+    },
+    {
+      "id": "work.nitpick",
+      "type": "word",
+      "en": "nitpick",
+      "ru": "придирка (мелкое замечание на ревью)",
+      "accept": ["nitpick", "nit"],
+      "contexts": [
+        { "en": "Nitpick: rename this variable to be more specific.", "ru": "Придирка: переименуй переменную, чтобы было конкретнее." },
+        { "en": "Just a nitpick, feel free to ignore it.", "ru": "Просто придирка, можешь проигнорировать." },
+        { "en": "Don't nitpick, the PR is fine overall.", "ru": "Не придирайся, PR в целом нормальный." }
+      ],
+      "promptsRu": ["Оставь на ревью мелкое замечание, пометив его как придирку.", "Скажи коллеге, чтобы не придирался."],
+      "questionEn": "Use 'nitpick' in a code review comment.",
+      "falseMeanings": ["выбор узла", "подбирать мелочь"],
+      "noteRu": "На ревью часто пишут «nit:» перед мелким замечанием."
+    },
+    {
+      "id": "work.tech-debt",
+      "en": "tech debt",
+      "ru": "технический долг",
+      "accept": ["tech debt", "technical debt"],
+      "contexts": [
+        { "en": "We've been adding tech debt for months.", "ru": "Мы месяцами копим технический долг." },
+        { "en": "Let's spend a sprint on tech debt.", "ru": "Давайте потратим спринт на технический долг." },
+        { "en": "This hack is tech debt, I'll add a TODO.", "ru": "Этот хак это технический долг, добавлю TODO." }
+      ],
+      "promptsRu": ["Предложи потратить спринт на технический долг.", "Скажи, что команда месяцами копит технический долг."],
+      "questionEn": "Use 'tech debt' to explain a problem in your project.",
+      "falseMeanings": ["долг за технику", "техническая ошибка"],
+      "noteRu": "Неисчисляемое: «some tech debt», не «a tech debt»."
+    },
+    {
+      "id": "work.bad-news",
+      "en": "I've got some bad news",
+      "ru": "У меня плохие новости",
+      "accept": ["i've got some bad news", "i have some bad news", "i have bad news"],
+      "contexts": [
+        { "en": "I've got some bad news: the release slips to next week.", "ru": "У меня плохие новости: релиз сдвигается на следующую неделю." },
+        { "en": "I've got some bad news about the budget.", "ru": "У меня плохие новости насчёт бюджета." },
+        { "en": "Good news and bad news, which first?", "ru": "Есть хорошая новость и плохая, с какой начать?" }
+      ],
+      "promptsRu": ["Начни созвон с плохой новости о переносе релиза.", "Сообщи о плохих новостях по бюджету."],
+      "questionEn": "Use 'I've got some bad news' to open a difficult call.",
+      "falseMeanings": ["Я получил плохой отзыв", "У меня плохое настроение"],
+      "noteRu": "«News» неисчисляемое: «some bad news», не «a bad news»."
+    },
+    {
+      "id": "work.its-a-quick-fix",
+      "en": "it's a quick fix",
+      "ru": "это быстро чинится",
+      "accept": ["it's a quick fix", "it is a quick fix", "quick fix"],
+      "contexts": [
+        { "en": "Don't worry, it's a quick fix, five minutes.", "ru": "Не волнуйся, это быстро чинится, пять минут." },
+        { "en": "It looked like a quick fix and took the whole day.", "ru": "Казалось, быстро починится, а заняло весь день." },
+        { "en": "A quick fix now means tech debt later.", "ru": "Быстрый фикс сейчас это технический долг потом." }
+      ],
+      "promptsRu": ["Успокой менеджера, что баг быстро чинится.", "Пожалуйся, что «быстрый фикс» занял целый день."],
+      "questionEn": "Use 'quick fix' to describe a bug you solved.",
+      "falseMeanings": ["это быстрая дозаправка", "это быстрое решение всех проблем"],
+      "noteRu": "Иногда с иронией: quick fix редко бывает quick."
+    },
+    {
+      "id": "work.the-scope",
+      "en": "out of scope",
+      "ru": "вне рамок задачи",
+      "accept": ["out of scope", "outside the scope"],
+      "contexts": [
+        { "en": "Dark mode is out of scope for this sprint.", "ru": "Тёмная тема вне рамок этого спринта." },
+        { "en": "That's out of scope, let's create a separate ticket.", "ru": "Это вне рамок задачи, давай заведём отдельный тикет." },
+        { "en": "The client keeps adding things that are out of scope.", "ru": "Клиент постоянно добавляет то, что вне рамок." }
+      ],
+      "promptsRu": ["Скажи, что тёмная тема вне рамок этого спринта.", "Предложи завести отдельный тикет, потому что это вне рамок."],
+      "questionEn": "Use 'out of scope' to push back on a request.",
+      "falseMeanings": ["вне прицела", "за пределами видимости"],
+      "noteRu": "Вежливый способ сказать «не сейчас». Пара: «in scope»."
+    },
+    {
+      "id": "work.im-on-it",
+      "en": "I'm on it",
+      "ru": "Уже занимаюсь",
+      "accept": ["i'm on it", "i am on it", "on it"],
+      "contexts": [
+        { "en": "Can someone fix the build? — I'm on it.", "ru": "Кто-нибудь может починить сборку? — Уже занимаюсь." },
+        { "en": "I'm on it, give me twenty minutes.", "ru": "Занимаюсь, дай двадцать минут." },
+        { "en": "She said she was on it and the bug was gone in an hour.", "ru": "Она сказала, что занимается, и через час бага не было." }
+      ],
+      "promptsRu": ["Ответь в чате, что уже занимаешься сборкой.", "Скажи, что занимаешься и нужно двадцать минут."],
+      "questionEn": "Use 'I'm on it' to respond to an urgent request.",
+      "falseMeanings": ["Я на нём сижу", "Я на связи"],
+      "noteRu": "Короткое «беру задачу». Очень живое в рабочем чате."
+    },
+    {
+      "id": "work.to-be-fair",
+      "en": "to be fair",
+      "ru": "справедливости ради",
+      "accept": ["to be fair", "in fairness"],
+      "contexts": [
+        { "en": "To be fair, the spec changed three times.", "ru": "Справедливости ради, спецификация менялась три раза." },
+        { "en": "To be fair, he did warn us about the deadline.", "ru": "Справедливости ради, он предупреждал нас о дедлайне." },
+        { "en": "The app is slow, but to be fair, so is the API.", "ru": "Приложение медленное, но, справедливости ради, API тоже." }
+      ],
+      "promptsRu": ["Защити коллегу: справедливости ради, спецификация менялась.", "Признай, что справедливости ради, он предупреждал."],
+      "questionEn": "Use 'to be fair' to defend someone in a discussion.",
+      "falseMeanings": ["чтобы быть красивым", "честно признаюсь"],
+      "noteRu": "Вводит аргумент в защиту. Часто перед «but» или после критики."
+    }
+  ]
+}
