@@ -1,5 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { ensureSeed } from '@/db/seedRepo'
+import { DEBUG } from '@/debug'
 import { useProfileStore } from '@/store/profile'
 import { DevPanel } from '@/ui/DevPanel'
 import { CampScreen } from '@/screens/Camp'
@@ -33,7 +35,7 @@ export default function App() {
   const load = useProfileStore((s) => s.load)
 
   useEffect(() => {
-    void load()
+    void ensureSeed().then(load)
   }, [load])
 
   if (error) {
@@ -66,7 +68,7 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
-      {import.meta.env.DEV ? <DevPanel /> : null}
+      {DEBUG ? <DevPanel /> : null}
     </>
   )
 }

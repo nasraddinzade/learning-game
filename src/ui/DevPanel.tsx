@@ -54,9 +54,9 @@ export function DevPanel() {
   }
 
   return (
-    <div className="fixed right-2 bottom-2 z-50 flex flex-col items-end gap-2" data-testid="dev-panel">
+    <div className="fixed top-1/2 right-0 z-50 flex -translate-y-1/2 flex-col items-end gap-2" data-testid="dev-panel">
       {open ? (
-        <div className="w-64 rounded-xl border border-line bg-bg-raised/95 p-3 text-xs shadow-xl backdrop-blur">
+        <div className="mr-1 w-64 rounded-xl border border-line bg-bg-raised/95 p-3 text-xs shadow-xl backdrop-blur">
           <div className="mb-2 flex items-center justify-between">
             <span className="font-semibold">Dev</span>
             <span className="text-fg-muted" data-testid="dev-date">
@@ -80,7 +80,7 @@ export function DevPanel() {
         aria-label="Dev-панель"
         data-testid="dev-toggle"
         onClick={() => setOpen((v) => !v)}
-        className="tap rounded-full border border-line bg-bg-raised/80 text-xs text-fg-muted backdrop-blur"
+        className="h-12 w-6 rounded-l-lg border border-r-0 border-line bg-bg-raised/80 text-[10px] text-fg-muted backdrop-blur"
       >
         dev
       </button>

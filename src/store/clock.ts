@@ -3,11 +3,12 @@
 // survives reloads during a test session; it is never used in production builds.
 import { create } from 'zustand'
 import { addDays } from '@/engine/clock'
+import { DEBUG } from '@/debug'
 
 const STORAGE_KEY = 'nemesis.dev.timeOffsetDays'
 
 function readOffset(): number {
-  if (!import.meta.env.DEV) return 0
+  if (!DEBUG) return 0
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     const n = raw === null ? 0 : Number(raw)
