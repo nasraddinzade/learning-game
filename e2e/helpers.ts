@@ -146,10 +146,23 @@ export async function answerCurrent(page: Page, correct: boolean): Promise<void>
       break
     }
     case 'gap':
-    case 'translate': {
+    case 'translate':
+    case 'dictation':
+    case 'improv': {
       if (!expected) throw new Error('no expected answer')
       await page.getByTestId('answer-input').fill(correct ? expected : 'blah blah blah')
       await page.getByTestId('answer-submit').click()
+      break
+    }
+    case 'listen': {
+      const right = Number(expected)
+      await page.getByTestId(`listen-option-${correct ? right : (right + 1) % 3}`).click()
+      break
+    }
+    case 'voice': {
+      // The fake recognizer (installed by wipeAll) returns whatever transcript is set.
+      await page.evaluate((t) => (window as unknown as { __nemesis: { setTranscript: (s: string | null) => void } }).__nemesis.setTranscript(t), correct ? expected : 'nothing like it at all')
+      await page.getByTestId('voice-record').click()
       break
     }
     default:
@@ -322,15 +335,18 @@ export async function autopilot(page: Page, opts: AutopilotOptions = {}): Promis
   throw new Error(`autopilot: no end after ${max} steps\n${trail.join('\n')}`)
 }
 
-/** Wipes IndexedDB and the dev clock through the dev panel, then lands on the camp. */
+/** Wipes IndexedDB and the dev clock, reloads, lands on the camp with fake speech installed. */
 export async function wipeAll(page: Page): Promise<void> {
   await page.goto('/')
   await expect(page.getByTestId('screen-camp')).toBeVisible()
-  await page.getByTestId('dev-toggle').click()
-  await page.getByRole('button', { name: 'Стереть всё' }).click()
-  await page.waitForLoadState('load')
+  await page.evaluate(() => (window as unknown as { __nemesis: { wipe: () => Promise<void> } }).__nemesis.wipe())
+  await page.goto('/')
   await expect(page.getByTestId('screen-camp')).toBeVisible()
   await expect(page.getByTestId('camp-runes')).toHaveText('◆ 0')
+  await expect(page.getByTestId('count-new')).toHaveText('6')
+  // Headless Chromium has a mute speech engine and no working microphone: fake both so every
+  // move stays deterministic. Spoken texts are recorded, the mic returns the set transcript.
+  await page.evaluate(() => (window as unknown as { __nemesis: { fakeSpeech: () => void } }).__nemesis.fakeSpeech())
 }
 
 /** Shifts the dev clock by N days and reloads so every screen recomputes. */

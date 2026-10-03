@@ -79,7 +79,8 @@ test.describe('stage 2: the run', () => {
           echoSeen = true
           await expect(page.getByTestId('node-label')).toContainText('Эхо')
           await expect(page.getByTestId('enemy')).toHaveAttribute('data-kind', 'echo')
-          expect(info.move, 'the Echo strikes with the hardest move').toBe('translate')
+          // With speech available the hardest move is Экспромт (stage 5).
+          expect(info.move, 'the Echo strikes with the hardest move').toBe('improv')
           await shot(page, 'echo')
         }
         return true
