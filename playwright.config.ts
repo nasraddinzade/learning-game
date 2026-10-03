@@ -1,7 +1,8 @@
 import { defineConfig, devices } from '@playwright/test'
 
-// Tests run against the production build served by `vite preview`, so the service worker
-// and offline mode behave exactly as on the phone (SPEC §16).
+// Tests run against a production-like build (`--mode e2e`, which keeps the dev panel and the
+// window.__nemesis test hook) served by `vite preview`, so the service worker and offline mode
+// behave exactly as on the phone (SPEC §16).
 const PORT = 4173
 const BASE = `http://localhost:${PORT}`
 
@@ -49,7 +50,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run build && npm run preview',
+    command: 'npm run build:e2e && npm run preview',
     url: BASE,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

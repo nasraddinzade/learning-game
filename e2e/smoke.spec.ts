@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
+import { watchConsole } from './helpers.js'
 
 // Raw screenshots land in a gitignored scratch folder; key ones are copied into
 // docs/verification/screenshots/stage-N by hand when the stage report is written.
@@ -8,19 +9,7 @@ function shot(page: Page, name: string) {
   return page.screenshot({ path: `${SHOTS}/${test.info().project.name}-${name}.png`, fullPage: true })
 }
 
-/** Collects console errors and warnings, failing the test if any appear (SPEC §16.4). */
-function watchConsole(page: Page): string[] {
-  const problems: string[] = []
-  page.on('console', (m) => {
-    if (m.type() === 'error' || m.type() === 'warning') problems.push(`[${m.type()}] ${m.text()}`)
-  })
-  page.on('pageerror', (e) => problems.push(`[pageerror] ${e.message}`))
-  page.on('requestfailed', (r) => {
-    // Offline tests deliberately fail network requests; those are filtered by the test itself.
-    problems.push(`[requestfailed] ${r.url()} ${r.failure()?.errorText ?? ''}`)
-  })
-  return problems
-}
+// Console errors and warnings fail the test (SPEC §16.4); see helpers.ts for the one ignored notice.
 
 test.describe('stage 0: scaffold', () => {
   test('camp opens, every screen is reachable, no console noise', async ({ page }) => {
