@@ -90,4 +90,4 @@
 
 ## Подтверждение пуша
 
-TODO_PUSH
+`git push origin main`: `04f7ff1..9fb972e  main -> main`. Тег `stage-5` указывает на `9fb972e` и отправлен (`[new tag] stage-5 -> stage-5`). Хеш отчёта `9fb972e`; этот абзац добавлен отдельным коммитом `docs: record stage 5 push confirmation`.
