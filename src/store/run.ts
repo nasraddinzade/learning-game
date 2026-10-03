@@ -26,9 +26,12 @@ import {
 } from '@/game/run'
 import { activeRun, addAttempt, allItems, newId, progressMap, saveProgress, saveRun } from '@/db/repos'
 import { activePatterns, patternDef, savePatternStat } from '@/db/patternRepo'
+import { moveAvailable } from '@/moves/availability'
 import { buildTask, canUse } from '@/moves/tasks'
 import { IMPLEMENTED_MOVES, type MoveResult, type MoveTask } from '@/moves/types'
 import type { TrapResult } from '@/moves/trap/TrapMove'
+import { speak } from '@/speech/tts'
+import { buzz, fx } from '@/ui/fx'
 import type { CombatState, Item, MoveId, PatternStat, Progress, Rating, Run } from '@/types'
 import { now } from './clock'
 import { useProfileStore } from './profile'
@@ -90,8 +93,11 @@ interface RunState {
   feedback: Feedback | null
   shake: number
   summary: RunSummary | null
+  /** Dev/e2e only: the next prepared task uses this move when the item supports it. */
+  forcedMove: MoveId | null
 
   load: () => Promise<void>
+  forceMove: (move: MoveId | null) => void
   startRun: (kind: 'run' | 'sortie') => Promise<void>
   enterNode: (step: number, node: number) => Promise<void>
   resumeBattle: () => void
@@ -106,7 +112,7 @@ interface RunState {
   leaveSummary: () => void
 }
 
-export const AVAILABLE_MOVES = { voice: false }
+export const AVAILABLE_MOVES = { voice: true }
 
 /** Where the UI should be for this run. */
 export function routeForRun(run: Run | null): string {
@@ -132,6 +138,33 @@ function combatOf(run: Run): CombatState {
 
 function withCombat(run: Run, combat: CombatState): Run {
   return { ...run, combat, hp: combat.hp, combo: combat.combo }
+}
+
+/** Sounds, vibration and the correct-answer voice after an answer (SPEC §7.3, §5.3). */
+function playFeedbackFx(events: CombatEvent[], progressEvents: ProgressEvent[], crit: boolean, item: Item, voice: 'en-US' | 'en-GB'): void {
+  const types = new Set(events.map((e) => e.type))
+  if (types.has('miss')) {
+    fx.miss()
+    buzz.miss()
+    // After a miss the right phrase is spoken so the ear learns it too.
+    void speak(item.en, voice)
+  } else if (types.has('hit')) {
+    if (crit) fx.crit()
+    else fx.hit()
+    buzz.hit()
+  }
+  if (progressEvents.includes('debtClosed')) {
+    fx.debtClosed()
+    buzz.debtClosed()
+  } else if (progressEvents.includes('stageUp')) {
+    fx.stageUp()
+  }
+  const down = events.find((e) => e.type === 'enemyDown')
+  if (down && down.type === 'enemyDown' && (down.kind === 'nemesis' || down.kind === 'echo')) {
+    fx.big()
+    buzz.big()
+  }
+  if (types.has('won')) fx.win()
 }
 
 export const useRunStore = create<RunState>((set, get) => {
@@ -165,14 +198,19 @@ export const useRunStore = create<RunState>((set, get) => {
     const p = progress[c.itemId] ?? newProgress(c.itemId, now())
     const rng = combatRng(combat)
     let move: MoveId
-    const enabled = IMPLEMENTED_MOVES.filter((m) => canUse(m, item))
+    const enabled = IMPLEMENTED_MOVES.filter((m) => canUse(m, item) && moveAvailable(m))
     const excluded: MoveId[] = [...c.movesUsed]
     if (p.lastMove && c.kind !== 'echo') excluded.push(p.lastMove)
+    const forced = get().forcedMove
     if (c.kind === 'newcomer') move = 'intro'
+    else if (forced && enabled.includes(forced)) {
+      move = forced
+      set({ forcedMove: null })
+    }
     // The Echo always strikes with the hardest move available, even if it was the last one used.
     else if (c.kind === 'echo') move = pickMove({ stage: 5, enabled, excluded, rng })
     else move = pickMove({ stage: p.stage, enabled, excluded, rng })
-    const task = buildTask(move, item, rng)
+    const task = buildTask(move, item, rng, Object.values(items))
     const base = balance.windupMs[move]
     const shown = hasBoon(run.boons, 'coolHead') ? Math.round(base * balance.boons.coolHeadSlowdown) : base
     set({
@@ -274,6 +312,9 @@ export const useRunStore = create<RunState>((set, get) => {
     feedback: null,
     shake: 0,
     summary: null,
+    forcedMove: null,
+
+    forceMove: (move) => set({ forcedMove: move }),
 
     load: async () => {
       if (loading) return loading
@@ -357,7 +398,7 @@ export const useRunStore = create<RunState>((set, get) => {
       const rng = mulberry32((combat.seed ^ (combat.answers * 0x85ebca6b) ^ 0x5bd1e995) >>> 0)
       const base = balance.windupMs[move]
       const shown = hasBoon(run.boons, 'coolHead') ? Math.round(base * balance.boons.coolHeadSlowdown) : base
-      set({ move, task: buildTask(move, item, rng), risked: true, windupStartedAt: Date.now(), windupMs: shown, baseWindupMs: base })
+      set({ move, task: buildTask(move, item, rng, Object.values(items)), risked: true, windupStartedAt: Date.now(), windupMs: shown, baseWindupMs: base })
     },
 
     submit: async (result) => {
@@ -413,6 +454,7 @@ export const useRunStore = create<RunState>((set, get) => {
       const nextRun: Run = { ...withCombat(run, state), flags, stats }
       await saveRun(nextRun)
       const hitEvent = events.find((e): e is Extract<CombatEvent, { type: 'hit' }> => e.type === 'hit')
+      playFeedbackFx(events, outcome.events, crit, item, useProfileStore.getState().profile?.settings.ttsVoice ?? 'en-US')
       set((s) => ({
         run: nextRun,
         progress: { ...progress, [item.id]: nextP },

@@ -11,6 +11,10 @@ const loaders = {
   build: () => import('./build/BuildMove').then((m) => ({ default: m.BuildMove })),
   gap: () => import('./gap/GapMove').then((m) => ({ default: m.GapMove })),
   translate: () => import('./translate/TranslateMove').then((m) => ({ default: m.TranslateMove })),
+  listen: () => import('./listen/ListenMove').then((m) => ({ default: m.ListenMove })),
+  dictation: () => import('./dictation/DictationMove').then((m) => ({ default: m.DictationMove })),
+  voice: () => import('./voice/VoiceMove').then((m) => ({ default: m.VoiceMove })),
+  improv: () => import('./improv/ImprovMove').then((m) => ({ default: m.ImprovMove })),
 }
 
 export const MOVE_COMPONENTS: Partial<Record<MoveId, MoveComponent>> = {
@@ -19,6 +23,10 @@ export const MOVE_COMPONENTS: Partial<Record<MoveId, MoveComponent>> = {
   build: lazy(loaders.build),
   gap: lazy(loaders.gap),
   translate: lazy(loaders.translate),
+  listen: lazy(loaders.listen),
+  dictation: lazy(loaders.dictation),
+  voice: lazy(loaders.voice),
+  improv: lazy(loaders.improv),
 }
 
 /** Warms up every move chunk when the battle opens so the first task of each kind does not flash a spinner. */

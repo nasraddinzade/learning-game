@@ -1,4 +1,5 @@
 import { Button } from '@/ui/Button'
+import { SpeakButton } from '@/ui/SpeakButton'
 import type { IntroTask, MoveProps } from '../types'
 
 /**
@@ -10,9 +11,12 @@ export function IntroMove({ task, item, onSubmit }: MoveProps<IntroTask>) {
   return (
     <div className="flex flex-col gap-4" data-testid="move-intro">
       <div className="rounded-card bg-bg-card p-5">
-        <p className="text-2xl font-bold text-accent" data-testid="intro-en">
-          {item.en}
-        </p>
+        <div className="flex items-start justify-between gap-2">
+          <p className="text-2xl font-bold text-accent" data-testid="intro-en">
+            {item.en}
+          </p>
+          <SpeakButton text={item.en} auto testId="intro-speak" />
+        </div>
         <p className="mt-1 text-lg text-fg">{item.ru}</p>
         <p className="mt-4 text-base text-fg">{task.contextEn}</p>
         <p className="text-sm text-fg-muted">{task.contextRu}</p>

@@ -1,9 +1,22 @@
 // Builds concrete tasks for a move from an item. Pure and seeded, so a battle replays the
 // same tasks after a reload.
-import { checkAnswer, containsTarget, normalize, words } from '@/engine/answerCheck'
+import { checkAnswer, containsTarget, matchVoice, normalize, words } from '@/engine/answerCheck'
 import { rngInt, rngPick, rngShuffle, type Rng } from '@/engine/rng'
 import type { Item, MoveId } from '@/types'
-import type { BuildTask, GapTask, IntroTask, MoveResult, MoveTask, SwipeTask, TranslateTask } from './types'
+import { balance } from '@/game/balance'
+import type {
+  BuildTask,
+  DictationTask,
+  GapTask,
+  ImprovTask,
+  IntroTask,
+  ListenTask,
+  MoveResult,
+  MoveTask,
+  SwipeTask,
+  TranslateTask,
+  VoiceTask,
+} from './types'
 
 /** Words that are typical slips for this user (SPEC §6, Сборка distractors). */
 const DISTRACTOR_POOL = ['the', 'a', 'an', 'just', 'already', 'is', 'are', 'was', 'can', 'do', 'does', 'have', 'has', 'to', 'of']
@@ -25,20 +38,37 @@ function contextWithPhrase(item: Item): { ctx: Item['contexts'][number]; variant
   return null
 }
 
+/** Whether the item has the content a move needs. Device capabilities are checked separately. */
 export function canUse(move: MoveId, item: Item): boolean {
   switch (move) {
     case 'intro':
     case 'translate':
+    case 'voice':
       return true
     case 'swipe':
       return item.contexts.length > 0 && item.falseMeanings.length > 0
+    case 'listen':
+    case 'dictation':
+      return item.contexts.length > 0
     case 'build':
       return item.contexts.some((c) => tokens(c.en).length >= 3)
     case 'gap':
       return contextWithPhrase(item) !== null
+    case 'improv':
+      return item.promptsRu.length >= 2
     default:
       return false
   }
+}
+
+/** Situation prompt for Перевод (first half) and Экспромт (second half), so the improv one is new. */
+function promptFor(item: Item, kind: 'translate' | 'improv', rng: Rng): string {
+  const prompts = item.promptsRu
+  if (prompts.length === 0) return item.ru
+  if (prompts.length === 1) return prompts[0] as string
+  const half = Math.floor(prompts.length / 2)
+  const pool = kind === 'translate' ? prompts.slice(0, half) : prompts.slice(half)
+  return rngPick(rng, pool)
 }
 
 export function buildIntro(item: Item, rng: Rng): IntroTask {
@@ -118,7 +148,7 @@ export function buildTranslate(item: Item, rng: Rng): TranslateTask {
   if (item.promptsRu.length > 0) {
     return {
       move: 'translate',
-      promptRu: rngPick(rng, item.promptsRu),
+      promptRu: promptFor(item, 'translate', rng),
       mode: 'situation',
       expected: [item.en, ...item.accept],
       sample: found?.ctx.en ?? item.en,
@@ -127,18 +157,81 @@ export function buildTranslate(item: Item, rng: Rng): TranslateTask {
   return { move: 'translate', promptRu: item.ru, mode: 'phrase', expected: [item.en, ...item.accept], sample: item.en }
 }
 
-export function buildTask(move: MoveId, item: Item, rng: Rng): MoveTask {
+/** На слух: the sentence is spoken; pick its meaning among three. Distractors come from other items. */
+export function buildListen(item: Item, rng: Rng, pool: readonly Item[] = []): ListenTask {
+  const ctx = rngPick(rng, item.contexts)
+  const others = pool.filter((i) => i.id !== item.id && i.contexts.length > 0)
+  const sameLand = others.filter((i) => i.land === item.land)
+  const source = sameLand.length >= 2 ? sameLand : others
+  const distractors: string[] = []
+  for (const o of rngShuffle(rng, source)) {
+    if (distractors.length >= 2) break
+    const ru = rngPick(rng, o.contexts).ru
+    if (ru !== ctx.ru && !distractors.includes(ru)) distractors.push(ru)
+  }
+  // Fallback when the pool is small: other sentences of the same item, then false meanings.
+  for (const c of item.contexts) {
+    if (distractors.length >= 2) break
+    if (c.ru !== ctx.ru && !distractors.includes(c.ru)) distractors.push(c.ru)
+  }
+  for (const f of item.falseMeanings) {
+    if (distractors.length >= 2) break
+    if (!distractors.includes(f)) distractors.push(f)
+  }
+  const options = rngShuffle(rng, [ctx.ru, ...distractors.slice(0, 2)])
+  return { move: 'listen', sentenceEn: ctx.en, options, correctIndex: options.indexOf(ctx.ru) }
+}
+
+/** Диктант: the sentence with the phrase is spoken; type it whole. */
+export function buildDictation(item: Item, rng: Rng): DictationTask {
+  const found = contextWithPhrase(item)
+  const ctx = found ? found.ctx : rngPick(rng, item.contexts)
+  return { move: 'dictation', sentenceEn: ctx.en, sentenceRu: ctx.ru, expected: [ctx.en] }
+}
+
+/** Голос: a Russian situation, say it in English; the phrase must be heard. */
+export function buildVoice(item: Item, rng: Rng): VoiceTask {
+  const found = contextWithPhrase(item)
+  return {
+    move: 'voice',
+    promptRu: promptFor(item, 'translate', rng),
+    targets: [item.en, ...item.accept],
+    sample: found?.ctx.en ?? item.en,
+  }
+}
+
+/** Экспромт: a situation not seen before, a few seconds to start, voice or typing. */
+export function buildImprov(item: Item, rng: Rng): ImprovTask {
+  const found = contextWithPhrase(item)
+  return {
+    move: 'improv',
+    promptRu: promptFor(item, 'improv', rng),
+    targets: [item.en, ...item.accept],
+    sample: found?.ctx.en ?? item.en,
+    startWindowMs: balance.improv.startWindowMs,
+  }
+}
+
+export function buildTask(move: MoveId, item: Item, rng: Rng, pool: readonly Item[] = []): MoveTask {
   switch (move) {
     case 'intro':
       return buildIntro(item, rng)
     case 'swipe':
       return buildSwipe(item, rng)
+    case 'listen':
+      return buildListen(item, rng, pool)
     case 'build':
       return buildBuild(item, rng)
     case 'gap':
       return buildGap(item)
     case 'translate':
       return buildTranslate(item, rng)
+    case 'dictation':
+      return buildDictation(item, rng)
+    case 'voice':
+      return buildVoice(item, rng)
+    case 'improv':
+      return buildImprov(item, rng)
     default:
       throw new Error(`buildTask: move ${move} is not implemented yet`)
   }
@@ -158,6 +251,36 @@ export function checkTask(task: MoveTask, answer: string, hintUsed: boolean): Mo
     case 'translate': {
       const r = task.mode === 'phrase' ? checkAnswer(answer, task.expected) : containsTarget(answer, task.expected)
       return { correct: r.ok, hintUsed, typo: r.typo, answer, expected: task.sample }
+    }
+    case 'listen': {
+      const picked = Number(answer)
+      return {
+        correct: picked === task.correctIndex,
+        hintUsed: false,
+        typo: false,
+        answer: task.options[picked] ?? answer,
+        expected: task.sentenceEn,
+      }
+    }
+    case 'dictation': {
+      const r = checkAnswer(answer, task.expected)
+      return { correct: r.ok, hintUsed, typo: r.typo, answer, expected: task.sentenceEn }
+    }
+    case 'voice': {
+      // Self-assessment without recognition: 'self:ok' | 'self:typo' | 'self:fail'.
+      if (answer.startsWith('self:')) {
+        const v = answer.slice(5)
+        return { correct: v !== 'fail', hintUsed: false, typo: v === 'typo', answer: '(самооценка)', expected: task.sample }
+      }
+      const r = matchVoice(answer.split('\n'), task.targets, balance.voice.overlapMin)
+      return { correct: r.ok, hintUsed: false, typo: r.typo, answer, expected: task.sample }
+    }
+    case 'improv': {
+      if (answer === '') return { correct: false, hintUsed: false, typo: false, answer: '(не начал)', expected: task.sample }
+      const r = answer.includes('\n')
+        ? matchVoice(answer.split('\n'), task.targets, balance.voice.overlapMin)
+        : containsTarget(answer, task.targets)
+      return { correct: r.ok, hintUsed: false, typo: r.typo, answer, expected: task.sample }
     }
     case 'swipe': {
       const saidMatches = answer === 'right'
@@ -180,10 +303,16 @@ export function expectedAnswerOf(task: MoveTask | null): string | null {
   switch (task.move) {
     case 'swipe':
       return task.matches ? 'right' : 'left'
+    case 'listen':
+      return String(task.correctIndex)
     case 'build':
     case 'gap':
     case 'translate':
+    case 'dictation':
       return task.expected[0] ?? null
+    case 'voice':
+    case 'improv':
+      return task.targets[0] ?? null
     default:
       return null
   }

@@ -1,5 +1,8 @@
 import { useProfileStore } from '@/store/profile'
 import { Screen } from '@/ui/Screen'
+import { SpeakButton } from '@/ui/SpeakButton'
+import { recognitionAvailable } from '@/speech/recognition'
+import { ttsAvailable } from '@/speech/tts'
 import type { TtsVoice } from '@/types'
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
@@ -119,6 +122,18 @@ export function SettingsScreen() {
             ))}
           </div>
         </Row>
+        <Row label="Проверить голос">
+          {ttsAvailable() ? (
+            <SpeakButton text="It depends on the weather, to be honest." label="Проверить" testId="settings-speak" />
+          ) : (
+            <span className="text-sm text-danger" data-testid="tts-missing">
+              Озвучка недоступна
+            </span>
+          )}
+        </Row>
+        <p className="px-1 text-xs text-fg-faint" data-testid="speech-status">
+          Озвучка: {ttsAvailable() ? 'есть' : 'нет'} · Распознавание речи: {recognitionAvailable() ? 'есть' : 'нет, Голос пойдёт через самооценку'}
+        </p>
       </section>
 
       <section className="flex flex-col gap-2">

@@ -12,6 +12,7 @@ import { now } from '@/store/clock'
 import { Button } from '@/ui/Button'
 import { EnemySprite } from '@/ui/EnemySprite'
 import { Hearts } from '@/ui/Hearts'
+import { SpeakButton } from '@/ui/SpeakButton'
 import { WindupBar } from '@/ui/WindupBar'
 import type { Combatant, EnemyKind, Item } from '@/types'
 
@@ -94,17 +95,23 @@ function FeedbackPanel({ f, onNext }: { f: Feedback; onNext: () => void }) {
         )}
       </div>
       {f.correct ? (
-        <div className="mt-1 text-sm">
-          <p className="text-base font-semibold text-fg">{f.item.en}</p>
-          <p className="text-fg-muted">{f.item.ru}</p>
-          {f.typo ? <p className="mt-1 text-fg-muted">Опечатка, правильно: {f.expected}</p> : null}
+        <div className="mt-1 flex items-start justify-between gap-2 text-sm">
+          <div>
+            <p className="text-base font-semibold text-fg">{f.item.en}</p>
+            <p className="text-fg-muted">{f.item.ru}</p>
+            {f.typo ? <p className="mt-1 text-fg-muted">Опечатка, правильно: {f.expected}</p> : null}
+          </div>
+          <SpeakButton text={f.item.en} testId="feedback-speak" />
         </div>
       ) : (
         <div className="mt-1 flex flex-col gap-1 text-sm">
           <p className="text-fg-muted">❌ {f.answer}</p>
-          <p className="font-semibold text-fg" data-testid="feedback-expected">
-            ✅ {f.expected}
-          </p>
+          <div className="flex items-start justify-between gap-2">
+            <p className="font-semibold text-fg" data-testid="feedback-expected">
+              ✅ {f.expected}
+            </p>
+            <SpeakButton text={f.expected} testId="feedback-speak" />
+          </div>
           <p className="text-fg-muted">{f.item.en} — {f.item.ru}</p>
           {f.item.noteRu ? <p className="text-fg-muted">{f.item.noteRu}</p> : null}
         </div>
@@ -219,6 +226,18 @@ export function BattleScreen() {
           </div>
         ) : null}
       </header>
+
+      {s.battlePhase === 'feedback' && s.feedback?.crit ? (
+        <motion.div
+          key={s.shake}
+          aria-hidden="true"
+          data-testid="crit-flash"
+          className="pointer-events-none fixed inset-0 z-40 bg-accent"
+          initial={{ opacity: 0.55 }}
+          animate={{ opacity: 0 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
+        />
+      ) : null}
 
       {!s.loaded || s.battlePhase === 'idle' || s.battlePhase === 'loading' ? (
         <div className="flex flex-1 items-center justify-center text-fg-muted">Враги собираются…</div>

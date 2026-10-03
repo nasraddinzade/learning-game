@@ -15,6 +15,15 @@ export interface SwipeTask {
   matches: boolean
 }
 
+export interface ListenTask {
+  move: 'listen'
+  /** Spoken, never shown. */
+  sentenceEn: string
+  /** Three Russian meanings, shuffled. */
+  options: string[]
+  correctIndex: number
+}
+
 export interface BuildTask {
   move: 'build'
   sentenceRu: string
@@ -44,7 +53,34 @@ export interface TranslateTask {
   sample: string
 }
 
-export type MoveTask = IntroTask | SwipeTask | BuildTask | GapTask | TranslateTask
+export interface DictationTask {
+  move: 'dictation'
+  /** Spoken, never shown until feedback. */
+  sentenceEn: string
+  sentenceRu: string
+  expected: string[]
+}
+
+export interface VoiceTask {
+  move: 'voice'
+  promptRu: string
+  /** The phrase (and accepted variants) that must be heard. */
+  targets: string[]
+  /** Model answer for the self-assessment fallback and the feedback. */
+  sample: string
+}
+
+export interface ImprovTask {
+  move: 'improv'
+  /** A situation the item has not shown before (second prompt). */
+  promptRu: string
+  targets: string[]
+  sample: string
+  /** Milliseconds to start answering before it counts as a miss. */
+  startWindowMs: number
+}
+
+export type MoveTask = IntroTask | SwipeTask | ListenTask | BuildTask | GapTask | TranslateTask | DictationTask | VoiceTask | ImprovTask
 
 export interface MoveResult {
   correct: boolean
@@ -63,4 +99,4 @@ export interface MoveProps<T extends MoveTask = MoveTask> {
   onInteract?: () => void
 }
 
-export const IMPLEMENTED_MOVES: readonly MoveId[] = ['swipe', 'build', 'gap', 'translate']
+export const IMPLEMENTED_MOVES: readonly MoveId[] = ['swipe', 'listen', 'build', 'gap', 'translate', 'dictation', 'voice', 'improv']
