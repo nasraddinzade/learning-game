@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { lands } from '@/content/seed'
+import { lands } from '@/content/lands'
 import { allItems, allProgress } from '@/db/repos'
 import { creatureStatus, landProgress, STATUS_LABEL_RU, unlockedLandIds, type CreatureStatus } from '@/engine/lands'
 import { STAGE_LABEL_RU } from '@/engine/moves'

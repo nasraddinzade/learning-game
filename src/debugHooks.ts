@@ -2,7 +2,6 @@
 import { aiCallLog, setAIOverride } from '@/ai/ai'
 import { createFakeAI, type FakeScript } from '@/ai/fake'
 import { seedPatterns } from '@/content/patterns'
-import { seedScenes } from '@/content/scenes'
 import { expectedAnswerOf } from '@/moves/tasks'
 import { fixedSentence } from '@/moves/trap/fixedSentence'
 import { setRecognizer } from '@/speech/recognition'
@@ -37,7 +36,7 @@ export interface DebugHooks {
   /** Tasks sent to the provider since the double was installed. */
   aiLog: () => string[]
   /** The scripted model answer for the current Встреча turn. */
-  sceneSample: () => string | null
+  sceneSample: () => Promise<string | null>
   /** Rewrites one map node's type on the active run (tests reach a Встреча deterministically). */
   setNodeType: (step: number, node: number, type: NodeType) => Promise<void>
 }
@@ -126,9 +125,10 @@ export function installDebugHooks(): void {
       await saveRun(next)
       useRunStore.setState({ run: next })
     },
-    sceneSample: () => {
+    sceneSample: async () => {
       const enc = useRunStore.getState().run?.encounter
       if (!enc) return null
+      const { seedScenes } = await import('@/content/scenes')
       const scene = seedScenes.find((sc) => sc.id === enc.sceneId)
       return scene?.turns[enc.turn]?.sampleEn ?? null
     },

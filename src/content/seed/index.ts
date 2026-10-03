@@ -1,5 +1,6 @@
 // Seed content: lands with items (SPEC §9.1). Heavy, so it is imported lazily by ensureSeed.
 import type { Item, ItemType } from '@/types'
+import { lands, type LandDef } from '../lands'
 import smalltalk from './lands/smalltalk.json'
 import opinion from './lands/opinion.json'
 import daily from './lands/daily.json'
@@ -30,12 +31,6 @@ interface SeedItemJson {
   questionEn: string
   falseMeanings: string[]
   noteRu: string
-}
-
-export interface LandDef {
-  id: string
-  name: string
-  emoji: string
 }
 
 interface LandJson extends LandDef {
@@ -87,9 +82,12 @@ function toItem(raw: SeedItemJson, land: string, order: number): Item {
   }
 }
 
-export const lands: LandDef[] = LAND_JSON.filter((land, i) => LAND_JSON.findIndex((l) => l.id === land.id) === i).map(
+/** Lands as the JSON files declare them; must equal `lands` from ../lands (checked by seed.test.ts). */
+export const landsFromJson: LandDef[] = LAND_JSON.filter((land, i) => LAND_JSON.findIndex((l) => l.id === land.id) === i).map(
   ({ id, name, emoji }) => ({ id, name, emoji }),
 )
+
+export { lands, type LandDef }
 
 let order = 0
 export const seedItems: Item[] = LAND_JSON.flatMap((land) => land.items.map((raw) => toItem(raw, land.id, order++)))

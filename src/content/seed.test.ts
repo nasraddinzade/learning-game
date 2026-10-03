@@ -78,3 +78,11 @@ describe('seed content (SPEC §9.1)', () => {
     }
   })
 })
+
+describe('land definitions', () => {
+  it('the light lands module matches the land JSON files', async () => {
+    const { lands } = await import('./lands')
+    const { landsFromJson } = await import('./seed')
+    expect(lands).toEqual(landsFromJson)
+  })
+})

@@ -360,10 +360,10 @@ export async function autopilot(page: Page, opts: AutopilotOptions = {}): Promis
     }
     if (info.runPhase === 'encounter') {
       await expect(page.getByTestId('screen-encounter')).toBeVisible()
-      const enc = await page.evaluate(() => {
-        const hook = (window as unknown as { __nemesis?: { state: () => HookState; sceneSample: () => string | null } }).__nemesis
+      const enc = await page.evaluate(async () => {
+        const hook = (window as unknown as { __nemesis?: { state: () => HookState; sceneSample: () => Promise<string | null> } }).__nemesis
         const e = hook?.state().run?.encounter ?? null
-        return e ? { ...e, sample: hook?.sceneSample() ?? '' } : null
+        return e ? { ...e, sample: (await hook?.sceneSample()) ?? '' } : null
       })
       if (!enc) continue
       if (enc.phase === 'result') {

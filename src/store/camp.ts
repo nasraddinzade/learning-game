@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { lands as landDefs } from '@/content/seed'
+import { lands as landDefs } from '@/content/lands'
 import { unlockedLandIds } from '@/engine/lands'
 import { activeNemeses } from '@/engine/nemesis'
 import { queueCounts, type QueueCounts } from '@/engine/scheduler'

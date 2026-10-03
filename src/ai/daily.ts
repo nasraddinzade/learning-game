@@ -1,6 +1,6 @@
 // Once-a-day AI work (SPEC §10.2, §4.4): fresh contexts for tomorrow's reviews, missing fields of
 // phrases added without AI, mnemonics for nemeses. Everything is optional and silent.
-import { lands } from '@/content/seed'
+import { lands } from '@/content/lands'
 import { db } from '@/db/db'
 import { allItems, allProgress, saveProgress } from '@/db/repos'
 import { mergeDraft, mergeFresh } from '@/db/textRepo'

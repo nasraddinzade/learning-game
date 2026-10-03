@@ -34,3 +34,4 @@ Thumbs.db
 *.sln
 *.sw?
 .claude/settings.local.json
+dist-pages

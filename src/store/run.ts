@@ -17,7 +17,6 @@ import { newPatternStat, reactivatePattern } from '@/engine/patterns'
 import { addCorrectionItem } from '@/db/textRepo'
 import { aiAvailable, sceneTurn } from '@/ai/ai'
 import { enrichNemesis } from '@/ai/daily'
-import { seedScenes } from '@/content/scenes'
 import { applyTurn, chipsUsedIn, finishEncounterNode, scriptedLine, startEncounterNode, type TurnVerdict } from '@/game/encounter'
 import type { SceneDef, SceneOutcome } from '@/types'
 import { buildQueue } from '@/engine/scheduler'
@@ -46,7 +45,7 @@ import type { TrapResult } from '@/moves/trap/TrapMove'
 import { speak } from '@/speech/tts'
 import { buzz, fx } from '@/ui/fx'
 import type { CombatState, Item, MoveId, PatternStat, Progress, Rating, Run, Trophy, TrapExercise, RunPool } from '@/types'
-import { lands as landDefs, type LandDef } from '@/content/seed'
+import { lands as landDefs, type LandDef } from '@/content/lands'
 import { now } from './clock'
 import { useProfileStore } from './profile'
 
@@ -544,6 +543,7 @@ export const useRunStore = create<RunState>((set, get) => {
       if (!target) return
       if (target.type === 'encounter') {
         const { items } = get()
+        const { seedScenes } = await import('@/content/scenes')
         const next = startEncounterNode(run, { step, node }, seedScenes, new Map(Object.entries(items)), new Map(Object.entries(progress)), now())
         await persist(next)
         return
@@ -801,6 +801,7 @@ export const useRunStore = create<RunState>((set, get) => {
       const { run, items } = get()
       const enc = run?.encounter
       if (!run || run.phase !== 'encounter' || !enc || enc.phase !== 'talk') return
+      const { seedScenes } = await import('@/content/scenes')
       const scene = seedScenes.find((sc) => sc.id === enc.sceneId)
       if (!scene) return
       const itemMap = new Map(Object.entries(items))
@@ -852,6 +853,7 @@ export const useRunStore = create<RunState>((set, get) => {
       const { run } = get()
       const enc = run?.encounter
       if (!run || run.phase !== 'encounter' || !enc || enc.phase !== 'self') return
+      const { seedScenes } = await import('@/content/scenes')
       const scene = seedScenes.find((sc) => sc.id === enc.sceneId)
       if (!scene) return
       const text = enc.pendingText ?? ''
