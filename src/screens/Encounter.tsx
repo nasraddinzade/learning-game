@@ -209,14 +209,14 @@ export function EncounterScreen() {
             <SpeakButton text={turnDef.sampleEn} testId="scene-sample-speak" />
           </p>
           <p className="text-sm text-fg-muted">Честно: как получилось?</p>
-          <div className="flex gap-2">
-            <Button data-testid="scene-self-ok" onClick={() => void s.assessScene('ok')}>
+          <div className="grid grid-cols-3 gap-2">
+            <Button className="min-w-0 px-1! text-sm leading-tight" data-testid="scene-self-ok" onClick={() => void s.assessScene('ok')}>
               Верно
             </Button>
-            <Button variant="secondary" data-testid="scene-self-typo" onClick={() => void s.assessScene('typo')}>
+            <Button variant="secondary" className="min-w-0 px-1! text-sm leading-tight" data-testid="scene-self-typo" onClick={() => void s.assessScene('typo')}>
               С ошибкой
             </Button>
-            <Button variant="danger" data-testid="scene-self-fail" onClick={() => void s.assessScene('fail')}>
+            <Button variant="danger" className="min-w-0 px-1! text-sm leading-tight" data-testid="scene-self-fail" onClick={() => void s.assessScene('fail')}>
               Не смог
             </Button>
           </div>

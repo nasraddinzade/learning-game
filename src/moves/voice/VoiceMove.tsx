@@ -109,13 +109,13 @@ function SelfAssess({ task, onSubmit }: { task: VoiceTask; onSubmit: MoveProps<V
           </div>
           <p className="text-sm text-fg-muted">Честно: как получилось?</p>
           <div className="grid grid-cols-3 gap-2">
-            <Button data-testid="voice-self-ok" onClick={() => onSubmit(checkTask(task, 'self:ok', false))}>
+            <Button className="min-w-0 px-1! text-sm leading-tight" data-testid="voice-self-ok" onClick={() => onSubmit(checkTask(task, 'self:ok', false))}>
               Верно
             </Button>
-            <Button variant="secondary" data-testid="voice-self-typo" onClick={() => onSubmit(checkTask(task, 'self:typo', false))}>
+            <Button variant="secondary" className="min-w-0 px-1! text-sm leading-tight" data-testid="voice-self-typo" onClick={() => onSubmit(checkTask(task, 'self:typo', false))}>
               С ошибкой
             </Button>
-            <Button variant="danger" data-testid="voice-self-fail" onClick={() => onSubmit(checkTask(task, 'self:fail', false))}>
+            <Button variant="danger" className="min-w-0 px-1! text-sm leading-tight" data-testid="voice-self-fail" onClick={() => onSubmit(checkTask(task, 'self:fail', false))}>
               Не смог
             </Button>
           </div>

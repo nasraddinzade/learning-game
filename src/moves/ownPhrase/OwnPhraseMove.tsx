@@ -114,14 +114,14 @@ export function OwnPhraseMove({ task, item, onSubmit, onInteract }: MoveProps<Ow
             ))}
           </ul>
           <p className="text-sm text-fg-muted">Честно: как получилось?</p>
-          <div className="flex gap-2">
-            <Button data-testid="own-self-ok" onClick={() => selfAssess('ok')}>
+          <div className="grid grid-cols-3 gap-2">
+            <Button className="min-w-0 px-1! text-sm leading-tight" data-testid="own-self-ok" onClick={() => selfAssess('ok')}>
               Верно
             </Button>
-            <Button variant="secondary" data-testid="own-self-typo" onClick={() => selfAssess('typo')}>
+            <Button variant="secondary" className="min-w-0 px-1! text-sm leading-tight" data-testid="own-self-typo" onClick={() => selfAssess('typo')}>
               С ошибкой
             </Button>
-            <Button variant="danger" data-testid="own-self-fail" onClick={() => selfAssess('fail')}>
+            <Button variant="danger" className="min-w-0 px-1! text-sm leading-tight" data-testid="own-self-fail" onClick={() => selfAssess('fail')}>
               Не смог
             </Button>
           </div>
