@@ -35,3 +35,6 @@ Thumbs.db
 *.sw?
 .claude/settings.local.json
 dist-pages
+
+# Promo video and post drafts (video recorded by playwright.demo.config.ts)
+docs/demo/

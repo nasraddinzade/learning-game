@@ -47,7 +47,7 @@ function Clock({ startedAt, ms, onExpire }: { startedAt: number; ms: number; onE
   }, [startedAt, ms])
   const sec = Math.ceil(left / 1000)
   return (
-    <span className={`text-sm font-bold tabular-nums ${sec <= 5 ? 'text-danger' : 'text-fg-muted'}`} data-testid="scene-clock">
+    <span className={`shrink-0 whitespace-nowrap text-sm font-bold tabular-nums ${sec <= 5 ? 'text-danger' : 'text-fg-muted'}`} data-testid="scene-clock">
       {sec} с
     </span>
   )
@@ -99,16 +99,16 @@ export function EncounterScreen() {
   return (
     <MotionConfig reducedMotion="user">
     <main data-testid="screen-encounter" className="safe-top safe-bottom mx-auto flex min-h-full w-full max-w-[440px] flex-col gap-3 px-4 pb-6">
-      <header className="flex h-14 items-center justify-between">
-        <div className="flex items-center gap-2">
+      <header className="flex h-14 items-center justify-between gap-2">
+        <div className="flex min-w-0 items-center gap-2">
           <span className="text-2xl" aria-hidden="true">
             {scene.emoji}
           </span>
-          <h1 className="text-lg font-bold" data-testid="scene-title">
+          <h1 className="min-w-0 truncate text-lg font-bold" data-testid="scene-title">
             {scene.title}
           </h1>
         </div>
-        <span className="text-xs text-fg-muted" data-testid="scene-turn">
+        <span className="shrink-0 whitespace-nowrap text-xs text-fg-muted" data-testid="scene-turn">
           {enc.phase === 'result' ? 'итог' : `реплика ${enc.turn + 1} из ${total}`}
         </span>
       </header>
@@ -162,7 +162,7 @@ export function EncounterScreen() {
       {enc.phase === 'talk' && turnDef ? (
         <section className="mt-auto flex flex-col gap-2" data-testid="scene-answer">
           <div className="flex items-center justify-between">
-            <p className="text-base text-fg-muted" data-testid="scene-hint">
+            <p className="min-w-0 flex-1 text-base text-fg-muted" data-testid="scene-hint">
               {turnDef.hintRu}
             </p>
             <Clock startedAt={enc.turnStartedAt} ms={balance.encounter.answerMs} onExpire={() => void s.answerScene('')} />

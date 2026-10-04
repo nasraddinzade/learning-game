@@ -33,6 +33,18 @@
         "4174"
       ],
       "port": 4174
+    },
+    {
+      "name": "demo-video",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4180",
+        "--directory",
+        "docs/demo"
+      ],
+      "port": 4180
     }
   ]
 }
